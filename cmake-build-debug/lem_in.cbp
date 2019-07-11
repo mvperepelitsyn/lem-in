@@ -93,9 +93,6 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper.h">
-			<Option target="lem_in"/>
-		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper_to_a.c">
 			<Option target="lem_in"/>
 		</Unit>

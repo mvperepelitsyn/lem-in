@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/dfrost-a/Desktop/lem-in/checker.c
+checker.h
+/Users/dfrost-a/Desktop/lem-in/checker.h
+
+/Users/dfrost-a/Desktop/lem-in/checker.h
+libft/includes/libft.h
+/Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h
+
+/Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+
