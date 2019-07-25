@@ -6,11 +6,13 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/11 18:22:03 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/25 20:36:44 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+#include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
 void	fill_list_rooms(t_list_rooms **rooms, char **rms)
 {
@@ -62,12 +64,16 @@ void	fill_list_links(t_list_links **links, char **rms)
 	}
 }
 
-void	parce_ant_farm(t_test *test, int argc, char **argv)
+void	parce_ant_farm(t_test *test) //when we force it to read
 {
-	char *things;
-	char **rms;
+	char	*things;
+	char	**rms;
+	int		fd;
 
-	get_next_line(0, &things);
+	if ((fd = open(NAME, O_RDONLY)) < 0)
+		fd = 0;
+	get_next_line(fd, &things);
+	ft_println(things);
 	test->num_ants = ft_atoi(things);
 	ft_strdel(&things);
 	test->rooms = (t_list_rooms *)malloc(sizeof(t_list_rooms));
@@ -75,11 +81,14 @@ void	parce_ant_farm(t_test *test, int argc, char **argv)
 	test->rooms->i = 0;
 	test->links->i = 0;
 	test->links->next = NULL;
-	while (get_next_line(0, &things))
+	while (get_next_line(fd, &things))
 	{
+		ft_println(things);
 		if (ft_strequ("##start", things))
 		{
-			get_next_line(0, &things);
+			ft_strdel(&things);
+			get_next_line(fd, &things);
+			ft_println(things);
 			rms = ft_strsplit(things, ' ');
 			test->start_room = (t_room *)malloc(sizeof(t_room));
 			test->start_room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
@@ -88,7 +97,9 @@ void	parce_ant_farm(t_test *test, int argc, char **argv)
 		}
 		else if (ft_strequ("##end", things))
 		{
-			get_next_line(0, &things);
+			ft_strdel(&things);
+			get_next_line(fd, &things);
+			ft_println(things);
 			rms = ft_strsplit(things, ' ');
 			test->end_room = (t_room *)malloc(sizeof(t_room));
 			test->end_room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
@@ -109,35 +120,23 @@ void	parce_ant_farm(t_test *test, int argc, char **argv)
 	}
 }
 
-//void	do_cmd(t_stack *stack)
-//{
-//	char *cmd;
-//
-//	while (get_next_line(0, &cmd))
-//	{
-//		if (!cmd)
-//			break ;
-//		if (get_cmd(stack, cmd))
-//			break ;
-//		free(cmd);
-//		cmd = NULL;
-//	}
-//	free(cmd);
-//}
+//TODO: make a validation
+//1)The number of ants
+//2)Exception in names of the rooms (cant start with the character L nor the character #)
+//3)The size of the coordinates (int)
+//4)Valid rooms in links
+//5)
 
-int		main(int argc, char **argv)
+
+int		main()
 {
 	t_test	*test;
 
+	ft_putstr("Here what in file:\n");
 	if (!(test = (t_test *)malloc(sizeof(t_test))))
 		ft_malloc_error();
-	parce_ant_farm(test, argc, argv);
-	exit (69);
-//	do_cmd(stack);
-//	if (!(is_ok(stack)))
-//	{
-//		ft_putstr("KO\n");
-//		exit(13);
-//	}
-//	return (0);
+	parce_ant_farm(test);
+	ft_putstr("\nHere what we've read:\n");
+	ft_print_strcut(test);
+	exit (0);
 }

@@ -9,6 +9,8 @@
 /Users/dfrost-a/Desktop/lem-in/checker.c
 checker.h
 /Users/dfrost-a/Desktop/lem-in/checker.h
+fcntl.h
+-
 
 /Users/dfrost-a/Desktop/lem-in/checker.h
 libft/includes/libft.h
