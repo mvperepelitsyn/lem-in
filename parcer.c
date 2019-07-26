@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   parcer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/25 20:36:44 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/26 16:41:16 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "parcer.h"
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
@@ -23,8 +23,9 @@ void	fill_list_rooms(t_list_rooms **rooms, char **rms)
 	{
 		(*rooms)->room = (t_room *)malloc(sizeof(t_room));
 		(*rooms)->room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
-		(*rooms)->room->x_cord = ft_atoi(rms[1]);
-		(*rooms)->room->y_cord = ft_atoi(rms[2]);
+		(*rooms)->room->x_cord = ft_latoi(rms[1]);
+		(*rooms)->room->y_cord = ft_latoi(rms[2]);
+		test_coord((*rooms)->room->x_cord, (*rooms)->room->y_cord);
 		(*rooms)->next = NULL;
 		(*rooms)->i++;
 	}
@@ -35,8 +36,9 @@ void	fill_list_rooms(t_list_rooms **rooms, char **rms)
 		current->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 		current->next->room = (t_room *)malloc(sizeof(t_room));
 		current->next->room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
-		current->next->room->x_cord = ft_atoi(rms[1]);
-		current->next->room->y_cord = ft_atoi(rms[2]);
+		current->next->room->x_cord = ft_latoi(rms[1]);
+		current->next->room->y_cord = ft_latoi(rms[2]);
+		test_coord(current->next->room->x_cord, current->next->room->y_cord);
 		current->next->next = NULL;
 	}
 }
@@ -74,7 +76,9 @@ void	parce_ant_farm(t_test *test) //when we force it to read
 		fd = 0;
 	get_next_line(fd, &things);
 	ft_println(things);
-	test->num_ants = ft_atoi(things);
+	test->num_ants = ft_latoi(things);
+	if (test->num_ants <= 0 || test->num_ants > 2147483647)
+		ft_error();
 	ft_strdel(&things);
 	test->rooms = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 	test->links = (t_list_links *)malloc(sizeof(t_list_links));
@@ -92,8 +96,9 @@ void	parce_ant_farm(t_test *test) //when we force it to read
 			rms = ft_strsplit(things, ' ');
 			test->start_room = (t_room *)malloc(sizeof(t_room));
 			test->start_room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
-			test->start_room->x_cord = ft_atoi(rms[1]);
-			test->start_room->y_cord = ft_atoi(rms[2]);
+			test->start_room->x_cord = ft_latoi(rms[1]);
+			test->start_room->y_cord = ft_latoi(rms[2]);
+			test_coord(test->start_room->x_cord, test->start_room->y_cord);
 		}
 		else if (ft_strequ("##end", things))
 		{
@@ -103,8 +108,9 @@ void	parce_ant_farm(t_test *test) //when we force it to read
 			rms = ft_strsplit(things, ' ');
 			test->end_room = (t_room *)malloc(sizeof(t_room));
 			test->end_room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
-			test->end_room->x_cord = ft_atoi(rms[1]);
-			test->end_room->y_cord = ft_atoi(rms[2]);
+			test->end_room->x_cord = ft_latoi(rms[1]);
+			test->end_room->y_cord = ft_latoi(rms[2]);
+			test_coord(test->end_room->x_cord, test->end_room->y_cord);
 		}
 		else if (ft_hm_wrd(things, ' ') == 3)
 		{
@@ -121,9 +127,9 @@ void	parce_ant_farm(t_test *test) //when we force it to read
 }
 
 //TODO: make a validation
-//1)The number of ants
+//1)The number of ants (check)
 //2)Exception in names of the rooms (cant start with the character L nor the character #)
-//3)The size of the coordinates (int)
+//3)The size of the coordinates (int) (check)
 //4)Valid rooms in links
 //5)
 

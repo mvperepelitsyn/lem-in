@@ -902,18 +902,18 @@ CMakeFiles/lem_in.dir/libft/get_next_line.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_in.dir/libft/get_next_line.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/dfrost-a/Desktop/lem-in/libft/get_next_line.c -o CMakeFiles/lem_in.dir/libft/get_next_line.c.s
 
-CMakeFiles/lem_in.dir/checker.c.o: CMakeFiles/lem_in.dir/flags.make
-CMakeFiles/lem_in.dir/checker.c.o: ../checker.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/lem_in.dir/checker.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/checker.c.o   -c /Users/dfrost-a/Desktop/lem-in/checker.c
+CMakeFiles/lem_in.dir/parcer.c.o: CMakeFiles/lem_in.dir/flags.make
+CMakeFiles/lem_in.dir/parcer.c.o: ../parcer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/lem_in.dir/parcer.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/parcer.c.o   -c /Users/dfrost-a/Desktop/lem-in/parcer.c
 
-CMakeFiles/lem_in.dir/checker.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_in.dir/checker.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/dfrost-a/Desktop/lem-in/checker.c > CMakeFiles/lem_in.dir/checker.c.i
+CMakeFiles/lem_in.dir/parcer.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_in.dir/parcer.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/dfrost-a/Desktop/lem-in/parcer.c > CMakeFiles/lem_in.dir/parcer.c.i
 
-CMakeFiles/lem_in.dir/checker.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_in.dir/checker.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/dfrost-a/Desktop/lem-in/checker.c -o CMakeFiles/lem_in.dir/checker.c.s
+CMakeFiles/lem_in.dir/parcer.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_in.dir/parcer.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/dfrost-a/Desktop/lem-in/parcer.c -o CMakeFiles/lem_in.dir/parcer.c.s
 
 CMakeFiles/lem_in.dir/helper.c.o: CMakeFiles/lem_in.dir/flags.make
 CMakeFiles/lem_in.dir/helper.c.o: ../helper.c
@@ -953,19 +953,6 @@ CMakeFiles/lem_in.dir/helper_to_b.c.i: cmake_force
 CMakeFiles/lem_in.dir/helper_to_b.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_in.dir/helper_to_b.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/dfrost-a/Desktop/lem-in/helper_to_b.c -o CMakeFiles/lem_in.dir/helper_to_b.c.s
-
-CMakeFiles/lem_in.dir/parser.c.o: CMakeFiles/lem_in.dir/flags.make
-CMakeFiles/lem_in.dir/parser.c.o: ../parser.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building C object CMakeFiles/lem_in.dir/parser.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lem_in.dir/parser.c.o   -c /Users/dfrost-a/Desktop/lem-in/parser.c
-
-CMakeFiles/lem_in.dir/parser.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lem_in.dir/parser.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/dfrost-a/Desktop/lem-in/parser.c > CMakeFiles/lem_in.dir/parser.c.i
-
-CMakeFiles/lem_in.dir/parser.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lem_in.dir/parser.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/dfrost-a/Desktop/lem-in/parser.c -o CMakeFiles/lem_in.dir/parser.c.s
 
 # Object files for target lem_in
 lem_in_OBJECTS = \
@@ -1034,11 +1021,10 @@ lem_in_OBJECTS = \
 "CMakeFiles/lem_in.dir/libft/ft_tolower.c.o" \
 "CMakeFiles/lem_in.dir/libft/ft_toupper.c.o" \
 "CMakeFiles/lem_in.dir/libft/get_next_line.c.o" \
-"CMakeFiles/lem_in.dir/checker.c.o" \
+"CMakeFiles/lem_in.dir/parcer.c.o" \
 "CMakeFiles/lem_in.dir/helper.c.o" \
 "CMakeFiles/lem_in.dir/helper_to_a.c.o" \
-"CMakeFiles/lem_in.dir/helper_to_b.c.o" \
-"CMakeFiles/lem_in.dir/parser.c.o"
+"CMakeFiles/lem_in.dir/helper_to_b.c.o"
 
 # External object files for target lem_in
 lem_in_EXTERNAL_OBJECTS =
@@ -1108,14 +1094,13 @@ lem_in: CMakeFiles/lem_in.dir/libft/ft_swap.c.o
 lem_in: CMakeFiles/lem_in.dir/libft/ft_tolower.c.o
 lem_in: CMakeFiles/lem_in.dir/libft/ft_toupper.c.o
 lem_in: CMakeFiles/lem_in.dir/libft/get_next_line.c.o
-lem_in: CMakeFiles/lem_in.dir/checker.c.o
+lem_in: CMakeFiles/lem_in.dir/parcer.c.o
 lem_in: CMakeFiles/lem_in.dir/helper.c.o
 lem_in: CMakeFiles/lem_in.dir/helper_to_a.c.o
 lem_in: CMakeFiles/lem_in.dir/helper_to_b.c.o
-lem_in: CMakeFiles/lem_in.dir/parser.c.o
 lem_in: CMakeFiles/lem_in.dir/build.make
 lem_in: CMakeFiles/lem_in.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Linking C executable lem_in"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Linking C executable lem_in"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lem_in.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

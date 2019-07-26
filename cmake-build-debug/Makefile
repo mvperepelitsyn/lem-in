@@ -123,33 +123,6 @@ lem_in/fast:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/build
 .PHONY : lem_in/fast
 
-checker.o: checker.c.o
-
-.PHONY : checker.o
-
-# target to build an object file
-checker.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/checker.c.o
-.PHONY : checker.c.o
-
-checker.i: checker.c.i
-
-.PHONY : checker.i
-
-# target to preprocess a source file
-checker.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/checker.c.i
-.PHONY : checker.c.i
-
-checker.s: checker.c.s
-
-.PHONY : checker.s
-
-# target to generate assembly for a file
-checker.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/checker.c.s
-.PHONY : checker.c.s
-
 helper.o: helper.c.o
 
 .PHONY : helper.o
@@ -1986,32 +1959,32 @@ libft/get_next_line.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/libft/get_next_line.c.s
 .PHONY : libft/get_next_line.c.s
 
-parser.o: parser.c.o
+parcer.o: parcer.c.o
 
-.PHONY : parser.o
+.PHONY : parcer.o
 
 # target to build an object file
-parser.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parser.c.o
-.PHONY : parser.c.o
+parcer.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parcer.c.o
+.PHONY : parcer.c.o
 
-parser.i: parser.c.i
+parcer.i: parcer.c.i
 
-.PHONY : parser.i
+.PHONY : parcer.i
 
 # target to preprocess a source file
-parser.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parser.c.i
-.PHONY : parser.c.i
+parcer.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parcer.c.i
+.PHONY : parcer.c.i
 
-parser.s: parser.c.s
+parcer.s: parcer.c.s
 
-.PHONY : parser.s
+.PHONY : parcer.s
 
 # target to generate assembly for a file
-parser.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parser.c.s
-.PHONY : parser.c.s
+parcer.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parcer.c.s
+.PHONY : parcer.c.s
 
 # Help Target
 help:
@@ -2022,9 +1995,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... lem_in"
-	@echo "... checker.o"
-	@echo "... checker.i"
-	@echo "... checker.s"
 	@echo "... helper.o"
 	@echo "... helper.i"
 	@echo "... helper.s"
@@ -2229,9 +2199,9 @@ help:
 	@echo "... libft/get_next_line.o"
 	@echo "... libft/get_next_line.i"
 	@echo "... libft/get_next_line.s"
-	@echo "... parser.o"
-	@echo "... parser.i"
-	@echo "... parser.s"
+	@echo "... parcer.o"
+	@echo "... parcer.i"
+	@echo "... parcer.s"
 .PHONY : help
 
 

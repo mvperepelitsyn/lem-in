@@ -4,7 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/dfrost-a/Desktop/lem-in/checker.c" "/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/checker.c.o"
   "/Users/dfrost-a/Desktop/lem-in/helper.c" "/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/helper.c.o"
   "/Users/dfrost-a/Desktop/lem-in/helper_to_a.c" "/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/helper_to_a.c.o"
   "/Users/dfrost-a/Desktop/lem-in/helper_to_b.c" "/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/helper_to_b.c.o"
@@ -73,7 +72,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/dfrost-a/Desktop/lem-in/libft/ft_tolower.c" "/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/libft/ft_tolower.c.o"
   "/Users/dfrost-a/Desktop/lem-in/libft/ft_toupper.c" "/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/libft/ft_toupper.c.o"
   "/Users/dfrost-a/Desktop/lem-in/libft/get_next_line.c" "/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/libft/get_next_line.c.o"
-  "/Users/dfrost-a/Desktop/lem-in/parser.c" "/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/parser.c.o"
+  "/Users/dfrost-a/Desktop/lem-in/parcer.c" "/Users/dfrost-a/Desktop/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/parcer.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "parcer.h"
 //
 //int		imed(t_stack *stack, int med)
 //{

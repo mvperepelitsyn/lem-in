@@ -6,11 +6,11 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:41 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/25 20:22:12 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/26 15:55:59 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "parcer.h"
 
 void	ft_malloc_error(void)
 {
@@ -22,6 +22,14 @@ void 	ft_error(void)
 {
 	ft_putstr("ERROR\n");
 	exit(69);
+}
+
+void	test_coord(long int x, long int y)
+{
+	if ((x > 2147483647 || x < -2147483648) || (y > 2147483647 || y <
+	        -2147483648))
+		ft_error();
+
 }
 
 void	ft_println(char *str)

@@ -73,9 +73,9 @@ add_executable(lem_in
         libft/ft_tolower.c
         libft/ft_toupper.c
         libft/get_next_line.c
-        checker.c
-        checker.h
+        parcer.c
+        parcer.h
         helper.c
         helper_to_a.c
         helper_to_b.c
-        parser.c)
+        )

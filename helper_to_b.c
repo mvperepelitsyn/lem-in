@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "parcer.h"
 //#include "push_swap.h"
 //
 //int		give_next_min_b(t_stack *stack, int min)

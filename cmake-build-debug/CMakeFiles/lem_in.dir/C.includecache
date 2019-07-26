@@ -6,15 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/Users/dfrost-a/Desktop/lem-in/checker.c
-checker.h
-/Users/dfrost-a/Desktop/lem-in/checker.h
-fcntl.h
--
+/Users/dfrost-a/Desktop/lem-in/helper.c
+parcer.h
+/Users/dfrost-a/Desktop/lem-in/parcer.h
 
-/Users/dfrost-a/Desktop/lem-in/checker.h
-libft/includes/libft.h
-/Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h
+/Users/dfrost-a/Desktop/lem-in/helper_to_a.c
+parcer.h
+/Users/dfrost-a/Desktop/lem-in/parcer.h
+
+/Users/dfrost-a/Desktop/lem-in/helper_to_b.c
+parcer.h
+/Users/dfrost-a/Desktop/lem-in/parcer.h
 
 /Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h
 string.h
@@ -23,4 +25,14 @@ stdlib.h
 -
 unistd.h
 -
+
+/Users/dfrost-a/Desktop/lem-in/parcer.c
+parcer.h
+/Users/dfrost-a/Desktop/lem-in/parcer.h
+fcntl.h
+-
+
+/Users/dfrost-a/Desktop/lem-in/parcer.h
+libft/includes/libft.h
+/Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h
 
