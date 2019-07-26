@@ -76,6 +76,4 @@ add_executable(lem_in
         parcer.c
         parcer.h
         helper.c
-        helper_to_a.c
-        helper_to_b.c
         )

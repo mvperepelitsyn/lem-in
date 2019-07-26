@@ -87,12 +87,6 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper_to_a.c">
-			<Option target="lem_in"/>
-		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper_to_b.c">
-			<Option target="lem_in"/>
-		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_atoi.c">
 			<Option target="lem_in"/>
 		</Unit>

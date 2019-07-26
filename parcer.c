@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/26 18:03:02 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/26 18:49:29 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	fill_list_rooms(t_list_rooms **rooms, char **rms)
 	}
 }
 
-void	fill_list_links(t_list_links **links, char **rms, t_list_rooms *rooms)
+void	fill_list_links(t_list_links **links, char **rms, t_test *test)
 {
 	t_list_links	*current;
 
@@ -54,7 +54,7 @@ void	fill_list_links(t_list_links **links, char **rms, t_list_rooms *rooms)
 	{
 		(*links)->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		(*links)->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
-		if (!(test_links((*links)->room1, (*links)->room2, rooms)))
+		if (!(test_links((*links)->room1, (*links)->room2, test)))
 			ft_error();
 		(*links)->next = NULL;
 		(*links)->i++;
@@ -66,7 +66,7 @@ void	fill_list_links(t_list_links **links, char **rms, t_list_rooms *rooms)
 		current->next = (t_list_links *)malloc(sizeof(t_list_links));
 		current->next->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		current->next->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
-		if (!(test_links(current->next->room1, current->next->room2, rooms)))
+		if (!(test_links(current->next->room1, current->next->room2, test)))
 			ft_error();
 		current->next->next = NULL;
 	}
@@ -128,7 +128,7 @@ void	parce_ant_farm(t_test *test) //when we force it to read
 		else if (ft_hm_wrd(things, '-'))
 		{
 			rms = ft_strsplit(things, '-');
-			fill_list_links(&test->links, rms, test->rooms);
+			fill_list_links(&test->links, rms, test);
 		}
 		ft_strdel(&things);
 	}
@@ -138,8 +138,8 @@ void	parce_ant_farm(t_test *test) //when we force it to read
 //1)The number of ants (check)
 //2)Exception in names of the rooms (cant start with the character L nor the character #) (check)
 //3)The size of the coordinates (int) (check)
-//4)Valid rooms in links
-//5)
+//4)Valid rooms in links (check, but not really)
+//5)Make it skeep the repetitive links
 
 
 int		main()

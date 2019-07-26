@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:41 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/26 17:51:45 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/26 19:15:47 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,35 @@ void	test_coord(long int x, long int y)
 		ft_error();
 }
 
-int 	test_links(const char *rm1, const char *rm2, t_list_rooms *rooms) // i need the whole structure
+int 	test_links(const char *rm1, const char *rm2, t_test *test) // i need the whole structure
 {
 	t_list_rooms	*current;
 	short			check;
 
-	current = rooms;
+	current = test->rooms;
 	check = 0;
 	while (current->room)
 	{
-		if (ft_strequ(rm1, current->room->name))
+		if (ft_strequ(rm1, current->room->name) || ft_strequ(rm1,
+				test->start_room->name) || ft_strequ(rm1, test->end_room->name))
 		{
 			check++;
 			break ;
 		}
-		current = current->next;
+		if (!(current = current->next))
+			break ;
 	}
-	current = rooms;
+	current = test->rooms;
 	while (current->room)
 	{
-		if (ft_strequ(rm2, current->room->name) || ft_strequ(rm2) )
+		if (ft_strequ(rm2, current->room->name) || ft_strequ(rm2,
+				test->start_room->name) || ft_strequ(rm2, test->end_room->name))
 		{
 			check++;
 			break ;
 		}
-		current = current->next;
+		if (!(current = current->next))
+			break ;
 	}
 	return((check == 2) ? 1 : 0);
 }

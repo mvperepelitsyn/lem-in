@@ -150,60 +150,6 @@ helper.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/helper.c.s
 .PHONY : helper.c.s
 
-helper_to_a.o: helper_to_a.c.o
-
-.PHONY : helper_to_a.o
-
-# target to build an object file
-helper_to_a.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/helper_to_a.c.o
-.PHONY : helper_to_a.c.o
-
-helper_to_a.i: helper_to_a.c.i
-
-.PHONY : helper_to_a.i
-
-# target to preprocess a source file
-helper_to_a.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/helper_to_a.c.i
-.PHONY : helper_to_a.c.i
-
-helper_to_a.s: helper_to_a.c.s
-
-.PHONY : helper_to_a.s
-
-# target to generate assembly for a file
-helper_to_a.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/helper_to_a.c.s
-.PHONY : helper_to_a.c.s
-
-helper_to_b.o: helper_to_b.c.o
-
-.PHONY : helper_to_b.o
-
-# target to build an object file
-helper_to_b.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/helper_to_b.c.o
-.PHONY : helper_to_b.c.o
-
-helper_to_b.i: helper_to_b.c.i
-
-.PHONY : helper_to_b.i
-
-# target to preprocess a source file
-helper_to_b.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/helper_to_b.c.i
-.PHONY : helper_to_b.c.i
-
-helper_to_b.s: helper_to_b.c.s
-
-.PHONY : helper_to_b.s
-
-# target to generate assembly for a file
-helper_to_b.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/helper_to_b.c.s
-.PHONY : helper_to_b.c.s
-
 libft/ft_atoi.o: libft/ft_atoi.c.o
 
 .PHONY : libft/ft_atoi.o
@@ -1998,12 +1944,6 @@ help:
 	@echo "... helper.o"
 	@echo "... helper.i"
 	@echo "... helper.s"
-	@echo "... helper_to_a.o"
-	@echo "... helper_to_a.i"
-	@echo "... helper_to_a.s"
-	@echo "... helper_to_b.o"
-	@echo "... helper_to_b.i"
-	@echo "... helper_to_b.s"
 	@echo "... libft/ft_atoi.o"
 	@echo "... libft/ft_atoi.i"
 	@echo "... libft/ft_atoi.s"
