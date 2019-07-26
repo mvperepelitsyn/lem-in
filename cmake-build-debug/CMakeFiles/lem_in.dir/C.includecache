@@ -6,18 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/dfrost-a/Desktop/lem-in/helper.c
-parcer.h
-/Users/dfrost-a/Desktop/lem-in/parcer.h
-
-/Users/dfrost-a/Desktop/lem-in/helper_to_a.c
-parcer.h
-/Users/dfrost-a/Desktop/lem-in/parcer.h
-
-/Users/dfrost-a/Desktop/lem-in/helper_to_b.c
-parcer.h
-/Users/dfrost-a/Desktop/lem-in/parcer.h
-
 /Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h
 string.h
 -

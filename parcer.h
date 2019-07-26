@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:18 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/26 16:05:19 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/26 18:01:44 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ void	ft_print_strcut(t_test *test);
 void 	ft_error(void);
 void	ft_println(char *str);
 void	test_coord(long int x, long int y);
+void	test_name(const char *name);
+int 	test_links(const char *rm1, const char *rm2, t_list_rooms *rooms);
 
 #endif

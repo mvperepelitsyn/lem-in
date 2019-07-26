@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:41 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/26 15:55:59 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/26 17:51:45 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,41 @@ void	test_coord(long int x, long int y)
 	if ((x > 2147483647 || x < -2147483648) || (y > 2147483647 || y <
 	        -2147483648))
 		ft_error();
+}
 
+int 	test_links(const char *rm1, const char *rm2, t_list_rooms *rooms) // i need the whole structure
+{
+	t_list_rooms	*current;
+	short			check;
+
+	current = rooms;
+	check = 0;
+	while (current->room)
+	{
+		if (ft_strequ(rm1, current->room->name))
+		{
+			check++;
+			break ;
+		}
+		current = current->next;
+	}
+	current = rooms;
+	while (current->room)
+	{
+		if (ft_strequ(rm2, current->room->name) || ft_strequ(rm2) )
+		{
+			check++;
+			break ;
+		}
+		current = current->next;
+	}
+	return((check == 2) ? 1 : 0);
+}
+
+void	test_name(const char *name)
+{
+	if (*name == 'L' || *name == '#')
+		ft_error();
 }
 
 void	ft_println(char *str)
