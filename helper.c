@@ -6,11 +6,11 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:41 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/28 14:20:58 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/28 16:38:46 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parcer.h"
+#include "parser.h"
 
 void	ft_malloc_error(void)
 {
@@ -62,11 +62,23 @@ int 	test_links(const char *rm1, const char *rm2, t_test *test) // i need the wh
 	check = 0;
 	while (current->room)
 	{
-		if (ft_strequ(rm1, current->room->name) || ft_strequ(rm1,
-				test->start_room->name) || ft_strequ(rm1, test->end_room->name))
+		if (current->i != -1)
 		{
-			check++;
-			break ;
+			if (ft_strequ(rm1, current->room->name) || ft_strequ(rm1, test->
+					start_room->name) || ft_strequ(rm1, test->end_room->name))
+			{
+				check++;
+				break;
+			}
+		}
+		else
+		{
+			if (ft_strequ(rm1, test->start_room->name) || ft_strequ(rm1, test->
+			end_room->name))
+			{
+				check++;
+				break;
+			}
 		}
 		if (!(current = current->next))
 			break ;
@@ -74,11 +86,23 @@ int 	test_links(const char *rm1, const char *rm2, t_test *test) // i need the wh
 	current = test->rooms;
 	while (current->room)
 	{
-		if (ft_strequ(rm2, current->room->name) || ft_strequ(rm2,
-				test->start_room->name) || ft_strequ(rm2, test->end_room->name))
+		if (current->i != -1)
 		{
-			check++;
-			break ;
+			if (ft_strequ(rm2, current->room->name) || ft_strequ(rm2, test->
+			start_room->name) || ft_strequ(rm2, test->end_room->name))
+			{
+				check++;
+				break;
+			}
+		}
+		else
+		{
+			if (ft_strequ(rm2, test->start_room->name) || ft_strequ(rm2, test->
+			end_room->name))
+			{
+				check++;
+				break;
+			}
 		}
 		if (!(current = current->next))
 			break ;
@@ -100,7 +124,7 @@ void	ft_println(char *str)
 
 void	print_rooms(t_list_rooms *room)
 {
-	while (room)
+	while (room && room->i != -1)
 	{
 		ft_putstr(room->room->name);
 		ft_putstr(" ");
@@ -148,7 +172,7 @@ void	ft_print_strcut(t_test **test)
 	print_rooms((*test)->rooms);
 	ft_putstr("Here comes the links: \n");
 	print_links((*test)->links);
-	ft_putstr("The end!");
+	ft_putstr("The end!\n");
 
 }
 
@@ -158,6 +182,23 @@ void	init_struct(t_test **test)
 	(*test)->end_room = (t_room *)malloc(sizeof(t_room));
 	(*test)->start_room->name = ft_strnew(1);
 	(*test)->end_room->name = ft_strnew(1);
+}
+
+int 	check_double_link(t_list_links *links, char **rms)
+{
+	char *rm1;
+	char *rm2;
+
+	rm1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
+	rm2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
+	while (links)
+	{
+		if ((ft_strequ(rm1, links->room1) && ft_strequ(rm2, links->room2)) ||
+		(ft_strequ(rm2, links->room1) && ft_strequ(rm1, links->room2)))
+			return (1);
+		links = links->next;
+	}
+	return (0);
 }
 
 void	free_2d_array(char **array)

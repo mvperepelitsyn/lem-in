@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/dfrost-a/Desktop/lem-in/helper.c
+parser.h
+/Users/dfrost-a/Desktop/lem-in/parser.h
+
 /Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h
 string.h
 -
@@ -14,13 +18,7 @@ stdlib.h
 unistd.h
 -
 
-/Users/dfrost-a/Desktop/lem-in/parcer.c
-parcer.h
-/Users/dfrost-a/Desktop/lem-in/parcer.h
-fcntl.h
--
-
-/Users/dfrost-a/Desktop/lem-in/parcer.h
+/Users/dfrost-a/Desktop/lem-in/parser.h
 libft/includes/libft.h
 /Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h
 

@@ -1905,32 +1905,32 @@ libft/get_next_line.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/libft/get_next_line.c.s
 .PHONY : libft/get_next_line.c.s
 
-parcer.o: parcer.c.o
+parser.o: parser.c.o
 
-.PHONY : parcer.o
+.PHONY : parser.o
 
 # target to build an object file
-parcer.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parcer.c.o
-.PHONY : parcer.c.o
+parser.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parser.c.o
+.PHONY : parser.c.o
 
-parcer.i: parcer.c.i
+parser.i: parser.c.i
 
-.PHONY : parcer.i
+.PHONY : parser.i
 
 # target to preprocess a source file
-parcer.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parcer.c.i
-.PHONY : parcer.c.i
+parser.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parser.c.i
+.PHONY : parser.c.i
 
-parcer.s: parcer.c.s
+parser.s: parser.c.s
 
-.PHONY : parcer.s
+.PHONY : parser.s
 
 # target to generate assembly for a file
-parcer.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parcer.c.s
-.PHONY : parcer.c.s
+parser.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parser.c.s
+.PHONY : parser.c.s
 
 # Help Target
 help:
@@ -2139,9 +2139,9 @@ help:
 	@echo "... libft/get_next_line.o"
 	@echo "... libft/get_next_line.i"
 	@echo "... libft/get_next_line.s"
-	@echo "... parcer.o"
-	@echo "... parcer.i"
-	@echo "... parcer.s"
+	@echo "... parser.o"
+	@echo "... parser.i"
+	@echo "... parser.s"
 .PHONY : help
 
 

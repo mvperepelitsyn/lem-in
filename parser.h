@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:18 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/28 13:57:31 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/28 14:14:18 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	test_coord(long int x, long int y);
 void	test_name(const char *name);
 int 	test_links(const char *rm1, const char *rm2, t_test *test);
 void	test_double_room(const char *rm, t_test **test);
+int 	check_double_link(t_list_links *links, char **rms);
 
 
 void	free_2d_array(char **array);

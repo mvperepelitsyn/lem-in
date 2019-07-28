@@ -3,7 +3,7 @@
 
 CMakeFiles/lem_in.dir/helper.c.o: ../helper.c
 CMakeFiles/lem_in.dir/helper.c.o: ../libft/includes/libft.h
-CMakeFiles/lem_in.dir/helper.c.o: ../parcer.h
+CMakeFiles/lem_in.dir/helper.c.o: ../parser.h
 
 CMakeFiles/lem_in.dir/libft/ft_atoi.c.o: ../libft/includes/libft.h
 CMakeFiles/lem_in.dir/libft/ft_atoi.c.o: ../libft/ft_atoi.c
@@ -200,7 +200,7 @@ CMakeFiles/lem_in.dir/libft/ft_toupper.c.o: ../libft/ft_toupper.c
 CMakeFiles/lem_in.dir/libft/get_next_line.c.o: ../libft/includes/libft.h
 CMakeFiles/lem_in.dir/libft/get_next_line.c.o: ../libft/get_next_line.c
 
-CMakeFiles/lem_in.dir/parcer.c.o: ../libft/includes/libft.h
-CMakeFiles/lem_in.dir/parcer.c.o: ../parcer.c
-CMakeFiles/lem_in.dir/parcer.c.o: ../parcer.h
+CMakeFiles/lem_in.dir/parser.c.o: ../libft/includes/libft.h
+CMakeFiles/lem_in.dir/parser.c.o: ../parser.c
+CMakeFiles/lem_in.dir/parser.c.o: ../parser.h
 

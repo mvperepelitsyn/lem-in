@@ -285,10 +285,10 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/parcer.c">
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/parser.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/parcer.h">
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/parser.h">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/CMakeLists.txt">

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcer.c                                           :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/28 15:07:18 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/28 16:11:39 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parcer.h"
+#include "parser.h"
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
@@ -65,6 +65,8 @@ void	fill_list_links(t_list_links **links, char **rms, t_test *test)
 	{
 		while (current->next != NULL)
 			current = current->next;
+		if (check_double_link(*links, rms))
+			return ;
 		current->next = (t_list_links *)malloc(sizeof(t_list_links));
 		current->next->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		current->next->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
@@ -162,14 +164,12 @@ void	parce_ant_farm(t_test **test) //when we force it to read
 
 int		main()
 {
-	t_test	**test;
+	t_test	*test;
 
-	ft_putstr("Here what in file:\n");
-	if (!(test = (t_test **)malloc(sizeof(t_test))))
+	if (!(test = (t_test *)malloc(sizeof(t_test))))
 		ft_malloc_error();
 	init_struct(&test);
 	parce_ant_farm(&test);
-	ft_putstr("\nHere what we've read:\n");
 	ft_print_strcut(&test);
 	exit (0);
 }

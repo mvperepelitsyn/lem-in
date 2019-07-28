@@ -73,7 +73,7 @@ add_executable(lem_in
         libft/ft_tolower.c
         libft/ft_toupper.c
         libft/get_next_line.c
-        parcer.c
-        parcer.h
+        parser.c
+        parser.h
         helper.c
         )

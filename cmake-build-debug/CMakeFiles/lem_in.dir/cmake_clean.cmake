@@ -64,7 +64,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/lem_in.dir/libft/ft_tolower.c.o"
   "CMakeFiles/lem_in.dir/libft/ft_toupper.c.o"
   "CMakeFiles/lem_in.dir/libft/get_next_line.c.o"
-  "CMakeFiles/lem_in.dir/parcer.c.o"
+  "CMakeFiles/lem_in.dir/parser.c.o"
   "CMakeFiles/lem_in.dir/helper.c.o"
   "lem_in.pdb"
   "lem_in"

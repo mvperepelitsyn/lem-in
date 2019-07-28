@@ -14,7 +14,7 @@ NAME	= lem-in
 
 CC      =  gcc -Wall -Wextra -Werror
 
-SRC 	= checker.c helper.c helper_to_a.c helper_to_b.c parser.c
+SRC 	= helper.c parser.c
 
 INCLUDES = libft/includes
 

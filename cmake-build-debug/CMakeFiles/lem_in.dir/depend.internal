@@ -4,7 +4,7 @@
 CMakeFiles/lem_in.dir/helper.c.o
  /Users/dfrost-a/Desktop/lem-in/helper.c
  /Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h
- /Users/dfrost-a/Desktop/lem-in/parcer.h
+ /Users/dfrost-a/Desktop/lem-in/parser.h
 CMakeFiles/lem_in.dir/libft/ft_atoi.c.o
  ../libft/includes/libft.h
  /Users/dfrost-a/Desktop/lem-in/libft/ft_atoi.c
@@ -200,7 +200,7 @@ CMakeFiles/lem_in.dir/libft/ft_toupper.c.o
 CMakeFiles/lem_in.dir/libft/get_next_line.c.o
  ../libft/includes/libft.h
  /Users/dfrost-a/Desktop/lem-in/libft/get_next_line.c
-CMakeFiles/lem_in.dir/parcer.c.o
+CMakeFiles/lem_in.dir/parser.c.o
  /Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h
- /Users/dfrost-a/Desktop/lem-in/parcer.c
- /Users/dfrost-a/Desktop/lem-in/parcer.h
+ /Users/dfrost-a/Desktop/lem-in/parser.c
+ /Users/dfrost-a/Desktop/lem-in/parser.h
