@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:18 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/26 18:03:02 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/28 12:00:23 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,14 @@ typedef struct		s_test
 
 void	ft_malloc_error(void);
 void	ft_print_strcut(t_test *test);
+void	init_struct(t_test **test);
 void 	ft_error(void);
 void	ft_println(char *str);
 void	test_coord(long int x, long int y);
 void	test_name(const char *name);
 int 	test_links(const char *rm1, const char *rm2, t_test *test);
+
+
+void	free_2d_array(char **array);
 
 #endif

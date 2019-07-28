@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:41 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/26 19:15:47 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/28 12:00:23 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,27 @@ void	ft_print_strcut(t_test *test)
 	print_links(test->links);
 	ft_putstr("The end!");
 
+}
+
+void	init_struct(t_test **test)
+{
+	(*test)->start_room = (t_room *)malloc(sizeof(t_room));
+	(*test)->end_room = (t_room *)malloc(sizeof(t_room));
+	(*test)->start_room->name = ft_strnew(1);
+	(*test)->end_room->name = ft_strnew(1);
+}
+
+void	free_2d_array(char **array)
+{
+	int i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		array[i] = NULL;
+ 		i++;
+	}
+	free(array);
+	array = NULL;
 }

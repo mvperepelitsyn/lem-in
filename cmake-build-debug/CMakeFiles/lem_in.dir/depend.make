@@ -5,14 +5,6 @@ CMakeFiles/lem_in.dir/helper.c.o: ../helper.c
 CMakeFiles/lem_in.dir/helper.c.o: ../libft/includes/libft.h
 CMakeFiles/lem_in.dir/helper.c.o: ../parcer.h
 
-CMakeFiles/lem_in.dir/helper_to_a.c.o: ../helper_to_a.c
-CMakeFiles/lem_in.dir/helper_to_a.c.o: ../libft/includes/libft.h
-CMakeFiles/lem_in.dir/helper_to_a.c.o: ../parcer.h
-
-CMakeFiles/lem_in.dir/helper_to_b.c.o: ../helper_to_b.c
-CMakeFiles/lem_in.dir/helper_to_b.c.o: ../libft/includes/libft.h
-CMakeFiles/lem_in.dir/helper_to_b.c.o: ../parcer.h
-
 CMakeFiles/lem_in.dir/libft/ft_atoi.c.o: ../libft/includes/libft.h
 CMakeFiles/lem_in.dir/libft/ft_atoi.c.o: ../libft/ft_atoi.c
 
