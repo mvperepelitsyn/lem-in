@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/28 12:02:07 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/28 15:07:18 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
-void	fill_list_rooms(t_list_rooms **rooms, char **rms)
+void	fill_list_rooms(char **rms, t_test **test)
 {
 	t_list_rooms *current;
 
-	current = (*rooms);
-	if ((*rooms)->i == 0)
+	current = (*test)->rooms;
+	if (++(*test)->rooms->i == 0)
 	{
-		(*rooms)->room = (t_room *)malloc(sizeof(t_room));
-		(*rooms)->room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
-		test_name((*rooms)->room->name);
-		(*rooms)->room->x_cord = ft_latoi(rms[1]);
-		(*rooms)->room->y_cord = ft_latoi(rms[2]);
-		test_coord((*rooms)->room->x_cord, (*rooms)->room->y_cord);
-		(*rooms)->next = NULL;
-		(*rooms)->i++;
+		(*test)->rooms->room = (t_room *)malloc(sizeof(t_room));
+		(*test)->rooms->room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
+		test_name((*test)->rooms->room->name);
+		(*test)->rooms->room->x_cord = ft_latoi(rms[1]);
+		(*test)->rooms->room->y_cord = ft_latoi(rms[2]);
+		test_coord((*test)->rooms->room->x_cord, (*test)->rooms->room->y_cord);
+		(*test)->rooms->next = NULL;
+		(*test)->rooms->i++;
+		test_double_room((*test)->rooms->room->name, test);
 	}
 	else
 	{
@@ -42,6 +43,7 @@ void	fill_list_rooms(t_list_rooms **rooms, char **rms)
 		current->next->room->y_cord = ft_latoi(rms[2]);
 		test_coord(current->next->room->x_cord, current->next->room->y_cord);
 		current->next->next = NULL;
+		test_double_room(current->next->room->name, test);
 	}
 }
 
@@ -50,7 +52,7 @@ void	fill_list_links(t_list_links **links, char **rms, t_test *test)
 	t_list_links	*current;
 
 	current = (*links);
-	if ((*links)->i == 0)
+	if (++(*links)->i == 0)
 	{
 		(*links)->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		(*links)->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
@@ -72,7 +74,7 @@ void	fill_list_links(t_list_links **links, char **rms, t_test *test)
 	}
 }
 
-void	parce_ant_farm(t_test *test) //when we force it to read
+void	parce_ant_farm(t_test **test) //when we force it to read
 {
 	char	*things;
 	char	**rms;
@@ -81,16 +83,16 @@ void	parce_ant_farm(t_test *test) //when we force it to read
 	if ((fd = open(NAME, O_RDONLY)) < 0)
 		fd = 0;
 	get_next_line(fd, &things);
-	ft_println(things);
-	test->num_ants = ft_latoi(things);
-	if (test->num_ants <= 0 || test->num_ants > 2147483647)
+	(things == NULL) ? ft_error() : ft_println(things);
+	(*test)->num_ants = ft_latoi(things);
+	if ((*test)->num_ants <= 0 || (*test)->num_ants > 2147483647)
 		ft_error();
 	ft_strdel(&things);
-	test->rooms = (t_list_rooms *)malloc(sizeof(t_list_rooms));
-	test->links = (t_list_links *)malloc(sizeof(t_list_links));
-	test->rooms->i = 0;
-	test->links->i = 0;
-	test->links->next = NULL;
+	(*test)->rooms = (t_list_rooms *)malloc(sizeof(t_list_rooms));
+	(*test)->links = (t_list_links *)malloc(sizeof(t_list_links));
+	(*test)->rooms->i = -1;
+	(*test)->links->i = -1;
+	(*test)->links->next = NULL;
 	while (get_next_line(fd, &things))
 	{
 		ft_println(things);
@@ -100,14 +102,16 @@ void	parce_ant_farm(t_test *test) //when we force it to read
 			get_next_line(fd, &things);
 			ft_println(things);
 			rms = ft_strsplit(things, ' ');
-			(*(test->start_room->name) == '\0') ? ft_strdel(&test->start_room->name) :
+			if (ft_hm_wrd(things, ' ') != 3)
+				ft_error();
+			(*((*test)->start_room->name) == '\0') ? ft_strdel(&(*test)->start_room->name) :
 			ft_error();
 //			test->start_room = (t_room *)malloc(sizeof(t_room));
-			test->start_room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
-			test_name(test->start_room->name);
-			test->start_room->x_cord = ft_latoi(rms[1]);
-			test->start_room->y_cord = ft_latoi(rms[2]);
-			test_coord(test->start_room->x_cord, test->start_room->y_cord);
+			(*test)->start_room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
+			test_name((*test)->start_room->name);
+			(*test)->start_room->x_cord = ft_latoi(rms[1]);
+			(*test)->start_room->y_cord = ft_latoi(rms[2]);
+			test_coord((*test)->start_room->x_cord, (*test)->start_room->y_cord);
 			free_2d_array(rms);
 		}
 		else if (ft_strequ("##end", things))
@@ -116,32 +120,36 @@ void	parce_ant_farm(t_test *test) //when we force it to read
 			get_next_line(fd, &things);
 			ft_println(things);
 			rms = ft_strsplit(things, ' ');
-			(*(test->end_room->name) == '\0') ? ft_strdel(&test->end_room->name) :
+			if (ft_hm_wrd(things, ' ') != 3)
+				ft_error();
+			(*((*test)->end_room->name) == '\0') ? ft_strdel(&(*test)->end_room->name) :
 			ft_error();
 //			test->end_room = (t_room *)malloc(sizeof(t_room));
-			test->end_room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
-			test_name(test->end_room->name);
-			test->end_room->x_cord = ft_latoi(rms[1]);
-			test->end_room->y_cord = ft_latoi(rms[2]);
-			test_coord(test->end_room->x_cord, test->end_room->y_cord);
+			(*test)->end_room->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
+			test_name((*test)->end_room->name);
+			(*test)->end_room->x_cord = ft_latoi(rms[1]);
+			(*test)->end_room->y_cord = ft_latoi(rms[2]);
+			test_coord((*test)->end_room->x_cord, (*test)->end_room->y_cord);
 			free_2d_array(rms);
 		}
 		else if (ft_hm_wrd(things, ' ') == 3)
 		{
 			rms = ft_strsplit(things, ' ');
-			fill_list_rooms(&test->rooms, rms);
+			fill_list_rooms(rms, test);
 			free_2d_array(rms);
 		}
 		else if (ft_hm_wrd(things, '-')  == 2)
 		{
-			if (*(test->start_room->name) == '\0' || *(test->end_room->name) == '\0')
+			if (*((*test)->start_room->name) == '\0' || *((*test)->end_room->name) == '\0')
 				ft_error();
 			rms = ft_strsplit(things, '-');
-			fill_list_links(&test->links, rms, test);
+			fill_list_links(&(*test)->links, rms, (*test));
 			free_2d_array(rms);
 		}
 		ft_strdel(&things);
 	}
+	if ((*test)->links->i == -1)
+		ft_error();
 }
 
 //TODO: make a validation
@@ -154,14 +162,14 @@ void	parce_ant_farm(t_test *test) //when we force it to read
 
 int		main()
 {
-	t_test	*test;
+	t_test	**test;
 
 	ft_putstr("Here what in file:\n");
-	if (!(test = (t_test *)malloc(sizeof(t_test))))
+	if (!(test = (t_test **)malloc(sizeof(t_test))))
 		ft_malloc_error();
 	init_struct(&test);
-	parce_ant_farm(test);
+	parce_ant_farm(&test);
 	ft_putstr("\nHere what we've read:\n");
-	ft_print_strcut(test);
+	ft_print_strcut(&test);
 	exit (0);
 }

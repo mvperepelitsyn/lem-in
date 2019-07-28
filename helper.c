@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:41 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/28 12:00:23 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/28 14:20:58 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,28 @@ void	test_coord(long int x, long int y)
 {
 	if ((x > 2147483647 || x < -2147483648) || (y > 2147483647 || y <
 	        -2147483648))
+		ft_error();
+}
+
+void	test_double_room(const char *rm, t_test **test)
+{
+	int ch;
+	t_list_rooms *crt;
+
+	ch = 0;
+	crt = (*test)->rooms;
+	if (ft_strequ(rm, (*test)->start_room->name) || ft_strequ(rm, (*test)->end_room->name))
+		ch++;
+	while (crt->room)
+	{
+		if (ft_strequ(rm, crt->room->name))
+			ch++;
+		if (crt->next == NULL)
+			break ;
+		else
+			crt = crt->next;
+	}
+	if (ch != 1)
 		ft_error();
 }
 
@@ -112,20 +134,20 @@ void	print_sides(t_room *room)
 	ft_putstr("\n");
 }
 
-void	ft_print_strcut(t_test *test)
+void	ft_print_strcut(t_test **test)
 {
 	ft_putstr("The number of ants is ");
-	ft_putnbr(test->num_ants);
+	ft_putnbr((*test)->num_ants);
 	ft_putchar('\n');
 	ft_putstr("Here goes the rooms:\n");
 	ft_putstr("Start room: ");
-	print_sides(test->start_room);
+	print_sides((*test)->start_room);
 	ft_putstr("End room: ");
-	print_sides(test->end_room);
+	print_sides((*test)->end_room);
 	ft_putstr("Other rooms:\n");
-	print_rooms(test->rooms);
+	print_rooms((*test)->rooms);
 	ft_putstr("Here comes the links: \n");
-	print_links(test->links);
+	print_links((*test)->links);
 	ft_putstr("The end!");
 
 }
