@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 14:45:02 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/31 16:35:11 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/31 17:19:24 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	fill_the_way(t_way **way, t_intldta *indta)
 int 	find_the_way(t_intldta *indta)
 {
 	t_way			*way;
-	t_list_links	*lnks;
 
 	init_the_way(&way, indta);
 	fill_the_way(&way, indta);

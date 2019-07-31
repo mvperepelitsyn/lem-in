@@ -6,7 +6,7 @@
 #    By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/02 12:28:41 by iiliuk            #+#    #+#              #
-#    Updated: 2019/07/25 16:54:12 by dfrost-a         ###   ########.fr        #
+#    Updated: 2019/07/31 17:19:24 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= lem-in
 
 CC      =  gcc -Wall -Wextra -Werror
 
-SRC 	= helper.c parser.c
+SRC 	= helper.c parser.c find_the_ways.c
 
 INCLUDES = libft/includes
 
