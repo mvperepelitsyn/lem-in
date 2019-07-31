@@ -84,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/find_the_ways.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/finding.h">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper.c">
 			<Option target="lem_in"/>
 		</Unit>

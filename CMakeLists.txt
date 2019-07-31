@@ -76,4 +76,4 @@ add_executable(lem_in
         parser.c
         parser.h
         helper.c
-        )
+        find_the_ways.c finding.h)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcer.h                                           :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:18 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/28 14:14:18 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/31 13:17:43 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,27 @@ typedef struct			s_list_links
 	struct				s_list_links *next;
 }						t_list_links;
 
-typedef struct		s_test
+typedef struct		s_intldta
 {
 	long int		num_ants;
 	t_list_rooms	*rooms;
 	t_list_links	*links;
 	t_room			*start_room;
 	t_room			*end_room;
-}					t_test;
+}					t_intldta;  //initial data
 
 void	ft_malloc_error(void);
-void	ft_print_strcut(t_test **test);
-void	init_struct(t_test **test);
+void	ft_print_strcut(t_intldta **indta);
+void	init_struct(t_intldta **indta);
 void 	ft_error(void);
 void	ft_println(char *str);
 void	test_coord(long int x, long int y);
 void	test_name(const char *name);
-int 	test_links(const char *rm1, const char *rm2, t_test *test);
-void	test_double_room(const char *rm, t_test **test);
+int 	test_links(const char *rm1, const char *rm2, t_intldta *indta);
+void	test_double_room(const char *rm, t_intldta **indta);
 int 	check_double_link(t_list_links *links, char **rms);
+
+void	help_fill_list_rooms(char **rms, t_room **current);
 
 
 void	free_2d_array(char **array);

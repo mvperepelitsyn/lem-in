@@ -123,6 +123,33 @@ lem_in/fast:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/build
 .PHONY : lem_in/fast
 
+find_the_ways.o: find_the_ways.c.o
+
+.PHONY : find_the_ways.o
+
+# target to build an object file
+find_the_ways.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/find_the_ways.c.o
+.PHONY : find_the_ways.c.o
+
+find_the_ways.i: find_the_ways.c.i
+
+.PHONY : find_the_ways.i
+
+# target to preprocess a source file
+find_the_ways.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/find_the_ways.c.i
+.PHONY : find_the_ways.c.i
+
+find_the_ways.s: find_the_ways.c.s
+
+.PHONY : find_the_ways.s
+
+# target to generate assembly for a file
+find_the_ways.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/find_the_ways.c.s
+.PHONY : find_the_ways.c.s
+
 helper.o: helper.c.o
 
 .PHONY : helper.o
@@ -1941,6 +1968,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... lem_in"
+	@echo "... find_the_ways.o"
+	@echo "... find_the_ways.i"
+	@echo "... find_the_ways.s"
 	@echo "... helper.o"
 	@echo "... helper.i"
 	@echo "... helper.s"

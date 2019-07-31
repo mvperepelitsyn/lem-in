@@ -6,11 +6,20 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:41 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/28 16:38:46 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/31 13:50:34 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+void	help_fill_list_rooms(char **rms, t_room **current)
+{
+	(*current)->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
+	test_name((*current)->name);
+	(*current)->x_cord = ft_latoi((rms[1]));
+	(*current)->y_cord = ft_latoi(rms[2]);
+	test_coord((*current)->x_cord, (*current)->y_cord);
+}
 
 void	ft_malloc_error(void)
 {
@@ -31,14 +40,14 @@ void	test_coord(long int x, long int y)
 		ft_error();
 }
 
-void	test_double_room(const char *rm, t_test **test)
+void	test_double_room(const char *rm, t_intldta **indta)
 {
 	int ch;
 	t_list_rooms *crt;
 
 	ch = 0;
-	crt = (*test)->rooms;
-	if (ft_strequ(rm, (*test)->start_room->name) || ft_strequ(rm, (*test)->end_room->name))
+	crt = (*indta)->rooms;
+	if (ft_strequ(rm, (*indta)->start_room->name) || ft_strequ(rm, (*indta)->end_room->name))
 		ch++;
 	while (crt->room)
 	{
@@ -53,19 +62,19 @@ void	test_double_room(const char *rm, t_test **test)
 		ft_error();
 }
 
-int 	test_links(const char *rm1, const char *rm2, t_test *test) // i need the whole structure
+int 	test_links(const char *rm1, const char *rm2, t_intldta *indta) // i need the whole structure
 {
 	t_list_rooms	*current;
 	short			check;
 
-	current = test->rooms;
+	current = indta->rooms;
 	check = 0;
 	while (current->room)
 	{
 		if (current->i != -1)
 		{
-			if (ft_strequ(rm1, current->room->name) || ft_strequ(rm1, test->
-					start_room->name) || ft_strequ(rm1, test->end_room->name))
+			if (ft_strequ(rm1, current->room->name) || ft_strequ(rm1, indta->
+					start_room->name) || ft_strequ(rm1, indta->end_room->name))
 			{
 				check++;
 				break;
@@ -73,7 +82,7 @@ int 	test_links(const char *rm1, const char *rm2, t_test *test) // i need the wh
 		}
 		else
 		{
-			if (ft_strequ(rm1, test->start_room->name) || ft_strequ(rm1, test->
+			if (ft_strequ(rm1, indta->start_room->name) || ft_strequ(rm1, indta->
 			end_room->name))
 			{
 				check++;
@@ -83,13 +92,13 @@ int 	test_links(const char *rm1, const char *rm2, t_test *test) // i need the wh
 		if (!(current = current->next))
 			break ;
 	}
-	current = test->rooms;
+	current = indta->rooms;
 	while (current->room)
 	{
 		if (current->i != -1)
 		{
-			if (ft_strequ(rm2, current->room->name) || ft_strequ(rm2, test->
-			start_room->name) || ft_strequ(rm2, test->end_room->name))
+			if (ft_strequ(rm2, current->room->name) || ft_strequ(rm2, indta->
+			start_room->name) || ft_strequ(rm2, indta->end_room->name))
 			{
 				check++;
 				break;
@@ -97,7 +106,7 @@ int 	test_links(const char *rm1, const char *rm2, t_test *test) // i need the wh
 		}
 		else
 		{
-			if (ft_strequ(rm2, test->start_room->name) || ft_strequ(rm2, test->
+			if (ft_strequ(rm2, indta->start_room->name) || ft_strequ(rm2, indta->
 			end_room->name))
 			{
 				check++;
@@ -158,30 +167,37 @@ void	print_sides(t_room *room)
 	ft_putstr("\n");
 }
 
-void	ft_print_strcut(t_test **test)
+void	ft_print_strcut(t_intldta **indta)
 {
 	ft_putstr("The number of ants is ");
-	ft_putnbr((*test)->num_ants);
+	ft_putnbr((*indta)->num_ants);
 	ft_putchar('\n');
 	ft_putstr("Here goes the rooms:\n");
 	ft_putstr("Start room: ");
-	print_sides((*test)->start_room);
+	print_sides((*indta)->start_room);
 	ft_putstr("End room: ");
-	print_sides((*test)->end_room);
+	print_sides((*indta)->end_room);
 	ft_putstr("Other rooms:\n");
-	print_rooms((*test)->rooms);
+	print_rooms((*indta)->rooms);
 	ft_putstr("Here comes the links: \n");
-	print_links((*test)->links);
+	print_links((*indta)->links);
 	ft_putstr("The end!\n");
 
 }
 
-void	init_struct(t_test **test)
+void	init_struct(t_intldta **indta)
 {
-	(*test)->start_room = (t_room *)malloc(sizeof(t_room));
-	(*test)->end_room = (t_room *)malloc(sizeof(t_room));
-	(*test)->start_room->name = ft_strnew(1);
-	(*test)->end_room->name = ft_strnew(1);
+	if (!((*indta) = (t_intldta *)malloc(sizeof(t_intldta))))
+		ft_malloc_error();
+	(*indta)->start_room = (t_room *)malloc(sizeof(t_room));
+	(*indta)->end_room = (t_room *)malloc(sizeof(t_room));
+	(*indta)->start_room->name = ft_strnew(1);
+	(*indta)->end_room->name = ft_strnew(1);
+	(*indta)->rooms = (t_list_rooms *)malloc(sizeof(t_list_rooms));
+	(*indta)->links = (t_list_links *)malloc(sizeof(t_list_links));
+	(*indta)->rooms->i = -1;
+	(*indta)->links->i = -1;
+	(*indta)->links->next = NULL;
 }
 
 int 	check_double_link(t_list_links *links, char **rms)
