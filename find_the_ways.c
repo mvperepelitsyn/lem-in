@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 14:45:02 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/31 15:49:58 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/07/31 16:35:11 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_the_way(t_way **way, t_intldta *indta)
 
 void	print_the_way(t_way *way)
 {
+	ft_putstr("This is the way:\n");
 	ft_putstr(way->room);
 	way = way->next;
 	while (way)
@@ -43,9 +44,15 @@ void	fill_the_way(t_way **way, t_intldta *indta)
 	while (!ft_strequ(wy->room, indta->end_room->name))
 	{
 		lnks = indta->links;
-		while (!((ft_strequ(wy->room, lnks->room1) || ft_strequ(wy->room,
-				lnks->room2)))
-			lnks = lnks->next;
+		if (wy->prev != NULL)
+			while (!((ft_strequ(wy->room, lnks->room1) && !ft_strequ(wy->prev->room,
+				lnks->room2)) || (ft_strequ(wy->room, lnks->room2) &&
+				!ft_strequ(wy->prev->room, lnks->room1))))
+				lnks = lnks->next;
+		else
+			while (!(ft_strequ(wy->room, lnks->room1) || (ft_strequ(wy->room,
+					lnks->room2))))
+				lnks = lnks->next;
 		if (ft_strequ(wy->room, lnks->room1))
 		{
 			wy->next = (t_way *)malloc(sizeof(t_way));
@@ -56,8 +63,8 @@ void	fill_the_way(t_way **way, t_intldta *indta)
 			wy->next = (t_way *)malloc(sizeof(t_way));
 			wy->next->room = ft_strsub(lnks->room1, 0, ft_strlen(lnks->room1));
 		}
+		wy->next->prev = wy;
 		wy->next->next = NULL;
-		wy->prev = wy;
 		wy = wy->next;
 	}
 }
@@ -69,24 +76,6 @@ int 	find_the_way(t_intldta *indta)
 
 	init_the_way(&way, indta);
 	fill_the_way(&way, indta);
-//	while (!ft_strequ(way->room, indta->end_room->name))
-//	{
-//		lnks = indta->links;
-//		while (!(ft_strequ(way->room, lnks->room1) || ft_strequ(way->room, lnks->room2)))
-//			lnks = lnks->next;
-//		if (ft_strequ(way->room, lnks->room1))
-//		{
-//			way->next = (t_way *)malloc(sizeof(t_way));
-//			way->next->room = ft_strsub(lnks->room2, 0, ft_strlen(lnks->room2));
-//		}
-//		else
-//		{
-//			way->next = (t_way *)malloc(sizeof(t_way));
-//			way->next->room = ft_strsub(lnks->room1, 0, ft_strlen(lnks->room1));
-//		}
-//		way->next->next = NULL;
-//		way = way->next;
-//	}
 	print_the_way(way);
 	return (0);
 }
