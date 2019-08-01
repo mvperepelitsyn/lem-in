@@ -3,68 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 17:13:24 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/31 17:19:20 by uhand            ###   ########.fr       */
+/*   Created: 2018/12/15 14:20:05 by uhand             #+#    #+#             */
+/*   Updated: 2018/12/15 14:20:08 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		ft_elem_count(int n)
+static void	set_string(char **str, unsigned int num, int order, int i)
 {
-	int k;
+	if (num == 0)
+	{
+		str[0][0] = '0';
+		return ;
+	}
+	while (order > 0)
+	{
+		str[0][order + i - 1] = (num % 10) + 48;
+		num /= 10;
+		order--;
+	}
+}
 
-	k = 0;
+char		*ft_itoa(int n)
+{
+	char			*str;
+	unsigned int	num;
+	int				order;
+
 	if (n < 0)
-		k++;
-	if (n == 0)
-		k++;
-	while (n != 0)
-	{
-		n = n / 10;
-		k++;
-	}
-	return (k);
-}
-
-static	char	*fillstr(char *str, int k, int n)
-{
-	while (k >= 0 && n != 0)
-	{
-		str[k] = n % 10 + 48;
-		n = n / 10;
-		k--;
-	}
-	return (str);
-}
-
-char			*ft_itoa(int n)
-{
-	char	*str;
-	int		k;
-
-	k = ft_elem_count(n);
-	str = (char*)malloc(sizeof(char) * (k + 1));
-	if (str == NULL)
+		num = (unsigned int)(-n);
+	else
+		num = (unsigned int)n;
+	order = ft_order(num);
+	if (n < 0)
+		order++;
+	if (!(str = ft_strnew(order)))
 		return (NULL);
-	str[k--] = '\0';
-	if (n == 0)
-	{
-		str[k] = 48;
-		return (str);
-	}
 	if (n < 0)
 	{
 		str[0] = '-';
-		if (n == -2147483648)
-		{
-			str[k] = '8';
-			n = n / 10;
-			k--;
-		}
-		n = n * (-1);
+		order--;
+		n = 1;
 	}
-	return (fillstr(str, k, n));
+	else
+		n = 0;
+	set_string(&str, num, order, n);
+	return (str);
 }

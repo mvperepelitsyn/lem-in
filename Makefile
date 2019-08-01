@@ -6,7 +6,7 @@
 #    By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/02 12:28:41 by iiliuk            #+#    #+#              #
-#    Updated: 2019/07/31 17:19:24 by uhand            ###   ########.fr        #
+#    Updated: 2019/08/01 12:22:51 by dfrost-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC      =  gcc -Wall -Wextra -Werror
 
 SRC 	= helper.c parser.c find_the_ways.c
 
-INCLUDES = libft/includes
+INCLUDES = libft/
 
 OBJ 	= $(SRC:.c=.o)
 
