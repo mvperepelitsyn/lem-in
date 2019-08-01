@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:18 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/01 18:33:52 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/01 18:34:02 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ void	help_fill_list_rooms(char **rms, t_room **current);
 
 
 void	free_2d_array(char **array);
+
+void    visualizer(t_intldta *indta);
 
 #endif
