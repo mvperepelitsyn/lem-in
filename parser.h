@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:18 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/01 18:15:58 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/01 19:12:31 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 # include "libft/libft.h"
 
 /*
- * This is the structure for our graph, where:
- * name - name of a node
- * type - the parameter tells to us what room is this, such as:
+ * This is the structure for our room, where:
+ * name - name of a room;
+ * type - the parameter that tells to us what room is this, such as:
  * 1 - start node;
  * 2 - end node;
  * 0 - ordinary node;
- * lnod - a list which contains all nodes linked to the node
+ * links - an adress to the list of links
  *
  */
 
@@ -83,10 +83,7 @@ int 	check_double_link(t_list_links *links, char **rms);
 void    graph_parser(t_intldta **indta, char *things, char **rms, int fd);
 void	fill_list_links(t_list_links **links, char **rms, t_intldta *indta);
 void	fill_list_rooms(char **rms, t_intldta **indta);
-
 void	help_fill_list_rooms(char **rms, t_room **current);
-
-
 void	free_2d_array(char **array);
 
 #endif
