@@ -3,59 +3,107 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 15:23:37 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/31 17:19:20 by uhand            ###   ########.fr       */
+/*   Created: 2018/12/13 19:06:31 by uhand             #+#    #+#             */
+/*   Updated: 2019/08/01 13:25:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		**checkwords(char const *s, char **ar, char c)
+static void		set_free(char ***arr, size_t x_i)
 {
-	int	k;
-	int i;
+	size_t	i;
 
 	i = 0;
-	k = ft_hm_wrd((char*)s, c);
-	while (ar[i] != NULL)
-		i++;
-	if (i != (k))
+	while (i <= x_i)
 	{
-		while (i >= 0)
-		{
-			ft_strdel(ar++);
-			i--;
-		}
-		free(ar);
-		ar = NULL;
+		free(arr[0][i]);
+		i++;
 	}
-	return (ar);
+}
+
+static char		*set_string(char const *s, char c, size_t *s_i)
+{
+	char	*str;
+	size_t	len;
+
+	len = 0;
+	while (s[*s_i] == c)
+		*s_i = *s_i + 1;
+	while (s[*s_i + len] != c && s[*s_i + len] != '\0')
+		len++;
+	str = ft_strsub(s, (unsigned int)*s_i, len);
+	*s_i = *s_i + len;
+	return (str);
+}
+
+static char		**set_arr(char const *s, char c, size_t x)
+{
+	size_t	s_i;
+	size_t	x_i;
+	char	**arr;
+
+	s_i = 0;
+	x_i = 0;
+	if (!(arr = (char**)malloc(sizeof(char*) * (x + 1))))
+		return (NULL);
+	while (x_i < x)
+	{
+		if (!(arr[x_i] = set_string(s, c, &s_i)))
+		{
+			set_free(&arr, --x_i);
+			free(arr);
+			return (NULL);
+		}
+		x_i++;
+	}
+	arr[x] = NULL;
+	return (arr);
+}
+
+static size_t	str_calc(char const *s, char c)
+{
+	size_t	i;
+	size_t	res;
+
+	i = 0;
+	res = 0;
+	if (!ft_strlen(s))
+		return (0);
+	while (s[i] != '\0')
+	{
+		if (s[i] != c && s[i] != '\0')
+		{
+			res++;
+			while (s[i] != c && s[i] != '\0')
+				i++;
+		}
+		if (s[i] == '\0')
+			break ;
+		i++;
+	}
+	return (res);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
-	int			i;
-	size_t		j;
-	size_t		l;
-	char		**ar;
+	char	**arr;
+	size_t	x;
 
-	i = -1;
-	if (!s || !(ar = (char**)malloc(sizeof(char*) * (ft_hm_wrd(s, c) + 1))))
+	if (s == NULL)
 		return (NULL);
-	l = 0;
-	while (++i < (ft_hm_wrd((char*)s, c)))
+	if (!(x = str_calc(s, c)))
 	{
-		j = 0;
-		while (s[l] == c)
-			l++;
-		if (!(ar[i] = ft_strnew(ft_lentill(s + l, c) + 1)))
-			ar[i] = NULL;
-		while (s[l] != c && s[l])
-			ar[i][j++] = s[l++];
-		ar[i][j] = '\0';
+		if (!(arr = (char**)malloc(sizeof(char*) * 1)))
+			return (NULL);
+		if (!(arr[0] = ft_strnew(0)))
+		{
+			free(arr);
+			return (NULL);
+		}
 	}
-	ar[i] = 0;
-	return (checkwords(s, ar, c));
+	arr = set_arr(s, c, x);
+	return (arr);
 }

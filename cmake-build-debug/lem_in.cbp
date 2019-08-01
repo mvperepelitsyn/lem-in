@@ -45,7 +45,8 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/."/>
-					<Add directory="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/includes"/>
+					<Add directory="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft"/>
+					<Add directory="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -68,7 +69,8 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/."/>
-					<Add directory="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/includes"/>
+					<Add directory="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft"/>
+					<Add directory="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -93,10 +95,64 @@
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/helper.c">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_abs.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_arrjoin.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_atoi.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_bzero.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dlladdnextl.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dlladdnextr.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dlladdtoleft.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dlladdtoright.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dllccount.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dllcpy.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dllcpyl.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dllcpyr.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dlldel.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dlldelone.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dlldeltoleft.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dlldeltoright.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dlllcount.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dllnew.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dllrcount.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_dllswap.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_hm_wrd.c">
@@ -114,10 +170,10 @@
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_isdigit.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_isintnumber.c">
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_isprint.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_isprint.c">
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_isspace.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_itoa.c">
@@ -126,16 +182,28 @@
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_latoi.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lentill.c">
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstadd.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstadd.c">
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstaddnext.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstcount.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstcpy.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstdel.c">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstdelfirst.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstdelone.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstfree.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstiter.c">
@@ -145,6 +213,9 @@
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstnew.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstswap.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_memalloc.c">
@@ -169,6 +240,63 @@
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_memset.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_nstrjoin.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_order.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/add_fnctns.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/apply_flags.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/double_rep.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/format_float.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/formats_c_s.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/formats_int.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/ft_fdprintf.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/ft_printf.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/ft_printf.h">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/ft_sprintf.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/lib_printf.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/pft_float_itoa.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/pft_float_itoa_2.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/pft_float_itoa_3.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/pft_itoa.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/pft_unsigned_itoa.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_printf/set_format.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_putchar.c">
@@ -255,9 +383,6 @@
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_strnew.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_strnlen.c">
-			<Option target="lem_in"/>
-		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_strnstr.c">
 			<Option target="lem_in"/>
 		</Unit>
@@ -265,6 +390,9 @@
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_strsplit.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_strsplitspaces.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_strstr.c">
@@ -276,9 +404,6 @@
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_strtrim.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_swap.c">
-			<Option target="lem_in"/>
-		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_tolower.c">
 			<Option target="lem_in"/>
 		</Unit>
@@ -288,7 +413,10 @@
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/get_next_line.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/includes/libft.h">
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/get_next_line.h">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/libft.h">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.c">

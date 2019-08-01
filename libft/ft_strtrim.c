@@ -3,88 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 12:42:29 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/31 17:19:20 by uhand            ###   ########.fr       */
+/*   Created: 2018/12/13 14:36:53 by uhand             #+#    #+#             */
+/*   Updated: 2019/08/01 13:25:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	size_t	ft_hm_ws(char const *s)
+static void	space_indexes(char const *s, size_t len, size_t *st, size_t *en)
 {
-	size_t	i;
-	size_t	k;
-
-	i = 0;
-	k = ft_strlen(s);
-	while (s[i])
-	{
-		if (s[i] != ' ' && s[i] != '\n' && s[i] != '\t' && s[i] != '\0')
-			break ;
-		i++;
-	}
-	if (i == k)
-		return (0);
-	while (k > 0)
-	{
-		if (s[k] != ' ' && s[k] != '\n' && s[k] != '\t' && s[k] != '\0')
-			break ;
-		k--;
-	}
-	k = k - i + 1;
-	return (k);
+	*st = 0;
+	*en = len - 1;
+	while ((s[*st] == ' ' || s[*st] == '\n' || s[*st] == '\t') && *st < *en)
+		*st = *st + 1;
+	while ((s[*en] == ' ' || s[*en] == '\n' || s[*en] == '\t') && *en > *st)
+		*en = *en - 1;
 }
 
-static	size_t	till(char const *s)
+static char	*make_trim(char const *s, size_t start, size_t end)
 {
-	size_t k;
+	char	*trim;
+	size_t	size;
 
-	k = ft_strlen(s);
-	while (k > 0)
+	size = end + 2 - start;
+	if (!(trim = (char*)malloc(sizeof(*trim) * (size))))
+		return (NULL);
+	trim[size - 1] = '\0';
+	while (size >= 2)
 	{
-		if (s[k] != ' ' && s[k] != '\n' && s[k] != '\t' && s[k] != '\0')
-			break ;
-		k--;
+		trim[size - 2] = (char)s[start + size - 2];
+		size--;
 	}
-	return (k);
+	return (trim);
 }
 
-static	char	*iwannadie(char const *s, char *str)
+char		*ft_strtrim(char const *s)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (s[i] != ' ' && s[i] != '\n' && s[i] != '\t' && s[i] != '\0')
-		{
-			while (i <= (till(s)))
-			{
-				str[j] = s[i];
-				j++;
-				i++;
-			}
-			break ;
-		}
-		i++;
-	}
-	str[j] = '\0';
-	return (str);
-}
-
-char			*ft_strtrim(char const *s)
-{
-	char	*str;
+	size_t	len;
+	size_t	start;
+	size_t	end;
+	char	*trim;
 
 	if (s == NULL)
 		return (NULL);
-	str = ft_strnew(ft_hm_ws(s));
-	if (str == NULL)
-		return (NULL);
-	str = iwannadie(s, str);
-	return (str);
+	len = ft_strlen(s);
+	if (len == 0)
+		return (trim = ft_strnew(0));
+	space_indexes(s, len, &start, &end);
+	if (s[start] != ' ' && s[start] != '\n' && s[start] != '\t')
+		trim = make_trim(s, start, end);
+	else
+		trim = ft_strnew(0);
+	return (trim);
 }
