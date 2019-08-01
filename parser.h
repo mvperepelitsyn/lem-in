@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:18 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/01 15:55:21 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/01 18:15:58 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,26 @@
 
 # include "libft/libft.h"
 
+/*
+ * This is the structure for our graph, where:
+ * name - name of a node
+ * type - the parameter tells to us what room is this, such as:
+ * 1 - start node;
+ * 2 - end node;
+ * 0 - ordinary node;
+ * lnod - a list which contains all nodes linked to the node
+ *
+ */
+
 typedef struct			s_room
 {
 	char				*name;
 	long int			x_cord;
 	long int			y_cord;
+	short				type;
+	int 				num_lnks;
+	t_list				*links;
+
 }						t_room;
 
 typedef struct			s_list_rooms
@@ -31,13 +46,20 @@ typedef struct			s_list_rooms
 	struct s_list_rooms	*next;
 }						t_list_rooms;
 
+//TODO: Change i for t_list_links and move it to the core structure
+
 typedef struct			s_list_links
 {
 	char				*room1;
 	char 				*room2;
+	t_room				*rm1;
+	t_room				*rm2;
+	short 				dir;
 	int 				i;
-	struct				s_list_links *next;
+	struct s_list_links *next;
 }						t_list_links;
+
+//TODO: add start and end rooms to all rooms
 
 typedef struct		s_intldta
 {
