@@ -1,6 +1,8 @@
 .DS_Store
-.idea
-CMakeLists.txt
-cmake-build-debug
 lem-in
 test.lemin
+*.o
+*.a
+*.h.gch
+*.dSYM
+*.sh
