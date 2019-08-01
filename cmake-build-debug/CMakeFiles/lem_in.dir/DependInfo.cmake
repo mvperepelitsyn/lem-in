@@ -112,6 +112,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_toupper.c" "/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeFiles/lem_in.dir/libft/ft_toupper.c.o"
   "/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/get_next_line.c" "/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeFiles/lem_in.dir/libft/get_next_line.c.o"
   "/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.c" "/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeFiles/lem_in.dir/parser.c.o"
+  "/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser_2.c" "/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeFiles/lem_in.dir/parser_2.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

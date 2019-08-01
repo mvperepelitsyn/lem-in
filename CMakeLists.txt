@@ -120,4 +120,5 @@ add_executable(lem_in
         finding.h
         helper.c
         parser.c
+        parser_2.c
         parser.h)

@@ -107,6 +107,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/lem_in.dir/find_the_ways.c.o"
   "CMakeFiles/lem_in.dir/helper.c.o"
   "CMakeFiles/lem_in.dir/parser.c.o"
+  "CMakeFiles/lem_in.dir/parser_2.c.o"
   "lem_in.pdb"
   "lem_in"
 )

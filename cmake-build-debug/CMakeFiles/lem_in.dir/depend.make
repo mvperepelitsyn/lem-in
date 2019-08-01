@@ -347,3 +347,8 @@ CMakeFiles/lem_in.dir/parser.c.o: ../libft/libft.h
 CMakeFiles/lem_in.dir/parser.c.o: ../parser.c
 CMakeFiles/lem_in.dir/parser.c.o: ../parser.h
 
+CMakeFiles/lem_in.dir/parser_2.c.o: ../finding.h
+CMakeFiles/lem_in.dir/parser_2.c.o: ../libft/libft.h
+CMakeFiles/lem_in.dir/parser_2.c.o: ../parser.h
+CMakeFiles/lem_in.dir/parser_2.c.o: ../parser_2.c
+

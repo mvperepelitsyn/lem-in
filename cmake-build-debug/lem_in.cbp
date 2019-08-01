@@ -425,6 +425,9 @@
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.h">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser_2.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

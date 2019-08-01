@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:18 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/01 13:25:40 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/01 15:55:21 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void	test_name(const char *name);
 int 	test_links(const char *rm1, const char *rm2, t_intldta *indta);
 void	test_double_room(const char *rm, t_intldta **indta);
 int 	check_double_link(t_list_links *links, char **rms);
+void    graph_parser(t_intldta **indta, char *things, char **rms, int fd);
+void	fill_list_links(t_list_links **links, char **rms, t_intldta *indta);
+void	fill_list_rooms(char **rms, t_intldta **indta);
 
 void	help_fill_list_rooms(char **rms, t_room **current);
 
