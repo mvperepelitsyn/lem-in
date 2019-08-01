@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/01 19:28:14 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/01 19:57:07 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,20 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
+# include "../parser.h"
 
-#endif //LEM_IN_VISUALIZER_H
+void    visualizer(t_intldta *indta);
+//void    set_limits(t_intldta *indta);
+//void    build_graph(t_intldta *indta);
+
+/*
+** Graph vis params: g
+*/
+
+typedef struct	s_graph
+{
+    //
+}				t_graph;
+
+
+#endif

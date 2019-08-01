@@ -6,12 +6,14 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/01 18:54:35 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/01 19:06:23 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "finding.h"
+#include "vis/visualizer.h"
+
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
