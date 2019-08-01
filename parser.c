@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/07/31 17:19:20 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/01 12:50:29 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,14 @@ void	parce_ant_farm(t_intldta **indta) //when we force it to read
 		fd = 0;
 	get_next_line(fd, &things);
 	(things == NULL) ? ft_error() : ft_println(things);
+	while (things && (things[0] == '#' && things[1] != '#'))
+    {
+        ft_strdel(&things);
+        things = NULL;
+        get_next_line(fd, &things);
+        if (things)
+            ft_println(things);
+    }
 	(*indta)->num_ants = ft_latoi(things);
 	if ((*indta)->num_ants <= 0 || (*indta)->num_ants > 2147483647)
 		ft_error();
@@ -134,10 +142,13 @@ void	parce_ant_farm(t_intldta **indta) //when we force it to read
 			fill_list_links(&(*indta)->links, rms, (*indta));
 			free_2d_array(rms);
 		}
+		else if (!(things && (things[0] == '#' && things[1] != '#')))
+            ft_error();
 		ft_strdel(&things);
 	}
 	if ((*indta)->links->i == -1)
 		ft_error();
+
 }
 
 int		main()
