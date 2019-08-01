@@ -6,5 +6,5 @@ C_FLAGS = -g   -std=gnu11
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/dfrost-a/Desktop/lem-in/. -I/Users/dfrost-a/Desktop/lem-in/libft/includes 
+C_INCLUDES = -I/Users/dfrost-a/Desktop/lem-in/. -I/Users/dfrost-a/Desktop/lem-in/libft -I/Users/dfrost-a/Desktop/lem-in/libft/ft_printf 
 

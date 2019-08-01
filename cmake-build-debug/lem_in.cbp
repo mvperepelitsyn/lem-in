@@ -45,7 +45,8 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Users/dfrost-a/Desktop/lem-in/."/>
-					<Add directory="/Users/dfrost-a/Desktop/lem-in/libft/includes"/>
+					<Add directory="/Users/dfrost-a/Desktop/lem-in/libft"/>
+					<Add directory="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -68,7 +69,8 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Users/dfrost-a/Desktop/lem-in/."/>
-					<Add directory="/Users/dfrost-a/Desktop/lem-in/libft/includes"/>
+					<Add directory="/Users/dfrost-a/Desktop/lem-in/libft"/>
+					<Add directory="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -93,10 +95,64 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper.c">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_abs.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_arrjoin.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_atoi.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_bzero.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dlladdnextl.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dlladdnextr.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dlladdtoleft.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dlladdtoright.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dllccount.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dllcpy.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dllcpyl.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dllcpyr.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dlldel.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dlldelone.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dlldeltoleft.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dlldeltoright.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dlllcount.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dllnew.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dllrcount.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_dllswap.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_hm_wrd.c">
@@ -114,10 +170,10 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_isdigit.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_isintnumber.c">
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_isprint.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_isprint.c">
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_isspace.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_itoa.c">
@@ -126,16 +182,28 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_latoi.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lentill.c">
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstadd.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstadd.c">
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstaddnext.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstcount.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstcpy.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstdel.c">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstdelfirst.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstdelone.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstfree.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstiter.c">
@@ -145,6 +213,9 @@
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstnew.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstswap.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_memalloc.c">
@@ -169,6 +240,63 @@
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_memset.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_nstrjoin.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_order.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/add_fnctns.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/apply_flags.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/double_rep.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/format_float.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/formats_c_s.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/formats_int.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/ft_fdprintf.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/ft_printf.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/ft_printf.h">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/ft_sprintf.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/lib_printf.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/pft_float_itoa.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/pft_float_itoa_2.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/pft_float_itoa_3.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/pft_itoa.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/pft_unsigned_itoa.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_printf/set_format.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_putchar.c">
@@ -255,9 +383,6 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_strnew.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_strnlen.c">
-			<Option target="lem_in"/>
-		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_strnstr.c">
 			<Option target="lem_in"/>
 		</Unit>
@@ -265,6 +390,9 @@
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_strsplit.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_strsplitspaces.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_strstr.c">
@@ -276,9 +404,6 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_strtrim.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_swap.c">
-			<Option target="lem_in"/>
-		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_tolower.c">
 			<Option target="lem_in"/>
 		</Unit>
@@ -288,7 +413,10 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/get_next_line.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/includes/libft.h">
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/get_next_line.h">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/libft.h">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/parser.c">
