@@ -43,7 +43,7 @@ typedef struct		s_intldta
 {
 	long int		num_ants;
 	t_list_rooms	*rooms;
-	t_list_links	*links;
+  	t_list_links	*links;
 	t_room			*start_room;
 	t_room			*end_room;
 }					t_intldta;  //initial data
