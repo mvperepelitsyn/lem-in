@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/02 16:32:25 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/02 19:14:24 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@
 # define WIN_Y 1575
 # define R 10
 # define SCALE 10
-
-void    visualizer(t_intldta *indta);
-//void    set_limits(t_intldta *indta);
-//void    build_graph(t_intldta *indta);
+# define S_CLR 0x00FF00
+# define F_CLR 0xFF0000
+# define R_CLR 0xFFFFFF
 
 /*
 ** Graph vis params: g
@@ -34,13 +33,14 @@ void    visualizer(t_intldta *indta);
 
 typedef struct	s_graph
 {
-	int 	min_x;
-	int 	min_y;
-	int 	max_x;
-	int 	max_y;
-	int 	scale;
-	int 	delta_x;
-	int 	delta_y;
+	int 		min_x;
+	int 		min_y;
+	int 		max_x;
+	int 		max_y;
+	int 		scale;
+	int 		delta_x;
+	int 		delta_y;
+	t_vis_prms	*v;
 }				t_graph;
 
 /*
@@ -60,5 +60,53 @@ typedef struct	s_vis_prms
 	int 	win_y;
 }				t_vis_prms;
 
+/*
+** Operational build line params: l
+*/
+
+typedef struct	s_line_prm
+{
+	int				dx;
+	int				dy;
+	int				d_big;
+	int				d_small;
+	int				i;
+	int				d_ind;
+	int				sign;
+	t_img_data		*img;
+}				t_line_prm;
+
+/*
+** Input grad params: clr
+*/
+
+typedef struct	s_grad_prms
+{
+	int				delta;
+	int				a;
+	int				b;
+}				t_grad_prms;
+
+/*
+** Operational grad params: grad
+*/
+
+typedef struct	s_grad
+{
+	unsigned char	*a;
+	unsigned char	*b;
+	unsigned char	*c;
+	int				d_alpha;
+	int				d1;
+	int				d2;
+	int				d3;
+	int				color;
+	int				start;
+	int				alpha;
+}				t_grad;
+
+void	visualizer(t_intldta *indta);
+void	draw_rooms(t_intldta *indta, t_graph *g);
+void	draw_links(t_intldta *indta, t_graph *g);
 
 #endif

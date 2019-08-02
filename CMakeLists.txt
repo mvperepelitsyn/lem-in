@@ -7,6 +7,8 @@ include_directories(.)
 include_directories(libft)
 include_directories(libft/ft_printf)
 
+
+
 add_executable(lem_in
         libft/ft_printf/add_fnctns.c
         libft/ft_printf/apply_flags.c
@@ -121,4 +123,4 @@ add_executable(lem_in
         helper.c
         parser.c
         parser_2.c
-        parser.h vis/visualizer.c vis/visualizer.h vis/visualizer_2.c)
+        parser.h vis/visualizer.c vis/visualizer.h vis/visualizer_2.c vis/visualizer_3.c)

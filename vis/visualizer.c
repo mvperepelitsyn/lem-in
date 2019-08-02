@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/02 16:49:22 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/02 18:30:25 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	set_limits(t_intldta *indta, t_graph *g)
 {
+	t_room	*ptr;
+
 	ptr = indta->rooms->next;
 	while (ptr)
 	{
@@ -49,6 +51,7 @@ static void	graph_init(t_intldta *indta, t_graph *g, t_vis_prms *v)
 	}
 	v->win_x = g->delta_x + (R * 2);
 	v->win_y = g->delta_y + (R * 2);
+	g->v = v;
 }
 
 static void	window_init(t_vis_prms *v)
@@ -59,10 +62,10 @@ static void	window_init(t_vis_prms *v)
 	v->img_addr = mlx_get_data_addr(v->img_ptr, &v->bpp, &v->lsz, &v->ndn);
 }
 
-static void	build_graph(t_intldta *indta)
+static void	build_graph(t_intldta *indta, t_graph *g)
 {
-	draw_rooms();
-	draw_links();
+	draw_rooms(indta, g);
+	draw_links(indta, g);
 }
 
 void		visualizer(t_intldta *indta)
@@ -74,5 +77,5 @@ void		visualizer(t_intldta *indta)
 		return ;
 	graph_init(indta, &g, &v);
 	window_init(&v);
-	build_graph(indta);
+	build_graph(indta, &g);
 }

@@ -109,10 +109,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/lem_in.dir/parser.c.o"
   "CMakeFiles/lem_in.dir/parser_2.c.o"
   "CMakeFiles/lem_in.dir/vis/visualizer.c.o"
-<<<<<<< HEAD
   "CMakeFiles/lem_in.dir/vis/visualizer_2.c.o"
-=======
->>>>>>> ba29a6dbd3ae6c91d5ad62674734342a7b4d6c18
+  "CMakeFiles/lem_in.dir/vis/visualizer_3.c.o"
   "lem_in.pdb"
   "lem_in"
 )
