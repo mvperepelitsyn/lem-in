@@ -68,7 +68,7 @@ void 	ft_error(void);
 void	ft_println(char *str);
 void	test_coord(long int x, long int y);
 void	test_name(const char *name);
-int 	test_links(const char *rm1, const char *rm2, t_intldta **indta);
+int 	test_links(t_list_links **links, t_intldta **indta);
 void	test_double_room(const char *rm, t_intldta **indta);
 int 	check_double_link(t_list_links *links, char **rms);
 void    graph_parser(t_intldta **indta, char **things, char **rms, int fd);

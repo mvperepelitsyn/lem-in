@@ -344,19 +344,11 @@ CMakeFiles/lem_in.dir/libft/get_next_line.c.o: ../libft/libft.h
 
 CMakeFiles/lem_in.dir/parser.c.o: ../finding.h
 CMakeFiles/lem_in.dir/parser.c.o: ../libft/libft.h
-CMakeFiles/lem_in.dir/parser.c.o: ../minilibx/mlx.h
 CMakeFiles/lem_in.dir/parser.c.o: ../parser.c
 CMakeFiles/lem_in.dir/parser.c.o: ../parser.h
-CMakeFiles/lem_in.dir/parser.c.o: ../vis/visualizer.h
 
 CMakeFiles/lem_in.dir/parser_2.c.o: ../finding.h
 CMakeFiles/lem_in.dir/parser_2.c.o: ../libft/libft.h
 CMakeFiles/lem_in.dir/parser_2.c.o: ../parser.h
 CMakeFiles/lem_in.dir/parser_2.c.o: ../parser_2.c
-
-CMakeFiles/lem_in.dir/vis/visualizer.c.o: ../libft/libft.h
-CMakeFiles/lem_in.dir/vis/visualizer.c.o: ../minilibx/mlx.h
-CMakeFiles/lem_in.dir/vis/visualizer.c.o: ../parser.h
-CMakeFiles/lem_in.dir/vis/visualizer.c.o: ../vis/visualizer.c
-CMakeFiles/lem_in.dir/vis/visualizer.c.o: ../vis/visualizer.h
 

@@ -121,4 +121,4 @@ add_executable(lem_in
         helper.c
         parser.c
         parser_2.c
-        parser.h vis/visualizer.c vis/visualizer.h)
+        parser.h)

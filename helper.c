@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:41 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/02 16:22:06 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/02 18:34:38 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,57 +61,33 @@ void	test_double_room(const char *rm, t_intldta **indta)
 		ft_error();
 }
 
-int 	test_links(const char *rm1, const char *rm2, t_intldta **indta) // i need the whole structure
+int 	test_links(t_list_links **links, t_intldta **indta) // i need the whole structure
 {
-	t_list_rooms	*current;
-	short			check;
+	t_list_rooms *current;
+	short check;
 
 	current = (*indta)->rooms;
 	check = 0;
 	while (current->room)
 	{
-		if ((*indta)->ri != -1)
+		if (ft_strequ((*links)->room1, current->room->name))
 		{
-			if (ft_strequ(rm1, current->room->name) || ft_strequ(rm1, (*indta)->
-			start_room->name) || ft_strequ(rm1, (*indta)->end_room->name))
-			{
-				check++;
-				break;
-			}
-		}
-		else
-		{
-			if (ft_strequ(rm1, (*indta)->start_room->name) || ft_strequ(rm1,
-					(*indta)->end_room->name))
-			{
-				check++;
-				break;
-			}
+			(*links)->rm1 = current->room;
+			check++;
+			break;
 		}
 		if (!(current = current->next))
-			break ;
+			break;
 	}
 	current = (*indta)->rooms;
 	while (current->room)
 	{
-		if ((*indta)->ri != -1)
-		{
-			if (ft_strequ(rm2, current->room->name) || ft_strequ(rm2, (*indta)->
-			start_room->name) || ft_strequ(rm2, (*indta)->end_room->name))
+		if (ft_strequ((*links)->room2, current->room->name))
 			{
+				(*links)->rm2 = current->room;
 				check++;
 				break;
 			}
-		}
-		else
-		{
-			if (ft_strequ(rm2, (*indta)->start_room->name) || ft_strequ(rm2,
-					(*indta)->end_room->name))
-			{
-				check++;
-				break;
-			}
-		}
 		if (!(current = current->next))
 			break ;
 	}

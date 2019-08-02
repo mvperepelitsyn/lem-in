@@ -428,12 +428,6 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/parser_2.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/vis/visualizer.c">
-			<Option target="lem_in"/>
-		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/vis/visualizer.h">
-			<Option target="lem_in"/>
-		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

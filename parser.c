@@ -6,16 +6,21 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/02 16:42:44 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/02 18:22:29 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "finding.h"
-#include "vis/visualizer.h"
 
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
+
+//static void	links_assignment(t_intldta **indta)
+//{
+//	(*indta)->rooms->room->
+//
+//}
 
 static void	type_assignment(t_room *room, t_intldta **indta)
 {
@@ -64,7 +69,7 @@ void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta)
 	{
 		(*links)->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		(*links)->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
-		if (!(test_links((*links)->room1, (*links)->room2, indta)))
+		if (!(test_links(links, indta)))
 			ft_error();
 		(*links)->next = NULL;
 		(*indta)->li++;
@@ -78,13 +83,13 @@ void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta)
 		current->next = (t_list_links *)malloc(sizeof(t_list_links));
 		current->next->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		current->next->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
-		if (!(test_links(current->next->room1, current->next->room2, indta)))
+		if (!(test_links(&current->next, indta)))
 			ft_error();
 		current->next->next = NULL;
 	}
 }
 
-void	parce_ant_farm(t_intldta **indta) //when we force it to read
+static void	parce_ant_farm(t_intldta **indta) //when we force it to read
 {
 	char	*things;
 	char	**rms;
@@ -109,6 +114,7 @@ void	parce_ant_farm(t_intldta **indta) //when we force it to read
     graph_parser(indta, &things, rms, fd);
 	if ((*indta)->links->i == -1)
 		ft_error();
+//	links_assignment(indta);
 }
 
 int		main(int argc, char **argv)
@@ -120,7 +126,5 @@ int		main(int argc, char **argv)
 	ft_print_strcut(&indta);
 	ft_putchar('\n');
 	find_the_way(indta);
-	if (argc > 1 && !ft_strcmp(argv[1], "-v"))
-	    visualizer(indta);
 	exit (0);
 }

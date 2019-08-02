@@ -6,7 +6,15 @@
 
 #IncludeRegexTransform: 
 
+/Users/dfrost-a/Desktop/lem-in/find_the_ways.c
+finding.h
 /Users/dfrost-a/Desktop/lem-in/finding.h
+
+/Users/dfrost-a/Desktop/lem-in/finding.h
+parser.h
+/Users/dfrost-a/Desktop/lem-in/parser.h
+
+/Users/dfrost-a/Desktop/lem-in/helper.c
 parser.h
 /Users/dfrost-a/Desktop/lem-in/parser.h
 
@@ -18,6 +26,14 @@ unistd.h
 stdlib.h
 -
 string.h
+-
+
+/Users/dfrost-a/Desktop/lem-in/parser.c
+parser.h
+/Users/dfrost-a/Desktop/lem-in/parser.h
+finding.h
+/Users/dfrost-a/Desktop/lem-in/finding.h
+fcntl.h
 -
 
 /Users/dfrost-a/Desktop/lem-in/parser.h
