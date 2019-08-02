@@ -12,6 +12,8 @@
 
 #include "parser.h"
 #include "finding.h"
+#include "vis/visualizer.h"
+
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
@@ -109,7 +111,7 @@ void	parce_ant_farm(t_intldta **indta) //when we force it to read
 		ft_error();
 }
 
-int		main()
+int		main(int argc, char **argv)
 {
 	t_intldta	*indta;
 
@@ -118,5 +120,7 @@ int		main()
 	ft_print_strcut(&indta);
 	ft_putchar('\n');
 	find_the_way(indta);
+	if (argc > 1 && !ft_strcmp(argv[1], "-v"))
+	    visualizer(indta);
 	exit (0);
 }

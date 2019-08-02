@@ -18,6 +18,7 @@
 # include "libft/libft.h"
 
 /*
+<<<<<<< HEAD
  * This is the structure for our room, where:
  * name - name of a room;
  * type - the parameter that tells to us what room is this, such as:
@@ -27,6 +28,17 @@
  * links - an adress to the list of links
  *
  */
+=======
+** This is the structure for our room, where:
+** name - name of a room;
+** type - the parameter that tells to us what room is this, such as:
+** 1 - start node;
+** 2 - end node;
+** 0 - ordinary node;
+** links - an adress to the list of links
+**
+*/
+>>>>>>> 3546f93ac172b59045b7fae6311960d0525c668e
 
 typedef struct			s_room
 {
@@ -66,7 +78,7 @@ typedef struct		s_intldta
 {
 	long int		num_ants;
 	t_list_rooms	*rooms;
-	t_list_links	*links;
+  	t_list_links	*links;
 	t_room			*start_room;
 	t_room			*end_room;
 	int				ri;
@@ -88,5 +100,6 @@ void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta);
 void	fill_list_rooms(char **rms, t_intldta **indta, short type);
 void	help_fill_list_rooms(char **rms, t_room **current, short type);
 void	free_2d_array(char **array);
+
 
 #endif
