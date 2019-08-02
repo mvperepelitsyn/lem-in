@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/01 15:25:51 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/02 15:31:10 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,29 @@
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
-void	fill_list_rooms(char **rms, t_intldta **indta)
+static void	type_assignment(t_room *room, t_intldta **indta)
+{
+	if (room->type != 0)
+	{
+		if (room->type == 1)
+			(*indta)->start_room = room;
+		else
+			(*indta)->end_room = room;
+	}
+}
+
+void	fill_list_rooms(char **rms, t_intldta **indta, short type)
 {
 	t_list_rooms *current;
 
 	current = (*indta)->rooms;
-	if (++(*indta)->rooms->i == 0)
+	if (++(*indta)->ri == 0)
 	{
 		(*indta)->rooms->room = (t_room *)malloc(sizeof(t_room));
-		help_fill_list_rooms(rms, &((*indta)->rooms->room));
+		help_fill_list_rooms(rms, &((*indta)->rooms->room), type);
+		type_assignment((*indta)->rooms->room, indta);
 		(*indta)->rooms->next = NULL;
-		(*indta)->rooms->i++;
+		(*indta)->ri++;
 		test_double_room((*indta)->rooms->room->name, indta);
 	}
 	else
@@ -34,25 +46,26 @@ void	fill_list_rooms(char **rms, t_intldta **indta)
 			current = current->next;
 		current->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 		current->next->room = (t_room *)malloc(sizeof(t_room));
-		help_fill_list_rooms(rms, &(current->next->room));
+		help_fill_list_rooms(rms, &(current->next->room), type);
+		type_assignment(current->next->room, indta);
 		current->next->next = NULL;
 		test_double_room(current->next->room->name, indta);
 	}
 }
 
-void	fill_list_links(t_list_links **links, char **rms, t_intldta *indta)
+void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta)
 {
 	t_list_links	*current;
 
 	current = (*links);
-	if (++(*links)->i == 0)
+	if (++(*indta)->li == 0)
 	{
 		(*links)->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		(*links)->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
 		if (!(test_links((*links)->room1, (*links)->room2, indta)))
 			ft_error();
 		(*links)->next = NULL;
-		(*links)->i++;
+		(*indta)->li++;
 	}
 	else
 	{
@@ -82,13 +95,13 @@ void	parce_ant_farm(t_intldta **indta) //when we force it to read
 	while (things && (things[0] == '#' && things[1] != '#'))
     {
         ft_strdel(&things);
-        things = NULL;
         get_next_line(fd, &things);
         if (things)
             ft_println(things);
     }
 	(*indta)->num_ants = ft_latoi(things);
-	if ((*indta)->num_ants <= 0 || (*indta)->num_ants > 2147483647)
+	if ((*indta)->num_ants <= 0 || (*indta)->num_ants !=
+	(int)(*indta)->num_ants)
 		ft_error();
 	ft_strdel(&things);
     graph_parser(indta, things, rms, fd);
