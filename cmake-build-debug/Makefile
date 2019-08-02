@@ -3066,6 +3066,7 @@ parser_2.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parser_2.c.s
 .PHONY : parser_2.c.s
 
+<<<<<<< HEAD
 vis/visualizer.o: vis/visualizer.c.o
 
 .PHONY : vis/visualizer.o
@@ -3120,6 +3121,8 @@ vis/visualizer_2.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/vis/visualizer_2.c.s
 .PHONY : vis/visualizer_2.c.s
 
+=======
+>>>>>>> 40e89e98835a918c5f65093bfea55007b7e36874
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -3456,12 +3459,15 @@ help:
 	@echo "... parser_2.o"
 	@echo "... parser_2.i"
 	@echo "... parser_2.s"
+<<<<<<< HEAD
 	@echo "... vis/visualizer.o"
 	@echo "... vis/visualizer.i"
 	@echo "... vis/visualizer.s"
 	@echo "... vis/visualizer_2.o"
 	@echo "... vis/visualizer_2.i"
 	@echo "... vis/visualizer_2.s"
+=======
+>>>>>>> 40e89e98835a918c5f65093bfea55007b7e36874
 .PHONY : help
 
 
