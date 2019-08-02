@@ -80,11 +80,11 @@ static void	build_line(t_line_prm *l, t_pix_prm *a, t_grad_prms *clr, \
 	while (l->i <= ft_abs(l->d_big))
 	{
 		if (l->d_ind == 1)
-			method(l, (a->x + (l->i * l->sign)), (a->y + get_coord(l)), \
-				get_grad_color(l->img, clr, l->i));
+			put_pix_to_img(l, (a->x + (l->i * l->sign)), \
+				(a->y + get_coord(l)), get_grad_color(l->img, clr, l->i));
 		else
-			method(l, (a->x + get_coord(l)), (a->y + (l->i * l->sign)), \
-				get_grad_color(l->img, clr, l->i));
+			put_pix_to_img(l, (a->x + get_coord(l)), \
+				(a->y + (l->i * l->sign)), get_grad_color(l->img, clr, l->i));
 		l->i++;
 	}
 }
@@ -93,17 +93,12 @@ void		put_line_to_img(t_img_data *img, t_pix_prm a, t_pix_prm b)
 {
 	t_line_prm		l;
 	t_grad_prms		clr;
-	int				(*method)(t_line_prm*, int, int, int);
 
 	if (a.x == b.x && a.y == b.y)
 		return ;
 	if (((a.x < 0 || a.x >= img->win->x) || (a.y < 0 || a.y >= img->win->y)) \
 		&& ((b.x < 0 || b.x >= img->win->x) || (b.y < 0 || b.y >= img->win->y)))
 		return ;
-	if (img->woo_prm == 0)
-		method = &put_pix_to_img;
-	if (img->woo_prm == 1)
-		method = &put_woo_to_img;
 	get_delta(&a, &b, &l);
 	if (l.d_big == 0)
 		return ;

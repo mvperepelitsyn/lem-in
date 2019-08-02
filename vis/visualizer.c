@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/02 18:30:25 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/02 20:00:49 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,29 @@
 
 static void	set_limits(t_intldta *indta, t_graph *g)
 {
-	t_room	*ptr;
+	t_list_rooms	*ptr;
 
 	ptr = indta->rooms->next;
 	while (ptr)
 	{
-		if (g->min_x > (int)ptr->x_cord)
-			g->min_x = (int)ptr->x_cord;
-		else if (g->max_x < (int)ptr->x_cord)
-			g->max_x = (int)ptr->x_cord;
-		if (g->min_y > (int)ptr->y_cord)
-			g->min_y = (int)ptr->y_cord;
-		else if (g->max_y < (int)ptr->y_cord)
-			g->max_y = (int)ptr->y_cord;
+		if (g->min_x > ptr->x_cord)
+			g->min_x = ptr->x_cord;
+		else if (g->max_x < ptr->x_cord)
+			g->max_x = ptr->x_cord;
+		if (g->min_y > ptr->y_cord)
+			g->min_y = ptr->y_cord;
+		else if (g->max_y < ptr->y_cord)
+			g->max_y = ptr->y_cord;
 		ptr = ptr->next;
 	}
 }
 
 static void	graph_init(t_intldta *indta, t_graph *g, t_vis_prms *v)
 {
-	t_room	*ptr;
-
-	g->min_x = (int)indta->rooms->x_cord;
-	g->min_y = (int)indta->rooms->y_cord;
-	g->max_x = (int)indta->rooms->x_cord;
-	g->max_y = (int)indta->rooms->y_cord;
+	g->min_x = indta->rooms->x_cord;
+	g->min_y = indta->rooms->y_cord;
+	g->max_x = indta->rooms->x_cord;
+	g->max_y = indta->rooms->y_cord;
 	set_limits(indta, g);
 	g->scale = SCALE;
 	g->delta_x = (g->max_x - g->min_x) * g->scale;

@@ -105,6 +105,17 @@ typedef struct	s_grad
 	int				alpha;
 }				t_grad;
 
+/*
+** Current dot params: a, b
+*/
+
+typedef struct	s_pix_prm
+{
+	int				x;
+	int				y;
+	int				color;
+}				t_pix_prm;
+
 void	visualizer(t_intldta *indta);
 void	draw_rooms(t_intldta *indta, t_graph *g);
 void	draw_links(t_intldta *indta, t_graph *g);
