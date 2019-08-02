@@ -6,18 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/find_the_ways.c
-finding.h
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/finding.h
-
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/finding.h
+/Users/dfrost-a/Desktop/lem-in/finding.h
 parser.h
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.h
+/Users/dfrost-a/Desktop/lem-in/parser.h
 
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/helper.c
-parser.h
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.h
-
+<<<<<<< HEAD
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_abs.c
 libft.h
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/libft.h
@@ -461,6 +454,9 @@ libft.h
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/libft.h
 
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/libft.h
+=======
+/Users/dfrost-a/Desktop/lem-in/libft/libft.h
+>>>>>>> ba29a6dbd3ae6c91d5ad62674734342a7b4d6c18
 stdarg.h
 -
 unistd.h
@@ -470,26 +466,15 @@ stdlib.h
 string.h
 -
 
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/minilibx/mlx.h
-
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.c
-parser.h
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.h
-finding.h
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/finding.h
-vis/visualizer.h
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/vis/visualizer.h
-fcntl.h
--
-
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.h
+/Users/dfrost-a/Desktop/lem-in/parser.h
 libft/libft.h
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/libft.h
+/Users/dfrost-a/Desktop/lem-in/libft/libft.h
 
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser_2.c
+/Users/dfrost-a/Desktop/lem-in/parser_2.c
 parser.h
-/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.h
+/Users/dfrost-a/Desktop/lem-in/parser.h
 finding.h
+<<<<<<< HEAD
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/finding.h
 
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/vis/visualizer.c
@@ -507,4 +492,7 @@ fcntl.h
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/minilibx/mlx.h
 ../parser.h
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.h
+=======
+/Users/dfrost-a/Desktop/lem-in/finding.h
+>>>>>>> ba29a6dbd3ae6c91d5ad62674734342a7b4d6c18
 
