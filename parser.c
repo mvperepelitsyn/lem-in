@@ -93,7 +93,7 @@ void	parce_ant_farm(t_intldta **indta) //when we force it to read
 	if ((*indta)->num_ants <= 0 || (*indta)->num_ants > 2147483647)
 		ft_error();
 	ft_strdel(&things);
-    graph_parser(indta, things, rms, fd);
+    graph_parser(indta, &things, rms, fd);
 	if ((*indta)->links->i == -1)
 		ft_error();
 }
