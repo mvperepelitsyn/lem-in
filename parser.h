@@ -16,21 +16,16 @@
 **
 */
 
-typedef struct			s_room
+typedef struct			s_list_rooms
 {
 	char				*name;
-	long int			x_cord;
-	long int			y_cord;
+	int					x_cord;
+	int					y_cord;
 	short				type;
 	int 				num_lnks;
 	t_list				*links;
-
-}						t_room;
-
-typedef struct			s_list_rooms
-{
-	t_room				*room;
 	struct s_list_rooms	*next;
+
 }						t_list_rooms;
 
 //TODO: Change i for t_list_links and move it to the core structure
@@ -40,8 +35,8 @@ typedef struct			s_list_links
 {
 	char				*room1;
 	char 				*room2;
-	t_room				*rm1;
-	t_room				*rm2;
+	t_list_rooms		*rm1;
+	t_list_rooms		*rm2;
 	short 				dir;
 	int 				i;
 	struct s_list_links *next;
@@ -52,11 +47,11 @@ typedef struct			s_list_links
 
 typedef struct		s_intldta
 {
-	long int		num_ants;
+	int				num_ants;
 	t_list_rooms	*rooms;
   	t_list_links	*links;
-	t_room			*start_room;
-	t_room			*end_room;
+	t_list_rooms	*start_room;
+	t_list_rooms	*end_room;
 	int				ri;
 	int				li;
 }					t_intldta;  //initial data
@@ -66,7 +61,7 @@ void	ft_print_strcut(t_intldta **indta);
 void	init_struct(t_intldta **indta);
 void 	ft_error(void);
 void	ft_println(char *str);
-void	test_coord(long int x, long int y);
+//void	test_coord(long int x, long int y);
 void	test_name(const char *name);
 int 	test_links(t_list_links **links, t_intldta **indta);
 void	test_double_room(const char *rm, t_intldta **indta);
@@ -74,7 +69,7 @@ int 	check_double_link(t_list_links *links, char **rms);
 void    graph_parser(t_intldta **indta, char **things, char **rms, int fd);
 void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta);
 void	fill_list_rooms(char **rms, t_intldta **indta, short type);
-void	help_fill_list_rooms(char **rms, t_room **current, short type);
+void	help_fill_list_rooms(char **rms, t_list_rooms **current, short type);
 void	free_2d_array(char **array);
 
 

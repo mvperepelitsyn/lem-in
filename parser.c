@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/02 18:22:29 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/02 19:38:34 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 //
 //}
 
-static void	type_assignment(t_room *room, t_intldta **indta)
+static void	type_assignment(t_list_rooms *room, t_intldta **indta)
 {
 	if (room->type != 0)
 	{
@@ -40,23 +40,21 @@ void	fill_list_rooms(char **rms, t_intldta **indta, short type)
 	current = (*indta)->rooms;
 	if (++(*indta)->ri == 0)
 	{
-		(*indta)->rooms->room = (t_room *)malloc(sizeof(t_room));
-		help_fill_list_rooms(rms, &((*indta)->rooms->room), type);
-		type_assignment((*indta)->rooms->room, indta);
+		help_fill_list_rooms(rms, &((*indta)->rooms), type);
+		type_assignment((*indta)->rooms, indta);
 		(*indta)->rooms->next = NULL;
 		(*indta)->ri++;
-		test_double_room((*indta)->rooms->room->name, indta);
+		test_double_room((*indta)->rooms->name, indta);
 	}
 	else
 	{
 		while (current->next != NULL)
 			current = current->next;
 		current->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
-		current->next->room = (t_room *)malloc(sizeof(t_room));
-		help_fill_list_rooms(rms, &(current->next->room), type);
-		type_assignment(current->next->room, indta);
+		help_fill_list_rooms(rms, &(current->next), type);
+		type_assignment(current->next, indta);
 		current->next->next = NULL;
-		test_double_room(current->next->room->name, indta);
+		test_double_room(current->next->name, indta);
 	}
 }
 
@@ -107,8 +105,7 @@ static void	parce_ant_farm(t_intldta **indta) //when we force it to read
             ft_println(things);
     }
 	(*indta)->num_ants = ft_latoi(things);
-	if ((*indta)->num_ants <= 0 || (*indta)->num_ants !=
-	(int)(*indta)->num_ants)
+	if ((*indta)->num_ants <= 0 || (*indta)->num_ants != (int)ft_latoi(things))
 		ft_error();
 	ft_strdel(&things);
     graph_parser(indta, &things, rms, fd);

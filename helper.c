@@ -6,20 +6,23 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:41 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/02 18:34:38 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/02 19:40:02 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	help_fill_list_rooms(char **rms, t_room **current, short type)
+void	help_fill_list_rooms(char **rms, t_list_rooms **current, short type)
 {
 	(*current)->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 	test_name((*current)->name);
-	(*current)->x_cord = ft_latoi((rms[1]));
+	(*current)->x_cord = ft_latoi(rms[1]);
 	(*current)->y_cord = ft_latoi(rms[2]);
 	(*current)->type = type;
-	test_coord((*current)->x_cord, (*current)->y_cord);
+	if ((*current)->x_cord != ft_latoi(rms[1]) ||
+	(*current)->y_cord != ft_latoi(rms[2]))
+		ft_error();
+//	test_coord((*current)->x_cord, (*current)->y_cord);
 }
 
 void	ft_malloc_error(void)
@@ -34,12 +37,12 @@ void 	ft_error(void)
 	exit(69);
 }
 
-void	test_coord(long int x, long int y)
-{
-	if ((x > 2147483647 || x < -2147483648) || (y > 2147483647 || y <
-	        -2147483648))
-		ft_error();
-}
+//void	test_coord(long int x, long int y)
+//{
+//	if ((x > 2147483647 || x < -2147483648) || (y > 2147483647 || y <
+//	        -2147483648))
+//		ft_error();
+//}
 
 void	test_double_room(const char *rm, t_intldta **indta)
 {
@@ -48,9 +51,9 @@ void	test_double_room(const char *rm, t_intldta **indta)
 
 	ch = 0;
 	crt = (*indta)->rooms;
-	while (crt->room)
+	while (crt)
 	{
-		if (ft_strequ(rm, crt->room->name))
+		if (ft_strequ(rm, crt->name))
 			ch++;
 		if (crt->next == NULL)
 			break ;
@@ -68,11 +71,11 @@ int 	test_links(t_list_links **links, t_intldta **indta) // i need the whole str
 
 	current = (*indta)->rooms;
 	check = 0;
-	while (current->room)
+	while (current)
 	{
-		if (ft_strequ((*links)->room1, current->room->name))
+		if (ft_strequ((*links)->room1, current->name))
 		{
-			(*links)->rm1 = current->room;
+			(*links)->rm1 = current;
 			check++;
 			break;
 		}
@@ -80,11 +83,11 @@ int 	test_links(t_list_links **links, t_intldta **indta) // i need the whole str
 			break;
 	}
 	current = (*indta)->rooms;
-	while (current->room)
+	while (current)
 	{
-		if (ft_strequ((*links)->room2, current->room->name))
+		if (ft_strequ((*links)->room2, current->name))
 			{
-				(*links)->rm2 = current->room;
+				(*links)->rm2 = current;
 				check++;
 				break;
 			}
@@ -110,11 +113,11 @@ static void	print_rooms(t_intldta *indta)
 {
 	while (indta->rooms && indta->ri != -1)
 	{
-		ft_putstr(indta->rooms->room->name);
+		ft_putstr(indta->rooms->name);
 		ft_putstr(" ");
-		ft_putnbr(indta->rooms->room->x_cord);
+		ft_putnbr(indta->rooms->x_cord);
 		ft_putstr(" ");
-		ft_putnbr(indta->rooms->room->y_cord);
+		ft_putnbr(indta->rooms->y_cord);
 		ft_putstr("\n");
 		indta->rooms = indta->rooms->next;
 	}
@@ -132,7 +135,7 @@ void	print_links(t_list_links *links)
 	}
 }
 
-void	print_sides(t_room *room)
+void	print_sides(t_list_rooms *room)
 {
 	ft_putstr(room->name);
 	ft_putstr(" ");
