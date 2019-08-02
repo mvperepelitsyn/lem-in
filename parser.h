@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/02 13:35:18 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/01 19:55:05 by uhand            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PARCER_H
 # define PARCER_H
 
@@ -42,11 +30,11 @@ typedef struct			s_room
 typedef struct			s_list_rooms
 {
 	t_room				*room;
-	int 				i;
 	struct s_list_rooms	*next;
 }						t_list_rooms;
 
 //TODO: Change i for t_list_links and move it to the core structure
+// DONE!
 
 typedef struct			s_list_links
 {
@@ -60,6 +48,7 @@ typedef struct			s_list_links
 }						t_list_links;
 
 //TODO: add start and end rooms to all rooms
+// DONE!
 
 typedef struct		s_intldta
 {
@@ -68,6 +57,8 @@ typedef struct		s_intldta
   	t_list_links	*links;
 	t_room			*start_room;
 	t_room			*end_room;
+	int				ri;
+	int				li;
 }					t_intldta;  //initial data
 
 void	ft_malloc_error(void);
@@ -77,13 +68,13 @@ void 	ft_error(void);
 void	ft_println(char *str);
 void	test_coord(long int x, long int y);
 void	test_name(const char *name);
-int 	test_links(const char *rm1, const char *rm2, t_intldta *indta);
+int 	test_links(const char *rm1, const char *rm2, t_intldta **indta);
 void	test_double_room(const char *rm, t_intldta **indta);
 int 	check_double_link(t_list_links *links, char **rms);
 void    graph_parser(t_intldta **indta, char **things, char **rms, int fd);
-void	fill_list_links(t_list_links **links, char **rms, t_intldta *indta);
-void	fill_list_rooms(char **rms, t_intldta **indta);
-void	help_fill_list_rooms(char **rms, t_room **current);
+void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta);
+void	fill_list_rooms(char **rms, t_intldta **indta, short type);
+void	help_fill_list_rooms(char **rms, t_room **current, short type);
 void	free_2d_array(char **array);
 
 
