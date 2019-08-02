@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/02 15:53:11 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/02 16:32:25 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,23 @@ typedef struct	s_graph
 	int 	delta_x;
 	int 	delta_y;
 }				t_graph;
+
+/*
+**	visualizer params: v
+*/
+
+typedef struct	s_vis_prms
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
+	char	*img_addr;
+	int		bpp;
+	int		lsz;
+	int		ndn;
+	int 	win_x;
+	int 	win_y;
+}				t_vis_prms;
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/02 16:01:07 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/02 16:41:30 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 	}
 }
 
-static void	graph_init(t_intldta *indta, t_graph *g)
+static void	graph_init(t_intldta *indta, t_graph *g, t_vis_prms *v)
 {
 	t_room	*ptr;
 
@@ -47,6 +47,16 @@ static void	graph_init(t_intldta *indta, t_graph *g)
 		g->delta_x = (g->max_x - g->min_x) * g->scale;
 		g->delta_y = (g->max_y - g->min_y) * g->scale;
 	}
+	v->win_x = g->delta_x + (R * 2);
+	v->win_y = g->delta_y + (R * 2);
+}
+
+static void	window_init(t_vis_prms *v)
+{
+	v->mlx_ptr = mlx_init();
+	v->win_ptr = mlx_new_window(v->mlx_ptr, v->win_x, v->win_y, "Lem_in");
+	v->img_ptr = mlx_new_image(v->mlx_ptr, v->win_x, v->win_y);
+	v->img_addr = mlx_get_data_addr(v->img_ptr, &v->bpp, &v->lsz, &v->ndn);
 }
 
 static void	build_graph(t_intldta *indta)
@@ -56,10 +66,12 @@ static void	build_graph(t_intldta *indta)
 
 void		visualizer(t_intldta *indta)
 {
-	t_graph	g;
+	t_graph		g;
+	t_vis_prms	v;
 
 	if (!indta->rooms)
 		return ;
-	graph_init(indta, &g);
+	graph_init(indta, &g, &v);
+	window_init(&v);
 	build_graph(indta);
 }

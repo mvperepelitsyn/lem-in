@@ -3093,6 +3093,33 @@ vis/visualizer.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/vis/visualizer.c.s
 .PHONY : vis/visualizer.c.s
 
+vis/visualizer_2.o: vis/visualizer_2.c.o
+
+.PHONY : vis/visualizer_2.o
+
+# target to build an object file
+vis/visualizer_2.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/vis/visualizer_2.c.o
+.PHONY : vis/visualizer_2.c.o
+
+vis/visualizer_2.i: vis/visualizer_2.c.i
+
+.PHONY : vis/visualizer_2.i
+
+# target to preprocess a source file
+vis/visualizer_2.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/vis/visualizer_2.c.i
+.PHONY : vis/visualizer_2.c.i
+
+vis/visualizer_2.s: vis/visualizer_2.c.s
+
+.PHONY : vis/visualizer_2.s
+
+# target to generate assembly for a file
+vis/visualizer_2.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/vis/visualizer_2.c.s
+.PHONY : vis/visualizer_2.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -3432,6 +3459,9 @@ help:
 	@echo "... vis/visualizer.o"
 	@echo "... vis/visualizer.i"
 	@echo "... vis/visualizer.s"
+	@echo "... vis/visualizer_2.o"
+	@echo "... vis/visualizer_2.i"
+	@echo "... vis/visualizer_2.s"
 .PHONY : help
 
 
