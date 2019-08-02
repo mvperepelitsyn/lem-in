@@ -1,23 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/02 16:55:17 by uhand            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "parser.h"
 #include "finding.h"
-#include "vis/visualizer.h"
 
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
-static void	type_assignment(t_room *room, t_intldta **indta)
+//static void	links_assignment(t_intldta **indta)
+//{
+//	(*indta)->rooms->room->
+//
+//}
+
+static void	type_assignment(t_list_rooms *room, t_intldta **indta)
 {
 	if (room->type != 0)
 	{
@@ -35,23 +28,21 @@ void	fill_list_rooms(char **rms, t_intldta **indta, short type)
 	current = (*indta)->rooms;
 	if (++(*indta)->ri == 0)
 	{
-		(*indta)->rooms->room = (t_room *)malloc(sizeof(t_room));
-		help_fill_list_rooms(rms, &((*indta)->rooms->room), type);
-		type_assignment((*indta)->rooms->room, indta);
+		help_fill_list_rooms(rms, &((*indta)->rooms), type);
+		type_assignment((*indta)->rooms, indta);
 		(*indta)->rooms->next = NULL;
 		(*indta)->ri++;
-		test_double_room((*indta)->rooms->room->name, indta);
+		test_double_room((*indta)->rooms->name, indta);
 	}
 	else
 	{
 		while (current->next != NULL)
 			current = current->next;
 		current->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
-		current->next->room = (t_room *)malloc(sizeof(t_room));
-		help_fill_list_rooms(rms, &(current->next->room), type);
-		type_assignment(current->next->room, indta);
+		help_fill_list_rooms(rms, &(current->next), type);
+		type_assignment(current->next, indta);
 		current->next->next = NULL;
-		test_double_room(current->next->room->name, indta);
+		test_double_room(current->next->name, indta);
 	}
 }
 
@@ -64,7 +55,7 @@ void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta)
 	{
 		(*links)->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		(*links)->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
-		if (!(test_links((*links)->room1, (*links)->room2, indta)))
+		if (!(test_links(links, indta)))
 			ft_error();
 		(*links)->next = NULL;
 		(*indta)->li++;
@@ -78,13 +69,13 @@ void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta)
 		current->next = (t_list_links *)malloc(sizeof(t_list_links));
 		current->next->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		current->next->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
-		if (!(test_links(current->next->room1, current->next->room2, indta)))
+		if (!(test_links(&current->next, indta)))
 			ft_error();
 		current->next->next = NULL;
 	}
 }
 
-void	parce_ant_farm(t_intldta **indta) //when we force it to read
+static void	parce_ant_farm(t_intldta **indta) //when we force it to read
 {
 	char	*things;
 	char	**rms;
@@ -102,13 +93,13 @@ void	parce_ant_farm(t_intldta **indta) //when we force it to read
             ft_println(things);
     }
 	(*indta)->num_ants = ft_latoi(things);
-	if ((*indta)->num_ants <= 0 || (*indta)->num_ants !=
-	(int)(*indta)->num_ants)
+	if ((*indta)->num_ants <= 0 || (*indta)->num_ants != (int)ft_latoi(things))
 		ft_error();
 	ft_strdel(&things);
     graph_parser(indta, &things, rms, fd);
 	if ((*indta)->links->i == -1)
 		ft_error();
+//	links_assignment(indta);
 }
 
 int		main(int argc, char **argv)
@@ -120,7 +111,5 @@ int		main(int argc, char **argv)
 	ft_print_strcut(&indta);
 	ft_putchar('\n');
 	find_the_way(indta);
-	if (argc > 1 && !ft_strcmp(argv[1], "-v"))
-	    visualizer(indta);
 	exit (0);
 }
