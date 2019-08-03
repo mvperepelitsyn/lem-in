@@ -23,7 +23,7 @@ static void	links_assignment(t_intldta **indta)
 			{
 				current->links = ft_lstnew_addr(lnks, ++i);
 				ptr = (t_list_links *)(current->links->content);
-				ft_printf("\n%s\n", ptr->room1);
+				//ft_printf("\n%s\n", ptr->room1);
 				current->links = current->links->next;
 			}
 			lnks = lnks->next;
