@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 13:50:48 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/01 12:17:48 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/03 17:02:47 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,4 +141,5 @@ t_dllist		*ft_dllcpy(t_dllist *src, t_dllist *dst);
 char			*ft_nstrjoin(int n, ...);
 int				ft_hm_wrd(char const *s, char c);
 long long int	ft_latoi(const char *str);
+t_list			*ft_lstnew_addr(void *content, size_t content_size);
 #endif

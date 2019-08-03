@@ -1,5 +1,5 @@
-/private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/E34CB2FC-9604-430F-9245-A04E07764A74/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project
-CMake Error at CMakeLists.txt:126:
+/private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/44D1A6D2-F1B8-4DDB-B498-9F1FEE155488/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project
+CMake Error at CMakeLists.txt:127:
   Parse error.  Expected a command name, got unquoted argument with text
   "=======".
 
