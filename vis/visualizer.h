@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/02 19:14:24 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/03 19:40:39 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "../minilibx/mlx.h"
+# include <mlx.h>
 # include "../parser.h"
 
 # define WIN_X 2560
@@ -26,6 +26,9 @@
 # define S_CLR 0x00FF00
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
+
+typedef struct s_vis_prms	t_vis_prms;
+
 
 /*
 ** Graph vis params: g
@@ -40,6 +43,7 @@ typedef struct	s_graph
 	int 		scale;
 	int 		delta_x;
 	int 		delta_y;
+	int			clr[3];
 	t_vis_prms	*v;
 }				t_graph;
 
@@ -47,7 +51,7 @@ typedef struct	s_graph
 **	visualizer params: v
 */
 
-typedef struct	s_vis_prms
+struct			s_vis_prms
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -58,7 +62,7 @@ typedef struct	s_vis_prms
 	int		ndn;
 	int 	win_x;
 	int 	win_y;
-}				t_vis_prms;
+};
 
 /*
 ** Operational build line params: l
@@ -73,7 +77,7 @@ typedef struct	s_line_prm
 	int				i;
 	int				d_ind;
 	int				sign;
-	t_img_data		*img;
+	t_vis_prms		*img;
 }				t_line_prm;
 
 /*
@@ -119,5 +123,8 @@ typedef struct	s_pix_prm
 void	visualizer(t_intldta *indta);
 void	draw_rooms(t_intldta *indta, t_graph *g);
 void	draw_links(t_intldta *indta, t_graph *g);
+int		put_pix_to_img(t_line_prm *l, int x, int y, int color);
+void	put_line_to_img(t_vis_prms *v, t_pix_prm a, t_pix_prm b);
+void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos);
 
 #endif

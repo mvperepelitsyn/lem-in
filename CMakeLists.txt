@@ -7,7 +7,12 @@ include_directories(.)
 include_directories(libft)
 include_directories(libft/ft_printf)
 
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Wextra")
+#set(LIBMLX ${CMAKE_SOURCE_DIR}/minilibx/libmlx.a)
+find_library(OPENGL OpenGL)
+find_library(APPKIT AppKit)
 
+target_link_libraries(lem_in ${LIBMLX} ${OPENGL} ${APPKIT})
 
 add_executable(lem_in
         libft/ft_printf/add_fnctns.c
@@ -123,12 +128,5 @@ add_executable(lem_in
         helper.c
         parser.c
         parser_2.c
-<<<<<<< HEAD
         parser.h vis/visualizer.c vis/visualizer.h vis/visualizer_2.c vis/visualizer_3.c)
-=======
-<<<<<<< HEAD
-        parser.h vis/visualizer.c vis/visualizer.h vis/visualizer_2.c)
-=======
-        parser.h)
->>>>>>> 40e89e98835a918c5f65093bfea55007b7e36874
->>>>>>> master
+

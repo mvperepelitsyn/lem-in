@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/E34CB2FC-9604-430F-9245-A04E07764A74/d/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/44D1A6D2-F1B8-4DDB-B498-9F1FEE155488/d/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/E34CB2FC-9604-430F-9245-A04E07764A74/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/44D1A6D2-F1B8-4DDB-B498-9F1FEE155488/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/1
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/E34CB2FC-9604-430F-9245-A04E07764A74/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/44D1A6D2-F1B8-4DDB-B498-9F1FEE155488/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/E34CB2FC-9604-430F-9245-A04E07764A74/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/44D1A6D2-F1B8-4DDB-B498-9F1FEE155488/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -3066,7 +3066,6 @@ parser_2.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/parser_2.c.s
 .PHONY : parser_2.c.s
 
-<<<<<<< HEAD
 vis/visualizer.o: vis/visualizer.c.o
 
 .PHONY : vis/visualizer.o
@@ -3121,7 +3120,6 @@ vis/visualizer_2.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/vis/visualizer_2.c.s
 .PHONY : vis/visualizer_2.c.s
 
-<<<<<<< HEAD
 vis/visualizer_3.o: vis/visualizer_3.c.o
 
 .PHONY : vis/visualizer_3.o
@@ -3149,10 +3147,6 @@ vis/visualizer_3.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/vis/visualizer_3.c.s
 .PHONY : vis/visualizer_3.c.s
 
-=======
-=======
->>>>>>> 40e89e98835a918c5f65093bfea55007b7e36874
->>>>>>> master
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -3489,21 +3483,15 @@ help:
 	@echo "... parser_2.o"
 	@echo "... parser_2.i"
 	@echo "... parser_2.s"
-<<<<<<< HEAD
 	@echo "... vis/visualizer.o"
 	@echo "... vis/visualizer.i"
 	@echo "... vis/visualizer.s"
 	@echo "... vis/visualizer_2.o"
 	@echo "... vis/visualizer_2.i"
 	@echo "... vis/visualizer_2.s"
-<<<<<<< HEAD
 	@echo "... vis/visualizer_3.o"
 	@echo "... vis/visualizer_3.i"
 	@echo "... vis/visualizer_3.s"
-=======
-=======
->>>>>>> 40e89e98835a918c5f65093bfea55007b7e36874
->>>>>>> master
 .PHONY : help
 
 

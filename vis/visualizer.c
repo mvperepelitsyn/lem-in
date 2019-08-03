@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/02 20:00:49 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/03 19:38:10 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ static void	graph_init(t_intldta *indta, t_graph *g, t_vis_prms *v)
 	v->win_x = g->delta_x + (R * 2);
 	v->win_y = g->delta_y + (R * 2);
 	g->v = v;
+	g->clr[0] = R_CLR;
+	g->clr[1] = S_CLR;
+	g->clr[2] = F_CLR;
 }
 
 static void	window_init(t_vis_prms *v)
@@ -76,4 +79,6 @@ void		visualizer(t_intldta *indta)
 	graph_init(indta, &g, &v);
 	window_init(&v);
 	build_graph(indta, &g);
+	mlx_put_image_to_window(v.mlx_ptr, v.win_ptr, v.img_ptr, 0, 0);
+
 }

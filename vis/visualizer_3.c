@@ -1,25 +1,12 @@
 #include "visualizer.h"
 
-int		put_pix_to_img(t_line_prm *l, int x, int y, int color)
-{
-	int	*image;
-
-	if (x < 0 || y < 0 || x >= l->img->win->x || y >= l->img->win->y)
-		return (0);
-	image = (int*)l->img->addr;
-	if (l->img->b_clr == color)
-		color = get_invers_clr(color, l->img->ndn);
-	image[(y * (l->img->lsz / 4)) + x] = color;
-	return (0);
-}
-
-int			get_grad_color(t_img_data *img, t_grad_prms *clr, int pos)
+int			get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos)
 {
 	t_grad			grad;
 
 	if (clr->a == clr->b || pos == 0)
 		return (clr->a);
-	if (img->ndn == 0)
+	if (v->ndn == 0)
 	{
 		grad.start = 0;
 		grad.alpha = 3;
@@ -74,8 +61,7 @@ static int	get_coord(t_line_prm *l)
 	return (coord);
 }
 
-static void	build_line(t_line_prm *l, t_pix_prm *a, t_grad_prms *clr, \
-	int (*method)(t_line_prm*, int, int, int))
+static void	build_line(t_line_prm *l, t_pix_prm *a, t_grad_prms *clr)
 {
 	while (l->i <= ft_abs(l->d_big))
 	{
@@ -89,15 +75,15 @@ static void	build_line(t_line_prm *l, t_pix_prm *a, t_grad_prms *clr, \
 	}
 }
 
-void		put_line_to_img(t_img_data *img, t_pix_prm a, t_pix_prm b)
+void		put_line_to_img(t_vis_prms *v, t_pix_prm a, t_pix_prm b)
 {
 	t_line_prm		l;
 	t_grad_prms		clr;
 
 	if (a.x == b.x && a.y == b.y)
 		return ;
-	if (((a.x < 0 || a.x >= img->win->x) || (a.y < 0 || a.y >= img->win->y)) \
-		&& ((b.x < 0 || b.x >= img->win->x) || (b.y < 0 || b.y >= img->win->y)))
+	if (((a.x < 0 || a.x >= v->win_x) || (a.y < 0 || a.y >= v->win_y)) \
+		&& ((b.x < 0 || b.x >= v->win_x) || (b.y < 0 || b.y >= v->win_y)))
 		return ;
 	get_delta(&a, &b, &l);
 	if (l.d_big == 0)
@@ -106,6 +92,6 @@ void		put_line_to_img(t_img_data *img, t_pix_prm a, t_pix_prm b)
 	clr.a = a.color;
 	clr.b = b.color;
 	l.i = 0;
-	l.img = img;
-	build_line(&l, &a, &clr, method);
+	l.img = v;
+	build_line(&l, &a, &clr);
 }

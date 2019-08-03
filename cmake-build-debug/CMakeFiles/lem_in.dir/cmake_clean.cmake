@@ -111,8 +111,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/lem_in.dir/vis/visualizer.c.o"
   "CMakeFiles/lem_in.dir/vis/visualizer_2.c.o"
   "CMakeFiles/lem_in.dir/vis/visualizer_3.c.o"
-  "lem_in.pdb"
-  "lem_in"
+  "======lem_in.pdb"
+  "======lem_in"
 )
 
 # Per-language clean rules from dependency scanning.

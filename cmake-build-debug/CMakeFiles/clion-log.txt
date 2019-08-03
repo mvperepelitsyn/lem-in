@@ -1,18 +1,8 @@
-/private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/E34CB2FC-9604-430F-9245-A04E07764A74/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project
-CMake Error: Parse error in cache file /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeCache.txt on line 17. Offending entry: <<<<<<< HEAD
-CMake Error: Parse error in cache file /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeCache.txt on line 206. Offending entry: >>>>>>> master
-CMake Error: Parse error in cache file /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeCache.txt on line 227. Offending entry: <<<<<<< HEAD
-CMake Error: Parse error in cache file /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeCache.txt on line 255. Offending entry: >>>>>>> master
-CMake Error: Parse error in cache file /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeCache.txt on line 269. Offending entry: <<<<<<< HEAD
-CMake Error: Parse error in cache file /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeCache.txt on line 289. Offending entry: >>>>>>> master
-CMake Error: Parse error in cache file /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeCache.txt on line 294. Offending entry: <<<<<<< HEAD
-CMake Error: Parse error in cache file /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeCache.txt on line 328. Offending entry: >>>>>>> master
-CMake Error at CMakeLists.txt:128:
-  Parse error.  Expected a command name, got unquoted argument with text
-  "=======".
+/private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/44D1A6D2-F1B8-4DDB-B498-9F1FEE155488/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project
+CMake Error at CMakeLists.txt:15 (target_link_libraries):
+  Cannot specify link libraries for target "lem_in" which is not built by
+  this project.
 
 
 -- Configuring incomplete, errors occurred!
 See also "/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeFiles/CMakeOutput.log".
-Cannot read project file /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/lem_in.cbp
-Cannot read /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake

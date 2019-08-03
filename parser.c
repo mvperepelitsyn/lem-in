@@ -1,5 +1,6 @@
 #include "parser.h"
 #include "finding.h"
+#include "vis/visualizer.h"
 
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
@@ -111,5 +112,7 @@ int		main(int argc, char **argv)
 	ft_print_strcut(&indta);
 	ft_putchar('\n');
 	find_the_way(indta);
+	if (argc == 2 && !ft_strcmp(argv[1], "-v"))
+		visualizer(indta);
 	exit (0);
 }

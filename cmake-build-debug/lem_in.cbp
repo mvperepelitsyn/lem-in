@@ -38,7 +38,7 @@
 				</MakeCommands>
 			</Target>
 			<Target title="lem_in">
-				<Option output="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/lem_in" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/======lem_in" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -62,7 +62,7 @@
 				</MakeCommands>
 			</Target>
 			<Target title="lem_in/fast">
-				<Option output="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/lem_in" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/======lem_in" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -428,12 +428,7 @@
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser_2.c">
 			<Option target="lem_in"/>
 		</Unit>
-<<<<<<< HEAD
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/vis/visualizer.c">
-=======
-<<<<<<< HEAD
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/vis/visualizer.c">
->>>>>>> master
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/vis/visualizer.h">
@@ -446,14 +441,6 @@
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/CMakeLists.txt">
-<<<<<<< HEAD
-=======
-=======
-=======
->>>>>>> 40e89e98835a918c5f65093bfea55007b7e36874
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/CMakeLists.txt">
->>>>>>> ba29a6dbd3ae6c91d5ad62674734342a7b4d6c18
->>>>>>> master
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
