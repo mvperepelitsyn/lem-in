@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 13:35:41 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/02 19:40:02 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/03 11:40:40 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	help_fill_list_rooms(char **rms, t_list_rooms **current, short type)
 	if ((*current)->x_cord != ft_latoi(rms[1]) ||
 	(*current)->y_cord != ft_latoi(rms[2]))
 		ft_error();
+	(*current)->links = NULL;
 //	test_coord((*current)->x_cord, (*current)->y_cord);
 }
 
@@ -155,7 +156,7 @@ void	ft_print_strcut(t_intldta **indta)
 	print_sides((*indta)->start_room);
 	ft_putstr("End room: ");
 	print_sides((*indta)->end_room);
-	ft_putstr("Other rooms:\n");
+	ft_putstr("All rooms:\n");
 	print_rooms(*indta);
 	ft_putstr("Here comes the links: \n");
 	print_links((*indta)->links);

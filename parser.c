@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 17:04:14 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/08/02 19:38:34 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/03 16:18:06 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,31 @@
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
-//static void	links_assignment(t_intldta **indta)
-//{
-//	(*indta)->rooms->room->
-//
-//}
+static void	links_assignment(t_intldta **indta)
+{
+	t_list_rooms *current;
+	t_list_links *lnks;
+	size_t i;
+
+	current = (*indta)->rooms;
+	while (current)
+	{
+		(lnks) = (*indta)->links;
+		i = 0;
+		while (lnks)
+		{
+			if (ft_strequ(current->name, lnks->room1) ||
+				ft_strequ(current->name, lnks->room2))
+			{
+				current->links = ft_lstnew_addr(lnks, ++i);
+//				ft_printf("\n%s\n", (t_list_links *)(current->links->content));
+				current->links = current->links->next;
+			}
+			lnks = lnks->next;
+		}
+		current = current->next;
+	}
+}
 
 static void	type_assignment(t_list_rooms *room, t_intldta **indta)
 {
@@ -111,7 +131,7 @@ static void	parce_ant_farm(t_intldta **indta) //when we force it to read
     graph_parser(indta, &things, rms, fd);
 	if ((*indta)->links->i == -1)
 		ft_error();
-//	links_assignment(indta);
+	links_assignment(indta);
 }
 
 int		main(int argc, char **argv)
@@ -120,6 +140,7 @@ int		main(int argc, char **argv)
 
 	init_struct(&indta);
 	parce_ant_farm(&indta);
+	ft_putchar('\n');
 	ft_print_strcut(&indta);
 	ft_putchar('\n');
 	find_the_way(indta);

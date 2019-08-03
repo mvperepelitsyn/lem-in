@@ -1257,6 +1257,33 @@ libft/ft_lstnew.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/libft/ft_lstnew.c.s
 .PHONY : libft/ft_lstnew.c.s
 
+libft/ft_lstnew_addr.o: libft/ft_lstnew_addr.c.o
+
+.PHONY : libft/ft_lstnew_addr.o
+
+# target to build an object file
+libft/ft_lstnew_addr.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/libft/ft_lstnew_addr.c.o
+.PHONY : libft/ft_lstnew_addr.c.o
+
+libft/ft_lstnew_addr.i: libft/ft_lstnew_addr.c.i
+
+.PHONY : libft/ft_lstnew_addr.i
+
+# target to preprocess a source file
+libft/ft_lstnew_addr.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/libft/ft_lstnew_addr.c.i
+.PHONY : libft/ft_lstnew_addr.c.i
+
+libft/ft_lstnew_addr.s: libft/ft_lstnew_addr.c.s
+
+.PHONY : libft/ft_lstnew_addr.s
+
+# target to generate assembly for a file
+libft/ft_lstnew_addr.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/libft/ft_lstnew_addr.c.s
+.PHONY : libft/ft_lstnew_addr.c.s
+
 libft/ft_lstswap.o: libft/ft_lstswap.c.o
 
 .PHONY : libft/ft_lstswap.o
@@ -3201,6 +3228,9 @@ help:
 	@echo "... libft/ft_lstnew.o"
 	@echo "... libft/ft_lstnew.i"
 	@echo "... libft/ft_lstnew.s"
+	@echo "... libft/ft_lstnew_addr.o"
+	@echo "... libft/ft_lstnew_addr.i"
+	@echo "... libft/ft_lstnew_addr.s"
 	@echo "... libft/ft_lstswap.o"
 	@echo "... libft/ft_lstswap.i"
 	@echo "... libft/ft_lstswap.s"

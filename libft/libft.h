@@ -141,4 +141,5 @@ t_dllist		*ft_dllcpy(t_dllist *src, t_dllist *dst);
 char			*ft_nstrjoin(int n, ...);
 int				ft_hm_wrd(char const *s, char c);
 long long int	ft_latoi(const char *str);
+t_list			*ft_lstnew_addr(void *content, size_t content_size);
 #endif

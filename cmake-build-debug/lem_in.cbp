@@ -95,6 +95,9 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper.c">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper.h">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_abs.c">
 			<Option target="lem_in"/>
 		</Unit>
@@ -213,6 +216,9 @@
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstnew.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstnew_addr.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstswap.c">
