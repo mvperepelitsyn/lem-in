@@ -6,7 +6,11 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 18:04:25 by uhand             #+#    #+#              #
-#    Updated: 2019/08/03 18:22:35 by uhand            ###   ########.fr        #
+#    Updated: 2019/08/05 18:48:49 by uhand            ###   ########.fr        #
+.fr        #
+=======
+#    Updated: 2019/08/03 17:02:47 by uhand            ###   ########.fr        #
+>>>>>>> 0c1a5e5a9a4bda021c70d1d7c64e2c772926d1af
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +33,7 @@ ft_lstcpy.c ft_lstswap.c ft_dllnew.c ft_dlldelone.c ft_dlldeltoright.c \
 ft_dlldeltoleft.c ft_dlladdtoleft.c ft_dlladdtoright.c ft_dllrcount.c \
 ft_dlllcount.c ft_dllccount.c ft_dllswap.c ft_dlldel.c ft_dlladdnextr.c \
 ft_dlladdnextl.c ft_dllcpyr.c ft_dllcpyl.c ft_dllcpy.c ft_nstrjoin.c \
-ft_hm_wrd.c ft_latoi.c
+ft_hm_wrd.c ft_latoi.c t_list ft_lstnew_addr.c
 
 SRC_PF = ft_printf.c lib_printf.c add_fnctns.c set_format.c apply_flags.c \
 formats_c_s.c format_float.c formats_int.c pft_itoa.c pft_unsigned_itoa.c \

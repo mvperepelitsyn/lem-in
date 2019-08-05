@@ -95,7 +95,14 @@
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/helper.c">
 			<Option target="lem_in"/>
 		</Unit>
+<<<<<<< HEAD
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_abs.c">
+=======
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper.h">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_abs.c">
+>>>>>>> 0c1a5e5a9a4bda021c70d1d7c64e2c772926d1af
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_arrjoin.c">
@@ -215,7 +222,14 @@
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstnew.c">
 			<Option target="lem_in"/>
 		</Unit>
+<<<<<<< HEAD
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_lstswap.c">
+=======
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstnew_addr.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_lstswap.c">
+>>>>>>> 0c1a5e5a9a4bda021c70d1d7c64e2c772926d1af
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/ft_memalloc.c">

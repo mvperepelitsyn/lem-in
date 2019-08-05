@@ -139,6 +139,3 @@ add_executable(lem_in
         vis/visualizer.h
         vis/visualizer_2.c
         vis/visualizer_3.c)
-
-target_link_libraries(lem_in ${OPENGL} ${APPKIT})
-

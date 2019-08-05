@@ -6,7 +6,15 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/libft.h
+=======
+/Users/dfrost-a/Desktop/lem-in/finding.h
+parser.h
+/Users/dfrost-a/Desktop/lem-in/parser.h
+
+/Users/dfrost-a/Desktop/lem-in/libft/libft.h
+>>>>>>> 0c1a5e5a9a4bda021c70d1d7c64e2c772926d1af
 stdarg.h
 -
 unistd.h
@@ -16,6 +24,7 @@ stdlib.h
 string.h
 -
 
+<<<<<<< HEAD
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.h
 libft/libft.h
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/libft/libft.h
@@ -35,4 +44,17 @@ mlx.h
 -
 ../parser.h
 /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/parser.h
+=======
+/Users/dfrost-a/Desktop/lem-in/parser.c
+parser.h
+/Users/dfrost-a/Desktop/lem-in/parser.h
+finding.h
+/Users/dfrost-a/Desktop/lem-in/finding.h
+fcntl.h
+-
+
+/Users/dfrost-a/Desktop/lem-in/parser.h
+libft/libft.h
+/Users/dfrost-a/Desktop/lem-in/libft/libft.h
+>>>>>>> 0c1a5e5a9a4bda021c70d1d7c64e2c772926d1af
 
