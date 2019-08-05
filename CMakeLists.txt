@@ -3,16 +3,22 @@ project(lem_in C)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(.)
-include_directories(libft)
-include_directories(libft/ft_printf)
-
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Wextra")
+
+#set(LIBFT ${CMAKE_SOURCE_DIR}/libft/libft.a)
 #set(LIBMLX ${CMAKE_SOURCE_DIR}/minilibx/libmlx.a)
 find_library(OPENGL OpenGL)
 find_library(APPKIT AppKit)
+link_libraries(mlx)
 
-target_link_libraries(lem_in ${LIBMLX} ${OPENGL} ${APPKIT})
+include_directories(.)
+include_directories(libft)
+include_directories(libft/ft_printf)
+#include_directories(minilibx)
+
+link_directories(libft minilibx)
+
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lmlx -framework OpenGL -framework AppKit")
 
 add_executable(lem_in
         libft/ft_printf/add_fnctns.c
@@ -128,5 +134,11 @@ add_executable(lem_in
         helper.c
         parser.c
         parser_2.c
-        parser.h vis/visualizer.c vis/visualizer.h vis/visualizer_2.c vis/visualizer_3.c)
+        parser.h
+        vis/visualizer.c
+        vis/visualizer.h
+        vis/visualizer_2.c
+        vis/visualizer_3.c)
+
+target_link_libraries(lem_in ${OPENGL} ${APPKIT})
 

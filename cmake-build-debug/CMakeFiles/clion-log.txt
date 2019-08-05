@@ -1,8 +1,4 @@
-/private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/44D1A6D2-F1B8-4DDB-B498-9F1FEE155488/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project
-CMake Error at CMakeLists.txt:15 (target_link_libraries):
-  Cannot specify link libraries for target "lem_in" which is not built by
-  this project.
-
-
--- Configuring incomplete, errors occurred!
-See also "/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+/private/var/folders/zz/zyxvpxvq6csfxvn_n0000vv80006yt/T/AppTranslocation/5B3F4518-AB8F-4F06-959F-0C6655D012F9/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug

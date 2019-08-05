@@ -38,7 +38,7 @@
 				</MakeCommands>
 			</Target>
 			<Target title="lem_in">
-				<Option output="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/======lem_in" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/lem_in" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -62,7 +62,7 @@
 				</MakeCommands>
 			</Target>
 			<Target title="lem_in/fast">
-				<Option output="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/======lem_in" prefix_auto="0" extension_auto="0"/>
+				<Option output="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug/lem_in" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
