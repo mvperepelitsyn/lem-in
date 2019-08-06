@@ -1,6 +1,6 @@
 #include "parser.h"
 #include "finding.h"
-#include "vis/visualizer.h"
+#include "visualizer.h"
 
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!

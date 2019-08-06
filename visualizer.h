@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/03 19:40:39 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/06 17:06:54 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <mlx.h>
-# include "../parser.h"
+# include "./parser.h"
 
 # define WIN_X 2560
 # define WIN_Y 1575

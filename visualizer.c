@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/05 17:32:42 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/06 17:51:55 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,27 @@ static void	build_graph(t_intldta *indta, t_graph *g)
 	draw_links(indta, g);
 }
 
+static int	get_command(void *prm)
+{
+	t_vis_prms	*v;
+
+	v = (t_vis_prms*)prm;
+	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);
+	return (0);
+}
+
 void		visualizer(t_intldta *indta)
 {
 	t_graph		g;
 	t_vis_prms	v;
 
-	ft_printf("\nlala\n");
 	if (!indta->rooms)
 		return ;
 	graph_init(indta, &g, &v);
 	window_init(&v);
 	build_graph(indta, &g);
+	ft_printf("\nlala\n");
 	mlx_put_image_to_window(v.mlx_ptr, v.win_ptr, v.img_ptr, 0, 0);
-	ft_printf("lolo\n");
+	mlx_loop_hook(v.mlx_ptr, &get_command, (void*)(&v));
 	mlx_loop(v.mlx_ptr);
 }
