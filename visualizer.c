@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/06 17:51:55 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/13 16:29:49 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ void		visualizer(t_intldta *indta)
 	t_graph		g;
 	t_vis_prms	v;
 
+	ft_printf("\nlili\n");
 	if (!indta->rooms)
 		return ;
+	ft_printf("\nlolo\n");
 	graph_init(indta, &g, &v);
 	window_init(&v);
 	build_graph(indta, &g);
