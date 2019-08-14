@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visualizer.h                                       :+:      :+:    :+:   */
+/*   visualizer (2).h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/13 19:25:24 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/14 13:27:04 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,7 @@ void	draw_links(t_intldta *indta, t_graph *g);
 int		put_pix_to_img(t_line_prm *l, int x, int y, int color);
 void	put_line_to_img(t_vis_prms *v, t_pix_prm a, t_pix_prm b);
 void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos);
+int		deal_key(int key, void *prm);
+int		close_vis(void *prm);
 
 #endif
