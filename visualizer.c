@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visualizer (2).c                                   :+:      :+:    :+:   */
+/*   visualizer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/14 13:26:53 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/14 17:10:05 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 			g->max_y = ptr->y_cord;
 		ptr = ptr->next;
 	}
+	ptr = indta->rooms;
+	while (ptr)
+	{
+		ptr->x_cord -= g->min_x;
+		ptr->y_cord -= g->min_y;
+		ptr = ptr->next;
+	}
 }
 
 static void	graph_init(t_intldta *indta, t_graph *g, t_vis_prms *v)
@@ -41,14 +48,14 @@ static void	graph_init(t_intldta *indta, t_graph *g, t_vis_prms *v)
 	g->scale = SCALE;
 	g->delta_x = (g->max_x - g->min_x) * g->scale;
 	g->delta_y = (g->max_y - g->min_y) * g->scale;
-	while ((g->delta_x + (R * 2)) > WIN_X || (g->delta_y + (R * 2)) > WIN_Y)
+	while ((g->delta_x + (R * 4)) > WIN_X || (g->delta_y + (R * 4)) > WIN_Y)
 	{
 		g->scale--;
 		g->delta_x = (g->max_x - g->min_x) * g->scale;
 		g->delta_y = (g->max_y - g->min_y) * g->scale;
 	}
-	v->win_x = g->delta_x + (R * 2);
-	v->win_y = g->delta_y + (R * 2);
+	v->win_x = g->delta_x + (R * 4);
+	v->win_y = g->delta_y + (R * 4);
 	g->v = v;
 	g->clr[0] = R_CLR;
 	g->clr[1] = S_CLR;

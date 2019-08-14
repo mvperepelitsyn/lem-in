@@ -28,20 +28,30 @@ void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos)
 }
 
 
-static void	draw_circle(int r, int x, int y, int color)
+static void	draw_circle(t_circle *c, t_vis_prms *v)
 {
-	//
+	t_line_prm		l;
+
+	l.img = v;
+	put_pix_to_img(&l, c->x + c->r, c->y, c->clr);
+	put_pix_to_img(&l, c->x, c->y + c->r, c->clr);
+	put_pix_to_img(&l, c->x - c->r, c->y, c->clr);
+	put_pix_to_img(&l, c->x, c->y - c->r, c->clr);
 }
 
 void	draw_rooms(t_intldta *indta, t_graph *g)
 {
 	t_list_rooms	*ptr;
+	t_circle		c;
 
 	ptr = indta->rooms;
+	c.r = R;
 	while (ptr)
 	{
-		if (ptr->type == 1)
-			draw_circle(R, ptr->x_cord, ptr->y_cord, g->clr[ptr->type]);
+		c.clr = g->clr[ptr->type];
+		c.x = (ptr->x_cord * g->scale) + (2 * R);
+		c.y = (ptr->y_cord * g->scale) + (2 * R);
+		draw_circle(&c, g->v);
 		ptr = ptr->next;
 	}
 }
@@ -55,11 +65,11 @@ void	draw_links(t_intldta *indta, t_graph *g)
 	ptr = indta->links;
 	while (ptr)
 	{
-		a.x = ptr->rm1->x_cord;
-		a.y = ptr->rm1->y_cord;
+		a.x = ptr->rm1->x_cord * g->scale + (2 * R);
+		a.y = ptr->rm1->y_cord * g->scale + (2 * R);
 		a.color =  g->clr[ptr->rm1->type];
-		b.x = ptr->rm2->x_cord;
-		b.y = ptr->rm2->y_cord;
+		b.x = ptr->rm2->x_cord * g->scale + (2 * R);
+		b.y = ptr->rm2->y_cord * g->scale + (2 * R);
 		b.color =  g->clr[ptr->rm2->type];
 		put_line_to_img(g->v, a, b);
 		ptr = ptr->next;
