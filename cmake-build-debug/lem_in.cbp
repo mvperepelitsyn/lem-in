@@ -95,9 +95,6 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/helper.h">
-			<Option target="lem_in"/>
-		</Unit>
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/libft/ft_abs.c">
 			<Option target="lem_in"/>
 		</Unit>
@@ -434,23 +431,7 @@
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/parser_2.c">
 			<Option target="lem_in"/>
 		</Unit>
-<<<<<<< HEAD
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/vis/visualizer.c">
-			<Option target="lem_in"/>
-		</Unit>
-		<Unit filename="/Users/dfrost-a/Desktop/lem-in/vis/visualizer.h">
-			<Option target="lem_in"/>
-		</Unit>
-<<<<<<< HEAD
-		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/vis/visualizer_2.c">
-			<Option target="lem_in"/>
-		</Unit>
-		<Unit filename="/Users/uhand/Yandex.Disk.localized/Steve/21_School/Learning/11_lem_in/11_lem_in_project/CMakeLists.txt">
-=======
-=======
->>>>>>> 40e89e98835a918c5f65093bfea55007b7e36874
 		<Unit filename="/Users/dfrost-a/Desktop/lem-in/CMakeLists.txt">
->>>>>>> ba29a6dbd3ae6c91d5ad62674734342a7b4d6c18
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

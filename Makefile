@@ -6,19 +6,19 @@
 #    By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/02 12:28:41 by iiliuk            #+#    #+#              #
-#    Updated: 2019/08/01 13:25:40 by uhand            ###   ########.fr        #
+#    Updated: 2019/08/14 13:57:17 by dfrost-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= lem-in
+NAME		= lem-in
 
-CC      =  gcc -Wall -Wextra -Werror
+CC			=  gcc -Wall -Wextra -Werror
 
-SRC 	= helper.c parser.c find_the_ways.c
+SRC			= helper.c parser.c find_the_ways.c parser_2.c
 
-INCLUDES = libft/
+INCLUDES	= libft/
 
-OBJ 	= $(SRC:.c=.o)
+OBJ 		= $(SRC:.c=.o)
 
 all: $(NAME)
 

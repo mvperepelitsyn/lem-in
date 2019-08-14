@@ -6,4 +6,7 @@ test.lemin
 *.h.gch
 *.dSYM
 *.sh
-.idea/workspace.xml
+.idea/
+CMakeLists.txt
+.cmake-build-debug/
+
