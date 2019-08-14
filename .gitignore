@@ -1,6 +1,7 @@
 .DS_Store
 lem-in
 test.lemin
+CMakeLists.txt
 *.o
 *.a
 *.h.gch
@@ -9,4 +10,3 @@ test.lemin
 .idea/
 CMakeLists.txt
 .cmake-build-debug/
-

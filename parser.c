@@ -1,5 +1,6 @@
 #include "parser.h"
 #include "finding.h"
+#include "visualizer.h"
 
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
@@ -130,9 +131,12 @@ int		main(int argc, char **argv)
 
 	init_struct(&indta);
 	parce_ant_farm(&indta);
+	if (argc == 2 && !ft_strcmp(argv[1], "-v"))
+		visualizer(indta);
 	ft_putchar('\n');
 	ft_print_strcut(&indta);
 	ft_putchar('\n');
 	find_the_way(indta);
+
 	exit (0);
 }
