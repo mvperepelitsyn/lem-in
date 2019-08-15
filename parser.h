@@ -72,5 +72,7 @@ void	fill_list_rooms(char **rms, t_intldta **indta, short type);
 void	help_fill_list_rooms(char **rms, t_list_rooms **current, short type);
 void	free_2d_array(char **array);
 
+void	print_all_the_links(t_list_rooms	*room);
+
 
 #endif

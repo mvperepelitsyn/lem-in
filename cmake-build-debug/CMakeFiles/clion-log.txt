@@ -1,0 +1,4 @@
+/Users/dfrost-a/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/dfrost-a/Desktop/lem-in
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/dfrost-a/Desktop/lem-in/cmake-build-debug
