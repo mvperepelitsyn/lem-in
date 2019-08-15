@@ -5,28 +5,39 @@
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
+static int lnks_assignmnt_help(t_list **t_lnks, t_list_links *ft_lnks, int *i)
+{
+	t_list *lnks;
+
+	lnks = (*t_lnks);
+	if (*i == 0)
+	{
+		(*t_lnks) = ft_lstnew_addr((void *) ft_lnks, ++*i);
+		return (0);
+	}
+	while ((*t_lnks)->next != NULL)
+		*t_lnks = (*t_lnks)->next;
+	(*t_lnks)->next = ft_lstnew_addr((void *)ft_lnks, ++*i);
+	(*t_lnks) = lnks;
+	return (0);
+}
+
+
 static void	links_assignment(t_intldta **indta)
 {
 	t_list_rooms *current;
 	t_list_links *lnks;
-	size_t i;
-	t_list_links	*ptr;
 
 	current = (*indta)->rooms;
 	while (current)
 	{
-		(lnks) = (*indta)->links;
-		i = 0;
+		lnks = (*indta)->links;
+		current->num_lnks = 0;
 		while (lnks)
 		{
 			if (ft_strequ(current->name, lnks->room1) ||
 				ft_strequ(current->name, lnks->room2))
-			{
-				current->links = ft_lstnew_addr(lnks, ++i);
-				ptr = (t_list_links *)(current->links->content);
-				//ft_printf("\n%s\n", ptr->room1);
-				current->links = current->links->next;
-			}
+				lnks_assignmnt_help(&current->links, lnks, &current->num_lnks);
 			lnks = lnks->next;
 		}
 		current = current->next;
@@ -134,9 +145,10 @@ int		main(int argc, char **argv)
 	if (argc == 2 && !ft_strcmp(argv[1], "-v"))
 		visualizer(indta);
 	ft_putchar('\n');
+//	print_all_the_links(indta->rooms);
 	ft_print_strcut(&indta);
 	ft_putchar('\n');
-	find_the_way(indta);
+//	find_the_way(indta);
 
 	exit (0);
 }

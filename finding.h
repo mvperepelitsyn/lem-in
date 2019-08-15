@@ -7,12 +7,19 @@
 
 # include "parser.h"
 
-typedef struct		s_way
+//typedef struct		s_way
+//{
+//	char 			*room;
+//	struct s_way 	*next;
+//	struct s_way	*prev;
+//}					t_way;
+
+typedef struct 		s_flow
 {
-	char 			*room;
-	struct s_way 	*next;
-	struct s_way	*prev;
-}					t_way;
+	t_list			*way;
+	int 			length_way;
+	struct s_flow	*next;
+}					t_flow;
 
 int 	find_the_way(t_intldta *indta);
 
