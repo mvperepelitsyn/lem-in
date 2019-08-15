@@ -142,8 +142,8 @@ int		main(int argc, char **argv)
 
 	init_struct(&indta);
 	parce_ant_farm(&indta);
-	if (argc == 2 && !ft_strcmp(argv[1], "-v"))
-		visualizer(indta);
+//	if (argc == 2 && !ft_strcmp(argv[1], "-v"))
+//		visualizer(indta);
 	ft_putchar('\n');
 //	print_all_the_links(indta->rooms);
 	ft_print_strcut(&indta);

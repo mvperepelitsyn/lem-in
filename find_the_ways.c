@@ -1,13 +1,12 @@
 #include "finding.h"
 
-void	init_the_way(t_way **way, t_intldta *indta)
+static void	init_the_way(t_flow **flow)
 {
-	if (!((*way) = (t_way *)malloc(sizeof(t_way))))
+	if (!((*flow) = (t_flow *)malloc(sizeof(t_flow))))
 		ft_malloc_error();
-	(*way)->room = ft_strsub(indta->start_room->name, 0, ft_strlen(indta->
-	start_room->name));
-	(*way)->next = NULL;
-	(*way)->prev = NULL;
+	(*flow)->length_way = 0;
+	(*flow)->way = NULL;
+	(*flow)->next = NULL;
 }
 
 void	print_the_way(t_way *way)
@@ -23,12 +22,12 @@ void	print_the_way(t_way *way)
 	}
 }
 
-void	fill_the_way(t_way **way, t_intldta *indta)
+void	fill_the_way(t_flow **flow, t_intldta *indta)
 {
-	t_way			*wy;
+	t_flow			*crnt_flw;
 	t_list_links	*lnks;
 
-	wy = (*way);
+	crnt_flw = (*flow);
 	while (!ft_strequ(wy->room, indta->end_room->name))
 	{
 		lnks = indta->links;
@@ -59,10 +58,10 @@ void	fill_the_way(t_way **way, t_intldta *indta)
 
 int 	find_the_way(t_intldta *indta)
 {
-	t_way			*way;
+	t_flow			*flow;
 
-	init_the_way(&way, indta);
-	fill_the_way(&way, indta);
-	print_the_way(way);
+	init_the_way(&flow);
+	fill_the_way(&flow, indta);
+	print_the_way(flow);
 	return (0);
 }
