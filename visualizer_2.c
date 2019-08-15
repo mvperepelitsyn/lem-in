@@ -31,12 +31,26 @@ void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos)
 static void	draw_circle(t_circle *c, t_vis_prms *v)
 {
 	t_line_prm		l;
+	double			xo;
+	double			yo;
 
 	l.img = v;
-	put_pix_to_img(&l, c->x + c->r, c->y, c->clr);
-	put_pix_to_img(&l, c->x, c->y + c->r, c->clr);
-	put_pix_to_img(&l, c->x - c->r, c->y, c->clr);
-	put_pix_to_img(&l, c->x, c->y - c->r, c->clr);
+	xo = 0;
+	while (xo <= ((sqrt(2) / 2) * c->r))
+	{
+		yo = sqrt((c->r * c->r) - (xo * xo));
+		if ((yo - (int)yo) > 0.5)
+			yo++;
+		put_pix_to_img(&l, (c->x + (int)xo), (c->y + (int)yo), c->clr);
+		put_pix_to_img(&l, (c->x - (int)xo), (c->y + (int)yo), c->clr);
+		put_pix_to_img(&l, (c->x + (int)xo), (c->y - (int)yo), c->clr);
+		put_pix_to_img(&l, (c->x - (int)xo), (c->y - (int)yo), c->clr);
+		put_pix_to_img(&l, (c->x + (int)yo), (c->y + (int)xo), c->clr);
+		put_pix_to_img(&l, (c->x - (int)yo), (c->y + (int)xo), c->clr);
+		put_pix_to_img(&l, (c->x + (int)yo), (c->y - (int)xo), c->clr);
+		put_pix_to_img(&l, (c->x - (int)yo), (c->y - (int)xo), c->clr);
+		xo++;
+	}
 }
 
 void	draw_rooms(t_intldta *indta, t_graph *g)

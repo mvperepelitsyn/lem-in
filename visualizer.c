@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/14 17:10:05 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/15 14:33:50 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 	ptr = indta->rooms->next;
 	while (ptr)
 	{
+		//ptr->x_cord /= 10;
+		//ptr->y_cord /= 10;
 		if (g->min_x > ptr->x_cord)
 			g->min_x = ptr->x_cord;
 		else if (g->max_x < ptr->x_cord)
