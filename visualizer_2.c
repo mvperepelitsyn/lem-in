@@ -85,6 +85,7 @@ void	draw_links(t_intldta *indta, t_graph *g)
 		b.x = ptr->rm2->x_cord * g->scale + (2 * R);
 		b.y = ptr->rm2->y_cord * g->scale + (2 * R);
 		b.color =  g->clr[ptr->rm2->type];
+		trim_line(&a, &b, R);
 		put_line_to_img(g->v, a, b);
 		ptr = ptr->next;
 	}

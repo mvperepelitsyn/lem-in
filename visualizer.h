@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/15 14:32:45 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/15 15:40:16 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,6 @@ void	put_line_to_img(t_vis_prms *v, t_pix_prm a, t_pix_prm b);
 void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos);
 int		deal_key(int key, void *prm);
 int		close_vis(void *prm);
+void	trim_line(t_pix_prm *a, t_pix_prm *b, int r);
 
 #endif

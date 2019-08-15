@@ -1,7 +1,7 @@
 #ifndef PARCER_H
 # define PARCER_H
 
-# define NAME "test" //DO NOT FORGET TO REMOVE IT
+# define NAME "test.lemin" //DO NOT FORGET TO REMOVE IT
 
 # include "libft/libft.h"
 
