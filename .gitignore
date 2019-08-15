@@ -9,4 +9,4 @@ CMakeLists.txt
 *.sh
 .idea/
 CMakeLists.txt
-.cmake-build-debug/
+cmake-build-debug/
