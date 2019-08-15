@@ -5,7 +5,7 @@
 
 #include <fcntl.h> //DO NOT FORGET TO REMOVE IT!!!
 
-static int lnks_assignmnt_help(t_list **t_lnks, t_list_links *ft_lnks, size_t *i)
+static int lnks_assignmnt_help(t_list **t_lnks, t_list_links *ft_lnks, int *i)
 {
 	t_list *lnks;
 
@@ -27,18 +27,17 @@ static void	links_assignment(t_intldta **indta)
 {
 	t_list_rooms *current;
 	t_list_links *lnks;
-	size_t i;
 
 	current = (*indta)->rooms;
 	while (current)
 	{
 		lnks = (*indta)->links;
-		i = 0;
+		current->num_lnks = 0;
 		while (lnks)
 		{
 			if (ft_strequ(current->name, lnks->room1) ||
 				ft_strequ(current->name, lnks->room2))
-				lnks_assignmnt_help(&current->links, lnks, &i);
+				lnks_assignmnt_help(&current->links, lnks, &current->num_lnks);
 			lnks = lnks->next;
 		}
 		current = current->next;

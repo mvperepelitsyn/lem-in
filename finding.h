@@ -14,6 +14,13 @@ typedef struct		s_way
 	struct s_way	*prev;
 }					t_way;
 
+typedef struct 		s_flow
+{
+	t_way			*way;
+	int 			length_way;
+	struct s_flow	*next;
+}					t_flow;
+
 int 	find_the_way(t_intldta *indta);
 
 #endif //LEM_IN_FINDING_H
