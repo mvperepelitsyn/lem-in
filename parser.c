@@ -131,7 +131,7 @@ static void	parce_ant_farm(t_intldta **indta) //when we force it to read
 		ft_error();
 	ft_strdel(&things);
     graph_parser(indta, &things, rms, fd);
-	if ((*indta)->links->i == -1)
+	if ((*indta)->li == -1)
 		ft_error();
 	links_assignment(indta);
 }

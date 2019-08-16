@@ -38,7 +38,7 @@ typedef struct			s_list_links
 	t_list_rooms		*rm1;
 	t_list_rooms		*rm2;
 	short 				dir;
-	int 				i;
+//	int 				i;
 	struct s_list_links *next;
 }						t_list_links;
 
