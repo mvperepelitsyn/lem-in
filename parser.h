@@ -22,7 +22,10 @@ typedef struct			s_list_rooms
 	int					x_cord;
 	int					y_cord;
 	short				type;
+	int					status;
 	int 				num_lnks;
+	int					act_lnks;
+	int					way_nbr;
 	t_list				*links;
 	struct s_list_rooms	*next;
 
@@ -37,8 +40,9 @@ typedef struct			s_list_links
 	char 				*room2;
 	t_list_rooms		*rm1;
 	t_list_rooms		*rm2;
+	int					status;
 	short 				dir;
-//	int 				i;
+	int					way_nbr;
 	struct s_list_links *next;
 }						t_list_links;
 
