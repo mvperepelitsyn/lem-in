@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/15 15:40:16 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/16 18:08:21 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <mlx.h>
 # include <math.h>
 # include "./parser.h"
+# include "./find_way.h"
 
 # define WIN_X 2560
 # define WIN_Y 1575

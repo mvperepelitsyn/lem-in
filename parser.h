@@ -78,5 +78,4 @@ void	free_2d_array(char **array);
 
 void	print_all_the_links(t_list_rooms	*room);
 
-
 #endif
