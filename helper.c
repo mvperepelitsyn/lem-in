@@ -11,6 +11,7 @@ void	help_fill_list_rooms(char **rms, t_list_rooms **current, short type)
 	(*current)->y_cord != ft_latoi(rms[2]))
 		ft_error();
 	(*current)->links = NULL;
+	(*current)->way_nbr = -1;
 //	test_coord((*current)->x_cord, (*current)->y_cord);
 }
 
