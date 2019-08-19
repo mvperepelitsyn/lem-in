@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/19 12:06:14 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/19 15:25:51 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct		s_way
 
 typedef struct			s_way_set
 {
-	int					steps_cnt;
+	int					steps;
 	int					ways_cnt;
 	t_list				*ways;
 	struct s_way_set	*next;
@@ -78,5 +78,6 @@ typedef struct	s_find_way
 }				t_find_way;
 
 int 	find_the_way(t_intldta *indta);
+void	cpy_t_list_room(t_list_rooms *dest, t_list_rooms *src);
 
 #endif

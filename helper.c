@@ -13,6 +13,7 @@ void	help_fill_list_rooms(char **rms, t_list_rooms **current, short type)
 	(*current)->links = NULL;
 	(*current)->way_nbr = -1;
 	(*current)->step_nbr = -1;
+	(*current)->status = 0;
 //	test_coord((*current)->x_cord, (*current)->y_cord);
 }
 
