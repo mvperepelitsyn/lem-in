@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/17 16:39:26 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/18 16:51:17 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,31 @@
 /*
 ** Way params: way
 */
+
+//typedef struct		s_way
+//{
+//	int 			len_way;
+//	int 			num_way;
+//	t_list_rooms	*rooms;
+//}					t_way;
+//
+//typedef struct 		s_ways
+//{
+//	t_way			*way;
+//	struct s_ways	*next;
+//}					t_ways;
+//
+///*
+//** Way set params: set
+//*/
+//
+//typedef struct			s_way_set
+//{
+//	int					steps_cnt;
+//	int					ways_cnt;
+//	t_ways				*ways;
+//	struct s_way_set	*next;
+//}						t_way_set;
 
 typedef struct	s_way
 {

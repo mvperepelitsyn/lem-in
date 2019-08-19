@@ -31,9 +31,6 @@ typedef struct			s_list_rooms
 
 }						t_list_rooms;
 
-//TODO: Change i for t_list_links and move it to the core structure
-// DONE!
-
 typedef struct			s_list_links
 {
 	char				*room1;
@@ -45,9 +42,6 @@ typedef struct			s_list_links
 	int					way_nbr;
 	struct s_list_links *next;
 }						t_list_links;
-
-//TODO: add start and end rooms to all rooms
-// DONE!
 
 typedef struct		s_intldta
 {

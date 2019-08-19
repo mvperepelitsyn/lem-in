@@ -12,7 +12,7 @@ static int lnks_assignmnt_help(t_list **t_lnks, t_list_links *ft_lnks, int *i)
 	lnks = (*t_lnks);
 	if (*i == 0)
 	{
-		(*t_lnks) = ft_lstnew_addr((void *) ft_lnks, ++*i);
+		(*t_lnks) = ft_lstnew_addr((void *)ft_lnks, ++*i);
 		return (0);
 	}
 	while ((*t_lnks)->next != NULL)
