@@ -25,6 +25,7 @@ typedef struct			s_list_rooms
 	int					status;
 	int 				num_lnks;
 	int					act_lnks;
+	int 				step_nbr;
 	int					way_nbr;
 	t_list				*links;
 	struct s_list_rooms	*next;
