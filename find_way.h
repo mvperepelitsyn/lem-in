@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/19 16:02:13 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/19 19:48:51 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct		s_way
 typedef struct			s_way_set
 {
 	int					steps;
+	int					full_steps;
 	int					ways_cnt;
 	t_list				*ways;
 	struct s_way_set	*next;
@@ -45,7 +46,7 @@ typedef struct			s_way_set
 }						t_way_set;
 
 /*
-** find_the_way params: find
+** count_set_steps: find
 */
 
 typedef struct	s_find_way
@@ -57,6 +58,20 @@ typedef struct	s_find_way
 	int 			way_nbr;
 	t_list_rooms	*start;
 }				t_find_way;
+
+/*
+** find_the_way params: find
+*/
+
+typedef struct	s_count_steps
+{
+	t_list			*ptr;
+	t_way			*way;
+	int				pre_lems;
+	int				max_len;
+	float			steps;
+	//int			len;
+}				t_count_steps;
 
 int 	find_the_way(t_intldta *indta);
 int		rec_finding(t_intldta *indta, t_find_way *fnd_wy);

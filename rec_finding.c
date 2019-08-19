@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/19 17:24:17 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/19 19:50:12 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,30 @@ static int	check_free_links(t_list_rooms *start)
 
 static void	count_set_steps(t_find_way *find, t_intldta *indta, t_way_set *set)
 {
-	//
+	t_count_steps	c;
+
+	c.ptr = set->ways;
+	c.pre_lems = 0;
+	c.max_len = 0;
+	while (c.ptr)
+	{
+		c.way = (t_way*)c.ptr->content;
+		c.pre_lems += c.way->len_way - 1;
+		if (c.max_len < c.way->len_way)
+			c.max_len = c.way->len_way;
+		c.ptr = c.ptr->next;
+	}
+	if (c.pre_lems > indta->num_ants)
+		set->full_steps = 0;
+	else
+	{
+		c.steps =(indta->num_ants - c.pre_lems) / set->ways_cnt;
+		if (c.steps > (int)c.steps)
+			c.steps++;
+		set->full_steps = (int)c.steps;
+	}
+	set->steps = set->full_steps + c.max_len - 1;
+	// ...
 }
 
 static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
