@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "parser.h"
-#include "finding.h"
+#include "find_way.h"
 
 static void	link_parsing(t_intldta **indta, char **things, char **rms)
 {

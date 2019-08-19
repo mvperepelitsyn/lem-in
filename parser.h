@@ -1,7 +1,7 @@
 #ifndef PARCER_H
 # define PARCER_H
 
-# define NAME "test.lemin" //DO NOT FORGET TO REMOVE IT
+# define NAME "../test.lemin" //DO NOT FORGET TO REMOVE IT
 
 # include "libft/libft.h"
 
@@ -25,14 +25,12 @@ typedef struct			s_list_rooms
 	int					status;
 	int 				num_lnks;
 	int					act_lnks;
+	int 				step_nbr;
 	int					way_nbr;
 	t_list				*links;
 	struct s_list_rooms	*next;
 
 }						t_list_rooms;
-
-//TODO: Change i for t_list_links and move it to the core structure
-// DONE!
 
 typedef struct			s_list_links
 {
@@ -45,9 +43,6 @@ typedef struct			s_list_links
 	int					way_nbr;
 	struct s_list_links *next;
 }						t_list_links;
-
-//TODO: add start and end rooms to all rooms
-// DONE!
 
 typedef struct		s_intldta
 {

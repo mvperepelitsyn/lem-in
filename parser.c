@@ -1,5 +1,5 @@
 #include "parser.h"
-#include "finding.h"
+#include "find_way.h"
 #include "visualizer.h"
 
 
@@ -12,7 +12,7 @@ static int lnks_assignmnt_help(t_list **t_lnks, t_list_links *ft_lnks, int *i)
 	lnks = (*t_lnks);
 	if (*i == 0)
 	{
-		(*t_lnks) = ft_lstnew_addr((void *) ft_lnks, ++*i);
+		(*t_lnks) = ft_lstnew_addr((void *)ft_lnks, ++*i);
 		return (0);
 	}
 	while ((*t_lnks)->next != NULL)
@@ -40,6 +40,7 @@ static void	links_assignment(t_intldta **indta)
 				lnks_assignmnt_help(&current->links, lnks, &current->num_lnks);
 			lnks = lnks->next;
 		}
+		current->act_lnks = current->num_lnks;
 		current = current->next;
 	}
 }
@@ -93,6 +94,8 @@ void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta)
 			ft_error();
 		(*links)->next = NULL;
 		(*indta)->li++;
+		(*links)->status = 1;
+		(*links)->way_nbr = -1;
 	}
 	else
 	{
@@ -103,6 +106,8 @@ void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta)
 		current->next = (t_list_links *)malloc(sizeof(t_list_links));
 		current->next->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		current->next->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
+		current->next->status = 1;
+		current->next->way_nbr = -1;
 		if (!(test_links(&current->next, indta)))
 			ft_error();
 		current->next->next = NULL;
@@ -142,13 +147,13 @@ int		main(int argc, char **argv)
 
 	init_struct(&indta);
 	parce_ant_farm(&indta);
-	if (argc == 2 && !ft_strcmp(argv[1], "-v"))
-		visualizer(indta);
+//	if (argc == 2 && !ft_strcmp(argv[1], "-v"))
+//		visualizer(indta);
 	ft_putchar('\n');
 //	print_all_the_links(indta->rooms);
 	ft_print_strcut(&indta);
 	ft_putchar('\n');
-//	find_the_way(indta);
+	find_the_way(indta);
 
 	exit (0);
 }
