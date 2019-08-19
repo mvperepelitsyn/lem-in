@@ -13,10 +13,8 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 	(*fnd_wy)->ways->num_way = 0;
 	(*fnd_wy)->ways->next = NULL;
 	(*fnd_wy)->start = indta->start_room;
-	 if (!((*fnd_wy)->crnt_set = (t_way_set *)malloc(sizeof(t_way_set))))
-	 	ft_malloc_error();
-	 (*fnd_wy)->crnt_set->steps_cnt = 0;
-	 (*fnd_wy)->crnt_set->ways_cnt = 0;
+	(*fnd_wy)->sets = NULL;
+	(*fnd_wy)->crnt_set = NULL;
 	(*fnd_wy)->way_nbr = 0;
 }
 
@@ -91,9 +89,16 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 
 int 	find_the_way(t_intldta *indta)
 {
- 	t_find_way			*fnd_wy;
+ 	t_find_way			*find;
 
- 	init_set(&fnd_wy, indta);
+ 	init_set(&find, indta);
+	while (!rec_finding(indta, find))
+		continue ;
+	if (CUR->steps > PRE->steps)
+		find->answer = PRE;
+	else
+		find->answer = CUR;
+//	=> print answer or vis answer
 // 	exit (69);
 // 	fill_the_way(&fnd_wy, indta);
 // 	print_the_way();
