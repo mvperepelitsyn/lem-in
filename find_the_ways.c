@@ -76,7 +76,18 @@ static	int 	not_in_searched(char *room, t_list_rooms *searched, t_list_rooms *se
 	}
 }
 
-static	void	fill_search(t_list_rooms **search, t_list_rooms *searched)
+static	void	add_to_searched(t_list_rooms **searched, t_list_rooms *end_room)
+{
+	t_list_rooms *srd;
+
+	srd = *searched;
+	while (srd->next != NULL)
+		srd = srd->next;
+	srd->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
+	cpy_t_list_room(srd->next, end_room);
+}
+
+static	int	fill_search(t_list_rooms **search, t_list_rooms **searched)
 {
 	t_list_rooms	*tmp;
 	int 			act_lnks;
@@ -90,19 +101,31 @@ static	void	fill_search(t_list_rooms **search, t_list_rooms *searched)
 		tmp = *search;
 		pt_link = ptr->content;
 		if ((ft_strequ(pt_link->room1, (*search)->name) && not_in_searched(
-				pt_link->room2, searched, *search)))
+				pt_link->room2, *searched, *search)))
 		{
 			while (tmp->next != NULL)
 				tmp = tmp->next;
+			if (pt_link->rm2->type == 2)
+			{
+				fill_searched(searched, search);
+				add_to_searched(searched, pt_link->rm2);
+				return (0);
+			}
 			tmp->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 			cpy_t_list_room(tmp->next, pt_link->rm2);
 			tmp->next->step_nbr = (*search)->step_nbr + 1;
 		}
 		else if (ft_strequ(pt_link->room2, (*search)->name) && not_in_searched(
-				pt_link->room1, searched, *search))
+				pt_link->room1, *searched, *search))
 		{
 			while (tmp->next != NULL)
 				tmp = tmp->next;
+			if (pt_link->rm1->type == 2)
+			{
+				fill_searched(searched, search);
+				add_to_searched(searched, pt_link->rm1);
+				return (0);
+			}
 			tmp->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 			cpy_t_list_room(tmp->next, pt_link->rm1);
 			tmp->next->step_nbr = (*search)->step_nbr + 1;
@@ -110,6 +133,7 @@ static	void	fill_search(t_list_rooms **search, t_list_rooms *searched)
 		ptr = ptr->next;
 		act_lnks--;
 	}
+	return (1);
 }
 
 static	int 	what_status(t_list *lnks, char *room)
@@ -129,7 +153,7 @@ static	int 	what_status(t_list *lnks, char *room)
 	return (1);
 }
 
-static	void	fill_searched(t_list_rooms **searched, t_list_rooms **search)
+void			fill_searched(t_list_rooms **searched, t_list_rooms **search)
 {
 	t_list_rooms	*s1;
 	t_list_rooms	*s2;
@@ -142,22 +166,69 @@ static	void	fill_searched(t_list_rooms **searched, t_list_rooms **search)
 		cpy_t_list_room(s1, s2);
 	else
 	{
-		if (what_status(s_lnks, s2->name))
-			;
-		else
-		{
-			while (s1->next != NULL)
-				s1 = s1->next;
-			s1->next = (t_list_rooms *) malloc(sizeof(t_list_rooms));
-			cpy_t_list_room(s1->next, s2);
-		}
+		while (s1->next != NULL)
+			s1 = s1->next;
+		s1->next = (t_list_rooms *) malloc(sizeof(t_list_rooms));
+		cpy_t_list_room(s1->next, s2);
 	}
 	*search = (*search)->next;
 	free(s2);
 	s2 = NULL;
 }
 
-//static	int 	is_it_end()
+static int	fill_the_way_help(t_list **rooms, t_list_rooms *ft_room, int cnt)
+{
+	t_list	*add_way;
+
+	add_way = *rooms;
+	if (ft_room->step_nbr == 0)
+	{
+		add_way = ft_lstnew_addr((void *)ft_room, ft_room->step_nbr + 1);
+		return (0);
+	}
+	else
+	{
+		while (add_way->next != NULL)
+			add_way = add_way->next;
+		add_way->next = ft_lstnew_addr((void *)ft_room, ft_room->step_nbr);
+		return (0);
+	}
+}
+
+static	void	fill_the_way(t_find_way **fnd_way, t_list_rooms *list)
+{
+	t_find_way *add_way;
+	int 		cnt;
+
+	add_way = *fnd_way;
+	cnt = 0;
+	while (list != NULL)
+	{
+		if (list->step_nbr == cnt)
+		{
+			fill_the_way_help(&(add_way->ways->rooms), list, cnt);
+			add_way->ways->len_way = cnt;
+			cnt++;
+		}
+		else
+			list = list->next;
+	}
+}
+
+static	void	print_the_way(t_way *way)
+{
+	t_list			*ptr;
+	t_list_rooms	*ptr2;
+
+	ptr = way->rooms;
+	while (ptr != NULL)
+	{
+		ptr2 = ptr->content;
+		ft_printf("%s->", ptr2->name);
+		ptr = ptr->next;
+	}
+	ft_putstr("\n");
+}
 
 static	int		wide_search(t_find_way **fnd_way, t_intldta *indta)
 {
@@ -175,11 +246,13 @@ static	int		wide_search(t_find_way **fnd_way, t_intldta *indta)
 		if (ft_strequ(search->name, indta->end_room->name))
 			break ;
 		else
-		{
-			fill_search(&search, searched);
-			fill_searched(&searched, &search);
-		}
+			if (fill_search(&search, &searched))
+				fill_searched(&searched, &search);
+			else
+				break ;
 	}
+	fill_the_way(fnd_way, searched);
+	print_the_way((*fnd_way)->ways);
 }
 
 void	cpy_t_list_room(t_list_rooms *dest, t_list_rooms *src)
