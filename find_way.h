@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 13:36:25 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/22 15:38:49 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_way
 {
 	int				len_way;
 	int				num_way;
-	t_list			*rooms;
+	t_dllist	*rooms;
 	struct s_way	*next;
 }					t_way;
 

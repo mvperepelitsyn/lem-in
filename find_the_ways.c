@@ -7,11 +7,10 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
  	//TODO: It's needed to make an inisialisation for crnt_set and prev_set
  	if (!((*fnd_wy)->ways = (t_way *)malloc(sizeof(t_way))))
  		ft_malloc_error();
-	(*fnd_wy)->ways->rooms = ft_lstnew_addr((void *)indta->start_room, 0);
-	(*fnd_wy)->ways->rooms->next = NULL;
-	(*fnd_wy)->ways->len_way = 0;
-	(*fnd_wy)->ways->num_way = 0;
-	(*fnd_wy)->ways->next = NULL;
+//	(*fnd_wy)->ways->rooms = ft_dllnew((void *)indta->start_room, 1);
+//	(*fnd_wy)->ways->len_way = 0;
+//	(*fnd_wy)->ways->num_way = 0;
+//	(*fnd_wy)->ways->next = NULL;
 	(*fnd_wy)->start = indta->start_room;
 	 if (!((*fnd_wy)->crnt_set = (t_way_set *)malloc(sizeof(t_way_set))))
 	 	ft_malloc_error();
@@ -76,7 +75,7 @@ static	int 	not_in_searched(char *room, t_list_rooms *searched, t_list_rooms *se
 	}
 }
 
-static	void	add_to_searched(t_list_rooms **searched, t_list_rooms *end_room)
+static	void	add_to_searched(t_list_rooms **searched, t_list_rooms *end_room, int stp_nbr)
 {
 	t_list_rooms *srd;
 
@@ -84,7 +83,9 @@ static	void	add_to_searched(t_list_rooms **searched, t_list_rooms *end_room)
 	while (srd->next != NULL)
 		srd = srd->next;
 	srd->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
+	srd->next->prev = srd;
 	cpy_t_list_room(srd->next, end_room);
+	srd->next->step_nbr = stp_nbr + 1;
 }
 
 static	int	fill_search(t_list_rooms **search, t_list_rooms **searched)
@@ -108,11 +109,12 @@ static	int	fill_search(t_list_rooms **search, t_list_rooms **searched)
 			if (pt_link->rm2->type == 2)
 			{
 				fill_searched(searched, search);
-				add_to_searched(searched, pt_link->rm2);
+				add_to_searched(searched, pt_link->rm2, (*search)->step_nbr);
 				return (0);
 			}
 			tmp->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 			cpy_t_list_room(tmp->next, pt_link->rm2);
+			tmp->next->prev = tmp;
 			tmp->next->step_nbr = (*search)->step_nbr + 1;
 		}
 		else if (ft_strequ(pt_link->room2, (*search)->name) && not_in_searched(
@@ -123,10 +125,11 @@ static	int	fill_search(t_list_rooms **search, t_list_rooms **searched)
 			if (pt_link->rm1->type == 2)
 			{
 				fill_searched(searched, search);
-				add_to_searched(searched, pt_link->rm1);
+				add_to_searched(searched, pt_link->rm1, (*search)->step_nbr);
 				return (0);
 			}
 			tmp->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
+			tmp->next->prev = tmp;
 			cpy_t_list_room(tmp->next, pt_link->rm1);
 			tmp->next->step_nbr = (*search)->step_nbr + 1;
 		}
@@ -169,6 +172,7 @@ void			fill_searched(t_list_rooms **searched, t_list_rooms **search)
 		while (s1->next != NULL)
 			s1 = s1->next;
 		s1->next = (t_list_rooms *) malloc(sizeof(t_list_rooms));
+		s1->next->prev = s1;
 		cpy_t_list_room(s1->next, s2);
 	}
 	*search = (*search)->next;
@@ -176,56 +180,101 @@ void			fill_searched(t_list_rooms **searched, t_list_rooms **search)
 	s2 = NULL;
 }
 
-static int	fill_the_way_help(t_list **rooms, t_list_rooms *ft_room, int cnt)
-{
-	t_list	*add_way;
+//static int	fill_the_way_help(t_dllist **rooms, t_list_rooms *ft_room, int cnt)
+//{
+//	t_dllist	*add_way;
+//
+//	add_way = *rooms;
+//	if (ft_room->step_nbr == 0)
+//	{
+//		add_way = ft_dllnew(void const *content, size_t content_size)ft_lstnew_addr((void *)ft_room, ft_room->step_nbr + 1);
+//		return (0);
+//	}
+//	else
+//	{
+//		while (add_way->next != NULL)
+//			add_way = add_way->next;
+//		add_way->next = ft_lstnew_addr((void *)ft_room, ft_room->step_nbr);
+//		return (0);
+//	}
+//}
 
-	add_way = *rooms;
-	if (ft_room->step_nbr == 0)
+
+static	int 	it_has_link(t_list_rooms *room1, t_list_rooms *room2, int cnt)
+{
+	t_list			*ptr1;
+	t_list_links	*lnks;
+	t_list_rooms	*rm_1;
+
+	rm_1 = room1;
+	while (cnt != 0)
 	{
-		add_way = ft_lstnew_addr((void *)ft_room, ft_room->step_nbr + 1);
-		return (0);
+		rm_1 = rm_1->prev;
+		cnt--;
 	}
-	else
+	ptr1 = rm_1->links;
+	while (ptr1)
 	{
-		while (add_way->next != NULL)
-			add_way = add_way->next;
-		add_way->next = ft_lstnew_addr((void *)ft_room, ft_room->step_nbr);
-		return (0);
+		lnks = ptr1->content;
+		if ((ft_strequ(rm_1->name, lnks->room1) && ft_strequ(room2->name,
+				lnks->room2)) || (ft_strequ(room2->name, lnks->room1) &&
+				ft_strequ(rm_1->name, lnks->room2)))
+			return (1);
+		ptr1 = ptr1->next;
 	}
+	return (0);
 }
 
 static	void	fill_the_way(t_find_way **fnd_way, t_list_rooms *list)
 {
 	t_find_way *add_way;
 	int 		cnt;
+	int 		spin;
+//	t_list_rooms	*ptr;
 
 	add_way = *fnd_way;
-	cnt = 0;
-	while (list != NULL)
+	while (list->next != NULL)
+		list = list->next;
+	add_way->ways->rooms = ft_dllnew((void*)list, sizeof(t_list_rooms));
+	add_way->ways->len_way = list->step_nbr;
+	cnt = list->step_nbr - 1;
+	spin = 0;
+	list = list->prev;
+	while (list)
 	{
-		if (list->step_nbr == cnt)
+//		ptr = add_way->ways->rooms->content;
+		if (cnt == list->step_nbr)
 		{
-			fill_the_way_help(&(add_way->ways->rooms), list, cnt);
-			add_way->ways->len_way = cnt;
-			cnt++;
+			if (it_has_link((t_list_rooms *)add_way->ways->rooms->content, list, spin))
+			{
+				ft_dlladdnextr(&(add_way->ways->rooms), (void *) list,
+						sizeof(t_list_rooms));
+				spin++;
+				cnt--;
+			}
+			else
+				spin++;
+			list = list->prev;
 		}
 		else
-			list = list->next;
+			list = list->prev;
 	}
 }
 
 static	void	print_the_way(t_way *way)
 {
-	t_list			*ptr;
+	t_dllist		*ptr;
 	t_list_rooms	*ptr2;
 
 	ptr = way->rooms;
 	while (ptr != NULL)
 	{
 		ptr2 = ptr->content;
-		ft_printf("%s->", ptr2->name);
-		ptr = ptr->next;
+		if (ptr->right != NULL)
+			ft_printf("%s->", ptr2->name);
+		else
+			ft_printf("%s", ptr2->name);
+		ptr = ptr->right;
 	}
 	ft_putstr("\n");
 }
@@ -238,6 +287,8 @@ static	int		wide_search(t_find_way **fnd_way, t_intldta *indta)
 	search = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 	searched = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 	searched->name = NULL;
+	search->prev = NULL;
+	searched->prev = NULL;
 	cpy_t_list_room(search, indta->start_room);
 	search->next = NULL;
 	search->step_nbr = 0;

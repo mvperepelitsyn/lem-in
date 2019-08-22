@@ -28,6 +28,7 @@ typedef struct			s_list_rooms
 	int 				step_nbr;
 	int					way_nbr;
 	t_list				*links;
+	struct s_list_rooms *prev;
 	struct s_list_rooms	*next;
 
 }						t_list_rooms;
