@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 13:32:09 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/22 15:11:38 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct		s_way
 	int				len_way;
 	int				num_way;
 	int				status;
-	t_list			*rooms;
+	t_dllist		*rooms;
 	struct s_way	*next;
 }					t_way;
 
@@ -73,8 +73,20 @@ typedef struct	s_count_steps
 	//int			len;
 }				t_count_steps;
 
+/*
+** link_breaker: br
+*/
+
+typedef struct	s_link_breaker
+{
+	t_way			*way;
+	t_dllist		*wroom;
+	t_list_rooms	*croom;
+}				t_link_breaker;
+
 int 	find_the_way(t_intldta *indta);
 int		rec_finding(t_intldta *indta, t_find_way *fnd_wy);
 int		wide_search(t_find_way *fnd_wy, t_intldta *indta);
+int		link_breaker(t_find_way *find, t_list_rooms *room);
 
 #endif
