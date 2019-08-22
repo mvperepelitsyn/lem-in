@@ -1,4 +1,4 @@
-#include "visualizer.h"
+#include "lem_in.h"
 
 int			get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos)
 {

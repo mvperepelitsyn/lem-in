@@ -6,11 +6,11 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 14:35:54 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/22 18:33:00 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "find_way.h"
+#include "lem_in.h"
 
 static int	check_free_links(t_list_rooms *start)
 {

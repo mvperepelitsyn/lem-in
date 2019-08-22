@@ -1,4 +1,4 @@
-#include "find_way.h"
+#include "lem_in.h"
 
 static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 {
@@ -98,9 +98,8 @@ int 	find_the_way(t_intldta *indta)
 		find->answer = PRE;
 	else
 		find->answer = CUR;
-//	=> print answer or vis answer
-// 	exit (69);
-// 	fill_the_way(&fnd_wy, indta);
-// 	print_the_way();
+//	=> print answer
+	if (indta->v_flag)
+		visualizer(indta, find);
  	return (0);
 }

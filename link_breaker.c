@@ -6,11 +6,11 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 16:22:10 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/22 18:36:41 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "find_way.h"
+#include "lem_in.h"
 
 static void	find_cur_room(t_link_breaker *br, t_find_way *find, \
 	t_list_rooms *room)

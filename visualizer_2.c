@@ -1,4 +1,4 @@
-#include "visualizer.h"
+#include "lem_in.h"
 
 int		put_pix_to_img(t_line_prm *l, int x, int y, int color)
 {

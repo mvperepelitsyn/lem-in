@@ -6,14 +6,16 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 15:11:38 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/22 19:15:08 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIND_WAY_H
 # define FIND_WAY_H
 
-# include "./parser.h"
+//#include "lem_in.h"
+#include "./parser.h"
+
 
 # define CUR find->crnt_set
 # define PRE find->crnt_set->prev
@@ -49,7 +51,7 @@ typedef struct			s_way_set
 **  find_the_way params: find
 */
 
-typedef struct	s_find_way
+struct	s_find_way
 {
 	t_way_set		*sets;  // сurrent set
 	t_way_set		*crnt_set;  // сurrent set
@@ -57,7 +59,7 @@ typedef struct	s_find_way
 	t_way			*ways;
 	int 			way_nbr;
 	t_list_rooms	*start;
-}				t_find_way;
+};
 
 /*
 ** count_set_steps: c

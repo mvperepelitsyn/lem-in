@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/16 18:08:21 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/22 19:15:04 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <math.h>
-# include "./parser.h"
-# include "./find_way.h"
+#include "lem_in.h"
 
 # define WIN_X 2560
 # define WIN_Y 1575
@@ -134,7 +133,7 @@ typedef struct	s_pix_prm
 	int				color;
 }				t_pix_prm;
 
-void	visualizer(t_intldta *indta);
+void	visualizer(t_intldta *indta, t_find_way *find);
 void	draw_rooms(t_intldta *indta, t_graph *g);
 void	draw_links(t_intldta *indta, t_graph *g);
 int		put_pix_to_img(t_line_prm *l, int x, int y, int color);
@@ -143,5 +142,6 @@ void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos);
 int		deal_key(int key, void *prm);
 int		close_vis(void *prm);
 void	trim_line(t_pix_prm *a, t_pix_prm *b, int r);
+void	build_route(t_graph *g, t_find_way *find);
 
 #endif
