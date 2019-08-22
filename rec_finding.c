@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/19 19:50:12 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/22 13:33:47 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	check_free_links(t_list_rooms *start)
 	return (0);
 }
 
-static void	count_set_steps(t_find_way *find, t_intldta *indta, t_way_set *set)
+static void	count_set_steps(t_intldta *indta, t_way_set *set)
 {
 	t_count_steps	c;
 
@@ -55,7 +55,6 @@ static void	count_set_steps(t_find_way *find, t_intldta *indta, t_way_set *set)
 		set->full_steps = (int)c.steps;
 	}
 	set->steps = set->full_steps + c.max_len - 1;
-	// ...
 }
 
 static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
@@ -73,7 +72,7 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 		if (ptr->status)
 			if (!ft_lstaddnext(&set->ways, &ptr, sizeof(ptr)))
 				ft_malloc_error();
-	count_set_steps(find, indta, set);
+	count_set_steps(indta, set);
 	if (!CUR)
 		set->prev = NULL;
 	else
@@ -106,8 +105,9 @@ static int	check_set_load(t_find_way *find, t_intldta *indta)
 
 int			rec_finding(t_intldta *indta, t_find_way *find)
 {
-	if (find->crnt_set->ways_cnt == indta->num_ants || (PRE && \
-		CUR->steps > PRE->steps) || !check_free_links(indta->start_room))
+	if (find->crnt_set->ways_cnt == indta->num_ants || CUR->full_steps == 0 \
+		|| (PRE && CUR->steps > PRE->steps) || \
+		!check_free_links(indta->start_room))
 		return (1);
 	if (wide_search(find, indta))
 	{

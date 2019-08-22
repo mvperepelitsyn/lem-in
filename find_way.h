@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/19 19:48:51 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/22 13:32:09 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct			s_way_set
 }						t_way_set;
 
 /*
-** count_set_steps: find
+**  find_the_way params: find
 */
 
 typedef struct	s_find_way
@@ -60,7 +60,7 @@ typedef struct	s_find_way
 }				t_find_way;
 
 /*
-** find_the_way params: find
+** count_set_steps: c
 */
 
 typedef struct	s_count_steps
