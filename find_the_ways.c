@@ -200,18 +200,13 @@ void			fill_searched(t_list_rooms **searched, t_list_rooms **search)
 //}
 
 
-static	int 	it_has_link(t_list_rooms *room1, t_list_rooms *room2, int cnt)
+static	int 	it_has_link(t_list_rooms *room1, t_list_rooms *room2)
 {
 	t_list			*ptr1;
 	t_list_links	*lnks;
 	t_list_rooms	*rm_1;
 
 	rm_1 = room1;
-	while (cnt != 0)
-	{
-		rm_1 = rm_1->prev;
-		cnt--;
-	}
 	ptr1 = rm_1->links;
 	while (ptr1)
 	{
@@ -225,6 +220,59 @@ static	int 	it_has_link(t_list_rooms *room1, t_list_rooms *room2, int cnt)
 	return (0);
 }
 
+static	void	del_t_list_room(t_list_rooms **room)
+{
+	t_list_rooms *tmp;
+
+	tmp = *room;
+	tmp->next->prev = tmp->prev;
+	tmp->prev->next = tmp->next;
+	ft_strdel(&tmp->name);
+	free(tmp);
+}
+
+static	void	make_it_clean(t_list_rooms **lst_rooms)
+{
+	t_list_rooms	*tmp;
+	t_list_rooms	*tmp2;
+	int				cnt;
+
+	tmp = *lst_rooms;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp = tmp->prev;
+	while (tmp->prev != NULL)
+	{
+		cnt = 0;
+		if ((tmp->step_nbr >= tmp->next->step_nbr) || !it_has_link(tmp,
+				tmp->next) || !it_has_link(tmp, tmp->prev))
+		{
+			if (!it_has_link(tmp, tmp->prev) && tmp->step_nbr < tmp->next->step_nbr)
+			{
+				tmp2 = tmp->prev;
+				while (tmp2->prev != NULL)
+				{
+					if (it_has_link(tmp, tmp2) && tmp2->step_nbr < tmp->step_nbr)
+					{
+						cnt = 1;
+						tmp2 = tmp2->next;
+						while (!ft_strequ(tmp2->name, tmp->name))
+						{
+							del_t_list_room(&tmp2);
+							tmp2 = tmp2->next;
+						}
+						break ;
+					}
+					tmp2 = tmp2->prev;
+				}
+			}
+			if (cnt == 0)
+				del_t_list_room(&tmp);
+		}
+		tmp = tmp->prev;
+	}
+}
+
 static	void	fill_the_way(t_find_way **fnd_way, t_list_rooms *list)
 {
 	t_find_way *add_way;
@@ -233,32 +281,40 @@ static	void	fill_the_way(t_find_way **fnd_way, t_list_rooms *list)
 //	t_list_rooms	*ptr;
 
 	add_way = *fnd_way;
+	make_it_clean(&list);
+	add_way->ways->rooms = ft_dllnew((void *) list, sizeof(t_list_rooms));
+	list = list->next;
 	while (list->next != NULL)
-		list = list->next;
-	add_way->ways->rooms = ft_dllnew((void*)list, sizeof(t_list_rooms));
-	add_way->ways->len_way = list->step_nbr;
-	cnt = list->step_nbr - 1;
-	spin = 0;
-	list = list->prev;
-	while (list)
 	{
-//		ptr = add_way->ways->rooms->content;
-		if (cnt == list->step_nbr)
-		{
-			if (it_has_link((t_list_rooms *)add_way->ways->rooms->content, list, spin))
-			{
-				ft_dlladdnextr(&(add_way->ways->rooms), (void *) list,
-						sizeof(t_list_rooms));
-				spin++;
-				cnt--;
-			}
-			else
-				spin++;
-			list = list->prev;
-		}
-		else
-			list = list->prev;
+		ft_dlladdnextr(&(add_way->ways->rooms), (void *) list,
+				sizeof(t_list_rooms));
+		list = list->next;
 	}
+	ft_dlladdnextr(&(add_way->ways->rooms), (void *) list, sizeof(t_list_rooms));
+	add_way->ways->len_way = list->step_nbr;
+	ft_printf("\nLength of the way = %d\n", add_way->ways->len_way);
+//	cnt = list->step_nbr - 1;
+//	spin = 0;
+//	list = list->prev;
+//	while (list)
+//	{
+////		ptr = add_way->ways->rooms->content;
+//		if (cnt == list->step_nbr)
+//		{
+//			if (it_has_link((t_list_rooms *)add_way->ways->rooms->content, list))
+//			{
+//				ft_dlladdnextr(&(add_way->ways->rooms), (void *) list,
+//						sizeof(t_list_rooms));
+//				spin++;
+//				cnt--;
+//			}
+//			else
+//				spin++;
+//			list = list->prev;
+//		}
+//		else
+//			list = list->prev;
+//	}
 }
 
 static	void	print_the_way(t_way *way)
@@ -328,6 +384,7 @@ int 	find_the_way(t_intldta *indta)
 
  	init_set(&fnd_wy, indta);
  	wide_search(&fnd_wy, indta);
+ 	print_all_the_links(indta->rooms);
 // 	exit (69);
 // 	fill_the_way(&fnd_wy, indta);
 // 	print_the_way();
