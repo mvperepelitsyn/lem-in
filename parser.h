@@ -33,7 +33,7 @@ struct			s_list_rooms
 	struct s_list_rooms	*next;
 };
 
-typedef struct			s_list_links
+struct			s_list_links
 {
 	char				*room1;
 	char 				*room2;
@@ -43,7 +43,7 @@ typedef struct			s_list_links
 	short 				dir;
 	int					way_nbr;
 	struct s_list_links *next;
-}						t_list_links;
+};
 
 struct		s_intldta
 {

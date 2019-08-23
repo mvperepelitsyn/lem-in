@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 18:36:41 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/23 13:08:13 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,30 +73,38 @@ static int	check_link(t_list_links	*link, t_list_rooms *croom, \
 	return (0);
 }
 
+static void	break_links(t_link_breaker *br)
+{
+	while (br->wroom)
+	{
+		br->prev_room = (t_list_rooms*)br->wroom->left->content;
+		br->link_ptr = br->croom->links;
+		while (br->link_ptr)
+		{
+			br->link = (t_list_links*)br->link_ptr->content;
+			if (check_link(br->link, br->croom, br->prev_room))
+				break ;
+			br->link_ptr = br->link_ptr->next;
+		}
+		if (!br->link_ptr)
+		{
+			ft_printf("Wrong links set!\n");
+			ft_error();
+		}
+		br->link->status = 0;
+		if (br->prev_room->act_lnks > 2)
+			break ;
+		br->wroom = br->wroom->left;
+	}
+}
+
 int			link_breaker(t_find_way *find, t_list_rooms *room)
 {
 	t_link_breaker	br;
-	t_list_links	*link;
-	t_list_rooms	*prev_room;
-	t_list			*link_ptr;
 
 	find_cur_room(&br, find, room);
 	if (!check_connection(br.wroom))
 		return (0);
-	prev_room = (t_list_rooms*)br.wroom->left->content;
-	link_ptr = br.croom->links;
-	while (link_ptr)
-	{
-		link = (t_list_links*)link_ptr->content;
-		if (check_link(link, br.croom, prev_room))
-			break ;
-		link_ptr = link_ptr->next;
-	}
-	if (!link_ptr)
-	{
-		ft_printf("Wrong links set!\n");
-		ft_error();
-	}
-	link->status = 0;
+	break_links(&br);
 	return (1);
 }

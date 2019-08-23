@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 19:15:08 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/23 13:04:25 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ typedef struct	s_link_breaker
 	t_way			*way;
 	t_dllist		*wroom;
 	t_list_rooms	*croom;
+	t_list_links	*link;
+	t_list_rooms	*prev_room;
+	t_list			*link_ptr;
 }				t_link_breaker;
 
 int 	find_the_way(t_intldta *indta);
