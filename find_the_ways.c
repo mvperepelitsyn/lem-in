@@ -175,9 +175,12 @@ void			fill_searched(t_list_rooms **searched, t_list_rooms **search)
 		s1->next->prev = s1;
 		cpy_t_list_room(s1->next, s2);
 	}
-	*search = (*search)->next;
-	free(s2);
-	s2 = NULL;
+	if ((*search)->next != NULL)
+	{
+		*search = (*search)->next;
+		free(s2);
+		s2 = NULL;
+	}
 }
 
 //static int	fill_the_way_help(t_dllist **rooms, t_list_rooms *ft_room, int cnt)
@@ -251,6 +254,21 @@ static	void	make_it_clean(t_list_rooms **lst_rooms)
 			{
 				tmp2 = tmp->prev;
 				while (tmp2->prev != NULL)
+				{
+					if (it_has_link(tmp, tmp2) && tmp2->step_nbr < tmp->step_nbr)
+					{
+						cnt = 1;
+						tmp2 = tmp2->next;
+						while (!ft_strequ(tmp2->name, tmp->name))
+						{
+							del_t_list_room(&tmp2);
+							tmp2 = tmp2->next;
+						}
+						break ;
+					}
+					tmp2 = tmp2->prev;
+				}
+				if (tmp2->prev == NULL)
 				{
 					if (it_has_link(tmp, tmp2) && tmp2->step_nbr < tmp->step_nbr)
 					{
