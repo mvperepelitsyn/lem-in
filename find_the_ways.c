@@ -5,12 +5,9 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
  	if (!((*fnd_wy) = (t_find_way *)malloc(sizeof(t_find_way))))
  		ft_malloc_error();
  	//TODO: It's needed to make an inisialisation for crnt_set and prev_set
- 	if (!((*fnd_wy)->ways = (t_way *)malloc(sizeof(t_way))))
- 		ft_malloc_error();
-//	(*fnd_wy)->ways->rooms = ft_dllnew((void *)indta->start_room, 1);
-//	(*fnd_wy)->ways->len_way = 0;
-//	(*fnd_wy)->ways->num_way = 0;
-//	(*fnd_wy)->ways->next = NULL;
+// 	if (!((*fnd_wy)->ways = (t_way *)malloc(sizeof(t_way))))
+// 		ft_malloc_error();
+	(*fnd_wy)->ways = NULL;
 	(*fnd_wy)->start = indta->start_room;
 	 if (!((*fnd_wy)->crnt_set = (t_way_set *)malloc(sizeof(t_way_set))))
 	 	ft_malloc_error();
@@ -30,22 +27,6 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 // 		ft_putstr(way->room);
 // 		way = way->next;
 // 	}
-//}
-
-//void	fill_the_way(t_find_way **fnd_wy, t_intldta *indta)
-//{
-// 	t_ways				*f_ways;
-// 	t_list_rooms		*ptr;
-//
-// 	f_ways = (*fnd_wy)->crnt_set->ways;
-// 	f_ways->way->rooms = (*fnd_wy)->shortest_way->rooms;
-// 	while (1)
-//	{
-// 		while (f_ways->way->rooms->act_lnks != 0)
-//
-//	}
-//
-//
 //}
 
 static	int 	not_in_searched(char *room, t_list_rooms *searched, t_list_rooms *search)
@@ -160,11 +141,9 @@ void			fill_searched(t_list_rooms **searched, t_list_rooms **search)
 {
 	t_list_rooms	*s1;
 	t_list_rooms	*s2;
-	t_list			*s_lnks;
 //TODO: IF ALL THE ROOMS IN LINKS OF THE ROOM THAT WE WANT TO ADD HAVE STATUS 1 THEN WE DO NOT ADD IT TO THE LIST OF SEARCHED
 	s1 = *searched;
 	s2 = *search;
-	s_lnks = s2->links;
 	if ((*search)->step_nbr == 0)
 		cpy_t_list_room(s1, s2);
 	else
@@ -182,26 +161,6 @@ void			fill_searched(t_list_rooms **searched, t_list_rooms **search)
 		s2 = NULL;
 	}
 }
-
-//static int	fill_the_way_help(t_dllist **rooms, t_list_rooms *ft_room, int cnt)
-//{
-//	t_dllist	*add_way;
-//
-//	add_way = *rooms;
-//	if (ft_room->step_nbr == 0)
-//	{
-//		add_way = ft_dllnew(void const *content, size_t content_size)ft_lstnew_addr((void *)ft_room, ft_room->step_nbr + 1);
-//		return (0);
-//	}
-//	else
-//	{
-//		while (add_way->next != NULL)
-//			add_way = add_way->next;
-//		add_way->next = ft_lstnew_addr((void *)ft_room, ft_room->step_nbr);
-//		return (0);
-//	}
-//}
-
 
 static	int 	it_has_link(t_list_rooms *room1, t_list_rooms *room2)
 {
@@ -294,9 +253,6 @@ static	void	make_it_clean(t_list_rooms **lst_rooms)
 static	void	fill_the_way(t_find_way **fnd_way, t_list_rooms *list)
 {
 	t_find_way *add_way;
-	int 		cnt;
-	int 		spin;
-//	t_list_rooms	*ptr;
 
 	add_way = *fnd_way;
 	make_it_clean(&list);
@@ -311,28 +267,6 @@ static	void	fill_the_way(t_find_way **fnd_way, t_list_rooms *list)
 	ft_dlladdnextr(&(add_way->ways->rooms), (void *) list, sizeof(t_list_rooms));
 	add_way->ways->len_way = list->step_nbr;
 	ft_printf("\nLength of the way = %d\n", add_way->ways->len_way);
-//	cnt = list->step_nbr - 1;
-//	spin = 0;
-//	list = list->prev;
-//	while (list)
-//	{
-////		ptr = add_way->ways->rooms->content;
-//		if (cnt == list->step_nbr)
-//		{
-//			if (it_has_link((t_list_rooms *)add_way->ways->rooms->content, list))
-//			{
-//				ft_dlladdnextr(&(add_way->ways->rooms), (void *) list,
-//						sizeof(t_list_rooms));
-//				spin++;
-//				cnt--;
-//			}
-//			else
-//				spin++;
-//			list = list->prev;
-//		}
-//		else
-//			list = list->prev;
-//	}
 }
 
 static	void	print_the_way(t_way *way)
@@ -353,11 +287,32 @@ static	void	print_the_way(t_way *way)
 	ft_putstr("\n");
 }
 
+//TODO: 1. Make sure that status of the rooms becomes 0 after we fill the way
+//		2. Add to the rooms to what way they have been assigned to
+//		3. Make sure that we can create a new way, when we use wide_search one more time
+
 static	int		wide_search(t_find_way **fnd_way, t_intldta *indta)
 {
 	t_list_rooms	*search;
 	t_list_rooms	*searched;
 
+	if ((*fnd_way)->ways == NULL)
+	{
+		(*fnd_way)->ways = (t_way *)malloc(sizeof(t_way));
+		(*fnd_way)->ways->next = NULL;
+		(*fnd_way)->ways->prev = NULL;
+		(*fnd_way)->ways->num_way = 0;
+	}
+	else
+	{
+		while ((*fnd_way)->ways->next != NULL)
+			(*fnd_way)->ways = (*fnd_way)->ways->next;
+		(*fnd_way)->ways->next = (t_way *)malloc(sizeof(t_way));
+		(*fnd_way)->ways->next->prev = (*fnd_way)->ways;
+		(*fnd_way)->ways->next->num_way = (*fnd_way)->ways->num_way + 1;
+		(*fnd_way)->ways->next->next = NULL;
+		(*fnd_way)->ways = (*fnd_way)->ways->next;
+	}
 	search = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 	searched = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 	searched->name = NULL;
@@ -402,6 +357,7 @@ int 	find_the_way(t_intldta *indta)
 
  	init_set(&fnd_wy, indta);
  	wide_search(&fnd_wy, indta);
+	wide_search(&fnd_wy, indta);
  	print_all_the_links(indta->rooms);
 // 	exit (69);
 // 	fill_the_way(&fnd_wy, indta);

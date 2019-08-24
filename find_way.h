@@ -48,8 +48,9 @@ typedef struct		s_way
 {
 	int				len_way;
 	int				num_way;
-	t_dllist	*rooms;
-	struct s_way	*next;
+	t_dllist		*rooms;
+	struct	s_way	*next;
+	struct	s_way	*prev;
 }					t_way;
 
 /*
