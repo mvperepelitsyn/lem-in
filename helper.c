@@ -137,20 +137,23 @@ void	print_sides(t_list_rooms *room)
 	ft_putstr("\n");
 }
 
-void	ft_print_strcut(t_intldta **indta)
+void	ft_print_strcut(t_intldta *indta)
 {
+	t_intldta *tmp;
+
+	tmp = indta;
 	ft_putstr("The number of ants is ");
-	ft_putnbr((*indta)->num_ants);
+	ft_putnbr(tmp->num_ants);
 	ft_putchar('\n');
 	ft_putstr("Here goes the rooms:\n");
 	ft_putstr("Start room: ");
-	print_sides((*indta)->start_room);
+	print_sides(tmp->start_room);
 	ft_putstr("End room: ");
-	print_sides((*indta)->end_room);
+	print_sides(tmp->end_room);
 	ft_putstr("All rooms:\n");
-	print_rooms(*indta);
+	print_rooms(tmp);
 	ft_putstr("Here comes the links: \n");
-	print_links((*indta)->links);
+	print_links(tmp->links);
 	ft_putstr("The end!\n");
 
 }

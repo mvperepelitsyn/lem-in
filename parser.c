@@ -151,7 +151,7 @@ int		main(int argc, char **argv)
 //		visualizer(indta);
 	ft_putchar('\n');
 //	print_all_the_links(indta->rooms);
-	ft_print_strcut(&indta);
+//	ft_print_strcut(indta);
 	ft_putchar('\n');
 	find_the_way(indta);
 

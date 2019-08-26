@@ -57,7 +57,7 @@ typedef struct		s_intldta
 }					t_intldta;  //initial data
 
 void	ft_malloc_error(void);
-void	ft_print_strcut(t_intldta **indta);
+void	ft_print_strcut(t_intldta *indta);
 void	init_struct(t_intldta **indta);
 void 	ft_error(void);
 void	ft_println(char *str);

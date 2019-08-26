@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 15:38:49 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/26 14:46:26 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct	s_find_way
 }				t_find_way;
 
 int 	find_the_way(t_intldta *indta);
-void	cpy_t_list_room(t_list_rooms *dest, t_list_rooms *src);
-void	fill_searched(t_list_rooms **searched, t_list_rooms **search);
+void	cpy_t_list_room(t_list_rooms *dest, t_list_rooms *src, int way_nbr);
+void	fill_searched(t_list_rooms **searched, t_list_rooms **search, int way_nbr);
 
 #endif
