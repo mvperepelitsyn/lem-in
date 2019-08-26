@@ -75,9 +75,13 @@ static	int	fill_search(t_list_rooms **search, t_list_rooms **searched, int way_n
 	int 			act_lnks;
 	t_list			*ptr;
 	t_list_links	*pt_link;
+	t_list_rooms	*ftmp;
 
 	act_lnks = (*search)->act_lnks;
 	ptr = (*search)->links;
+	ftmp = *search;
+	while (ftmp->next != NULL)
+		ftmp = ftmp->next;
 	while (act_lnks != 0 || ptr != NULL)
 	{
 		tmp = *search;
