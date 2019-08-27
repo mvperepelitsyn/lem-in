@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 12:46:45 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 18:37:27 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/27 15:02:56 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		close_vis(void *prm)
 	return (0);
 }
 
-void	trim_line(t_pix_prm *a, t_pix_prm *b, int r)
+void	trim_line(t_dot_prm *a, t_dot_prm *b, int r)
 {
 	double	dx;
 	double	dy;

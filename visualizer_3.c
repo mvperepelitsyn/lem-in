@@ -96,8 +96,8 @@ void		put_line_to_img(t_vis_prms *v, t_dot_prm a, t_dot_prm b)
 	clr.b = b.color;
 	l.i = 0;
 	l.img = v;
-	if (a.thickness > 1 || b.thickness >1)
+	/*if (a.thickness > 1 || b.thickness >1)
 		build_thick_line(&l, &a, &b, &clr);
 	else
-		build_line(&l, &a, &clr, method);
+		*/build_line(&l, &a, &clr, method);
 }

@@ -88,7 +88,7 @@ void	draw_links(t_intldta *indta, t_graph *g)
 		b.color =  g->clr[ptr->rm2->type];
 		b.thickness = 1;
 		trim_line(&a, &b, R);
-		put_line_to_img(g->v, a, b, 1);
+		put_line_to_img(g->v, a, b/*, 1*/);
 		ptr = ptr->next;
 	}
 }

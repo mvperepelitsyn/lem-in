@@ -9,15 +9,8 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 // 		ft_malloc_error();
 	(*fnd_wy)->ways = NULL;
 	(*fnd_wy)->start = indta->start_room;
-<<<<<<< HEAD
-	 if (!((*fnd_wy)->crnt_set = (t_way_set *)malloc(sizeof(t_way_set))))
-	 	ft_malloc_error();
-	(*fnd_wy)->crnt_set->steps = 0;
-	(*fnd_wy)->crnt_set->ways_cnt = 0;
-=======
 	(*fnd_wy)->sets = NULL;
 	(*fnd_wy)->crnt_set = NULL;
->>>>>>> rec
 	(*fnd_wy)->way_nbr = 0;
 }
 
@@ -322,7 +315,7 @@ static	void	print_the_way(t_way *way)
 
 //TODO: 1. Return smth when we cannot find any new ways in current state
 
-static	int		wide_search(t_find_way **fnd_way, t_intldta **indta)
+int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 {
 	t_list_rooms	*search;
 	t_list_rooms	*searched;
@@ -361,6 +354,7 @@ static	int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	}
 	fill_the_way(fnd_way, searched, indta);
 	print_the_way((*fnd_way)->ways);
+	return (1);
 }
 
 void	cpy_t_list_room(t_list_rooms *dest, t_list_rooms *src, int way_nbr)
@@ -383,15 +377,6 @@ int 	find_the_way(t_intldta *indta)
 {
  	t_find_way			*find;
 
-<<<<<<< HEAD
- 	init_set(&fnd_wy, indta);
- 	wide_search(&fnd_wy, &indta);
-	wide_search(&fnd_wy, &indta);
-// 	print_all_the_links(indta->rooms);
-// 	exit (69);
-// 	fill_the_way(&fnd_wy, indta);
-// 	print_the_way();
-=======
  	init_set(&find, indta);
 	while (!rec_finding(indta, find))
 		continue ;
@@ -402,6 +387,5 @@ int 	find_the_way(t_intldta *indta)
 //	=> print answer
 	if (indta->v_flag)
 		visualizer(indta, find);
->>>>>>> rec
  	return (0);
 }

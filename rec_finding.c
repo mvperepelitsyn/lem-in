@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 18:33:00 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/27 14:58:42 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int			rec_finding(t_intldta *indta, t_find_way *find)
 		|| (PRE && CUR->steps > PRE->steps) || \
 		!check_free_links(indta->start_room))
 		return (1);
-	if (wide_search(find, indta))
+	if (wide_search(&find, &indta))
 	{
 		if (!check_set_load(find, indta))
 			return (rec_finding(indta, find));
