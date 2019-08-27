@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rec_finding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/27 16:09:17 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/27 18:10:48 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	check_free_links(t_list_rooms *start)
 {
 	t_list			*ptr;
 	t_list_links	*link;
+	t_list_rooms	*room;
 
 	if (!start->act_lnks)
 		return (0);
@@ -23,7 +24,11 @@ static int	check_free_links(t_list_rooms *start)
 	while (ptr)
 	{
 		link = (t_list_links*)ptr->content;
-		if (link->status)
+		if (link->rm1 != start)
+			room = link->rm1;
+		else
+			room = link->rm2;
+		if (room->way_nbr < 0)
 			return (1);
 		ptr = ptr->next;
 	}
@@ -72,7 +77,7 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 	while (ptr)
 	{
 		if (ptr->status)
-			if (!ft_lstaddnext(&set->ways, &ptr, sizeof(ptr)))
+			if (!ft_lstaddnext(&set->ways, (void*)&ptr, sizeof(ptr)))
 				ft_malloc_error();
 		showme = set->ways->content;
 		ptr = ptr->next;

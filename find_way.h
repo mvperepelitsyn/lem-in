@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   find_way.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/27 15:25:56 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/27 18:08:54 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIND_WAY_H
 # define FIND_WAY_H
 
-//#include "lem_in.h"
-#include "./parser.h"
-
+#include "lem_in.h"
 
 # define CUR find->crnt_set
 # define PRE find->crnt_set->prev
