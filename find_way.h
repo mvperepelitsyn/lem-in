@@ -6,7 +6,11 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/08/27 18:08:54 by uhand            ###   ########.fr       */
+=======
+/*   Updated: 2019/08/27 16:13:17 by dfrost-a         ###   ########.fr       */
+>>>>>>> 2a1ba4a1a542d4a4b15cc1ecb4d6362fa03fdbc7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +71,7 @@ struct	s_find_way
 typedef struct	s_count_steps
 {
 	t_list			*ptr;
-	t_way			*way;
+	t_way			**way;
 	int				pre_lems;
 	int				max_len;
 	float			steps;
