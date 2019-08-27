@@ -213,7 +213,7 @@ static	void	make_it_clean(t_list_rooms **lst_rooms)
 		if ((tmp->step_nbr >= tmp->next->step_nbr) || !it_has_link(tmp,
 				tmp->next) || !it_has_link(tmp, tmp->prev))
 		{
-			if (!it_has_link(tmp, tmp->prev) && tmp->step_nbr < tmp->next->step_nbr)
+			if (!it_has_link(tmp, tmp->prev) && tmp->step_nbr < tmp->next->step_nbr && it_has_link(tmp, tmp->next))
 			{
 				tmp2 = tmp->prev;
 				while (tmp2->prev != NULL)
