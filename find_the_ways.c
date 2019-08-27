@@ -1,5 +1,26 @@
 #include "lem_in.h"
 
+void		remove_ways(t_way **ways)
+{
+	t_way			*tmp_way;
+	t_dllist		*tmp_room;
+	t_list_rooms	*tmp;
+
+	tmp_way = *ways;
+	while (tmp_way)
+	{
+		tmp_room = tmp_way->rooms;
+		while (tmp_room)
+		{
+			tmp = tmp_room->content;
+			if (tmp->way_nbr > 0)
+				tmp->way_nbr = -1;
+			tmp_room = tmp_room->right;
+		}
+		tmp_way = tmp_way->next;
+	}
+}
+
 static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 {
  	if (!((*fnd_wy) = (t_find_way *)malloc(sizeof(t_find_way))))
