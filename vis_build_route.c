@@ -6,13 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/23 17:12:14 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/27 14:36:33 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static float set_cur_thick(t_draw_thick *tk, t_line_prm *l, t_dot_prm *a, \
+/*static float set_cur_thick(t_draw_thick *tk, t_line_prm *l, t_dot_prm *a, \
 	t_dot_prm *b)
 {
 	float			cur;
@@ -57,4 +57,4 @@ void		build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 void		build_route(t_graph *g, t_find_way *find)
 {
 	//
-}
+}*/
