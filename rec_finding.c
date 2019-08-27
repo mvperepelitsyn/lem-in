@@ -6,17 +6,19 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/27 16:09:17 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/27 17:23:36 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int	check_free_links(t_list_rooms *start)
+static int	check_free_rooms(t_list_rooms *start)
 {
 	t_list			*ptr;
 	t_list_links	*link;
+	t_list_rooms	*room;
 
+	room = start;
 	if (!start->act_lnks)
 		return (0);
 	ptr = start->links;
@@ -39,10 +41,10 @@ static void	count_set_steps(t_intldta *indta, t_way_set *set)
 	c.max_len = 0;
 	while (c.ptr)
 	{
-		c.way = (t_way*)c.ptr->content;
-		c.pre_lems += c.way->len_way - 1;
-		if (c.max_len < c.way->len_way)
-			c.max_len = c.way->len_way;
+		c.way = (t_way**)c.ptr->content;
+		c.pre_lems += (*c.way)->len_way - 1;
+		if (c.max_len < (*c.way)->len_way)
+			c.max_len = (*c.way)->len_way;
 		c.ptr = c.ptr->next;
 	}
 	if (c.pre_lems > indta->num_ants)
@@ -61,7 +63,7 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 {
 	t_way_set	*set;
 	t_way		*ptr;
-	t_way		*showme;
+	t_way		**showme;
 
 	if (!(set = (t_way_set*)malloc(sizeof(t_way_set))))
 		ft_malloc_error();
@@ -72,9 +74,19 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 	while (ptr)
 	{
 		if (ptr->status)
-			if (!ft_lstaddnext(&set->ways, &ptr, sizeof(ptr)))
+//		{
+//			if (set->ways == NULL)
+//				set->ways = ft_lstnew_addr((void *)ptr, sizeof(ptr));
+//			else
+//			{
+//				while (set->ways->next != NULL)
+//					set = set->next;
+//				set->next = ft_lstnew_addr((void *)ptr, sizeof(ptr));
+//			}
+//		}
+			if (!ft_lstaddnext(&set->ways, (void *)&ptr, sizeof(ptr)))
 				ft_malloc_error();
-		showme = set->ways->content;
+		showme = (t_way **)set->ways->content;
 		ptr = ptr->next;
 	}
 	count_set_steps(indta, set);
