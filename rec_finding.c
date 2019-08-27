@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rec_finding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/27 14:58:42 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/27 16:09:17 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 {
 	t_way_set	*set;
 	t_way		*ptr;
+	t_way		*showme;
 
 	if (!(set = (t_way_set*)malloc(sizeof(t_way_set))))
 		ft_malloc_error();
@@ -69,9 +70,13 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 	set->ways_cnt = ways_cnt;
 	ptr = find->ways;
 	while (ptr)
+	{
 		if (ptr->status)
 			if (!ft_lstaddnext(&set->ways, &ptr, sizeof(ptr)))
 				ft_malloc_error();
+		showme = set->ways->content;
+		ptr = ptr->next;
+	}
 	count_set_steps(indta, set);
 	if (!CUR)
 		set->prev = NULL;
@@ -93,8 +98,11 @@ static int	check_set_load(t_find_way *find, t_intldta *indta)
 	ptr = find->ways;
 	counter = 0;
 	while (ptr)
+	{
 		if (ptr->status)
 			counter++;
+		ptr = ptr->next;
+	}
 	if ((!CUR && counter) || (CUR && counter > CUR->ways_cnt))
 	{
 		add_new_set(find, indta, counter);
@@ -105,9 +113,9 @@ static int	check_set_load(t_find_way *find, t_intldta *indta)
 
 int			rec_finding(t_intldta *indta, t_find_way *find)
 {
-	if (find->crnt_set->ways_cnt == indta->num_ants || CUR->full_steps == 0 \
-		|| (PRE && CUR->steps > PRE->steps) || \
-		!check_free_links(indta->start_room))
+	if (find->crnt_set && (find->crnt_set->ways_cnt == indta->num_ants || \
+		CUR->full_steps == 0 || (PRE && CUR->steps > PRE->steps) || \
+		!check_free_links(indta->start_room)))
 		return (1);
 	if (wide_search(&find, &indta))
 	{

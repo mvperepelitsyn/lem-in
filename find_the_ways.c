@@ -275,24 +275,25 @@ static	void	way_assignment(t_list_rooms *list, t_list_rooms **end_list, int way_
 }
 
 
-static	void	fill_the_way(t_find_way **fnd_way, t_list_rooms *list, t_intldta **indta)
+static	void	fill_the_way(t_way **tmp_way, t_list_rooms *list, t_intldta **indta)
 {
-	t_find_way *add_way;
+	t_way *add_way;
 
-	add_way = *fnd_way;
+	add_way = *tmp_way;
 	make_it_clean(&list);
-	add_way->ways->rooms = ft_dllnew((void *) list, sizeof(t_list_rooms));
+	add_way->rooms = ft_dllnew((void *) list, sizeof(t_list_rooms));
 	list = list->next;
-	way_assignment(list, &((*indta)->rooms), (*fnd_way)->ways->num_way);
+	way_assignment(list, &((*indta)->rooms), (*tmp_way)->num_way);
 	while (list->next != NULL)
 	{
-		ft_dlladdnextr(&(add_way->ways->rooms), (void *) list,
+		ft_dlladdnextr(&(add_way->rooms), (void *) list,
 				sizeof(t_list_rooms));
 		list = list->next;
 	}
-	ft_dlladdnextr(&(add_way->ways->rooms), (void *) list, sizeof(t_list_rooms));
-	add_way->ways->len_way = list->step_nbr;
-	ft_printf("\nLength of the way = %d\n", add_way->ways->len_way);
+	ft_dlladdnextr(&(add_way->rooms), (void *) list, sizeof(t_list_rooms));
+	add_way->len_way = list->step_nbr;
+	add_way->status = 1;
+	ft_printf("\nLength of the way = %d\n", add_way->len_way);
 }
 
 static	void	print_the_way(t_way *way)
@@ -319,23 +320,26 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 {
 	t_list_rooms	*search;
 	t_list_rooms	*searched;
+	t_way			*tmp_way;
 
 	if ((*fnd_way)->ways == NULL)
 	{
 		(*fnd_way)->ways = (t_way *)ft_memalloc(sizeof(t_way));
-		(*fnd_way)->ways->next = NULL;
-		(*fnd_way)->ways->prev = NULL;
-		(*fnd_way)->ways->num_way = 1;
+		tmp_way = (*fnd_way)->ways;
+		tmp_way->next = NULL;
+		tmp_way->prev = NULL;
+		tmp_way->num_way = 1;
 	}
 	else
 	{
-		while ((*fnd_way)->ways->next != NULL)
-			(*fnd_way)->ways = (*fnd_way)->ways->next;
-		(*fnd_way)->ways->next = (t_way *)malloc(sizeof(t_way));
-		(*fnd_way)->ways->next->prev = (*fnd_way)->ways;
-		(*fnd_way)->ways->next->num_way = (*fnd_way)->ways->num_way + 1;
-		(*fnd_way)->ways->next->next = NULL;
-		(*fnd_way)->ways = (*fnd_way)->ways->next;
+		tmp_way = (*fnd_way)->ways;
+		while (tmp_way->next != NULL)
+			tmp_way = tmp_way->next;
+		tmp_way->next = (t_way *)malloc(sizeof(t_way));
+		tmp_way->next->prev = (*fnd_way)->ways;
+		tmp_way->next->num_way = tmp_way->num_way + 1;
+		tmp_way->next->next = NULL;
+		tmp_way = tmp_way->next;
 	}
 	search = (t_list_rooms *)malloc(sizeof(t_list_rooms));
 	searched = (t_list_rooms *)malloc(sizeof(t_list_rooms));
@@ -347,13 +351,13 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	search->step_nbr = 0;
 	while (1)
 	{
-		if (fill_search(&search, &searched, (*fnd_way)->ways->num_way))
-			fill_searched(&searched, &search, (*fnd_way)->ways->num_way);
+		if (fill_search(&search, &searched, tmp_way->num_way))
+			fill_searched(&searched, &search, tmp_way->num_way);
 		else
 			break ;
 	}
-	fill_the_way(fnd_way, searched, indta);
-	print_the_way((*fnd_way)->ways);
+	fill_the_way(&tmp_way, searched, indta);
+	print_the_way(tmp_way);
 	return (1);
 }
 
@@ -385,7 +389,7 @@ int 	find_the_way(t_intldta *indta)
 	else
 		find->answer = CUR;
 //	=> print answer
-	if (indta->v_flag)
-		visualizer(indta, find);
+//	if (indta->v_flag)
+//		visualizer(indta, find);
  	return (0);
 }
