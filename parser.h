@@ -1,9 +1,11 @@
-#ifndef PARCER_H
-# define PARCER_H
+#ifndef PARSER_H
+# define PARSER_H
 
 # define NAME "../test.lemin" //DO NOT FORGET TO REMOVE IT
 
-# include "libft/libft.h"
+#include "lem_in.h"
+
+//typedef struct	s_list_rooms	t_list_rooms;
 
 /*
 ** This is the structure for our room, where:
@@ -16,7 +18,7 @@
 **
 */
 
-typedef struct			s_list_rooms
+struct			s_list_rooms
 {
 	char				*name;
 	int					x_cord;
@@ -30,10 +32,9 @@ typedef struct			s_list_rooms
 	t_list				*links;
 	struct s_list_rooms *prev;
 	struct s_list_rooms	*next;
+};
 
-}						t_list_rooms;
-
-typedef struct			s_list_links
+struct			s_list_links
 {
 	char				*room1;
 	char 				*room2;
@@ -43,9 +44,9 @@ typedef struct			s_list_links
 	short 				dir;
 	int					way_nbr;
 	struct s_list_links *next;
-}						t_list_links;
+};
 
-typedef struct		s_intldta
+struct		s_intldta
 {
 	int				num_ants;
 	t_list_rooms	*rooms;
@@ -54,7 +55,8 @@ typedef struct		s_intldta
 	t_list_rooms	*end_room;
 	int				ri;
 	int				li;
-}					t_intldta;  //initial data
+	int				v_flag;
+};  //initial data
 
 void	ft_malloc_error(void);
 void	ft_print_strcut(t_intldta *indta);

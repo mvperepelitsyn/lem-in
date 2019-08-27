@@ -6,11 +6,11 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/15 15:19:24 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/27 14:36:41 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visualizer.h"
+#include "lem_in.h"
 
 static void	set_limits(t_intldta *indta, t_graph *g)
 {
@@ -72,10 +72,11 @@ static void	window_init(t_vis_prms *v)
 	v->img_addr = mlx_get_data_addr(v->img_ptr, &v->bpp, &v->lsz, &v->ndn);
 }
 
-static void	build_graph(t_intldta *indta, t_graph *g)
+static void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 {
 	draw_rooms(indta, g);
 	draw_links(indta, g);
+//	build_route(g, find);
 }
 
 static int	get_command(void *prm)
@@ -87,7 +88,7 @@ static int	get_command(void *prm)
 	return (0);
 }
 
-void		visualizer(t_intldta *indta)
+void		visualizer(t_intldta *indta, t_find_way *find)
 {
 	t_graph		g;
 	t_vis_prms	v;
@@ -98,7 +99,7 @@ void		visualizer(t_intldta *indta)
 	//ft_printf("\nlolo\n");
 	graph_init(indta, &g, &v);
 	window_init(&v);
-	build_graph(indta, &g);
+	build_graph(indta, &g, find);
 	//ft_printf("\nlala\n");
 	mlx_put_image_to_window(v.mlx_ptr, v.win_ptr, v.img_ptr, 0, 0);
 	mlx_hook(v.win_ptr, 2, 0, &deal_key, (void*)(&v));

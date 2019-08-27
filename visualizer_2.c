@@ -1,4 +1,4 @@
-#include "visualizer.h"
+#include "lem_in.h"
 
 int		put_pix_to_img(t_line_prm *l, int x, int y, int color)
 {
@@ -73,8 +73,8 @@ void	draw_rooms(t_intldta *indta, t_graph *g)
 void	draw_links(t_intldta *indta, t_graph *g)
 {
 	t_list_links	*ptr;
-	t_pix_prm		a;
-	t_pix_prm		b;
+	t_dot_prm		a;
+	t_dot_prm		b;
 
 	ptr = indta->links;
 	while (ptr)
@@ -82,11 +82,13 @@ void	draw_links(t_intldta *indta, t_graph *g)
 		a.x = ptr->rm1->x_cord * g->scale + (2 * R);
 		a.y = ptr->rm1->y_cord * g->scale + (2 * R);
 		a.color =  g->clr[ptr->rm1->type];
+		a.thickness = 1;
 		b.x = ptr->rm2->x_cord * g->scale + (2 * R);
 		b.y = ptr->rm2->y_cord * g->scale + (2 * R);
 		b.color =  g->clr[ptr->rm2->type];
+		b.thickness = 1;
 		trim_line(&a, &b, R);
-		put_line_to_img(g->v, a, b);
+		put_line_to_img(g->v, a, b, 1);
 		ptr = ptr->next;
 	}
 }

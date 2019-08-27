@@ -6,12 +6,11 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 15:15:44 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/16 11:52:55 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/22 18:36:54 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include "find_way.h"
+#include "lem_in.h"
 
 static void	link_parsing(t_intldta **indta, char **things, char **rms)
 {

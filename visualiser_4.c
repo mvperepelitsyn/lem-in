@@ -6,11 +6,11 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 12:46:45 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/15 16:00:22 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/22 18:37:27 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visualizer.h"
+#include "lem_in.h"
 
 int		deal_key(int key, void *prm)
 {

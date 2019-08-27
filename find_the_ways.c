@@ -1,4 +1,4 @@
-#include "find_way.h"
+#include "lem_in.h"
 
 static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 {
@@ -9,10 +9,15 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 // 		ft_malloc_error();
 	(*fnd_wy)->ways = NULL;
 	(*fnd_wy)->start = indta->start_room;
+<<<<<<< HEAD
 	 if (!((*fnd_wy)->crnt_set = (t_way_set *)malloc(sizeof(t_way_set))))
 	 	ft_malloc_error();
 	(*fnd_wy)->crnt_set->steps = 0;
 	(*fnd_wy)->crnt_set->ways_cnt = 0;
+=======
+	(*fnd_wy)->sets = NULL;
+	(*fnd_wy)->crnt_set = NULL;
+>>>>>>> rec
 	(*fnd_wy)->way_nbr = 0;
 }
 
@@ -376,8 +381,9 @@ void	cpy_t_list_room(t_list_rooms *dest, t_list_rooms *src, int way_nbr)
 
 int 	find_the_way(t_intldta *indta)
 {
- 	t_find_way			*fnd_wy;
+ 	t_find_way			*find;
 
+<<<<<<< HEAD
  	init_set(&fnd_wy, indta);
  	wide_search(&fnd_wy, &indta);
 	wide_search(&fnd_wy, &indta);
@@ -385,5 +391,17 @@ int 	find_the_way(t_intldta *indta)
 // 	exit (69);
 // 	fill_the_way(&fnd_wy, indta);
 // 	print_the_way();
+=======
+ 	init_set(&find, indta);
+	while (!rec_finding(indta, find))
+		continue ;
+	if (CUR->full_steps == 0 || CUR->steps > PRE->steps)
+		find->answer = PRE;
+	else
+		find->answer = CUR;
+//	=> print answer
+	if (indta->v_flag)
+		visualizer(indta, find);
+>>>>>>> rec
  	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/16 18:08:21 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/23 16:38:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <math.h>
-# include "./parser.h"
-# include "./find_way.h"
+#include "lem_in.h"
 
 # define WIN_X 2560
 # define WIN_Y 1575
@@ -127,21 +126,43 @@ typedef struct	s_grad
 ** Current dot params: a, b
 */
 
-typedef struct	s_pix_prm
+typedef struct	s_dot_prm
 {
 	int				x;
 	int				y;
 	int				color;
-}				t_pix_prm;
+	int				thickness;
+}				t_dot_prm;
 
-void	visualizer(t_intldta *indta);
+/*
+** Current draw_thick_line params: tk
+*/
+
+typedef struct	s_draw_thick
+{
+	float			thick;
+	int				dx;
+	int				dy;
+	t_dot_prm		n;
+	t_dot_prm		m;
+	t_grad_prms		gr;
+	t_line_prm 		l;
+}				t_draw_thick;
+
+
+void	visualizer(t_intldta *indta, t_find_way *find);
 void	draw_rooms(t_intldta *indta, t_graph *g);
 void	draw_links(t_intldta *indta, t_graph *g);
 int		put_pix_to_img(t_line_prm *l, int x, int y, int color);
-void	put_line_to_img(t_vis_prms *v, t_pix_prm a, t_pix_prm b);
+void	build_line(t_line_prm *l, t_dot_prm *a, t_grad_prms *clr, \
+	int (*method)(t_line_prm*, int, int, int));
+void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
+	t_grad_prms *clr);
+void	put_line_to_img(t_vis_prms *v, t_dot_prm a, t_dot_prm b);
 void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos);
 int		deal_key(int key, void *prm);
 int		close_vis(void *prm);
-void	trim_line(t_pix_prm *a, t_pix_prm *b, int r);
+void	trim_line(t_dot_prm *a, t_dot_prm *b, int r);
+void	build_route(t_graph *g, t_find_way *find);
 
 #endif
