@@ -6,9 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/08/27 18:16:45 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+=======
+/*   Updated: 2019/08/27 18:08:54 by uhand            ###   ########.fr       */
+>>>>>>> 5317854083efa14c5ac00b1278e450bbfec2406a
 
 #ifndef FIND_WAY_H
 # define FIND_WAY_H
@@ -94,5 +98,6 @@ void	fill_searched(t_list_rooms **searched, t_list_rooms **search, int way_nbr);
 int		rec_finding(t_intldta *indta, t_find_way *fnd_wy);
 int		wide_search(t_find_way **fnd_wy, t_intldta **indta);
 int		link_breaker(t_find_way *find, t_list_rooms *room);
+void	remove_way_nbr(t_way **ways);
 
 #endif

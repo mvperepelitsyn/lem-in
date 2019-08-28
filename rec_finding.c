@@ -6,9 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/08/27 18:16:02 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+=======
+/*   Updated: 2019/08/27 17:23:36 by dfrost-a         ###   ########.fr       */
+>>>>>>> 5317854083efa14c5ac00b1278e450bbfec2406a
 
 #include "lem_in.h"
 
@@ -67,7 +71,6 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 {
 	t_way_set	*set;
 	t_way		*ptr;
-	t_way		**showme;
 
 	if (!(set = (t_way_set*)malloc(sizeof(t_way_set))))
 		ft_malloc_error();
@@ -80,7 +83,6 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 		if (ptr->status)
 			if (!ft_lstaddnext(&set->ways, (void*)&ptr, sizeof(ptr)))
 				ft_malloc_error();
-		showme = (t_way **)set->ways->content;
 		ptr = ptr->next;
 	}
 	count_set_steps(indta, set);

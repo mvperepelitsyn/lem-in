@@ -1,5 +1,59 @@
 #include "lem_in.h"
 
+void		remove_way_nbr(t_way **ways)
+{
+	t_way			*tmp_way;
+	t_dllist		*tmp_room;
+	t_list_rooms	*tmp;
+
+	tmp_way = *ways;
+	ft_printf("\nLength of the way = %d\n", tmp_way->len_way);
+	while (tmp_way)
+	{
+		tmp_room = tmp_way->rooms;
+		while (tmp_room)
+		{
+			tmp = tmp_room->content;
+			if (tmp->way_nbr > 0)
+				tmp->way_nbr = -1;
+			tmp_room = tmp_room->right;
+		}
+		tmp_way = tmp_way->next;
+	}
+}
+
+static	void	print_the_way(t_way **way)
+{
+	t_dllist		*ptr;
+	t_list_rooms	*ptr2;
+
+	ptr = (*way)->rooms;
+	ft_putstr("\n");
+	while (ptr != NULL)
+	{
+		ptr2 = ptr->content;
+		if (ptr->right != NULL)
+			ft_printf("%s->", ptr2->name);
+		else
+			ft_printf("%s", ptr2->name);
+		ptr = ptr->right;
+	}
+	ft_putstr("\n");
+}
+
+void		print_the_answer(t_way_set	*answer)
+{
+	t_list	*list_ways;
+
+	list_ways = answer->ways;
+	ft_printf("Here is a set of ways, that would be the best for our ant-farm:");
+	while (list_ways)
+	{
+		print_the_way((t_way **)(list_ways->content));
+		list_ways = list_ways->next;
+	}
+}
+
 static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 {
  	if (!((*fnd_wy) = (t_find_way *)malloc(sizeof(t_find_way))))
@@ -85,7 +139,8 @@ static	int	fill_search(t_list_rooms **search, t_list_rooms **searched, int way_n
 		tmp = *search;
 		pt_link = ptr->content;
 		if (ft_strequ(pt_link->room1, (*search)->name) && not_in_searched(
-				pt_link->room2, *searched, *search)  && pt_link->rm2->way_nbr < 0)
+				pt_link->room2, *searched, *search)  && pt_link->rm2->way_nbr <
+				        0 && pt_link->status == 1)
 		{
 			while (tmp->next != NULL)
 				tmp = tmp->next;
@@ -101,7 +156,8 @@ static	int	fill_search(t_list_rooms **search, t_list_rooms **searched, int way_n
 			tmp->next->step_nbr = (*search)->step_nbr + 1;
 		}
 		else if (ft_strequ(pt_link->room2, (*search)->name) && not_in_searched(
-				pt_link->room1, *searched, *search) && pt_link->rm1->way_nbr < 0)
+				pt_link->room1, *searched, *search) && pt_link->rm1->way_nbr < 0
+				&& pt_link->status == 1)
 		{
 			while (tmp->next != NULL)
 				tmp = tmp->next;
@@ -293,25 +349,6 @@ static	void	fill_the_way(t_way **tmp_way, t_list_rooms *list, t_intldta **indta)
 	ft_dlladdnextr(&(add_way->rooms), (void *) list, sizeof(t_list_rooms));
 	add_way->len_way = list->step_nbr;
 	add_way->status = 1;
-	ft_printf("\nLength of the way = %d\n", add_way->len_way);
-}
-
-static	void	print_the_way(t_way *way)
-{
-	t_dllist		*ptr;
-	t_list_rooms	*ptr2;
-
-	ptr = way->rooms;
-	while (ptr != NULL)
-	{
-		ptr2 = ptr->content;
-		if (ptr->right != NULL)
-			ft_printf("%s->", ptr2->name);
-		else
-			ft_printf("%s", ptr2->name);
-		ptr = ptr->right;
-	}
-	ft_putstr("\n");
 }
 
 //TODO: 1. Return smth when we cannot find any new ways in current state
@@ -357,7 +394,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 			break ;
 	}
 	fill_the_way(&tmp_way, searched, indta);
-	print_the_way(tmp_way);
+	print_the_way(&tmp_way);
 	return (1);
 }
 
@@ -388,6 +425,7 @@ int 	find_the_way(t_intldta *indta)
 		find->answer = PRE;
 	else
 		find->answer = CUR;
+	print_the_answer(find->answer);
 //	=> print answer
 //	if (indta->v_flag)
 //		visualizer(indta, find);
