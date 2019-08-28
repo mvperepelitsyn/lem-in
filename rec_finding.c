@@ -6,11 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/08/27 18:10:48 by uhand            ###   ########.fr       */
-=======
-/*   Updated: 2019/08/27 17:23:36 by dfrost-a         ###   ########.fr       */
->>>>>>> 2a1ba4a1a542d4a4b15cc1ecb4d6362fa03fdbc7
+/*   Updated: 2019/08/27 18:16:02 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +78,7 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 	while (ptr)
 	{
 		if (ptr->status)
-<<<<<<< HEAD
 			if (!ft_lstaddnext(&set->ways, (void*)&ptr, sizeof(ptr)))
-=======
-//		{
-//			if (set->ways == NULL)
-//				set->ways = ft_lstnew_addr((void *)ptr, sizeof(ptr));
-//			else
-//			{
-//				while (set->ways->next != NULL)
-//					set = set->next;
-//				set->next = ft_lstnew_addr((void *)ptr, sizeof(ptr));
-//			}
-//		}
-			if (!ft_lstaddnext(&set->ways, (void *)&ptr, sizeof(ptr)))
->>>>>>> 2a1ba4a1a542d4a4b15cc1ecb4d6362fa03fdbc7
 				ft_malloc_error();
 		showme = (t_way **)set->ways->content;
 		ptr = ptr->next;
@@ -139,7 +121,7 @@ int			rec_finding(t_intldta *indta, t_find_way *find)
 {
 	if (find->crnt_set && (find->crnt_set->ways_cnt == indta->num_ants || \
 		CUR->full_steps == 0 || (PRE && CUR->steps > PRE->steps) || \
-		!check_free_links(indta->start_room)))
+		!check_free_rooms(indta->start_room)))
 		return (1);
 	if (wide_search(&find, &indta))
 	{
