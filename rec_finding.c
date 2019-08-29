@@ -56,7 +56,7 @@ static void	count_set_steps(t_intldta *indta, t_way_set *set)
 		set->full_steps = 0;
 	else
 	{
-		c.steps =(indta->num_ants - c.pre_lems) / set->ways_cnt;
+		c.steps = (indta->num_ants - c.pre_lems) / set->ways_cnt;
 		if (c.steps > (int)c.steps)
 			c.steps++;
 		set->full_steps = (int)c.steps;
