@@ -121,7 +121,29 @@ static	void	add_to_searched(t_list_rooms **searched, t_list_rooms *end_room, int
 	srd->next->step_nbr = stp_nbr + 1;
 }
 
-static	int	fill_search(t_list_rooms **search, t_list_rooms **searched, int way_nbr)
+static	int stop_search(t_find_way *find, t_list_links *links, t_list_rooms *room)
+{
+	t_list_links *lnks;
+
+	lnks = links;
+	while (lnks)
+	{
+		if (ft_strequ(lnks->room1, room->name) && lnks->rm2->way_nbr > 0)
+		{
+			if (link_breaker(find, lnks->rm2))
+				return (1);
+		}
+		else if (ft_strequ(lnks->room2, room->name) && lnks->rm1->way_nbr > 0)
+		{
+			if (link_breaker(find, lnks->rm1))
+				return (1);
+		}
+		lnks = lnks->next;
+	}
+	return (0);
+}
+
+static	int	fill_search(t_find_way *find, t_list_rooms **search, t_list_rooms **searched, int way_nbr)
 {
 	t_list_rooms	*tmp;
 	int 			act_lnks;
@@ -138,6 +160,8 @@ static	int	fill_search(t_list_rooms **search, t_list_rooms **searched, int way_n
 	{
 		tmp = *search;
 		pt_link = ptr->content;
+		if (stop_search(find, pt_link, tmp))
+			return (0);
 		if (ft_strequ(pt_link->room1, (*search)->name) && not_in_searched(
 				pt_link->room2, *searched, *search)  && pt_link->rm2->way_nbr <
 				        0 && pt_link->status == 1)
@@ -353,6 +377,18 @@ static	void	fill_the_way(t_way **tmp_way, t_list_rooms *list, t_intldta **indta)
 
 //TODO: 1. Return smth when we cannot find any new ways in current state
 
+static int		end_searched(t_list_rooms *searched)
+{
+	t_list_rooms *tmp;
+
+	tmp = searched;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	if (tmp->type == 2)
+		return (1);
+	return (0);
+}
+
 int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 {
 	t_list_rooms	*search;
@@ -388,10 +424,15 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	search->step_nbr = 0;
 	while (1)
 	{
-		if (fill_search(&search, &searched, tmp_way->num_way))
+		if (fill_search(*fnd_way, &search, &searched, tmp_way->num_way))
 			fill_searched(&searched, &search, tmp_way->num_way);
 		else
 			break ;
+	}
+	if (!end_searched(searched))//if in the end of searched end_room then fill the way, if not quit
+	{
+		remove_way_nbr(&((*fnd_way)->ways)); //removing way_nbr from the rooms
+		return (0);
 	}
 	fill_the_way(&tmp_way, searched, indta);
 	print_the_way(&tmp_way);
