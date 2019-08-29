@@ -1,5 +1,25 @@
 #include "lem_in.h"
 
+static	void	free_search_ed(t_list_rooms **search, t_list_rooms **searched)
+{
+	while ((*search)->next)
+	{
+		(*search) = (*search)->next;
+		ft_strdel(&(*search)->prev->name);
+		free((*search)->prev);
+	}
+	ft_strdel(&(*search)->name);
+	free((*search));
+	while ((*searched)->next)
+	{
+		(*searched) = (*searched)->next;
+		ft_strdel(&(*searched)->prev->name);
+		free((*searched)->prev);
+	}
+	ft_strdel(&(*searched)->name);
+	free((*searched));
+}
+
 void		remove_way_nbr(t_way **ways)
 {
 	t_way			*tmp_way;
@@ -432,10 +452,13 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	if (!end_searched(searched))//if in the end of searched end_room then fill the way, if not quit
 	{
 //		remove_way_nbr(&((*fnd_way)->ways)); //removing way_nbr from the rooms
+		free_search_ed(&search, &searched);
 		return (0);
 	}
+	//the problem is here, i assign searched rooms, not the indta rooms, which is incorrect
 	fill_the_way(&tmp_way, searched, indta);
 	print_the_way(&tmp_way);
+	free_search_ed(&search, &searched);
 	return (1);
 }
 
