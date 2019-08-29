@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   link_breaker.c                                     :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/23 13:08:13 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/29 16:06:45 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,12 @@ int			link_breaker(t_find_way *find, t_list_rooms *room)
 	if (!check_connection(br.wroom))
 		return (0);
 	break_links(&br);
+	br.wroom = br.way->rooms;
+	while (br.way->rooms)
+	{
+		br.croom = br.croom = (t_list_rooms*)br.wroom->content;
+		br.croom->way_nbr = -1;
+		br.wroom = br.wroom->right;
+	}
 	return (1);
 }
