@@ -6,13 +6,6 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/08/29 16:06:45 by uhand            ###   ########.fr       */
-=======
-/*   Updated: 2019/08/29 15:06:53 by dfrost-a         ###   ########.fr       */
->>>>>>> b7ed4a803daa37d0f140d4a6ed5e24b25303876f
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "lem_in.h"
 
@@ -106,15 +99,17 @@ static void	break_links(t_link_breaker *br)
 int			link_breaker(t_find_way *find, t_list_rooms *room)
 {
 	t_link_breaker	br;
+	t_list_rooms	*test_room;
 
 	find_cur_room(&br, find, room);
 	if (!check_connection(br.wroom))
 		return (0);
 	break_links(&br);
+	test_room = find->ways->rooms->right->content;
 	br.wroom = br.way->rooms;
-	while (br.way->rooms)
+	while (br.wroom)
 	{
-		br.croom = br.croom = (t_list_rooms*)br.wroom->content;
+		br.croom = (t_list_rooms *)br.wroom->content;
 		br.croom->way_nbr = -1;
 		br.wroom = br.wroom->right;
 	}

@@ -431,7 +431,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	}
 	if (!end_searched(searched))//if in the end of searched end_room then fill the way, if not quit
 	{
-		remove_way_nbr(&((*fnd_way)->ways)); //removing way_nbr from the rooms
+//		remove_way_nbr(&((*fnd_way)->ways)); //removing way_nbr from the rooms
 		return (0);
 	}
 	fill_the_way(&tmp_way, searched, indta);
