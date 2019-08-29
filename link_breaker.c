@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   link_breaker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/08/29 16:06:45 by uhand            ###   ########.fr       */
-=======
-/*   Updated: 2019/08/29 15:06:53 by dfrost-a         ###   ########.fr       */
->>>>>>> b7ed4a803daa37d0f140d4a6ed5e24b25303876f
+/*   Updated: 2019/08/29 17:04:05 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +94,11 @@ static void	break_links(t_link_breaker *br)
 		}
 		br->link->status = 0;
 		if (br->prev_room->act_lnks > 2)
+		{
+			br->prev_room->act_lnks--;
 			break ;
+		}
+		br->croom->act_lnks--;
 		br->wroom = br->wroom->left;
 	}
 }
