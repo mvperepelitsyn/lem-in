@@ -6,13 +6,9 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/08/27 18:16:02 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/29 14:38:16 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-=======
-/*   Updated: 2019/08/27 17:23:36 by dfrost-a         ###   ########.fr       */
->>>>>>> 5317854083efa14c5ac00b1278e450bbfec2406a
 
 #include "lem_in.h"
 
@@ -50,11 +46,12 @@ static void	count_set_steps(t_intldta *indta, t_way_set *set)
 	while (c.ptr)
 	{
 		c.way = (t_way**)c.ptr->content;
-		c.pre_lems += (*c.way)->len_way - 1;
+		c.pre_lems -= (*c.way)->len_way - 1;
 		if (c.max_len < (*c.way)->len_way)
 			c.max_len = (*c.way)->len_way;
 		c.ptr = c.ptr->next;
 	}
+	c.pre_lems += set->ways_cnt * c.max_len;
 	if (c.pre_lems > indta->num_ants)
 		set->full_steps = 0;
 	else
@@ -64,7 +61,7 @@ static void	count_set_steps(t_intldta *indta, t_way_set *set)
 			c.steps++;
 		set->full_steps = (int)c.steps;
 	}
-	set->steps = set->full_steps + c.max_len - 1;
+	set->steps = set->full_steps + c.max_len;
 }
 
 static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
