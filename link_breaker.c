@@ -3,9 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   link_breaker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
+/*   Updated: 2019/08/29 17:04:05 by uhand            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 
@@ -91,7 +94,11 @@ static void	break_links(t_link_breaker *br)
 		}
 		br->link->status = 0;
 		if (br->prev_room->act_lnks > 2)
+		{
+			br->prev_room->act_lnks--;
 			break ;
+		}
+		br->croom->act_lnks--;
 		br->wroom = br->wroom->left;
 	}
 }
