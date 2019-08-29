@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   link_breaker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/08/29 16:06:45 by uhand            ###   ########.fr       */
+=======
+/*   Updated: 2019/08/29 15:06:53 by dfrost-a         ###   ########.fr       */
+>>>>>>> b7ed4a803daa37d0f140d4a6ed5e24b25303876f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +35,7 @@ static void	find_cur_room(t_link_breaker *br, t_find_way *find, \
 	while (br->wroom)
 	{
 		br->croom = (t_list_rooms*)br->wroom->content;
-		if (br->croom == room)
+		if (ft_strequ(br->croom->name, room->name))
 			break ;
 		br->wroom = br->wroom->right;
 	}
@@ -67,8 +71,9 @@ static int	check_connection(t_dllist *wroom)
 static int	check_link(t_list_links	*link, t_list_rooms *croom, \
 	t_list_rooms *prev_room)
 {
-	if ((link->rm1 == croom && link->rm2 == prev_room) || \
-		(link->rm2 == croom && link->rm1 == prev_room))
+	if ((ft_strequ(link->rm1->name,croom->name) && ft_strequ(link->rm2->name,
+			prev_room->name)) || (ft_strequ(link->rm2->name, croom->name) &&
+			ft_strequ(link->rm1->name, prev_room->name)))
 		return (1);
 	return (0);
 }
