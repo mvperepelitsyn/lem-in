@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/23 16:38:40 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/30 19:25:02 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define S_CLR 0x00FF00
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
+# define ROUTE_COLOR 0x88AA41FE
+# define ROUTE_THICK 5
 
 typedef struct s_vis_prms	t_vis_prms;
 
@@ -131,7 +133,7 @@ typedef struct	s_dot_prm
 	int				x;
 	int				y;
 	int				color;
-	int				thickness;
+	int				thick;
 }				t_dot_prm;
 
 /*
@@ -141,14 +143,26 @@ typedef struct	s_dot_prm
 typedef struct	s_draw_thick
 {
 	float			thick;
-	int				dx;
-	int				dy;
-	t_dot_prm		n;
+	int				x;
+	int				y;
 	t_dot_prm		m;
+	t_dot_prm		n;
 	t_grad_prms		gr;
 	t_line_prm 		l;
 }				t_draw_thick;
 
+/*
+** build_route params: br
+*/
+
+typedef struct	s_build_route
+{
+	t_line_prm		l;
+	t_dot_prm		a;
+	t_dot_prm		b;
+	t_grad_prms		clr;
+	t_list_rooms	*croom;
+}				t_build_route;
 
 void	visualizer(t_intldta *indta, t_find_way *find);
 void	draw_rooms(t_intldta *indta, t_graph *g);
@@ -163,6 +177,9 @@ void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos);
 int		deal_key(int key, void *prm);
 int		close_vis(void *prm);
 void	trim_line(t_dot_prm *a, t_dot_prm *b, int r);
-void	build_route(t_graph *g, t_find_way *find);
+void	build_route(t_graph *g, t_dllist *room);
+void	get_delta(t_dot_prm *a, t_dot_prm *b, t_line_prm *l);
+int		get_coord(t_line_prm *l);
+int		get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos);
 
 #endif

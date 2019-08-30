@@ -20,7 +20,7 @@ int			get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos)
 	return (grad.color);
 }
 
-static void	get_delta(t_dot_prm *a, t_dot_prm *b, t_line_prm *l)
+void	get_delta(t_dot_prm *a, t_dot_prm *b, t_line_prm *l)
 {
 	l->d_ind = 0;
 	l->dx = b->x - a->x;
