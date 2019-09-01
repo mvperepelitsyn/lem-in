@@ -6,36 +6,38 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/29 17:13:30 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/08/31 17:57:46 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	find_cur_room(t_link_breaker *br, t_find_way *find, \
-	t_list_rooms *room)
+static void	find_cur_room(t_link_breaker **br, t_find_way **find,
+		t_list_rooms *room)
 {
-	br->way = find->ways;
-	while (br->way)
+	t_link_breaker *tmp;
+	tmp = *br;
+	tmp->way = (*find)->ways;
+	while (tmp->way)
 	{
-		if (br->way->num_way == room->way_nbr)
+		if (tmp->way->num_way == room->way_nbr)
 			break ;
-		br->way = br->way->next;
+		tmp->way = tmp->way->next;
 	}
-	if (!br->way)
+	if (!tmp->way)
 	{
 		ft_printf("Bad way number!\n");
 		ft_error();
 	}
-	br->wroom = br->way->rooms;
-	while (br->wroom)
+	tmp->wroom = tmp->way->rooms;
+	while (tmp->wroom)
 	{
-		br->croom = (t_list_rooms*)br->wroom->content;
-		if (ft_strequ(br->croom->name, room->name))
+		tmp->croom = (t_list_rooms*)tmp->wroom->content;
+		if (ft_strequ(tmp->croom->name, room->name))
 			break ;
-		br->wroom = br->wroom->right;
+		tmp->wroom = tmp->wroom->right;
 	}
-	if (!br->wroom)
+	if (!tmp->wroom)
 	{
 		ft_printf("Bad room number!\n");
 		ft_error();
@@ -74,52 +76,57 @@ static int	check_link(t_list_links	*link, t_list_rooms *croom, \
 	return (0);
 }
 
-static void	break_links(t_link_breaker *br)
+static void	break_links(t_link_breaker **br)
 {
-	while (br->wroom)
+	t_link_breaker *tmp;
+	t_intldta		*org;
+
+	tmp = *br;
+	while (tmp->wroom)
 	{
-		br->prev_room = (t_list_rooms*)br->wroom->left->content;
-		br->link_ptr = br->croom->links;
-		while (br->link_ptr)
+		tmp->prev_room = (t_list_rooms*)tmp->wroom->left->content;
+		tmp->link_ptr = tmp->croom->links;
+		while (tmp->link_ptr)
 		{
-			br->link = (t_list_links*)br->link_ptr->content;
-			if (check_link(br->link, br->croom, br->prev_room))
+			tmp->link = (t_list_links*)tmp->link_ptr->content;
+			if (check_link(tmp->link, tmp->croom, tmp->prev_room))
 				break ;
-			br->link_ptr = br->link_ptr->next;
+			tmp->link_ptr = tmp->link_ptr->next;
 		}
-		if (!br->link_ptr)
+		if (!tmp->link_ptr)
 		{
 			ft_printf("Wrong links set!\n");
 			ft_error();
 		}
-		br->link->status = 0;
-		br->croom->act_lnks--;
-		if (br->prev_room->act_lnks > 2)
+		tmp->link->status = 0;
+		tmp->croom->act_lnks--;
+		if (tmp->prev_room->act_lnks > 2)
 		{
-			br->prev_room->act_lnks--;
+			tmp->prev_room->act_lnks--;
 			break ;
 		}
-		br->prev_room->act_lnks--;
-		br->wroom = br->wroom->left;
+		tmp->prev_room->act_lnks--;
+		tmp->wroom = tmp->wroom->left;
 	}
 }
 
-int			link_breaker(t_find_way *find, t_list_rooms *room)
+int			link_breaker(t_find_way **find, t_list_rooms *room)
 {
-	t_link_breaker	br;
+	t_link_breaker	*br;
 	t_list_rooms	*test_room;
 
+	br = (t_link_breaker *)ft_memalloc(sizeof(t_link_breaker));
 	find_cur_room(&br, find, room);
-	if (!check_connection(br.wroom))
+	if (!check_connection(br->wroom))
 		return (0);
 	break_links(&br);
-	test_room = find->ways->rooms->right->content;
-	br.wroom = br.way->rooms;
-	while (br.wroom)
+	test_room = (*find)->ways->rooms->right->content;
+	br->wroom = br->way->rooms;
+	while (br->wroom)
 	{
-		br.croom = (t_list_rooms *)br.wroom->content;
-		br.croom->way_nbr = -1;
-		br.wroom = br.wroom->right;
+		br->croom = (t_list_rooms *)br->wroom->content;
+		br->croom->way_nbr = -1;
+		br->wroom = br->wroom->right;
 	}
 	return (1);
 }

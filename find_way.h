@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_way.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/28 17:44:48 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/31 18:48:30 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,22 @@ typedef struct	s_link_breaker
 	t_list			*link_ptr;
 }				t_link_breaker;
 
+typedef struct s_search
+{
+	t_list_rooms	*rooms;
+	int				step_nbr;
+	int				way_nbr;
+	struct s_search *next;
+	struct s_search *prev;
+
+}				t_search;
+
 int 	find_the_way(t_intldta *indta);
 void	cpy_t_list_room(t_list_rooms *dest, t_list_rooms *src, int way_nbr);
-void	fill_searched(t_list_rooms **searched, t_list_rooms **search, int way_nbr);
+void	fill_searched(t_search **searched, t_search **search);
 int		rec_finding(t_intldta *indta, t_find_way *fnd_wy);
 int		wide_search(t_find_way **fnd_wy, t_intldta **indta);
-int		link_breaker(t_find_way *find, t_list_rooms *room);
+int		link_breaker(t_find_way **find, t_list_rooms *room);
 void	remove_way_nbr(t_way **ways);
 
 #endif
