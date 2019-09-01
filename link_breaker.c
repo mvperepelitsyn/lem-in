@@ -6,38 +6,36 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/31 17:57:46 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/01 15:28:56 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	find_cur_room(t_link_breaker **br, t_find_way **find,
-		t_list_rooms *room)
+static void	find_cur_room(t_link_breaker *br, t_find_way **find, t_list_rooms
+*room)
 {
-	t_link_breaker *tmp;
-	tmp = *br;
-	tmp->way = (*find)->ways;
-	while (tmp->way)
+	br->way = (*find)->ways;
+	while (br->way)
 	{
-		if (tmp->way->num_way == room->way_nbr)
+		if (br->way->num_way == room->way_nbr)
 			break ;
-		tmp->way = tmp->way->next;
+		br->way = br->way->next;
 	}
-	if (!tmp->way)
+	if (!br->way)
 	{
 		ft_printf("Bad way number!\n");
 		ft_error();
 	}
-	tmp->wroom = tmp->way->rooms;
-	while (tmp->wroom)
+	br->wroom = br->way->rooms;
+	while (br->wroom)
 	{
-		tmp->croom = (t_list_rooms*)tmp->wroom->content;
-		if (ft_strequ(tmp->croom->name, room->name))
+		br->croom = (t_list_rooms*)br->wroom->content;
+		if (ft_strequ(br->croom->name, room->name))
 			break ;
-		tmp->wroom = tmp->wroom->right;
+		br->wroom = br->wroom->right;
 	}
-	if (!tmp->wroom)
+	if (!br->wroom)
 	{
 		ft_printf("Bad room number!\n");
 		ft_error();
@@ -76,57 +74,77 @@ static int	check_link(t_list_links	*link, t_list_rooms *croom, \
 	return (0);
 }
 
-static void	break_links(t_link_breaker **br)
+static void	break_links(t_link_breaker *br)
 {
-	t_link_breaker *tmp;
-	t_intldta		*org;
-
-	tmp = *br;
-	while (tmp->wroom)
+	while (br->wroom)
 	{
-		tmp->prev_room = (t_list_rooms*)tmp->wroom->left->content;
-		tmp->link_ptr = tmp->croom->links;
-		while (tmp->link_ptr)
+		br->prev_room = (t_list_rooms*)br->wroom->left->content;
+		br->link_ptr = br->croom->links;
+		while (br->link_ptr)
 		{
-			tmp->link = (t_list_links*)tmp->link_ptr->content;
-			if (check_link(tmp->link, tmp->croom, tmp->prev_room))
+			br->link = (t_list_links*)br->link_ptr->content;
+			if (check_link(br->link, br->croom, br->prev_room))
 				break ;
-			tmp->link_ptr = tmp->link_ptr->next;
+			br->link_ptr = br->link_ptr->next;
 		}
-		if (!tmp->link_ptr)
+		if (!br->link_ptr)
 		{
 			ft_printf("Wrong links set!\n");
 			ft_error();
 		}
-		tmp->link->status = 0;
-		tmp->croom->act_lnks--;
-		if (tmp->prev_room->act_lnks > 2)
+		br->link->status = 0;
+		br->croom->act_lnks--;
+		if (br->prev_room->act_lnks > 2)
 		{
-			tmp->prev_room->act_lnks--;
+			br->prev_room->act_lnks--;
 			break ;
 		}
-		tmp->prev_room->act_lnks--;
-		tmp->wroom = tmp->wroom->left;
+		br->prev_room->act_lnks--;
+		br->wroom = br->wroom->left;
 	}
 }
 
+//TODO LIST: link_breaker changes status of the link, BUT does not change the state of rooms
+
+//int			link_breaker(t_find_way **find, t_list_rooms *room)
+//{
+//	t_link_breaker	br;
+//
+//	find_cur_room(&br, find, room);
+//	if (!check_connection(br.wroom))
+//		return (0);
+//	break_links(&br);
+//	br.wroom = br.way->rooms;
+//	while (br.wroom)
+//	{
+//		br.croom = (t_list_rooms *)br.wroom->content;
+//		br.croom->way_nbr = -1;
+//		br.croom->step_nbr = (br.croom->type != 1) ? -1 : 0;
+//		br.wroom = br.wroom->right;
+//	}
+//	return (1);
+//}
+
 int			link_breaker(t_find_way **find, t_list_rooms *room)
 {
-	t_link_breaker	*br;
-	t_list_rooms	*test_room;
+	t_link_breaker	br;
+	t_way			*tmp;
+	t_list_rooms	*tmp2;
 
-	br = (t_link_breaker *)ft_memalloc(sizeof(t_link_breaker));
+	tmp = (*find)->ways;
 	find_cur_room(&br, find, room);
-	if (!check_connection(br->wroom))
+	if (!check_connection(br.wroom))
 		return (0);
 	break_links(&br);
-	test_room = (*find)->ways->rooms->right->content;
-	br->wroom = br->way->rooms;
-	while (br->wroom)
+	while (tmp->num_way != br.way->num_way)
+		tmp = tmp->next;
+	br.wroom = br.way->rooms;
+	while (tmp->rooms)
 	{
-		br->croom = (t_list_rooms *)br->wroom->content;
-		br->croom->way_nbr = -1;
-		br->wroom = br->wroom->right;
+		tmp2 = tmp->rooms->content;
+		tmp2->way_nbr = -1;
+		tmp2->step_nbr = (tmp2->type != 1) ? -1 : 0;
+		tmp->rooms = tmp->rooms->right;
 	}
 	return (1);
 }

@@ -144,7 +144,7 @@ static	void	add_to_searched(t_search **searched, t_list_rooms *end_room, int stp
 	srd->next->step_nbr = stp_nbr + 1;
 }
 
-static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *room, t_intldta **indta)
+static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *room)
 {
 	t_list_links *lnks;
 
@@ -166,7 +166,7 @@ static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *roo
 	return (0);
 }
 
-static	int	fill_search(t_find_way **find, t_search **search, t_search **searched, int way_nbr)
+static	int	fill_search(t_find_way **find, t_search **search, t_search **searched)
 {
 	t_search		*tmp;
 	int 			act_lnks;
@@ -183,8 +183,8 @@ static	int	fill_search(t_find_way **find, t_search **search, t_search **searched
 	{
 		tmp = *search;
 		pt_link = ptr->content;
-//		if (stop_search(find, pt_link, tmp))
-//			return (0);
+		if (stop_search(find, pt_link, tmp->rooms))
+			return (0);
 		if (ft_strequ(pt_link->room1, (*search)->rooms->name) && not_in_searched(
 				pt_link->room2, *searched, *search)  && pt_link->rm2->way_nbr <
 				        0 && pt_link->status == 1)
@@ -199,7 +199,7 @@ static	int	fill_search(t_find_way **find, t_search **search, t_search **searched
 			}
 			tmp->next = (t_search *)ft_memalloc(sizeof(t_search));
 			tmp->next->rooms = pt_link->rm2;
-			tmp->next->way_nbr = way_nbr;
+			tmp->next->way_nbr = tmp->way_nbr;
 			tmp->next->prev = tmp;
 			tmp->next->step_nbr = (*search)->step_nbr + 1;
 		}
@@ -218,7 +218,7 @@ static	int	fill_search(t_find_way **find, t_search **search, t_search **searched
 			tmp->next = (t_search *)ft_memalloc(sizeof(t_search));
 			tmp->next->prev = tmp;
 			tmp->next->rooms = pt_link->rm1;
-			tmp->next->way_nbr = way_nbr;
+			tmp->next->way_nbr = tmp->way_nbr;
 			tmp->next->step_nbr = (*search)->step_nbr + 1;
 		}
 		ptr = ptr->next;
@@ -444,7 +444,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	search->way_nbr = tmp_way->num_way;
 	while (1)
 	{
-		if (fill_search(fnd_way, &search, &searched, tmp_way->num_way))
+		if (fill_search(fnd_way, &search, &searched))
 			fill_searched(&searched, &search);
 		else
 			break ;
