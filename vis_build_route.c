@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/30 19:33:16 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/31 19:36:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,25 +64,28 @@ void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 	}
 }
 
-static void	dot_init(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
-	t_grad_prms *clr)
+static void	dot_init(t_build_route *br, t_circle *c)
 {
-	get_delta(a, b, l);
-	l->i = 0;
-	clr->delta = ft_abs(l->d_big);
-	clr->a = a->color;
-	clr->b = b->color;
+	get_delta(&br->a, &br->b, &br->l);
+	br->l.i = 0;
+	br->clr.delta = ft_abs(br->l.d_big);
+	br->clr.a = br->a.color;
+	br->clr.b = br->b.color;
+	c->x = br->a.x;
+	c->y = br->a.y;
 }
 
 void		build_route(t_graph *g, t_dllist *room)
 {
 	t_build_route	br;
+	t_circle		c;
 
-	br.l.img = g->v;
+	br.l.img = g->mask;
 	br.a.thick = ROUTE_THICK;
 	br.b.thick = ROUTE_THICK;
 	br.a.color = ROUTE_COLOR;
 	br.b.color = ROUTE_COLOR;
+	c.r = ROUTE_THICK / 2;
 	while(room->right)
 	{
 		br.croom = (t_list_rooms*)room->content;
@@ -91,8 +94,12 @@ void		build_route(t_graph *g, t_dllist *room)
 		br.croom = (t_list_rooms*)room->right->content;
 		br.b.x = br.croom->x_cord;
 		br.b.y = br.croom->y_cord;
-		dot_init(&br.l, &br.a, &br.b, &br.clr);
+		dot_init(&br, &c);
+		draw_circle(&c, g->mask, 1);
 		build_thick_line(&br.l, &br.a, &br.b, &br.clr);
 		room = room->right;
 	}
+	c.x = br.croom->x_cord;
+	c.y = br.croom->y_cord;
+	draw_circle(&c, g->mask, 1);
 }

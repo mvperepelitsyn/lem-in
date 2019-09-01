@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-int		put_pix_to_img(t_line_prm *l, int x, int y, int color)
+int			put_pix_to_img(t_line_prm *l, int x, int y, int color)
 {
 	int	*image;
 
@@ -11,7 +11,7 @@ int		put_pix_to_img(t_line_prm *l, int x, int y, int color)
 	return (0);
 }
 
-void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos)
+void		set_grad_color(t_grad *g, t_grad_prms *clr, int pos)
 {
 	g->a = (unsigned char*)&clr->a;
 	g->b = (unsigned char*)&clr->b;
@@ -27,33 +27,7 @@ void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos)
 	g->c[g->alpha] = ((g->d_alpha * pos) / clr->delta) + g->a[g->alpha];
 }
 
-
-static void	draw_circle(t_circle *c, t_vis_prms *v)
-{
-	t_line_prm		l;
-	double			xo;
-	double			yo;
-
-	l.img = v;
-	xo = 0;
-	while (xo <= ((sqrt(2) / 2) * c->r))
-	{
-		yo = sqrt((c->r * c->r) - (xo * xo));
-		if ((yo - (int)yo) > 0.5)
-			yo++;
-		put_pix_to_img(&l, (c->x + (int)xo), (c->y + (int)yo), c->clr);
-		put_pix_to_img(&l, (c->x - (int)xo), (c->y + (int)yo), c->clr);
-		put_pix_to_img(&l, (c->x + (int)xo), (c->y - (int)yo), c->clr);
-		put_pix_to_img(&l, (c->x - (int)xo), (c->y - (int)yo), c->clr);
-		put_pix_to_img(&l, (c->x + (int)yo), (c->y + (int)xo), c->clr);
-		put_pix_to_img(&l, (c->x - (int)yo), (c->y + (int)xo), c->clr);
-		put_pix_to_img(&l, (c->x + (int)yo), (c->y - (int)xo), c->clr);
-		put_pix_to_img(&l, (c->x - (int)yo), (c->y - (int)xo), c->clr);
-		xo++;
-	}
-}
-
-void	draw_rooms(t_intldta *indta, t_graph *g)
+void		draw_rooms(t_intldta *indta, t_graph *g)
 {
 	t_list_rooms	*ptr;
 	t_circle		c;
@@ -65,12 +39,12 @@ void	draw_rooms(t_intldta *indta, t_graph *g)
 		c.clr = g->clr[ptr->type];
 		c.x = (ptr->x_cord * g->scale) + (2 * R);
 		c.y = (ptr->y_cord * g->scale) + (2 * R);
-		draw_circle(&c, g->v);
+		draw_circle(&c, g->graph, 0);
 		ptr = ptr->next;
 	}
 }
 
-void	draw_links(t_intldta *indta, t_graph *g)
+void		draw_links(t_intldta *indta, t_graph *g)
 {
 	t_list_links	*ptr;
 	t_dot_prm		a;
@@ -82,13 +56,13 @@ void	draw_links(t_intldta *indta, t_graph *g)
 		a.x = ptr->rm1->x_cord * g->scale + (2 * R);
 		a.y = ptr->rm1->y_cord * g->scale + (2 * R);
 		a.color =  g->clr[ptr->rm1->type];
-		a.thickness = 1;
+		a.thick = 1;
 		b.x = ptr->rm2->x_cord * g->scale + (2 * R);
 		b.y = ptr->rm2->y_cord * g->scale + (2 * R);
 		b.color =  g->clr[ptr->rm2->type];
-		b.thickness = 1;
+		b.thick = 1;
 		trim_line(&a, &b, R);
-		put_line_to_img(g->v, a, b/*, 1*/);
+		put_line_to_img(g->graph, a, b);
 		ptr = ptr->next;
 	}
 }

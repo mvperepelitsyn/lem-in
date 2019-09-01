@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/27 14:36:41 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/31 18:06:54 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 	}
 }
 
-static void	graph_init(t_intldta *indta, t_graph *g, t_vis_prms *v)
+static void	graph_init(t_intldta *indta, t_graph *g)
 {
 	g->min_x = indta->rooms->x_cord;
 	g->min_y = indta->rooms->y_cord;
@@ -56,20 +56,33 @@ static void	graph_init(t_intldta *indta, t_graph *g, t_vis_prms *v)
 		g->delta_x = (g->max_x - g->min_x) * g->scale;
 		g->delta_y = (g->max_y - g->min_y) * g->scale;
 	}
-	v->win_x = g->delta_x + (R * 4);
-	v->win_y = g->delta_y + (R * 4);
-	g->v = v;
+	g->v->win_x = g->delta_x + (R * 4);
+	g->v->win_y = g->delta_y + (R * 4);
+	g->mask->win_x = g->v->win_x;
+	g->mask->win_y = g->v->win_y;
+	g->graph->win_x = g->v->win_x;
+	g->graph->win_y = g->v->win_y;
 	g->clr[0] = R_CLR;
 	g->clr[1] = S_CLR;
 	g->clr[2] = F_CLR;
 }
 
-static void	window_init(t_vis_prms *v)
+static void	window_init(t_vis_prms *v, t_vis_prms *mask, t_vis_prms *graph)
 {
 	v->mlx_ptr = mlx_init();
+	mask->mlx_ptr = v->mlx_ptr;
+	graph->mlx_ptr = v->mlx_ptr;
 	v->win_ptr = mlx_new_window(v->mlx_ptr, v->win_x, v->win_y, "Lem_in");
+	mask->win_ptr = v->win_ptr;
+	graph->win_ptr = v->win_ptr;
 	v->img_ptr = mlx_new_image(v->mlx_ptr, v->win_x, v->win_y);
 	v->img_addr = mlx_get_data_addr(v->img_ptr, &v->bpp, &v->lsz, &v->ndn);
+	mask->img_ptr = mlx_new_image(mask->mlx_ptr, v->win_x, v->win_y);
+	mask->img_addr = mlx_get_data_addr(mask->img_ptr, &mask->bpp, \
+		&mask->lsz, &mask->ndn);
+	graph->img_ptr = mlx_new_image(graph->mlx_ptr, v->win_x, v->win_y);
+	graph->img_addr = mlx_get_data_addr(graph->img_ptr, &graph->bpp, \
+		&graph->lsz, &graph->ndn);
 }
 
 static void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
@@ -92,15 +105,17 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 {
 	t_graph		g;
 	t_vis_prms	v;
+	t_vis_prms	mask;
+	t_vis_prms	graph;
 
-	//ft_printf("\nlili\n");
 	if (!indta->rooms)
 		return ;
-	//ft_printf("\nlolo\n");
-	graph_init(indta, &g, &v);
-	window_init(&v);
+	g.v = &v;
+	g.mask = &mask;
+	g.graph = &graph;
+	graph_init(indta, &g);
+	window_init(&v, &mask, &graph);
 	build_graph(indta, &g, find);
-	//ft_printf("\nlala\n");
 	mlx_put_image_to_window(v.mlx_ptr, v.win_ptr, v.img_ptr, 0, 0);
 	mlx_hook(v.win_ptr, 2, 0, &deal_key, (void*)(&v));
 	mlx_hook(v.win_ptr, 17, 0, &close_vis, (void*)(&v));

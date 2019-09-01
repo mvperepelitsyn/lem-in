@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/30 19:25:02 by uhand            ###   ########.fr       */
+/*   Updated: 2019/08/31 18:34:45 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ typedef struct	s_graph
 	int 		delta_y;
 	int			clr[3];
 	t_vis_prms	*v;
+	t_vis_prms	*mask;
+	t_vis_prms	*graph;
 }				t_graph;
 
 /*
-**	visualizer params: v
+**	visualizer params: v, graph
 */
 
 struct			s_vis_prms
@@ -93,6 +95,9 @@ typedef struct	s_circle
 	int				y;
 	int				r;
 	int				clr;
+	float			xo;
+	float			yo;
+	float			eighth;
 }				t_circle;
 
 /*
@@ -181,5 +186,6 @@ void	build_route(t_graph *g, t_dllist *room);
 void	get_delta(t_dot_prm *a, t_dot_prm *b, t_line_prm *l);
 int		get_coord(t_line_prm *l);
 int		get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos);
+void	draw_circle(t_circle *c, t_vis_prms *v, int fill_prm);
 
 #endif
