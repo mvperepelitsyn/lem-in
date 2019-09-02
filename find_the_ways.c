@@ -1,5 +1,12 @@
 #include "lem_in.h"
 
+static	void	del_t_way(t_way **way)
+{
+	*way = (*way)->prev;
+	free((*way)->next);
+	(*way)->next = NULL;
+}
+
 static	void	free_search_ed(t_search **search, t_search **searched)
 {
 	while ((*search)->prev != NULL)
@@ -47,7 +54,7 @@ void		remove_way_nbr(t_way **ways)
 static	void	print_the_way(t_way **way)
 {
 	t_dllist		*ptr;
-	t_list_rooms	*ptr2;
+	t_list_rooms	**ptr2;
 
 	ptr = (*way)->rooms;
 	ft_putstr("\n");
@@ -55,9 +62,9 @@ static	void	print_the_way(t_way **way)
 	{
 		ptr2 = ptr->content;
 		if (ptr->right != NULL)
-			ft_printf("%s->", ptr2->name);
+			ft_printf("%s->", (*ptr2)->name);
 		else
-			ft_printf("%s", ptr2->name);
+			ft_printf("%s", (*ptr2)->name);
 		ptr = ptr->right;
 	}
 	ft_putstr("\n");
@@ -151,12 +158,12 @@ static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *roo
 	lnks = links;
 	while (lnks)
 	{
-		if (ft_strequ(lnks->room1, room->name) && lnks->rm2->way_nbr > 0)
+		if (ft_strequ(lnks->room1, room->name) && lnks->rm2->way_nbr > 0 && lnks->status == 1)
 		{
 			if (link_breaker(find, lnks->rm2))
 				return (1);
 		}
-		else if (ft_strequ(lnks->room2, room->name) && lnks->rm1->way_nbr > 0)
+		else if (ft_strequ(lnks->room2, room->name) && lnks->rm1->way_nbr > 0 && lnks->status == 1)
 		{
 			if (link_breaker(find, lnks->rm1))
 				return (1);
@@ -169,17 +176,17 @@ static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *roo
 static	int	fill_search(t_find_way **find, t_search **search, t_search **searched)
 {
 	t_search		*tmp;
-	int 			act_lnks;
+	int 			num_lnks;
 	t_list			*ptr;
 	t_list_links	*pt_link;
 	t_search		*ftmp;
 
-	act_lnks = (*search)->rooms->act_lnks;
+	num_lnks = (*search)->rooms->num_lnks;
 	ptr = (*search)->rooms->links;
 	ftmp = *search;
 	while (ftmp->next != NULL)
 		ftmp = ftmp->next;
-	while (act_lnks != 0 || ptr != NULL)
+	while (num_lnks != 0 || ptr != NULL)
 	{
 		tmp = *search;
 		pt_link = ptr->content;
@@ -222,7 +229,7 @@ static	int	fill_search(t_find_way **find, t_search **search, t_search **searched
 			tmp->next->step_nbr = (*search)->step_nbr + 1;
 		}
 		ptr = ptr->next;
-		act_lnks--;
+		num_lnks--;
 	}
 	return (1);
 }
@@ -378,24 +385,20 @@ static	void	way_assignment(t_search *list)
 	}
 }
 
-
 static	void	fill_the_way(t_way **tmp_way, t_search *list)
 {
-	t_way 			*add_way;
-
-	add_way = *tmp_way;
 	make_it_clean(&list);
 	way_assignment(list);
-	add_way->rooms = ft_dllnew((void *)list->rooms, sizeof(t_list_rooms));
+	(*tmp_way)->rooms = ft_dllnew((void *)&(list->rooms), sizeof(t_list_rooms*));
 	list = list->next;
 	while (list->next != NULL)
 	{
-		ft_dlladdnextr(&(add_way->rooms), (void *)list->rooms, sizeof(t_list_rooms));
+		ft_dlladdnextr(&((*tmp_way)->rooms), (void *)&(list->rooms), sizeof(t_list_rooms*));
 		list = list->next;
 	}
-	ft_dlladdnextr(&(add_way->rooms), (void *)list->rooms, sizeof(t_list_rooms));
-	add_way->len_way = list->step_nbr;
-	add_way->status = 1;
+	ft_dlladdnextr(&((*tmp_way)->rooms), (void *)&(list->rooms), sizeof(t_list_rooms*));
+	(*tmp_way)->len_way = list->step_nbr;
+	(*tmp_way)->status = 1;
 }
 
 //TODO: 1. Return smth when we cannot find any new ways in current state
@@ -423,6 +426,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 		(*fnd_way)->ways = (t_way *)ft_memalloc(sizeof(t_way));
 		tmp_way = (*fnd_way)->ways;
 		tmp_way->next = NULL;
+		tmp_way->status = 1;
 		tmp_way->prev = NULL;
 		tmp_way->num_way = 1;
 	}
@@ -433,6 +437,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 			tmp_way = tmp_way->next;
 		tmp_way->next = (t_way *)malloc(sizeof(t_way));
 		tmp_way->next->prev = (*fnd_way)->ways;
+		tmp_way->next->status = 1;
 		tmp_way->next->num_way = tmp_way->num_way + 1;
 		tmp_way->next->next = NULL;
 		tmp_way = tmp_way->next;
@@ -453,6 +458,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	{
 //		remove_way_nbr(&((*fnd_way)->ways)); //removing way_nbr from the rooms
 		free_search_ed(&search, &searched);
+		del_t_way(&tmp_way);
 		return (0);
 	}
 	//the problem is here, i assign searched rooms, not the indta rooms, which is incorrect
@@ -476,7 +482,7 @@ int 	find_the_way(t_intldta *indta)
  	init_set(&find, indta);
 	while (!rec_finding(indta, find))
 		continue ;
-	if (CUR->full_steps == 0 || CUR->steps > PRE->steps)
+	if (PRE && (CUR->full_steps == 0 || CUR->steps > PRE->steps))
 		find->answer = PRE;
 	else
 		find->answer = CUR;

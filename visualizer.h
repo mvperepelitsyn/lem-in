@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <mlx.h>
+//# include <mlx.h>
 # include <math.h>
 #include "lem_in.h"
 

@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/01 14:11:08 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/02 12:13:15 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ typedef struct	s_link_breaker
 {
 	t_way			*way;
 	t_dllist		*wroom;
-	t_list_rooms	*croom;
+	t_list_rooms	**croom;
 	t_list_links	*link;
-	t_list_rooms	*prev_room;
+	t_list_rooms	**prev_room;
 	t_list			*link_ptr;
 }				t_link_breaker;
 
