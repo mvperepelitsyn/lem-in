@@ -6,7 +6,7 @@
 #    By: iiliuk <iiliuk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/02 12:28:41 by iiliuk            #+#    #+#              #
-#    Updated: 2019/08/31 18:52:55 by uhand            ###   ########.fr        #
+#    Updated: 2019/09/02 15:38:36 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = lem-in
 
 HEAD = ./
 SRC = helper.c parser.c find_the_ways.c parser_2.c visualizer.c visualizer_2.c \
-visualizer_3.c visualiser_4.c rec_finding.c link_breaker.c draw_circle.c
+visualizer_3.c visualiser_4.c rec_finding.c link_breaker.c draw_circle.c \
+vis_build_route.c
 
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 

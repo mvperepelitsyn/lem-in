@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/31 18:06:54 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/02 15:47:54 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 {
 	draw_rooms(indta, g);
 	draw_links(indta, g);
-//	build_route(g, find);
+	//build_route(g, find);
 }
 
 static int	get_command(void *prm)
@@ -116,7 +116,7 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 	graph_init(indta, &g);
 	window_init(&v, &mask, &graph);
 	build_graph(indta, &g, find);
-	mlx_put_image_to_window(v.mlx_ptr, v.win_ptr, v.img_ptr, 0, 0);
+	mlx_put_image_to_window(v.mlx_ptr, v.win_ptr, graph.img_ptr, 0, 0);
 	mlx_hook(v.win_ptr, 2, 0, &deal_key, (void*)(&v));
 	mlx_hook(v.win_ptr, 17, 0, &close_vis, (void*)(&v));
 	mlx_loop_hook(v.mlx_ptr, &get_command, (void*)(&v));

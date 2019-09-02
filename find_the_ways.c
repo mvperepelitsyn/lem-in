@@ -234,7 +234,7 @@ static	int	fill_search(t_find_way **find, t_search **search, t_search **searched
 	return (1);
 }
 
-static	int 	what_status(t_list *lnks, char *room)
+/*static	int 	what_status(t_list *lnks, char *room)
 {
 	t_list			*ptr;
 	t_list_links 	*st_lnks;
@@ -249,7 +249,7 @@ static	int 	what_status(t_list *lnks, char *room)
 		ptr = ptr->next;
 	}
 	return (1);
-}
+}*/
 
 void			fill_searched(t_search **searched, t_search **search)
 {
