@@ -140,13 +140,15 @@ static	int 	not_in_searched(char *room, t_search *searched, t_search *search)
 	}
 }
 
-static	void	add_to_searched(t_search **searched, t_list_rooms *end_room, int stp_nbr)
+static	void	add_to_searched(t_search **searched, t_list_rooms *end_room)
 {
-	t_search *srd;
+	t_search	*srd;
+	int 		stp_nbr;
 
 	srd = *searched;
 	while (srd->next != NULL)
 		srd = srd->next;
+	stp_nbr = srd->step_nbr + 1;
 	srd->next = (t_search *)ft_memalloc(sizeof(t_search));
 	srd->next->prev = srd;
 	srd->next->rooms = end_room;
@@ -214,7 +216,7 @@ static	int	fill_search(t_find_way **find, t_search **search, t_search **searched
 			if (pt_link->rm2->type == 2)
 			{
 				fill_searched(searched, search);
-				add_to_searched(searched, pt_link->rm2, (*search)->step_nbr);
+				add_to_searched(searched, pt_link->rm2);
 				return (0);
 			}
 			tmp->next = (t_search *)ft_memalloc(sizeof(t_search));
@@ -232,7 +234,7 @@ static	int	fill_search(t_find_way **find, t_search **search, t_search **searched
 			if (pt_link->rm1->type == 2)
 			{
 				fill_searched(searched, search);
-				add_to_searched(searched, pt_link->rm1, (*search)->step_nbr);
+				add_to_searched(searched, pt_link->rm1);
 				return (0);
 			}
 			tmp->next = (t_search *)ft_memalloc(sizeof(t_search));
