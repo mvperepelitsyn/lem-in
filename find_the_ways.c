@@ -9,21 +9,24 @@ static	void	del_t_way(t_way **way)
 
 static	void	free_search_ed(t_search **search, t_search **searched)
 {
-	while ((*search)->prev != NULL)
-		*search = (*search)->prev;
-	while ((*search)->next != NULL)
+	if ((*search) != NULL)
 	{
-		(*search) = (*search)->next;
-		free((*search)->prev);
-		(*search)->prev = NULL;
+		while ((*search)->prev != NULL)
+			*search = (*search)->prev;
+		while ((*search)->next != NULL)
+		{
+			(*search) = (*search)->next;
+			free((*search)->prev);
+			(*search)->prev = NULL;
+		}
+		if ((*search)->prev != NULL)
+		{
+			free((*search)->prev);
+			(*search)->prev = NULL;
+		}
+		free(*search);
+		*search = NULL;
 	}
-	if ((*search)->prev != NULL)
-	{
-		free((*search)->prev);
-		(*search)->prev = NULL;
-	}
-	free(*search);
-	*search = NULL;
 	if (*searched != NULL)
 		free_search_ed(searched, search);
 
@@ -202,7 +205,7 @@ static	int	fill_search(t_find_way **find, t_search **search, t_search **searched
 	{
 		tmp = *search;
 		pt_link = ptr->content;
-		if (stop_search(find, pt_link, tmp->rooms))
+		if (stop_search(find, pt_link, tmp->rooms)) //search in links that have links with that room todo list
 			return (0);
 		if (ft_strequ(pt_link->room1, (*search)->rooms->name) && not_in_searched(
 				pt_link->room2, *searched, *search)  && pt_link->rm2->way_nbr <
@@ -292,7 +295,11 @@ void			fill_searched(t_search **searched, t_search **search)
 		free(s2);
 		s2 = NULL;
 		(*search)->prev = NULL;
-
+	}
+	else
+	{
+		free(*search);
+		*search = NULL;
 	}
 }
 
@@ -488,7 +495,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	search->way_nbr = tmp_way->num_way;
 	while (1)
 	{
-		if (fill_search(fnd_way, &search, &searched))
+		if (search != NULL && fill_search(fnd_way, &search, &searched))
 			fill_searched(&searched, &search);
 		else
 			break ;
