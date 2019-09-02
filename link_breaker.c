@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   link_breaker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/02 12:15:10 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/02 14:35:51 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,14 @@ int			link_breaker(t_find_way **find, t_list_rooms *room)
 		br.croom = (t_list_rooms **)br.wroom->content;
 		br.croom[0]->way_nbr = -1;
 		br.croom[0]->step_nbr = (br.croom[0]->type != 1) ? -1 : 0;
+		br.link_ptr = br.croom[0]->links;
+		while (br.link_ptr)
+		{
+			br.link = (t_list_links *)br.link_ptr->content;
+			if (br.link->way_nbr == room->way_nbr)
+				br.link->way_nbr = -1;
+			br.link_ptr = br.link_ptr->next;
+		}
 		br.wroom = br.wroom->right;
 	}
 	return (1);
