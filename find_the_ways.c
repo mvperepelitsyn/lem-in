@@ -9,21 +9,24 @@ static	void	del_t_way(t_way **way)
 
 static	void	free_search_ed(t_search **search, t_search **searched)
 {
-	while ((*search)->prev != NULL)
-		*search = (*search)->prev;
-	while ((*search)->next != NULL)
+	if ((*search) != NULL)
 	{
-		(*search) = (*search)->next;
-		free((*search)->prev);
-		(*search)->prev = NULL;
+		while ((*search)->prev != NULL)
+			*search = (*search)->prev;
+		while ((*search)->next != NULL)
+		{
+			(*search) = (*search)->next;
+			free((*search)->prev);
+			(*search)->prev = NULL;
+		}
+		if ((*search)->prev != NULL)
+		{
+			free((*search)->prev);
+			(*search)->prev = NULL;
+		}
+		free(*search);
+		*search = NULL;
 	}
-	if ((*search)->prev != NULL)
-	{
-		free((*search)->prev);
-		(*search)->prev = NULL;
-	}
-	free(*search);
-	*search = NULL;
 	if (*searched != NULL)
 		free_search_ed(searched, search);
 
@@ -162,11 +165,23 @@ static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *roo
 		{
 			if (link_breaker(find, lnks->rm2))
 				return (1);
+			else
+			{
+				lnks->status = 0;
+				lnks->rm1->act_lnks--;
+				lnks->rm2->act_lnks--;
+			}
 		}
 		else if (ft_strequ(lnks->room2, room->name) && lnks->rm1->way_nbr > 0 && lnks->status == 1 && lnks->way_nbr < 0)
 		{
 			if (link_breaker(find, lnks->rm1))
 				return (1);
+			else
+			{
+				lnks->status = 0;
+				lnks->rm1->act_lnks--;
+				lnks->rm2->act_lnks--;
+			}
 		}
 		lnks = lnks->next;
 	}
@@ -190,7 +205,7 @@ static	int	fill_search(t_find_way **find, t_search **search, t_search **searched
 	{
 		tmp = *search;
 		pt_link = ptr->content;
-		if (stop_search(find, pt_link, tmp->rooms))
+		if (stop_search(find, pt_link, tmp->rooms)) //search in links that have links with that room todo list
 			return (0);
 		if (ft_strequ(pt_link->room1, (*search)->rooms->name) && not_in_searched(
 				pt_link->room2, *searched, *search)  && pt_link->rm2->way_nbr <
@@ -261,7 +276,7 @@ void			fill_searched(t_search **searched, t_search **search)
 	if ((*search)->step_nbr == 0)
 	{
 		s1->rooms = s2->rooms;
-		s1->way_nbr = (s2->rooms->type == 0) ? s2->way_nbr : -1;
+		s1->way_nbr = s2->way_nbr;
 		s1->step_nbr = s2->step_nbr;
 	}
 	else
@@ -271,7 +286,7 @@ void			fill_searched(t_search **searched, t_search **search)
 		s1->next = (t_search *)ft_memalloc(sizeof(t_search));
 		s1->next->prev = s1;
 		s1->next->rooms = s2->rooms;
-		s1->next->way_nbr = (s2->rooms->type == 0) ? s2->way_nbr : -1;
+		s1->next->way_nbr = s2->way_nbr;
 		s1->next->step_nbr = s2->step_nbr;
 	}
 	if ((*search)->next != NULL)
@@ -280,7 +295,11 @@ void			fill_searched(t_search **searched, t_search **search)
 		free(s2);
 		s2 = NULL;
 		(*search)->prev = NULL;
-
+	}
+	else
+	{
+		free(*search);
+		*search = NULL;
 	}
 }
 
@@ -379,8 +398,34 @@ static	void	way_assignment(t_search *list)
 	tmp = list;
 	while (tmp)
 	{
-		tmp->rooms->way_nbr = tmp->way_nbr;
+		tmp->rooms->way_nbr = (tmp->rooms->type == 0) ? tmp->way_nbr : -1;
 		tmp->rooms->step_nbr = tmp->step_nbr;
+		tmp = tmp->next;
+	}
+}
+
+static	void	mark_the_way(t_search *list)
+{
+	t_search		*tmp;
+	t_list			*ptr;
+	t_list_links	*lnks;
+
+	tmp = list;
+	while (tmp)
+	{
+		ptr = tmp->rooms->links;
+		while (1 && tmp->rooms->type != 2)
+		{
+			lnks = ptr->content;
+			if ((ft_strequ(lnks->room1, tmp->rooms->name) && ft_strequ(lnks->
+			room2, tmp->next->rooms->name)) || (ft_strequ(lnks->room2, tmp->
+			rooms->name) && ft_strequ(lnks->room1, tmp->next->rooms->name)))
+			{
+				lnks->way_nbr = tmp->way_nbr;
+				break;
+			}
+			ptr = ptr->next;
+		}
 		tmp = tmp->next;
 	}
 }
@@ -389,6 +434,7 @@ static	void	fill_the_way(t_way **tmp_way, t_search *list)
 {
 	make_it_clean(&list);
 	way_assignment(list);
+	mark_the_way(list);
 	(*tmp_way)->rooms = ft_dllnew((void *)&(list->rooms), sizeof(t_list_rooms*));
 	list = list->next;
 	while (list->next != NULL)
@@ -449,7 +495,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	search->way_nbr = tmp_way->num_way;
 	while (1)
 	{
-		if (fill_search(fnd_way, &search, &searched))
+		if (search != NULL && fill_search(fnd_way, &search, &searched))
 			fill_searched(&searched, &search);
 		else
 			break ;
