@@ -162,11 +162,23 @@ static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *roo
 		{
 			if (link_breaker(find, lnks->rm2))
 				return (1);
+			else
+			{
+				lnks->status = 0;
+				lnks->rm1->act_lnks--;
+				lnks->rm2->act_lnks--;
+			}
 		}
 		else if (ft_strequ(lnks->room2, room->name) && lnks->rm1->way_nbr > 0 && lnks->status == 1 && lnks->way_nbr < 0)
 		{
 			if (link_breaker(find, lnks->rm1))
 				return (1);
+			else
+			{
+				lnks->status = 0;
+				lnks->rm1->act_lnks--;
+				lnks->rm2->act_lnks--;
+			}
 		}
 		lnks = lnks->next;
 	}
