@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_way.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/02 12:13:15 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/02 16:32:47 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,18 @@ typedef struct	s_link_breaker
 	t_list_rooms	**prev_room;
 	t_list			*link_ptr;
 }				t_link_breaker;
+
+/*
+** wide_breaker: wr
+*/
+
+typedef struct	s_wide_breaker
+{
+	t_list_rooms	*prev_room;
+	t_list			*link_ptr;
+	t_list_links	*prev_link;
+}				t_wide_breaker;
+
 
 typedef struct s_search
 {

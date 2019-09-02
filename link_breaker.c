@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/02 14:35:51 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/02 16:40:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,34 @@ int			link_breaker(t_find_way **find, t_list_rooms *room)
 		br.wroom = br.wroom->right;
 	}
 	return (1);
+}
+
+void	wide_breaker(t_list_links *link, t_list_rooms *room)
+{
+	t_wide_breaker	wr;
+
+	link->status = 0;
+	ft_printf("%p - incoming addr\n", link);//debug mode
+	if (room->type == 1 || room->act_lnks != 2)
+	{
+		room->act_lnks--;
+		return ;
+	}
+	room->act_lnks--;
+	wr.link_ptr = room->links;
+	while (wr.link_ptr)
+	{
+		wr.prev_link = (t_list_links*)wr.link_ptr->content;
+		ft_printf("%p\n", wr.prev_link);//debug mode
+		if (link != wr.prev_link)
+			break ;
+		wr.link_ptr = wr.link_ptr->next;
+	}
+	if (ft_strequ(room->name, wr.prev_link->room1))
+		wr.prev_room = wr.prev_link->rm1;
+	else
+		wr.prev_room = wr.prev_link->rm2;
+	wide_breaker(wr.prev_link, wr.prev_room);
 }
 
 //int			link_breaker(t_find_way **find, t_list_rooms *room)
