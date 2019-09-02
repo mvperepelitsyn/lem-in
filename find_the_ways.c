@@ -261,7 +261,7 @@ void			fill_searched(t_search **searched, t_search **search)
 	if ((*search)->step_nbr == 0)
 	{
 		s1->rooms = s2->rooms;
-		s1->way_nbr = (s2->rooms->type == 0) ? s2->way_nbr : -1;
+		s1->way_nbr = s2->way_nbr;
 		s1->step_nbr = s2->step_nbr;
 	}
 	else
@@ -271,7 +271,7 @@ void			fill_searched(t_search **searched, t_search **search)
 		s1->next = (t_search *)ft_memalloc(sizeof(t_search));
 		s1->next->prev = s1;
 		s1->next->rooms = s2->rooms;
-		s1->next->way_nbr = (s2->rooms->type == 0) ? s2->way_nbr : -1;
+		s1->next->way_nbr = s2->way_nbr;
 		s1->next->step_nbr = s2->step_nbr;
 	}
 	if ((*search)->next != NULL)
@@ -379,8 +379,34 @@ static	void	way_assignment(t_search *list)
 	tmp = list;
 	while (tmp)
 	{
-		tmp->rooms->way_nbr = tmp->way_nbr;
+		tmp->rooms->way_nbr = (tmp->rooms->type == 0) ? tmp->way_nbr : -1;
 		tmp->rooms->step_nbr = tmp->step_nbr;
+		tmp = tmp->next;
+	}
+}
+
+static	void	mark_the_way(t_search *list)
+{
+	t_search		*tmp;
+	t_list			*ptr;
+	t_list_links	*lnks;
+
+	tmp = list;
+	while (tmp)
+	{
+		ptr = tmp->rooms->links;
+		while (1 && tmp->rooms->type != 2)
+		{
+			lnks = ptr->content;
+			if ((ft_strequ(lnks->room1, tmp->rooms->name) && ft_strequ(lnks->
+			room2, tmp->next->rooms->name)) || (ft_strequ(lnks->room2, tmp->
+			rooms->name) && ft_strequ(lnks->room1, tmp->next->rooms->name)))
+			{
+				lnks->way_nbr = tmp->way_nbr;
+				break;
+			}
+			ptr = ptr->next;
+		}
 		tmp = tmp->next;
 	}
 }
@@ -389,6 +415,7 @@ static	void	fill_the_way(t_way **tmp_way, t_search *list)
 {
 	make_it_clean(&list);
 	way_assignment(list);
+	mark_the_way(list);
 	(*tmp_way)->rooms = ft_dllnew((void *)&(list->rooms), sizeof(t_list_rooms*));
 	list = list->next;
 	while (list->next != NULL)
