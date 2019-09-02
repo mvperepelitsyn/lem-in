@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rec_finding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/29 14:38:16 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/02 17:05:50 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ static int	check_free_rooms(t_list_rooms *start)
 	while (ptr)
 	{
 		link = (t_list_links*)ptr->content;
+		if (!link->status)
+		{
+			ptr = ptr->next;
+			continue;
+		}
 		if (link->rm1 != start)
 			room = link->rm1;
 		else

@@ -117,5 +117,6 @@ int		rec_finding(t_intldta *indta, t_find_way *fnd_wy);
 int		wide_search(t_find_way **fnd_wy, t_intldta **indta);
 int		link_breaker(t_find_way **find, t_list_rooms *room);
 void	remove_way_nbr(t_way **ways);
+void	wide_breaker(t_list_links *link, t_list_rooms *room);
 
 #endif

@@ -164,9 +164,9 @@ void	wide_breaker(t_list_links *link, t_list_rooms *room)
 		wr.link_ptr = wr.link_ptr->next;
 	}
 	if (ft_strequ(room->name, wr.prev_link->room1))
-		wr.prev_room = wr.prev_link->rm1;
-	else
 		wr.prev_room = wr.prev_link->rm2;
+	else
+		wr.prev_room = wr.prev_link->rm1;
 	wide_breaker(wr.prev_link, wr.prev_room);
 }
 

@@ -167,9 +167,8 @@ static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *roo
 				return (1);
 			else
 			{
-				lnks->status = 0;
-				lnks->rm1->act_lnks--;
 				lnks->rm2->act_lnks--;
+				wide_breaker(lnks, lnks->rm1);
 			}
 		}
 		else if (ft_strequ(lnks->room2, room->name) && lnks->rm1->way_nbr > 0 && lnks->status == 1 && lnks->way_nbr < 0)
@@ -178,9 +177,8 @@ static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *roo
 				return (1);
 			else
 			{
-				lnks->status = 0;
 				lnks->rm1->act_lnks--;
-				lnks->rm2->act_lnks--;
+				wide_breaker(lnks, lnks->rm2);
 			}
 		}
 		lnks = lnks->next;
