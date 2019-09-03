@@ -156,14 +156,9 @@ static	void	add_to_searched(t_search **searched, t_list_rooms *end_room)
 	srd->next->step_nbr = stp_nbr + 1;
 }
 
-static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *room)
+static	int stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *room)
 {
-	t_list_links *lnks;
-
-	lnks = links;
-	while (lnks)
-	{
-		if (ft_strequ(lnks->room1, room->name) && lnks->rm2->way_nbr > 0 && lnks->status == 1 && lnks->way_nbr < 0)
+	if (ft_strequ(lnks->room1, room->name) && lnks->rm2->way_nbr > 0 && lnks->status == 1 && lnks->way_nbr < 0)
 		{
 			if (link_breaker(find, lnks->rm2))
 				return (1);
@@ -173,7 +168,7 @@ static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *roo
 				wide_breaker(lnks, lnks->rm1);
 			}
 		}
-		else if (ft_strequ(lnks->room2, room->name) && lnks->rm1->way_nbr > 0 && lnks->status == 1 && lnks->way_nbr < 0)
+	else if (ft_strequ(lnks->room2, room->name) && lnks->rm1->way_nbr > 0 && lnks->status == 1 && lnks->way_nbr < 0)
 		{
 			if (link_breaker(find, lnks->rm1))
 				return (1);
@@ -183,8 +178,6 @@ static	int stop_search(t_find_way **find, t_list_links *links, t_list_rooms *roo
 				wide_breaker(lnks, lnks->rm2);
 			}
 		}
-		lnks = lnks->next;
-	}
 	return (0);
 }
 
@@ -314,9 +307,9 @@ static	int 	it_has_link(t_list_rooms *room1, t_list_rooms *room2)
 	while (ptr1)
 	{
 		lnks = ptr1->content;
-		if ((ft_strequ(rm_1->name, lnks->room1) && ft_strequ(room2->name,
+		if (((ft_strequ(rm_1->name, lnks->room1) && ft_strequ(room2->name,
 				lnks->room2)) || (ft_strequ(room2->name, lnks->room1) &&
-				ft_strequ(rm_1->name, lnks->room2)))
+				ft_strequ(rm_1->name, lnks->room2))) && lnks->status == 1)
 			return (1);
 		ptr1 = ptr1->next;
 	}
