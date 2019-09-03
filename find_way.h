@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_way.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/03 18:11:25 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/03 19:26:01 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ int		link_breaker(t_find_way **find, t_list_rooms *room);
 void	remove_way_nbr(t_way **ways);
 void	wide_breaker(t_list_links *link, t_list_rooms *room);
 void	dead_end_cleaner(t_list_rooms *room);
+void	print_the_way(t_way **way);
 
 #endif

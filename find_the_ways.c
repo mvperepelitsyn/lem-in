@@ -54,7 +54,7 @@ void		remove_way_nbr(t_way **ways)
 	}
 }
 
-static	void	print_the_way(t_way **way)
+void		print_the_way(t_way **way)
 {
 	t_dllist		*ptr;
 	t_list_rooms	**ptr2;
@@ -507,7 +507,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	}
 	//the problem is here, i assign searched rooms, not the indta rooms, which is incorrect
 	fill_the_way(&tmp_way, searched);
-	print_the_way(&tmp_way);
+//	print_the_way(&tmp_way);
 	free_search_ed(&search, &searched);
 	return (1);
 }
