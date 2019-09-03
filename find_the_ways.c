@@ -526,6 +526,8 @@ int 	find_the_way(t_intldta *indta)
  	t_find_way			*find;
 
  	init_set(&find, indta);
+	if (indta->v_flag)
+		visualizer(indta, find);
 	while (!rec_finding(indta, find))
 		continue ;
 	if (PRE && (CUR->full_steps == 0 || CUR->steps > PRE->steps))
@@ -534,7 +536,5 @@ int 	find_the_way(t_intldta *indta)
 		find->answer = CUR;
 	print_the_answer(find->answer);
 //	=> print answer
-//	if (indta->v_flag)
-//		visualizer(indta, find);
  	return (0);
 }

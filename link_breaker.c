@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   link_breaker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/02 17:01:31 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/03 18:10:33 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,40 @@ void	wide_breaker(t_list_links *link, t_list_rooms *room)
 	else
 		wr.prev_room = wr.prev_link->rm1;
 	wide_breaker(wr.prev_link, wr.prev_room);
+}
+
+void	dead_end_cleaner(t_list_rooms *room)
+{
+	t_list			*link_ptr;
+	t_list_links	*link;
+
+	if (room->type == 1 || room->act_lnks > 2)
+	{
+		room->act_lnks--;
+		return ;
+	}
+	link_ptr = room->links;
+	while (link_ptr)
+	{
+		link = (t_list_links*)link_ptr->content;
+		if (link->status)
+			break ;
+		link_ptr = link_ptr->next;
+	}
+	if (!link_ptr)
+	{
+		ft_printf("dead_end_cleaner error");
+		ft_error();
+	}
+	link->status = 0;
+	room->act_lnks--;
+	if (room == link->rm1)
+		room = link->rm2;
+	else if (room == link->rm2)
+		room = link->rm1;
+	else
+		ft_printf("dead_end_cleaner debug message\n");
+	dead_end_cleaner(room);
 }
 
 //int			link_breaker(t_find_way **find, t_list_rooms *room)
