@@ -198,6 +198,11 @@ static	int	fill_search(t_find_way **find, t_search **search, t_search **searched
 	{
 		tmp = *search;
 		pt_link = ptr->content;
+		if (tmp->rooms->act_lnks == 1 && tmp->rooms->type == 0)
+		{
+			dead_end_cleaner(tmp->rooms);
+			return (1);
+		}
 		if (stop_search(find, pt_link, tmp->rooms)) //search in links that have links with that room todo list
 			return (0);
 		if (ft_strequ(pt_link->room1, (*search)->rooms->name) && not_in_searched(
@@ -519,8 +524,8 @@ int 	find_the_way(t_intldta *indta)
  	t_find_way			*find;
 
  	init_set(&find, indta);
-	if (indta->v_flag)
-		visualizer(indta, find);
+//	if (indta->v_flag)
+//		visualizer(indta, find);
 	while (!rec_finding(indta, find))
 		continue ;
 	if (PRE && (CUR->full_steps == 0 || CUR->steps > PRE->steps))
