@@ -481,7 +481,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 		while (tmp_way->next != NULL)
 			tmp_way = tmp_way->next;
 		tmp_way->next = (t_way *)malloc(sizeof(t_way));
-		tmp_way->next->prev = (*fnd_way)->ways;
+		tmp_way->next->prev = (tmp_way);
 		tmp_way->next->status = 1;
 		tmp_way->next->num_way = tmp_way->num_way + 1;
 		tmp_way->next->next = NULL;
