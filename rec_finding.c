@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/04 12:35:13 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/04 15:03:21 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void		print_the_set(t_way_set *set)
 		print_the_way(*ptr);
 		tmp = tmp->next;
 	}
+	ft_printf("\n-------------------\n");
 }
 
 static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)

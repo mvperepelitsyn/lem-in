@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/04 14:50:23 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/04 15:03:21 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,13 +212,4 @@ void	dead_end_cleaner(t_list_rooms *room)
 //	break_links(&br);
 //	while (tmp->num_way != br.way->num_way)
 //		tmp = tmp->next;
-//	br.wroom = br.way->rooms;
-//	while (tmp->rooms)
-//	{
-//		tmp2 = tmp->rooms->content;
-//		tmp2->way_nbr = -1;
-//		tmp2->step_nbr = (tmp2->type != 1) ? -1 : 0;
-//		tmp->rooms = tmp->rooms->right;
-//	}
-//	return (1);
-//}
+//	br.wroo
