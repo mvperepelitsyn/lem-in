@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/04 11:52:08 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/04 19:52:24 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,6 @@ void	wide_breaker(t_list_links *link, t_list_rooms *room);
 void	dead_end_cleaner(t_list_rooms *room);
 void	print_the_way(t_way *way);
 void	print_the_set(t_way_set *set);
+void	fill_the_way(t_way **tmp_way, t_search *list);
 
 #endif
