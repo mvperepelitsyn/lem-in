@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/03 20:14:20 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/04 12:34:20 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,18 @@ static void	count_set_steps(t_intldta *indta, t_way_set *set)
 	set->steps = set->full_steps + c.max_len;
 }
 
-static	void	print_the_set(t_way_set *set)
+void		print_the_set(t_way_set *set)
 {
 	t_list	*tmp;
+	t_way	**ptr;
 
 	tmp = set->ways;
 	ft_printf("\nHere is the set of ways, that we found:\n");
 	ft_printf("\nThe number of steps %d\n", set->steps);
 	while (tmp)
 	{
-		print_the_way((t_way **)(tmp->content));
+		ptr = tmp->content;
+		print_the_way(*ptr);
 		tmp = tmp->next;
 	}
 }

@@ -54,37 +54,43 @@ void		remove_way_nbr(t_way **ways)
 	}
 }
 
-void		print_the_way(t_way **way)
+void		print_the_way(t_way *way)
 {
+	t_way			*tmp;
 	t_dllist		*ptr;
 	t_list_rooms	**ptr2;
+	t_list_rooms	*ptr3;
 
-	ptr = (*way)->rooms;
+	tmp = way;
+	ptr = tmp->rooms;
 	ft_putstr("\n");
 	while (ptr != NULL)
 	{
 		ptr2 = ptr->content;
+		ptr3 = (*ptr2);
 		if (ptr->right != NULL)
-			ft_printf("%s->", (*ptr2)->name);
+			ft_printf("%s->", ptr3->name);
 		else
-			ft_printf("%s", (*ptr2)->name);
+			ft_printf("%s", ptr3->name);
 		ptr = ptr->right;
 	}
 	ft_putstr("\n");
 }
 
-void		print_the_answer(t_way_set	*answer)
-{
-	t_list	*list_ways;
-
-	list_ways = answer->ways;
-	ft_printf("Here is a set of ways, that would be the best for our ant-farm:");
-	while (list_ways)
-	{
-		print_the_way((t_way **)(list_ways->content));
-		list_ways = list_ways->next;
-	}
-}
+//void		print_the_answer(t_way_set	*answer)
+//{
+//	t_list	*list_ways;
+//	t_way	**tmp;
+//
+//	list_ways = answer->ways;
+//	ft_printf("Here is a set of ways, that would be the best for our ant-farm:");
+//	while (list_ways)
+//	{
+//		tmp = list_ways->content;
+//		print_the_way(*tmp);
+//		list_ways = list_ways->next;
+//	}
+//}
 
 static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 {
@@ -532,7 +538,7 @@ int 	find_the_way(t_intldta *indta)
 		find->answer = PRE;
 	else
 		find->answer = CUR;
-	print_the_answer(find->answer);
+	print_the_set(find->answer);
 //	=> print answer
  	return (0);
 }
