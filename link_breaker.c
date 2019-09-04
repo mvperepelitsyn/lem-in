@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/04 13:09:23 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/04 14:50:23 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,10 @@ void	wide_breaker(t_list_links *link, t_list_rooms *room)
 	t_wide_breaker	wr;
 
 	link->status = 0;
+	if (room == link->rm2)
+		link->rm1->act_lnks--;
+	else
+		link->rm2->act_lnks--;
 	if (room->type == 1 || room->act_lnks != 2)
 	{
 		room->act_lnks--;
@@ -150,7 +154,7 @@ void	wide_breaker(t_list_links *link, t_list_rooms *room)
 	while (wr.link_ptr)
 	{
 		wr.prev_link = (t_list_links*)wr.link_ptr->content;
-		if (link != wr.prev_link)
+		if (wr.prev_link->status)
 			break ;
 		wr.link_ptr = wr.link_ptr->next;
 	}

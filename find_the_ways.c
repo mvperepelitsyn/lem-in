@@ -169,20 +169,14 @@ static	int stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *room
 			if (link_breaker(find, lnks->rm2))
 				return (1);
 			else
-			{
-				lnks->rm2->act_lnks--;
 				wide_breaker(lnks, lnks->rm1);
-			}
 		}
 	else if (ft_strequ(lnks->room2, room->name) && lnks->rm1->way_nbr > 0 && lnks->status == 1 && lnks->way_nbr < 0)
 		{
 			if (link_breaker(find, lnks->rm1))
 				return (1);
 			else
-			{
-				lnks->rm1->act_lnks--;
 				wide_breaker(lnks, lnks->rm2);
-			}
 		}
 	return (0);
 }
@@ -449,6 +443,7 @@ static	void	fill_the_way(t_way **tmp_way, t_search *list)
 	ft_dlladdnextr(&((*tmp_way)->rooms), (void *)&(list->rooms), sizeof(t_list_rooms*));
 	(*tmp_way)->len_way = list->step_nbr;
 	(*tmp_way)->status = 1;
+	print_the_way(*tmp_way);
 }
 
 //TODO: 1. Return smth when we cannot find any new ways in current state
