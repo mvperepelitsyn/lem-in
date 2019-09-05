@@ -48,8 +48,8 @@ int 	find_the_way(t_intldta *indta)
  	t_find_way			*find;
 
  	init_set(&find, indta);
-//	if (indta->v_flag)
-//		visualizer(indta, find);
+	// if (indta->v_flag)
+	// 	visualizer(indta, find);
 	while (!rec_finding(indta, find))
 		continue ;
 	if (PRE && (CUR->full_steps == -1 || CUR->steps > PRE->steps))
