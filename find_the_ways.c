@@ -20,6 +20,9 @@ void			print_the_way(t_way *way)
 			ft_printf("%s", ptr3->name);
 		ptr = ptr->right;
 	}
+	ft_printf("\t:%d", (*way).len_way);
+	if ((*way).len_way == 60)
+		(*way).len_way = 60;
 	ft_putstr("\n");
 }
 
@@ -50,6 +53,7 @@ int 	find_the_way(t_intldta *indta)
  	init_set(&find, indta);
 //	if (indta->v_flag)
 //		visualizer(indta, find);
+	rev_wide_search(&indta);
 	while (!rec_finding(indta, find))
 		continue ;
 	if (PRE && (CUR->full_steps == -1 || CUR->steps > PRE->steps))

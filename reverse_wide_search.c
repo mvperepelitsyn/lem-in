@@ -4,6 +4,46 @@
 
 #include "lem_in.h"
 
+static	void	rev_help_fill_searched(t_search **s1, t_search **s2)
+{
+	if ((*s2)->step_nbr == 0)
+	{
+		(*s1)->rooms = (*s2)->rooms;
+		(*s1)->step_nbr = (*s2)->step_nbr;
+	}
+	else
+	{
+		while ((*s1)->next != NULL)
+			*s1 = (*s1)->next;
+		(*s1)->next = (t_search *)ft_memalloc(sizeof(t_search));
+		(*s1)->next->prev = *s1;
+		(*s1)->next->rooms = (*s2)->rooms;
+		(*s1)->next->step_nbr = (*s2)->step_nbr;
+	}
+}
+
+static	void	rev_fill_searched(t_search **searched, t_search **search)
+{
+	t_search	*s1;
+	t_search	*s2;
+
+	s1 = *searched;
+	s2 = *search;
+	rev_help_fill_searched(&s1, &s2);
+	if ((*search)->next != NULL)
+	{
+		*search = (*search)->next;
+		free(s2);
+		s2 = NULL;
+		(*search)->prev = NULL;
+	}
+	else
+	{
+		free(*search);
+		*search = NULL;
+	}
+}
+
 static	void	set_start_status(t_list_rooms *start)
 {
 	t_list			*ptr;
@@ -11,30 +51,102 @@ static	void	set_start_status(t_list_rooms *start)
 
 	ptr = start->links;
 	while (ptr)
-
-
+	{
+		pt_lnk = ptr->content;
+		pt_lnk->status = 0;
+		start->act_lnks--;
+		ptr = ptr->next;
+	}
 }
 
-int		rev_wide_search(t_find_way **fnd_way, t_intldta **indta)
+static	int	rev_help_fill_search(t_list_rooms **room, t_search **search,
+		t_search **tmp)
+{
+	while ((*tmp)->next != NULL)
+		*tmp = (*tmp)->next;
+	if ((*room)->type == 1)
+	{
+		(*room)->act_lnks++;
+		return (1);
+	}
+	(*tmp)->next = (t_search *)ft_memalloc(sizeof(t_search));
+	(*tmp)->next->prev = *tmp;
+	(*tmp)->next->rooms = *room;
+	(*tmp)->next->step_nbr = (*search)->step_nbr + 1;
+	return (0);
+}
+
+static	int	rev_help_fill_search2(t_list_links *lnk, t_search **srch, t_search
+**srchd, t_search **tmp)
+{
+	char *name;
+
+	name = (*srch)->rooms->name;
+	if (ft_strequ(lnk->room1, name) && not_in_searched(lnk->room2, *srchd,
+			*srch) && lnk->rm2->way_nbr < 0 && (lnk->status == 1 || lnk->rm2->type == 1))
+	{
+		if (rev_help_fill_search(&lnk->rm2, srch, tmp))
+			lnk->status = 1;
+		else if (ft_strequ(lnk->room2, name) && not_in_searched(lnk->room1,
+				*srchd, *srch) && lnk->rm1-> way_nbr < 0)
+		{
+			if (rev_help_fill_search(&lnk->rm1, srch, tmp))
+				lnk->status = 1;
+		}
+	}
+	else if (ft_strequ(lnk->room2, name) && not_in_searched(lnk->room1, *srchd,
+			*srch) && lnk->rm1->way_nbr < 0 && (lnk->status == 1 || lnk->rm1->type == 1))
+	{
+		if (rev_help_fill_search(&lnk->rm1, srch, tmp))
+			lnk->status = 1;
+		else if (ft_strequ(lnk->room1, name) && not_in_searched(lnk->room2,
+				*srchd, *srch) && lnk->rm2-> way_nbr < 0)
+		{
+			if (rev_help_fill_search(&lnk->rm2, srch, tmp))
+				lnk->status = 1;
+		}
+	}
+	return (0);
+}
+
+static	int		rev_fill_search(t_search **srch, t_search **srchd)
+{
+	int				num_lnks;
+	t_list			*ptr;
+	t_list_links	*pt_link;
+	t_search		*tmp;
+
+	num_lnks = (*srch)->rooms->num_lnks;
+	ptr = (*srch)->rooms->links;
+	while (num_lnks != 0 || ptr != NULL)
+	{
+		tmp = *srch;
+		pt_link = ptr->content;
+		if (rev_help_fill_search2(pt_link, srch, srchd, &tmp))
+			return (0);
+		ptr = ptr->next;
+		num_lnks--;
+	}
+	return (1);
+}
+
+int				rev_wide_search(t_intldta **indta)
 {
 	t_search	*search;
 	t_search	*searched;
 
+	set_start_status((*indta)->start_room);
 	search = (t_search *)ft_memalloc(sizeof(t_search));
 	searched = (t_search *)ft_memalloc(sizeof(t_search));
 	search->rooms = (*indta)->end_room;
 	search->step_nbr = 0;
-	search->way_nbr = tmp_way->num_way;
 	while (1)
 	{
-		if (search != NULL && fill_search(fnd_way, &search, &searched))
-			fill_searched(&searched, &search);
+		if (search != NULL && rev_fill_search(&search, &searched))
+			rev_fill_searched(&searched, &search);
 		else
 			break ;
 	}
-	if (!end_searched(&searched, &search, &tmp_way))
-		return (0);
-	fill_the_way(&tmp_way, searched);
 	free_search_ed(&search, &searched);
 	return (1);
 }

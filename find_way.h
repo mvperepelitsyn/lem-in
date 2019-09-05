@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_way.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/05 12:46:08 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/05 16:09:07 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,11 @@ void	fill_the_way(t_way **tmp_way, t_search *list);
 void	free_search_ed(t_search **search, t_search **searched);
 int		not_in_searched(char *rm, t_search *searched, t_search *search);
 void	add_to_searched(t_search **searched, t_list_rooms *end_room);
-int		fill_search(t_find_way **find, t_search **search, t_search **searched);
+int		fill_search(t_find_way **find, t_search **search, t_search **searched,
+		t_intldta **indta);
 void	del_t_list_room(t_search **room);
 int		it_has_link(t_list_rooms *room1, t_list_rooms *room2);
 void	make_it_clean(t_search **lst_rooms);
-int		rev_wide_search(t_find_way **fnd_way, t_intldta **indta);
+int		rev_wide_search(t_intldta **indta);
 
 #endif

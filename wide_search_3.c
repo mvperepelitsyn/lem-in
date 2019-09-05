@@ -4,7 +4,8 @@
 
 #include "lem_in.h"
 
-static	int stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm)
+static	int stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm,
+		t_intldta **indta)
 {
 	if (ft_strequ(lnks->room1, rm->name) && lnks->rm2->way_nbr > 0 &&
 		lnks->status == 1 && lnks->way_nbr < 0)
@@ -12,7 +13,10 @@ static	int stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm)
 		if (link_breaker(find, lnks->rm2))
 			return (1);
 		else
+		{
 			wide_breaker(lnks, lnks->rm1);
+			rev_wide_search(indta);
+		}
 	}
 	else if (ft_strequ(lnks->room2, rm->name) && lnks->rm1->way_nbr > 0 &&
 			 lnks->status == 1 && lnks->way_nbr < 0)
@@ -20,7 +24,10 @@ static	int stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm)
 		if (link_breaker(find, lnks->rm1))
 			return (1);
 		else
+		{
 			wide_breaker(lnks, lnks->rm2);
+			rev_wide_search(indta);
+		}
 	}
 	return (0);
 }
@@ -77,7 +84,8 @@ static	int	help_fill_search2(t_list_links *lnk, t_search **srch, t_search
 	return (0);
 }
 
-int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched)
+int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched,
+		t_intldta **indta)
 {
 	int				num_lnks;
 	t_list			*ptr;
@@ -95,7 +103,7 @@ int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched)
 			dead_end_cleaner(tmp->rooms);
 			return (1);
 		}
-		if (stop_search(fnd, pt_link, tmp->rooms))
+		if (stop_search(fnd, pt_link, tmp->rooms, indta))
 			return (0);
 		if (help_fill_search2(pt_link, srch, searched, &tmp))
 			return (0);
