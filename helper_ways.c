@@ -59,7 +59,7 @@ void	fill_the_way(t_way **tmp_way, t_search *list)
 	}
 	ft_dlladdnextr(&((*tmp_way)->rooms), (void *)&(list->rooms),
 				   sizeof(t_list_rooms*));
-	(*tmp_way)->len_way = list->step_nbr;
+	(*tmp_way)->len_way = list->step_nbr - 1;
 	(*tmp_way)->status = 1;
 	ft_printf("\nI find the way!");
 	print_the_way(*tmp_way);

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/05 14:13:50 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/05 15:28:34 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	count_set_steps(t_intldta *indta, t_way_set *set)
 	else
 	{
 		c.steps = (indta->num_ants - c.pre_lems) / set->ways_cnt;
-		if (c.steps > (int)c.steps)
+		if (c.steps > (int)c.steps/* && !(indta->num_ants == c.pre_lems)*/)
 			c.steps++;
 		set->full_steps = (int)c.steps;
 	}
