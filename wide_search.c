@@ -6,9 +6,17 @@
 
 static	void	del_t_way(t_way **way)
 {
-	*way = (*way)->prev;
-	free((*way)->next);
-	(*way)->next = NULL;
+	if ((*way)->next == NULL && (*way)->prev == NULL)
+	{
+		free(*way);
+		*way = NULL;
+	}
+	else
+	{
+		*way = (*way)->prev;
+		free((*way)->next);
+		(*way)->next = NULL;
+	}
 }
 
 static int		end_searched(t_search **searched, t_search **search, t_way **wy)
