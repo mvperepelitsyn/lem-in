@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 14:57:34 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 15:39:33 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/05 12:37:32 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_dlldel(t_dllist **alst, void (*del)(void*, size_t))
 	right = alst[0]->right;
 	left = alst[0]->left;
 	ft_dlldeltoright(&right, del);
-	ft_dlldeltoright(&right, del);
+	ft_dlldeltoleft(&left, del);
 	ft_dlldelone(alst, del);
 	alst = NULL;
 }
