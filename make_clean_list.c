@@ -6,17 +6,20 @@
 
 static	int		make_it_clean_help2(t_search **tmp, t_search **tmp2, int i)
 {
-	if ((((*tmp)->step_nbr >= (*tmp)->next->step_nbr) ||
-		 !it_has_link((*tmp)->rooms, (*tmp)->next->rooms) ||
-		 !it_has_link((*tmp)->rooms, (*tmp)->prev->rooms)) && i == 1)
-		return (1);
-	if ((!it_has_link((*tmp)->rooms, (*tmp)->prev->rooms) &&
-		 (*tmp)->step_nbr < (*tmp)->next->step_nbr &&
-		 it_has_link((*tmp)->rooms, (*tmp)->next->rooms)) && i == 2)
-		return (1);
-	if ((it_has_link((*tmp)->rooms, (*tmp2)->rooms) &&
-		 (*tmp2)->step_nbr < (*tmp)->step_nbr) && i == 3)
-		return (1);
+	if (i == 1)
+		if (((*tmp)->step_nbr >= (*tmp)->next->step_nbr) || !it_has_link((*tmp)
+		->rooms, (*tmp)->next->rooms) || !it_has_link((*tmp)->rooms, (*tmp)->
+		prev->rooms))
+			return (1);
+	if (i == 2)
+		if (!it_has_link((*tmp)->rooms, (*tmp)->prev->rooms) && (*tmp)->step_nbr
+		        < (*tmp)->next->step_nbr && it_has_link((*tmp)->rooms, (*tmp)->
+		        next->rooms))
+			return (1);
+	if (i == 3)
+		if (it_has_link((*tmp)->rooms, (*tmp2)->rooms) && (*tmp2)->step_nbr <
+		        (*tmp)->step_nbr)
+			return (1);
 	return (0);
 }
 
