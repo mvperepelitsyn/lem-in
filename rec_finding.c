@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/05 13:09:03 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/05 14:13:50 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 	if (!find->sets)
 		find->sets = find->crnt_set;
 	print_the_set(find->crnt_set);
-	ft_printf("-----------------\n");
 }
 
 static int	check_set_load(t_find_way *find, t_intldta *indta)

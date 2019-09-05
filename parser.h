@@ -1,7 +1,7 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# define NAME "test_map" //DO NOT FORGET TO REMOVE IT
+# define NAME "test.lemin" //DO NOT FORGET TO REMOVE IT
 
 #include "lem_in.h"
 
