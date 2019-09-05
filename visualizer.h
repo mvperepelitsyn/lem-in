@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/05 16:32:10 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/05 20:39:12 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ typedef struct	s_build_route
 	t_dot_prm		a;
 	t_dot_prm		b;
 	t_grad_prms		clr;
-	t_list_rooms	*croom;
+	t_list_rooms	**croom;
 }				t_build_route;
 
 void	visualizer(t_intldta *indta, t_find_way *find);

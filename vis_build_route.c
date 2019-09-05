@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/05 12:46:14 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/05 21:00:49 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		build_route(t_graph *g, t_dllist *room)
 	t_build_route	br;
 	t_circle		c;
 
-	br.l.img = g->mask;
+	br.l.img = g->graph;
 	br.a.thick = ROUTE_THICK;
 	br.b.thick = ROUTE_THICK;
 	br.a.color = ROUTE_COLOR;
@@ -88,18 +88,18 @@ void		build_route(t_graph *g, t_dllist *room)
 	c.r = ROUTE_THICK / 2;
 	while(room->right)
 	{
-		br.croom = (t_list_rooms*)room->content;
-		br.a.x = br.croom->x_cord;
-		br.a.y = br.croom->y_cord;
-		br.croom = (t_list_rooms*)room->right->content;
-		br.b.x = br.croom->x_cord;
-		br.b.y = br.croom->y_cord;
+		br.croom = room->content;
+		br.a.x = (*br.croom)->x_cord;
+		br.a.y = (*br.croom)->y_cord;
+		br.croom = room->right->content;
+		br.b.x = (*br.croom)->x_cord;
+		br.b.y = (*br.croom)->y_cord;
 		dot_init(&br, &c);
-		draw_circle(&c, g->mask, 1);
+		draw_circle(&c, g->graph, 1);
 		build_thick_line(&br.l, &br.a, &br.b, &br.clr);
 		room = room->right;
 	}
-	c.x = br.croom->x_cord;
-	c.y = br.croom->y_cord;
+	c.x = (*br.croom)->x_cord;
+	c.y = (*br.croom)->y_cord;
 	draw_circle(&c, g->mask, 1);
 }

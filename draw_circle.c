@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 18:51:10 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/31 19:01:55 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/05 20:56:07 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	fill_circle(t_circle *c, t_line_prm *l)
 		put_pix_to_img(l, (c->x - (int)c->yo), (c->y + i), c->clr);
 		put_pix_to_img(l, (c->x + (int)c->yo), (c->y - i), c->clr);
 		put_pix_to_img(l, (c->x - (int)c->yo), (c->y - i), c->clr);
+		i++;
 	}
 }
 
