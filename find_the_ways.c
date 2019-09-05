@@ -52,7 +52,7 @@ int 	find_the_way(t_intldta *indta)
 //		visualizer(indta, find);
 	while (!rec_finding(indta, find))
 		continue ;
-	if (PRE && (CUR->full_steps == 0 || CUR->steps > PRE->steps))
+	if (PRE && (CUR->full_steps == -1 || CUR->steps > PRE->steps))
 		find->answer = PRE;
 	else
 		find->answer = CUR;

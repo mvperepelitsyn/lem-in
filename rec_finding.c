@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/05 12:45:52 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/05 13:09:03 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	count_set_steps(t_intldta *indta, t_way_set *set)
 	}
 	c.pre_lems += set->ways_cnt * c.max_len;
 	if (c.pre_lems > indta->num_ants)
-		set->full_steps = 0;
+		set->full_steps = -1;
 	else
 	{
 		c.steps = (indta->num_ants - c.pre_lems) / set->ways_cnt;
@@ -141,7 +141,7 @@ static int	check_set_load(t_find_way *find, t_intldta *indta)
 int			rec_finding(t_intldta *indta, t_find_way *find)
 {
 	if (find->crnt_set && (find->crnt_set->ways_cnt == indta->num_ants || \
-		CUR->full_steps == 0 || (PRE && CUR->steps > PRE->steps) || \
+		CUR->full_steps == -1 || (PRE && CUR->steps > PRE->steps) || \
 		!check_free_rooms(indta->start_room)))
 		return (1);
 	if (wide_search(&find, &indta))
