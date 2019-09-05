@@ -52,12 +52,16 @@ static	int	help_fill_search2(t_list_links *lnk, t_search **srch, t_search
 	name = (*srch)->rooms->name;
 	if (ft_strequ(lnk->room1, name) && not_in_searched(lnk-> room2, *srchd,
 			*srch) && lnk->rm2->way_nbr < 0 && lnk->status == 1)
+	{
 		if (help_fill_search(&lnk->rm2, srch, srchd, tmp))
 			return (1);
 		else if (ft_strequ(lnk->room2, name) && not_in_searched(lnk->room1,
-				*srchd, *srch) && lnk->rm1-> way_nbr < 0 && lnk->status == 1)
+			*srchd, *srch) && lnk->rm1-> way_nbr < 0 && lnk->status == 1)
+		{
 			if (help_fill_search(&lnk->rm1, srch, srchd, tmp))
 				return (1);
+		}
+	}
 	return (0);
 }
 
