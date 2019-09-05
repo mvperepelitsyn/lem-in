@@ -127,5 +127,6 @@ int		fill_search(t_find_way **find, t_search **search, t_search **searched);
 void	del_t_list_room(t_search **room);
 int		it_has_link(t_list_rooms *room1, t_list_rooms *room2);
 void	make_it_clean(t_search **lst_rooms);
+int		rev_wide_search(t_find_way **fnd_way, t_intldta **indta);
 
 #endif
