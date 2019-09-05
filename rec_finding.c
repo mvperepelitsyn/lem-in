@@ -91,10 +91,8 @@ static void	add_new_set(t_find_way *find, t_intldta *indta, int ways_cnt)
 	t_way_set	*set;
 	t_way		*ptr;
 
-	if (!(set = (t_way_set*)malloc(sizeof(t_way_set))))
+	if (!(set = (t_way_set*)ft_memalloc(sizeof(t_way_set))))
 		ft_malloc_error();
-	set->ways = NULL;
-	set->next = NULL;
 	set->ways_cnt = ways_cnt;
 	ptr = find->ways;
 	while (ptr)

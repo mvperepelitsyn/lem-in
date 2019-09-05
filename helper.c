@@ -14,7 +14,6 @@ void	help_fill_list_rooms(char **rms, t_list_rooms **current, short type)
 	(*current)->way_nbr = -1;
 	(*current)->step_nbr = -1;
 	(*current)->status = 0;
-//	test_coord((*current)->x_cord, (*current)->y_cord);
 }
 
 void	ft_malloc_error(void)
@@ -28,13 +27,6 @@ void 	ft_error(void)
 	ft_putstr("ERROR\n");
 	exit(69);
 }
-
-//void	test_coord(long int x, long int y)
-//{
-//	if ((x > 2147483647 || x < -2147483648) || (y > 2147483647 || y <
-//	        -2147483648))
-//		ft_error();
-//}
 
 void	test_double_room(const char *rm, t_intldta **indta)
 {

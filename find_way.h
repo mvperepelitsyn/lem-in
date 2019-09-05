@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/04 19:52:24 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/05 11:31:15 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,16 +111,21 @@ typedef struct s_search
 }				t_search;
 
 int 	find_the_way(t_intldta *indta);
-void	cpy_t_list_room(t_list_rooms *dest, t_list_rooms *src, int way_nbr);
 void	fill_searched(t_search **searched, t_search **search);
 int		rec_finding(t_intldta *indta, t_find_way *fnd_wy);
 int		wide_search(t_find_way **fnd_wy, t_intldta **indta);
 int		link_breaker(t_find_way **find, t_list_rooms *room);
-void	remove_way_nbr(t_way **ways);
 void	wide_breaker(t_list_links *link, t_list_rooms *room);
 void	dead_end_cleaner(t_list_rooms *room);
 void	print_the_way(t_way *way);
 void	print_the_set(t_way_set *set);
 void	fill_the_way(t_way **tmp_way, t_search *list);
+void	free_search_ed(t_search **search, t_search **searched);
+int		not_in_searched(char *rm, t_search *searched, t_search *search);
+void	add_to_searched(t_search **searched, t_list_rooms *end_room);
+int		fill_search(t_find_way **find, t_search **search, t_search **searched);
+void	del_t_list_room(t_search **room);
+int		it_has_link(t_list_rooms *room1, t_list_rooms *room2);
+void	make_it_clean(t_search **lst_rooms);
 
 #endif
