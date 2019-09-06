@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/05 20:32:37 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/06 12:42:34 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ static void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 
 	draw_rooms(indta, g);
 	draw_links(indta, g);
-	ptr = find->answer->ways;
-	way = ptr->content;
-	room = (*way)->rooms;
-	build_route(g, room);
+	// ptr = find->answer->ways;
+	// way = ptr->content;
+	// room = (*way)->rooms;
+	// build_route(g, room);
 }
 
 static int	get_command(void *prm)
