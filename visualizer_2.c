@@ -44,6 +44,16 @@ void		draw_rooms(t_intldta *indta, t_graph *g)
 	}
 }
 
+void	transparent(int *color, unsigned char clarity, t_vis_prms *v)
+{
+	int				alpha;
+	unsigned char	*clr;
+
+	alpha  = (v->ndn == 0) ? 3 : 0;
+	clr = (unsigned char*)color;
+	clr[alpha] = clarity;
+}
+
 void		draw_links(t_intldta *indta, t_graph *g)
 {
 	t_list_links	*ptr;
@@ -62,6 +72,12 @@ void		draw_links(t_intldta *indta, t_graph *g)
 		b.color =  g->clr[ptr->rm2->type];
 		b.thick = 1;
 		trim_line(&a, &b, R);
+		if (!ptr->status)
+		{
+			transparent(&a.color, 200, g->graph);
+			transparent(&b.color, 200, g->graph);
+			ft_printf("lala\n");
+		}
 		put_line_to_img(g->graph, a, b);
 		ptr = ptr->next;
 	}
