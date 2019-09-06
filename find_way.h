@@ -80,6 +80,7 @@ typedef struct	s_count_steps
 
 typedef struct	s_link_breaker
 {
+	int 			room_nbr;
 	t_way			*way;
 	t_dllist		*wroom;
 	t_list_rooms	**croom;
