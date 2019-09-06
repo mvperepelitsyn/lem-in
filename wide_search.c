@@ -62,31 +62,40 @@ static	void	init_way(t_find_way **fnd_way)
 	}
 }
 
+//static	void	init_search(t_wide_search **ws, t_intldta **indta, t_way *tmp_w)
+//{
+//	(*ws)->search = (t_search *)ft_memalloc(sizeof(t_search));
+//	(*ws)->searched = (t_search *)ft_memalloc(sizeof(t_search));
+//	(*ws)->search->rooms = (*indta)->start_room;
+//	(*ws)->search->step_nbr = 0;
+//	(*ws)->search->way_nbr = tmp_w->num_way;
+//}
+
 int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 {
-	t_search	*search;
-	t_search	*searched;
-	t_way		*tmp_way;
+	t_search		*srch;
+	t_search		*srched;
+	t_way			*tmp_way;
 
 	init_way(fnd_way);
 	tmp_way = (*fnd_way)->ways;
 	while (tmp_way->next != NULL)
 		tmp_way = tmp_way->next;
-	search = (t_search *)ft_memalloc(sizeof(t_search));
-	searched = (t_search *)ft_memalloc(sizeof(t_search));
-	search->rooms = (*indta)->start_room;
-	search->step_nbr = 0;
-	search->way_nbr = tmp_way->num_way;
+	srch = (t_search *)ft_memalloc(sizeof(t_search));
+	srched = (t_search *)ft_memalloc(sizeof(t_search));
+	srch->rooms = (*indta)->start_room;
+	srch->step_nbr = 0;
+	srch->way_nbr = tmp_way->num_way;
 	while (1)
 	{
-		if (search != NULL && fill_search(fnd_way, &search, &searched, indta))
-			fill_searched(&searched, &search);
+		if (srch != NULL && fill_search(fnd_way, &srch, &srched, indta))
+			fill_searched(&srched, &srch);
 		else
 			break ;
 	}
-	if (!end_searched(&searched, &search, &tmp_way, indta))
+	if (!end_searched(&srched, &srch, &tmp_way, indta) && link_breaker(fnd_way))
 		return (0);
-	fill_the_way(&tmp_way, searched);
-	free_search_ed(&search, &searched);
+	fill_the_way(&tmp_way, srched);
+	free_search_ed(&srch, &srched);
 	return (1);
 }
