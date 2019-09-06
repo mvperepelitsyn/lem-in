@@ -19,7 +19,8 @@ static	void	del_t_way(t_way **way)
 	}
 }
 
-static int		end_searched(t_search **searched, t_search **search, t_way **wy)
+static int		end_searched(t_search **searched, t_search **search, t_way
+**wy, t_intldta **indta)
 {
 	t_search *tmp;
 
@@ -30,6 +31,7 @@ static int		end_searched(t_search **searched, t_search **search, t_way **wy)
 		return (1);
 	free_search_ed(search, searched);
 	del_t_way(wy);
+	rev_wide_search(indta);
 	return (0);
 }
 
@@ -77,12 +79,12 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	search->way_nbr = tmp_way->num_way;
 	while (1)
 	{
-		if (search != NULL && fill_search(fnd_way, &search, &searched))
+		if (search != NULL && fill_search(fnd_way, &search, &searched, indta))
 			fill_searched(&searched, &search);
 		else
 			break ;
 	}
-	if (!end_searched(&searched, &search, &tmp_way))
+	if (!end_searched(&searched, &search, &tmp_way, indta))
 		return (0);
 	fill_the_way(&tmp_way, searched);
 	free_search_ed(&search, &searched);
