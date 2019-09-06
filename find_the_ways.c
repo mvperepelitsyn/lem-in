@@ -51,8 +51,8 @@ int 	find_the_way(t_intldta *indta)
  	t_find_way			*find;
 
  	init_set(&find, indta);
-//	if (indta->v_flag)
-//		visualizer(indta, find);
+	if (indta->v_flag)
+		visualizer(indta, find);
 	rev_wide_search(&indta);
 	while (!rec_finding(indta, find))
 		continue ;
@@ -61,8 +61,8 @@ int 	find_the_way(t_intldta *indta)
 	else
 		find->answer = CUR;
 	print_the_answer(find->answer);
-	if (indta->v_flag)
-		visualizer(indta, find);
+	// if (indta->v_flag)
+	// 	visualizer(indta, find);
 //	=> print answer
  	return (0);
 }

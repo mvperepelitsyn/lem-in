@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/06 12:42:34 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/06 15:44:37 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	graph_init(t_intldta *indta, t_graph *g)
 		g->delta_x = (g->max_x - g->min_x) * g->scale;
 		g->delta_y = (g->max_y - g->min_y) * g->scale;
 	}
+	 // if (!g->scale)
+	 // 	coord_redef();
 	g->v->win_x = g->delta_x + (R * 4);
 	g->v->win_y = g->delta_y + (R * 4);
 	g->mask->win_x = g->v->win_x;
