@@ -34,7 +34,7 @@ void		print_the_answer(t_way_set	*answer)
 
 static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 {
- 	if (!((*fnd_wy) = (t_find_way *)malloc(sizeof(t_find_way))))
+ 	if (!((*fnd_wy) = (t_find_way *)ft_memalloc(sizeof(t_find_way))))
  		ft_malloc_error();
  	//TODO: It's needed to make an inisialisation for crnt_set and prev_set
 // 	if (!((*fnd_wy)->ways = (t_way *)malloc(sizeof(t_way))))
@@ -44,6 +44,7 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 	(*fnd_wy)->sets = NULL;
 	(*fnd_wy)->crnt_set = NULL;
 	(*fnd_wy)->way_nbr = 0;
+	(*fnd_wy)->del_room = NULL;
 }
 
 int 	find_the_way(t_intldta *indta)

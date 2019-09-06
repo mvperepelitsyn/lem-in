@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/06 15:49:19 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/06 18:51:23 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	check_link(t_list_links	*link, t_list_rooms *croom, \
 
 static void	break_links(t_link_breaker *br)
 {
-	while (br->wroom)
+	while (br->wroom->left)
 	{
 		br->croom = (t_list_rooms **)br->wroom->content;
 		br->prev_room = (t_list_rooms **)(br->wroom->left->content);
@@ -107,16 +107,28 @@ static void	break_links(t_link_breaker *br)
 
 //TODO LIST: link_breaker changes status of the link, BUT does not change the state of rooms
 
-int			link_breaker(t_find_way **find, t_list_rooms *room)
+int 		pre_link_breaker(t_find_way **fnd, t_list_rooms *room)
+{
+	t_link_breaker br;
+
+	find_cur_room(&br, fnd, room);
+	if (check_connection(br.wroom))
+	{
+		if ((*fnd)->del_room == NULL)
+			(*fnd)->del_room = room;
+		return (1);
+	}
+	return (0);
+}
+
+int			link_breaker(t_find_way **find)
 {
 	t_link_breaker	br;
 
-	find_cur_room(&br, find, room);
-	if (!check_connection(br.wroom))
-		return (0);
+	find_cur_room(&br, find, (*find)->del_room);
 	break_links(&br);
 	br.way->status = 0;
-	br.room_nbr = room->way_nbr;
+	br.room_nbr = (*find)->del_room->way_nbr;
 	br.wroom = br.way->rooms;
 	while (br.wroom)
 	{
