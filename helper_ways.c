@@ -50,7 +50,7 @@ void	fill_the_way(t_way **tmp_way, t_search *list)
 	tmp = *tmp_way;
 	while (tmp->next)
 		tmp = tmp->next;
-	make_it_clean(&list);
+//	make_it_clean(&list);
 	way_assignment(list);
 	mark_the_way(list);
 	tmp->rooms = ft_dllnew((void *)&(list->rooms), sizeof(t_list_rooms*));

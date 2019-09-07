@@ -39,7 +39,7 @@ static int		end_searched(t_search **searched, t_search **search, t_way
 	return (0);
 }
 
-static	int	init_way(t_find_way **fnd_way)
+int		init_way(t_find_way **fnd_way)
 {
 	t_way	*tmp_way;
 

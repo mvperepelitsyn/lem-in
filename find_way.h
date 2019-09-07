@@ -140,5 +140,6 @@ int		it_has_link(t_list_rooms *room1, t_list_rooms *room2);
 void	make_it_clean(t_search **lst_rooms);
 int		rev_wide_search(t_intldta **indta);
 int 	pre_link_breaker(t_find_way **fnd, t_list_rooms *room);
+int		init_way(t_find_way **fnd_way);
 
 #endif
