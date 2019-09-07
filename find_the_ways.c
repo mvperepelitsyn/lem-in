@@ -55,6 +55,8 @@ int 	find_the_way(t_intldta *indta)
 //	if (indta->v_flag)
 //		visualizer(indta, find);
 	rev_wide_search(&indta);
+	if (indta->start_room->act_lnks == 0)
+		ft_error();
 	while (!rec_finding(indta, find))
 		continue ;
 	if (PRE && (CUR->full_steps == -1 || CUR->steps > PRE->steps))

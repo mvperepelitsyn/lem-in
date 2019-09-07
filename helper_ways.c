@@ -45,23 +45,27 @@ static	void	mark_the_way(t_search *list)
 
 void	fill_the_way(t_way **tmp_way, t_search *list)
 {
+	t_way	*tmp;
+
+	tmp = *tmp_way;
+	while (tmp->next)
+		tmp = tmp->next;
 	make_it_clean(&list);
 	way_assignment(list);
 	mark_the_way(list);
-	(*tmp_way)->rooms = ft_dllnew((void *)&(list->rooms),
-								  sizeof(t_list_rooms*));
+	tmp->rooms = ft_dllnew((void *)&(list->rooms), sizeof(t_list_rooms*));
 	list = list->next;
 	while (list->next != NULL)
 	{
-		ft_dlladdnextr(&((*tmp_way)->rooms), (void *)&(list->rooms),
-					   sizeof(t_list_rooms*));
+		ft_dlladdnextr(&(tmp->rooms), (void *)&(list->rooms),
+				sizeof(t_list_rooms*));
 		list = list->next;
 	}
-	ft_dlladdnextr(&((*tmp_way)->rooms), (void *)&(list->rooms),
-				   sizeof(t_list_rooms*));
-	(*tmp_way)->len_way = list->step_nbr;
-	(*tmp_way)->status = 1;
-	print_the_way(*tmp_way);
+	ft_dlladdnextr(&(tmp->rooms), (void *)&(list->rooms),
+			sizeof(t_list_rooms*));
+	tmp->len_way = list->step_nbr;
+	tmp->status = 1;
+	print_the_way(tmp);
 }
 
 int				it_has_link(t_list_rooms *room1, t_list_rooms *room2)
