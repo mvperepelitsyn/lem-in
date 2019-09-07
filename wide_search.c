@@ -95,6 +95,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	}
 	if (!end_searched(&srched, &srch, &tmp_way, indta) && link_breaker(fnd_way))
 		return (0);
+	(*fnd_way)->del_room = NULL;
 	fill_the_way(&tmp_way, srched);
 	free_search_ed(&srch, &srched);
 	return (1);
