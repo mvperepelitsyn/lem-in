@@ -68,6 +68,21 @@ int		init_way(t_find_way **fnd_way)
 	}
 }
 
+int		give_me_way_nbr(t_find_way **fnd_way)
+{
+	t_way *tmp_way;
+
+	if ((*fnd_way)->ways == NULL)
+		return (1);
+	else
+	{
+		tmp_way = (*fnd_way)->ways;
+		while (tmp_way->next)
+			tmp_way = tmp_way->next;
+		return (tmp_way->num_way + 1);
+	}
+}
+
 //static	void	init_search(t_wide_search **ws, t_intldta **indta, t_way *tmp_w)
 //{
 //	(*ws)->search = (t_search *)ft_memalloc(sizeof(t_search));
@@ -81,12 +96,14 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 {
 	t_search		*srch;
 	t_search		*srched;
+	int				check;
 
 	srch = (t_search *)ft_memalloc(sizeof(t_search));
 	srched = (t_search *)ft_memalloc(sizeof(t_search));
 	srch->rooms = (*indta)->start_room;
 	srch->step_nbr = 0;
-	srch->way_nbr = init_way(fnd_way);
+	check = give_me_way_nbr(fnd_way);
+	srch->way_nbr = check;
 	while (1)
 	{
 		if (srch != NULL && fill_search(fnd_way, &srch, &srched, indta))
@@ -94,10 +111,10 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 		else
 			break ;
 	}
-	if (!end_searched(&srched, &srch, &((*fnd_way)->ways), indta) && link_breaker(fnd_way))
+	if (check == give_me_way_nbr(fnd_way) && link_breaker(fnd_way))
 		return (0);
 	(*fnd_way)->del_room = NULL;
-	fill_the_way(&((*fnd_way)->ways), srched);
+//	fill_the_way(&((*fnd_way)->ways), srched);
 	free_search_ed(&srch, &srched);
 	return (1);
 }

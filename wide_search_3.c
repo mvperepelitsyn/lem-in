@@ -153,17 +153,19 @@ static	void	add_the_way(t_find_way **fnd, t_search **srch, t_search **srchd,
 {
 	t_way		*tmp;
 	t_search	*lst;
+	t_search	*trash;
 
+	trash = NULL;
+	cpy_t_searched(srchd, &lst, end_lnk);
+	if (check_the_way(lst))
+		return;
+	init_way(fnd);
 	tmp = (*fnd)->ways;
 	while (tmp->next)
 		tmp = tmp->next;
-	cpy_t_searched(srchd, &lst, end_lnk);
-	if (check_the_way(lst))
-	{
-		return;
-	}
-	fill_the_way(fnd, lst);
-	change_the_way_nbr(srch, srchd, init_way(fnd));
+	fill_the_way(&tmp, lst);
+	free_search_ed(&lst, &trash);
+	change_the_way_nbr(srch, srchd, give_me_way_nbr(fnd));
 }
 
 int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched,
@@ -187,9 +189,7 @@ int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched,
 		}
 		stop_search(fnd, pt_link, tmp->rooms, indta);
 		if (help_fill_search2(pt_link, srch, searched, &tmp))
-		{
 			add_the_way(fnd, srch, searched, pt_link);
-		}
 		ptr = ptr->next;
 		num_lnks--;
 	}
