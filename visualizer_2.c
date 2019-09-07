@@ -35,6 +35,7 @@ void	transparent(int *color, unsigned char clarity, t_vis_prms *v)
 	alpha  = (v->ndn == 0) ? 3 : 0;
 	clr = (unsigned char*)color;
 	clr[alpha] = clarity;
+	color[0] = 0x0000FF;
 }
 
 void		draw_rooms(t_intldta *indta, t_graph *g)

@@ -6,7 +6,7 @@
 #    By: iiliuk <iiliuk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/02 12:28:41 by iiliuk            #+#    #+#              #
-#    Updated: 2019/09/05 13:27:50 by uhand            ###   ########.fr        #
+#    Updated: 2019/09/07 16:34:55 by stephan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,10 @@ wide_search_2.c wide_search_3.c reverse_wide_search.c
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
 FLAGS = -g #-Wall -Wextra -Werror
-LIB = -L ./libft -lft
+LIB = -L ./libft -lft -lm
 LIBPATH = ./libft
 
-MLIBX = -L  ./minilibx -lmlx -framework OpenGL -framework AppKit
+MLIBX = -L/usr/X11/lib /usr/X11/lib/libmlx.a -lXext -lX11
 MLIBXPATH = ./minilibx
 OBJPATH = ./objects
 
@@ -32,7 +32,7 @@ all: $(NAME)
 
 $(NAME):  $(OBJPATH) $(OBJ)
 	@make -C $(LIBPATH)
-	@make -C $(MLIBXPATH)
+#	@make -C $(MLIBXPATH)
 	gcc $(FLAGS) $(OBJ) -o $(NAME) $(LIB) $(MLIBX)
 
 $(OBJPATH):
@@ -43,7 +43,7 @@ $(OBJPATH)/%.o: %.c
 
 clean:
 	@make -C $(LIBPATH) clean
-	@make -C $(MLIBXPATH) clean
+#	@make -C $(MLIBXPATH) clean
 	/bin/rm -rf $(OBJPATH)
 
 fclean: clean

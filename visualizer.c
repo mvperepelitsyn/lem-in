@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/06 18:20:23 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/07 16:57:43 by stephan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,11 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 	window_init(&v, &mask, &graph);
 	build_graph(indta, &g, find);
 	mlx_put_image_to_window(graph.mlx_ptr, graph.win_ptr, graph.img_ptr, 0, 0);
-	mlx_hook(v.win_ptr, 2, 0, &deal_key, (void*)(&v));
-	mlx_hook(v.win_ptr, 17, 0, &close_vis, (void*)(&v));
+	//mlx_hook(v.win_ptr, 2, 0, &deal_key, (void*)(&v));
+	mlx_hook(v.win_ptr, 2, 1L<<0, &deal_key, (void*)(&v));
+	//mlx_hook (win, 2, 5, funct, 0);
+	//mlx_hook(v.win_ptr, 17, 0, &close_vis, (void*)(&v));
+	mlx_hook(v.win_ptr, 17, 1L << 17, &close_vis, (void*)(&v));
 	//mlx_loop_hook(graph.mlx_ptr, &get_command, (void*)(&graph));
 	mlx_loop(v.mlx_ptr);
 }
