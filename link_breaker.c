@@ -125,6 +125,8 @@ int			link_breaker(t_find_way **find)
 {
 	t_link_breaker	br;
 
+	if ((*find)->del_room == NULL)
+		return (1);
 	find_cur_room(&br, find, (*find)->del_room);
 	break_links(&br);
 	br.way->status = 0;
