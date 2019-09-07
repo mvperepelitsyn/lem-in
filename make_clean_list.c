@@ -12,9 +12,9 @@ static	int		make_it_clean_help2(t_search **tmp, t_search **tmp2, int i)
 		prev->rooms))
 			return (1);
 	if (i == 2)
-		if (!it_has_link((*tmp)->rooms, (*tmp)->prev->rooms) && (*tmp)->step_nbr
-		        < (*tmp)->next->step_nbr && it_has_link((*tmp)->rooms, (*tmp)->
-		        next->rooms))
+		if (!it_has_link((*tmp)->rooms, (*tmp)->prev->rooms) && ((*tmp)
+		->step_nbr + 1) == (*tmp)->next->step_nbr && it_has_link((*tmp)->rooms,
+				(*tmp)->next->rooms))
 			return (1);
 	if (i == 3)
 		if (it_has_link((*tmp)->rooms, (*tmp2)->rooms) && (*tmp2)->step_nbr <

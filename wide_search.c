@@ -112,9 +112,9 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 			break ;
 	}
 	if (check == give_me_way_nbr(fnd_way) && link_breaker(fnd_way))
-		return (0);
+		check = 0;
 	(*fnd_way)->del_room = NULL;
 //	fill_the_way(&((*fnd_way)->ways), srched);
 	free_search_ed(&srch, &srched);
-	return (1);
+	return ((check == 0) ? 0 : 1);
 }

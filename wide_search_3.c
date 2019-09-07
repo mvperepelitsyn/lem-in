@@ -143,6 +143,8 @@ static	int 	check_the_way(t_search *lst)
 	{
 		if (tmp->rooms->way_nbr > 0)
 			return (1);
+		if (tmp->next && !it_has_link(tmp->rooms, tmp->next->rooms))
+			return (1);
 		tmp = tmp->next;
 	}
 	return (0);
@@ -158,7 +160,7 @@ static	void	add_the_way(t_find_way **fnd, t_search **srch, t_search **srchd,
 	trash = NULL;
 	cpy_t_searched(srchd, &lst, end_lnk);
 	if (check_the_way(lst))
-		return;
+		return ;
 	init_way(fnd);
 	tmp = (*fnd)->ways;
 	while (tmp->next)
