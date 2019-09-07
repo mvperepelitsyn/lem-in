@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/07 16:57:43 by stephan          ###   ########.fr       */
+/*   Updated: 2019/09/08 00:56:34 by stephan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ static void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 
 	draw_rooms(indta, g);
 	draw_links(indta, g);
-	// ptr = find->answer->ways;
-	// way = ptr->content;
-	// room = (*way)->rooms;
-	// build_route(g, room);
+	ptr = find->answer->ways;
+	way = ptr->content;
+	room = (*way)->rooms;
+	//build_route(g, room);
 }
 
 static int	get_command(void *prm)
@@ -127,6 +127,7 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 	g.mask = &mask;
 	g.graph = &graph;
 	graph_init(indta, &g);
+	//draw_rooms(indta, &g);
 	window_init(&v, &mask, &graph);
 	build_graph(indta, &g, find);
 	mlx_put_image_to_window(graph.mlx_ptr, graph.win_ptr, graph.img_ptr, 0, 0);

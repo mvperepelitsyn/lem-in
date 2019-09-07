@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/07 17:05:56 by stephan          ###   ########.fr       */
+/*   Updated: 2019/09/08 00:42:44 by stephan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
 # define ROUTE_COLOR 0x88AA41FE
-# define ROUTE_THICK 5
+# define ROUTE_THICK 20
 
 typedef struct s_vis_prms	t_vis_prms;
 

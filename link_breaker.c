@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/06 18:51:23 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/07 18:39:50 by stephan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ void	dead_end_cleaner(t_list_rooms *room)
 		ft_error();
 	}
 	link->status = 0;
-	room->act_lnks--;
+	room->act_lnks = 0;
 	if (room == link->rm1)
 		room = link->rm2;
 	else if (room == link->rm2)

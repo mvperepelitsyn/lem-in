@@ -1,7 +1,7 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# define NAME "" //DO NOT FORGET TO REMOVE IT
+# define NAME "../deadend_3_map" //DO NOT FORGET TO REMOVE IT
 
 #include "lem_in.h"
 

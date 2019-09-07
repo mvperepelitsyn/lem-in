@@ -53,6 +53,8 @@ void		draw_rooms(t_intldta *indta, t_graph *g)
 		if (!ptr->act_lnks)
 			transparent(&c.clr, 200, g->graph);
 		draw_circle(&c, g->graph, 0);
+		mlx_string_put(g->graph->mlx_ptr, g->graph->win_ptr, (c.x - R), \
+			(c.y + R * 2), 0xFF0000, "lala"/*ptr->name*/);
 		ptr = ptr->next;
 	}
 }
