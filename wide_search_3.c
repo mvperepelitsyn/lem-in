@@ -14,8 +14,11 @@ static	void stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm,
 			return ;
 		else
 		{
-			wide_breaker(lnks, lnks->rm1);
-			rev_wide_search(indta);
+			if ((*find)->check != 1)
+			{
+				wide_breaker(lnks, lnks->rm2);
+				rev_wide_search(indta);
+			}
 		}
 	}
 	else if (ft_strequ(lnks->room2, rm->name) && lnks->rm1->way_nbr > 0 &&
@@ -25,8 +28,11 @@ static	void stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm,
 			return ;
 		else
 		{
-			wide_breaker(lnks, lnks->rm2);
-			rev_wide_search(indta);
+			if ((*find)->check != 1)
+			{
+				wide_breaker(lnks, lnks->rm2);
+				rev_wide_search(indta);
+			}
 		}
 	}
 }

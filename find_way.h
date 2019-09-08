@@ -60,6 +60,7 @@ struct	s_find_way
 	t_list_rooms	*start;
 	t_list_rooms	*del_room;
 	t_list_links	*del_link;
+	int 			check;
 };
 
 /*

@@ -45,6 +45,7 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 	(*fnd_wy)->crnt_set = NULL;
 	(*fnd_wy)->way_nbr = 0;
 	(*fnd_wy)->del_room = NULL;
+	(*fnd_wy)->check = 1;
 }
 
 int 	find_the_way(t_intldta *indta)

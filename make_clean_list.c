@@ -8,13 +8,13 @@ static	int		make_it_clean_help2(t_search **tmp, t_search **tmp2, int i)
 {
 	if (i == 1)
 		if (((*tmp)->step_nbr >= (*tmp)->next->step_nbr) || !it_has_link((*tmp)
-		->rooms, (*tmp)->next->rooms) || !it_has_link((*tmp)->rooms, (*tmp)->
+		->rooms, (*tmp)->next->rooms) || !it_has_link((*tmp)->rooms, (*tmp)->    // || ((*tmp)->prev && (*tmp)->prev->prev && it_has_link((*tmp)->rooms, (*tmp)->prev->prev->rooms)
 		prev->rooms))
 			return (1);
 	if (i == 2)
-		if (!it_has_link((*tmp)->rooms, (*tmp)->prev->rooms) && ((*tmp)
-		->step_nbr + 1) == (*tmp)->next->step_nbr && it_has_link((*tmp)->rooms,
-				(*tmp)->next->rooms))
+		if (!it_has_link((*tmp)->rooms, (*tmp)->prev->rooms) && (*tmp)->step_nbr
+		        < (*tmp)->next->step_nbr && it_has_link((*tmp)->rooms,
+				(*tmp)->next->rooms) && !((*tmp)->prev && it_has_link((*tmp)->prev->rooms, (*tmp)->next->rooms) && (*tmp)->prev->step_nbr < (*tmp)->step_nbr))
 			return (1);
 	if (i == 3)
 		if (it_has_link((*tmp)->rooms, (*tmp2)->rooms) && (*tmp2)->step_nbr <
@@ -41,7 +41,7 @@ static	void	make_it_clean_help3(t_search **tmp, t_search **tmp2, int *cnt)
 		if (make_it_clean_help2(tmp, tmp2, 3))
 		{
 			make_it_clean_help4(tmp, tmp2, cnt);
-			break;
+			break ;
 		}
 		*tmp2 = (*tmp2)->prev;
 	}

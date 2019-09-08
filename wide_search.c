@@ -116,5 +116,6 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	(*fnd_way)->del_room = NULL;
 //	fill_the_way(&((*fnd_way)->ways), srched);
 	free_search_ed(&srch, &srched);
+	(*fnd_way)->check++;
 	return ((check == 0) ? 0 : 1);
 }
