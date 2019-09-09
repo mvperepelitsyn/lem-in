@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/07 18:13:20 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/09 14:25:17 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,6 @@ int 	pre_link_breaker(t_find_way **fnd, t_list_rooms *room);
 int		init_way(t_find_way **fnd_way);
 int		give_me_way_nbr(t_find_way **fnd_way);
 void	erase_tmp_step_nbr(t_list_rooms *rooms);
+void	move_ants(t_intldta *intdta, t_find_way *find);
 
 #endif

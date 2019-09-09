@@ -66,6 +66,7 @@ int 	find_the_way(t_intldta *indta)
 	else
 		find->answer = CUR;
 	print_the_answer(find->answer);
+	move_ants(indta, find);
 //	=> print answer
  	return (0);
 }
