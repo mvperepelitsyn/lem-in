@@ -190,11 +190,11 @@ int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched,
 	{
 		tmp = *srch;
 		pt_link = ptr->content;
-		if (tmp->rooms->act_lnks == 1 && tmp->rooms->type == 0)
-		{
-			dead_end_cleaner(tmp->rooms);
-			return (1);
-		}
+//		if (tmp->rooms->act_lnks == 1 && tmp->rooms->type == 0)
+//		{
+//			dead_end_cleaner(tmp->rooms);
+//			return (1);
+//		}
 		stop_search(fnd, pt_link, tmp->rooms, indta);
 		if (help_fill_search2(pt_link, srch, searched, &tmp))
 			add_the_way(fnd, srch, searched, pt_link);

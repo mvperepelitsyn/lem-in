@@ -203,7 +203,7 @@ void	dead_end_cleaner(t_list_rooms *room)
 	}
 	if (!link_ptr)
 	{
-		ft_printf("dead_end_cleaner error");
+		ft_printf("dead_end_cleaner error\n");
 		ft_error();
 	}
 	link->status = 0;
