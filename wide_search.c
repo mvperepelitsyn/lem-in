@@ -113,6 +113,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	}
 	if (check == give_me_way_nbr(fnd_way) && link_breaker(fnd_way))
 		check = 0;
+	erase_tmp_step_nbr((*indta)->rooms);
 	(*fnd_way)->del_room = NULL;
 //	fill_the_way(&((*fnd_way)->ways), srched);
 	free_search_ed(&srch, &srched);

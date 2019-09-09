@@ -143,5 +143,6 @@ int		rev_wide_search(t_intldta **indta);
 int 	pre_link_breaker(t_find_way **fnd, t_list_rooms *room);
 int		init_way(t_find_way **fnd_way);
 int		give_me_way_nbr(t_find_way **fnd_way);
+void	erase_tmp_step_nbr(t_list_rooms *rooms);
 
 #endif

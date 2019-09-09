@@ -37,22 +37,20 @@ static	void stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm,
 	}
 }
 
-static	int	help_fill_search(t_list_rooms **room, t_search **search,
-		t_search **searched, t_search **tmp)
+static	int	help_fill_search(t_list_rooms **room, t_list_rooms *prev,
+		t_search **tmp)
 {
 	while ((*tmp)->next != NULL)
 		*tmp = (*tmp)->next;
 	if ((*room)->type == 2)
-	{
-//		fill_searched(searched, search);
-//		add_to_searched(searched, *room);
 		return (1);
-	}
 	(*tmp)->next = (t_search *)ft_memalloc(sizeof(t_search));
 	(*tmp)->next->prev = *tmp;
 	(*tmp)->next->rooms = *room;
 	(*tmp)->next->way_nbr = (*tmp)->way_nbr;
-	(*tmp)->next->step_nbr = (*search)->step_nbr + 1;
+	(*room)->tmp_step_nbr = ((*room)->tmp_step_nbr == 0) ?
+			(prev->tmp_step_nbr + 1) : (*room)->tmp_step_nbr;
+	(*tmp)->next->step_nbr = (*room)->tmp_step_nbr;
 	return (0);
 }
 
@@ -65,24 +63,24 @@ static	int	help_fill_search2(t_list_links *lnk, t_search **srch, t_search
 	if (ft_strequ(lnk->room1, name) && not_in_searched(lnk->room2, *srchd,
 			*srch) && lnk->rm2->way_nbr < 0 && lnk->status == 1)
 	{
-		if (help_fill_search(&lnk->rm2, srch, srchd, tmp))
+		if (help_fill_search(&lnk->rm2, lnk->rm1, tmp))
 			return (1);
 		else if (ft_strequ(lnk->room2, name) && not_in_searched(lnk->room1,
 			*srchd, *srch) && lnk->rm1-> way_nbr < 0 && lnk->status == 1)
 		{
-			if (help_fill_search(&lnk->rm1, srch, srchd, tmp))
+			if (help_fill_search(&lnk->rm1, lnk->rm2, tmp))
 				return (1);
 		}
 	}
 	else if (ft_strequ(lnk->room2, name) && not_in_searched(lnk->room1, *srchd,
 			*srch) && lnk->rm1->way_nbr < 0 && lnk->status == 1)
 	{
-		if (help_fill_search(&lnk->rm1, srch, srchd, tmp))
+		if (help_fill_search(&lnk->rm1, lnk->rm2, tmp))
 			return (1);
 		else if (ft_strequ(lnk->room1, name) && not_in_searched(lnk->room2,
 				*srchd, *srch) && lnk->rm2-> way_nbr < 0 && lnk->status == 1)
 		{
-			if (help_fill_search(&lnk->rm2, srch, srchd, tmp))
+			if (help_fill_search(&lnk->rm2, lnk->rm1, tmp))
 				return (1);
 		}
 	}
@@ -108,7 +106,7 @@ static	void	cpy_t_searched(t_search **srchd, t_search **lst, t_list_links *end_l
 		tmp_d = tmp_d->next;
 	}
 	tmp_l->rooms = (end_lnk->rm2->type == 2) ? end_lnk->rm1 : end_lnk->rm2;
-	tmp_l->step_nbr = tmp_l->prev->step_nbr + 1;
+	tmp_l->step_nbr = tmp_l->rooms->tmp_step_nbr;
 	tmp_l->way_nbr = tmp_l->prev->way_nbr;
 	tmp_l->next = (t_search *)ft_memalloc(sizeof(t_search));
 	tmp_l->next->prev = tmp_l;
