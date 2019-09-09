@@ -6,7 +6,11 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/09/06 18:51:22 by uhand            ###   ########.fr       */
+=======
+/*   Updated: 2019/09/07 18:13:20 by dfrost-a         ###   ########.fr       */
+>>>>>>> origin/final_form
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +64,7 @@ struct	s_find_way
 	t_list_rooms	*start;
 	t_list_rooms	*del_room;
 	t_list_links	*del_link;
+	int 			check;
 };
 
 /*
@@ -140,5 +145,7 @@ int		it_has_link(t_list_rooms *room1, t_list_rooms *room2);
 void	make_it_clean(t_search **lst_rooms);
 int		rev_wide_search(t_intldta **indta);
 int 	pre_link_breaker(t_find_way **fnd, t_list_rooms *room);
+int		init_way(t_find_way **fnd_way);
+int		give_me_way_nbr(t_find_way **fnd_way);
 
 #endif

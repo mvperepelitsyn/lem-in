@@ -45,6 +45,7 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 	(*fnd_wy)->crnt_set = NULL;
 	(*fnd_wy)->way_nbr = 0;
 	(*fnd_wy)->del_room = NULL;
+	(*fnd_wy)->check = 1;
 }
 
 int 	find_the_way(t_intldta *indta)
@@ -55,6 +56,8 @@ int 	find_the_way(t_intldta *indta)
 	// if (indta->v_flag)
 	// 	visualizer(indta, find);
 	rev_wide_search(&indta);
+	if (indta->start_room->act_lnks == 0)
+		ft_error();
 	while (!rec_finding(indta, find))
 		continue ;
 	if (PRE && (CUR->full_steps == -1 || CUR->steps > PRE->steps))

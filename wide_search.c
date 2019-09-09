@@ -22,20 +22,24 @@ static	void	del_t_way(t_way **way)
 static int		end_searched(t_search **searched, t_search **search, t_way
 **wy, t_intldta **indta)
 {
-	t_search *tmp;
+	t_search	*tmp;
+	t_way		*tmp_way;
 
 	tmp = *searched;
+	tmp_way = *wy;
+	while  (tmp_way->next)
+		tmp_way = tmp_way->next;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	if (tmp->rooms->type == 2)
 		return (1);
 	free_search_ed(search, searched);
-	del_t_way(wy);
+	del_t_way(&tmp_way);
 	rev_wide_search(indta);
 	return (0);
 }
 
-static	void	init_way(t_find_way **fnd_way)
+int		init_way(t_find_way **fnd_way)
 {
 	t_way	*tmp_way;
 
@@ -47,6 +51,7 @@ static	void	init_way(t_find_way **fnd_way)
 		tmp_way->status = 1;
 		tmp_way->prev = NULL;
 		tmp_way->num_way = 1;
+		return (1);
 	}
 	else
 	{
@@ -59,6 +64,22 @@ static	void	init_way(t_find_way **fnd_way)
 		tmp_way->next->num_way = tmp_way->num_way + 1;
 		tmp_way->next->next = NULL;
 		tmp_way = tmp_way->next;
+		return (tmp_way->num_way);
+	}
+}
+
+int		give_me_way_nbr(t_find_way **fnd_way)
+{
+	t_way *tmp_way;
+
+	if ((*fnd_way)->ways == NULL)
+		return (1);
+	else
+	{
+		tmp_way = (*fnd_way)->ways;
+		while (tmp_way->next)
+			tmp_way = tmp_way->next;
+		return (tmp_way->num_way + 1);
 	}
 }
 
@@ -75,17 +96,14 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 {
 	t_search		*srch;
 	t_search		*srched;
-	t_way			*tmp_way;
+	int				check;
 
-	init_way(fnd_way);
-	tmp_way = (*fnd_way)->ways;
-	while (tmp_way->next != NULL)
-		tmp_way = tmp_way->next;
 	srch = (t_search *)ft_memalloc(sizeof(t_search));
 	srched = (t_search *)ft_memalloc(sizeof(t_search));
 	srch->rooms = (*indta)->start_room;
 	srch->step_nbr = 0;
-	srch->way_nbr = tmp_way->num_way;
+	check = give_me_way_nbr(fnd_way);
+	srch->way_nbr = check;
 	while (1)
 	{
 		if (srch != NULL && fill_search(fnd_way, &srch, &srched, indta))
@@ -93,10 +111,11 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 		else
 			break ;
 	}
-	if (!end_searched(&srched, &srch, &tmp_way, indta) && link_breaker(fnd_way))
-		return (0);
+	if (check == give_me_way_nbr(fnd_way) && link_breaker(fnd_way))
+		check = 0;
 	(*fnd_way)->del_room = NULL;
-	fill_the_way(&tmp_way, srched);
+//	fill_the_way(&((*fnd_way)->ways), srched);
 	free_search_ed(&srch, &srched);
-	return (1);
+	(*fnd_way)->check++;
+	return ((check == 0) ? 0 : 1);
 }

@@ -45,18 +45,23 @@ static	void	mark_the_way(t_search *list)
 
 void	fill_the_way(t_way **tmp_way, t_search *list)
 {
-	make_it_clean(&list);
+	t_way	*tmp;
+
+	tmp = *tmp_way;
+	while (tmp->next)
+		tmp = tmp->next;
+//	make_it_clean(&list);
 	way_assignment(list);
 	mark_the_way(list);
-	(*tmp_way)->rooms = ft_dllnew((void *)&(list->rooms),
-								  sizeof(t_list_rooms*));
+	tmp->rooms = ft_dllnew((void *)&(list->rooms), sizeof(t_list_rooms*));
 	list = list->next;
 	while (list->next != NULL)
 	{
-		ft_dlladdnextr(&((*tmp_way)->rooms), (void *)&(list->rooms),
-					   sizeof(t_list_rooms*));
+		ft_dlladdnextr(&(tmp->rooms), (void *)&(list->rooms),
+				sizeof(t_list_rooms*));
 		list = list->next;
 	}
+<<<<<<< HEAD
 	ft_dlladdnextr(&((*tmp_way)->rooms), (void *)&(list->rooms),
 				   sizeof(t_list_rooms*));
 	(*tmp_way)->len_way = list->step_nbr - 1;
@@ -64,6 +69,13 @@ void	fill_the_way(t_way **tmp_way, t_search *list)
 	ft_printf("\nI find the way!");
 	print_the_way(*tmp_way);
 	ft_printf("\n-------------------\n");
+=======
+	ft_dlladdnextr(&(tmp->rooms), (void *)&(list->rooms),
+			sizeof(t_list_rooms*));
+	tmp->len_way = list->step_nbr;
+	tmp->status = 1;
+	print_the_way(tmp);
+>>>>>>> origin/final_form
 }
 
 int				it_has_link(t_list_rooms *room1, t_list_rooms *room2)
