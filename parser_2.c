@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 15:15:44 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/22 18:36:54 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/09 12:39:28 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 static void	link_parsing(t_intldta **indta, char **things, char **rms)
 {
-    if (*((*indta)->start_room->name) == '\0' ||
-    *((*indta)->end_room->name) == '\0')
+    if ((*indta)->start_room == NULL || (*indta)->end_room == NULL)
         ft_error();
     rms = ft_strsplit(*things, '-');
     fill_list_links(&(*indta)->links, rms, indta);
@@ -27,6 +26,12 @@ static void start_stop_parsing(t_intldta **indta, char **things, char **rms, int
 	short	type;
 
 	type = (ft_strequ("##start", *things)) ? 1 : 2;
+	if ((ft_strequ("##start", *things) && (*indta)->start_room != NULL) ||
+			(ft_strequ("##end", *things) && (*indta)->end_room != NULL))
+	{
+		ft_strdel(things);
+		ft_error();
+	}
     ft_strdel(things);
     get_next_line(fd, things);
     ft_println(*things);
@@ -46,6 +51,11 @@ void		graph_parser(t_intldta **indta, char **things, char **rms, int fd)
             start_stop_parsing(indta, things, rms, fd);
         else if (ft_strequ("##end", *things))
             start_stop_parsing(indta, things, rms, fd);
+        else if (*things[0] == '#')
+		{
+			ft_strdel(things);
+			continue ;
+		}
         else if (ft_hm_wrd(*things, ' ') == 3)
         {
             rms = ft_strsplit(*things, ' ');
