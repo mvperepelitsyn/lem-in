@@ -61,21 +61,11 @@ void	fill_the_way(t_way **tmp_way, t_search *list)
 				sizeof(t_list_rooms*));
 		list = list->next;
 	}
-<<<<<<< HEAD
-	ft_dlladdnextr(&((*tmp_way)->rooms), (void *)&(list->rooms),
-				   sizeof(t_list_rooms*));
-	(*tmp_way)->len_way = list->step_nbr - 1;
-	(*tmp_way)->status = 1;
-	ft_printf("\nI find the way!");
-	print_the_way(*tmp_way);
-	ft_printf("\n-------------------\n");
-=======
 	ft_dlladdnextr(&(tmp->rooms), (void *)&(list->rooms),
 			sizeof(t_list_rooms*));
 	tmp->len_way = list->step_nbr;
 	tmp->status = 1;
 	print_the_way(tmp);
->>>>>>> origin/final_form
 }
 
 int				it_has_link(t_list_rooms *room1, t_list_rooms *room2)
