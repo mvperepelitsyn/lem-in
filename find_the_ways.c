@@ -51,6 +51,8 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 int 	find_the_way(t_intldta *indta)
 {
  	t_find_way			*find;
+	int					steps;
+	t_way_set			*ptr;
 
  	init_set(&find, indta);
 	// if (indta->v_flag)
@@ -61,14 +63,22 @@ int 	find_the_way(t_intldta *indta)
 		ft_error();
 	while (!rec_finding(indta, find))
 		continue ;
-	if (PRE && (CUR->full_steps == -1 || CUR->steps > PRE->steps))
-		find->answer = PRE;
-	else
-		find->answer = CUR;
+	find->answer = find->sets;
+	ptr = find->answer;
+	steps = ptr->steps;
+	while (ptr)
+	{
+		if (ptr->steps < steps)
+		{
+			find->answer = ptr;
+			steps = ptr->steps;
+		}
+		ptr = ptr->next;
+	}
 	print_the_answer(find->answer);
 	if (indta->v_flag)
 		visualizer(indta, find);
-	move_ants(indta, find);
+	//move_ants(indta, find);
 //	=> print answer
  	return (0);
 }

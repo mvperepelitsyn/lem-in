@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/09 17:09:11 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/09 19:19:38 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void		print_the_set(t_way_set *set)
 	t_way	**ptr;
 
 	tmp = set->ways;
+	ft_printf("\n-------------------");
 	ft_printf("\nHere is the set of ways, that we found:\n");
 	ft_printf("\nThe number of steps %d\n", set->steps);
 	while (tmp)
@@ -110,9 +111,11 @@ static void	add_new_set(t_find_way *find, int ways_cnt)
 	while (ptr && i < ways_cnt)
 	{
 		if (ptr->status)
+		{
 			if (!ft_lstaddnext(&set->ways, (void*)&ptr, sizeof(ptr)))
 				ft_malloc_error();
-		i++;
+			i++;
+		}
 		if (i < ways_cnt)
 			ptr = ptr->next;
 	}
@@ -170,8 +173,8 @@ int			rec_finding(t_intldta *indta, t_find_way *find)
 		CUR->full_steps == -1 || (PRE && CUR->steps > PRE->steps) || \
 		*/ !check_free_rooms(indta->start_room)))
 		return (1);
-	wide_search(&find, &indta);
-	form_the_set(find, indta);
+	if (wide_search(&find, &indta))
+		form_the_set(find, indta);
 	/*if (wide_search(&find, &indta))
 	{
 		if (!check_set_load(find, indta))
