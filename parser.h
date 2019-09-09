@@ -28,6 +28,7 @@ struct			s_list_rooms
 	int 				num_lnks;
 	int					act_lnks;
 	int 				step_nbr;
+	int 				tmp_step_nbr;
 	int					way_nbr;
 	t_list				*links;
 	struct s_list_rooms *prev;

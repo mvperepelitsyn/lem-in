@@ -68,7 +68,7 @@ void	fill_list_rooms(char **rms, t_intldta **indta, short type)
 	{
 		while (current->next != NULL)
 			current = current->next;
-		current->next = (t_list_rooms *)malloc(sizeof(t_list_rooms));
+		current->next = (t_list_rooms *)ft_memalloc(sizeof(t_list_rooms));
 		help_fill_list_rooms(rms, &(current->next), type);
 		type_assignment(current->next, indta);
 		current->next->next = NULL;
@@ -98,7 +98,7 @@ void	fill_list_links(t_list_links **links, char **rms, t_intldta **indta)
 			current = current->next;
 		if (check_double_link(*links, rms))
 			return ;
-		current->next = (t_list_links *)malloc(sizeof(t_list_links));
+		current->next = (t_list_links *)ft_memalloc(sizeof(t_list_links));
 		current->next->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 		current->next->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
 		current->next->status = 1;

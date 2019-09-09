@@ -1,5 +1,17 @@
 #include "lem_in.h"
 
+void	erase_tmp_step_nbr(t_list_rooms *rooms)
+{
+	t_list_rooms *tmp;
+
+	tmp = rooms;
+	while (tmp)
+	{
+		tmp->tmp_step_nbr = (tmp->way_nbr < 0) ? 0 : tmp->tmp_step_nbr;
+		tmp = tmp->next;
+	}
+}
+
 void	help_fill_list_rooms(char **rms, t_list_rooms **current, short type)
 {
 	(*current)->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
@@ -152,12 +164,12 @@ void	ft_print_strcut(t_intldta *indta)
 
 void	init_struct(t_intldta **indta)
 {
-	if (!((*indta) = (t_intldta *)malloc(sizeof(t_intldta))))
+	if (!((*indta) = (t_intldta *)ft_memalloc(sizeof(t_intldta))))
 		ft_malloc_error();
 	(*indta)->start_room = NULL;
 	(*indta)->end_room = NULL;
-	(*indta)->rooms = (t_list_rooms *)malloc(sizeof(t_list_rooms));
-	(*indta)->links = (t_list_links *)malloc(sizeof(t_list_links));
+	(*indta)->rooms = (t_list_rooms *)ft_memalloc(sizeof(t_list_rooms));
+	(*indta)->links = (t_list_links *)ft_memalloc(sizeof(t_list_links));
 	(*indta)->ri = -1;
 	(*indta)->li = -1;
 	(*indta)->links->next = NULL;

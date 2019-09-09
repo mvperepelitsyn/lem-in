@@ -56,6 +56,7 @@ int 	find_the_way(t_intldta *indta)
 	// if (indta->v_flag)
 	// 	visualizer(indta, find);
 	rev_wide_search(&indta);
+	(*indta).start_room->tmp_step_nbr = 0;
 	if (indta->start_room->act_lnks == 0)
 		ft_error();
 	while (!rec_finding(indta, find))
@@ -67,6 +68,7 @@ int 	find_the_way(t_intldta *indta)
 	print_the_answer(find->answer);
 	if (indta->v_flag)
 		visualizer(indta, find);
+	move_ants(indta, find);
 //	=> print answer
  	return (0);
 }
