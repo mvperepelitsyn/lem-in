@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/09 13:53:58 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/09 16:30:17 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct		s_way
 	int				len_way;
 	int				num_way;
 	int				status;
+	int				steps;
+	int				full_steps;
 	t_dllist		*rooms;
 	struct  s_way	*next;
 	struct	s_way	*prev;
@@ -69,8 +71,8 @@ struct	s_find_way
 
 typedef struct	s_count_steps
 {
-	t_list			*ptr;
-	t_way			**way;
+	t_way			*ptr;
+	int				i;
 	int				pre_lems;
 	int				max_len;
 	float			steps;
@@ -113,6 +115,20 @@ typedef struct s_search
 	struct s_search *prev;
 
 }				t_search;
+
+/*
+** form_the_set: fs
+*/
+
+typedef struct s_form_set
+{
+	t_way	*ptr;
+	int		counter;
+	int		i;
+	int		steps_count;
+	int		min_steps_count;
+	int		i_min;
+}				t_form_set;
 
 //typedef	struct s_wide_search
 //{

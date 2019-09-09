@@ -1,7 +1,7 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# define NAME "" //DO NOT FORGET TO REMOVE IT
+# define NAME "test_big" //DO NOT FORGET TO REMOVE IT
 
 #include "lem_in.h"
 
