@@ -157,20 +157,22 @@ static	int 	check_the_way(t_search *lst)
 static	void	add_the_way(t_find_way **fnd, t_search **srch, t_search **srchd,
 		t_list_links *end_lnk)
 {
-	t_way		*tmp;
+	t_way		*way;
 	t_search	*lst;
 	t_search	*trash;
+	int 		check;
 
 	trash = NULL;
 	cpy_t_searched(srchd, &lst, end_lnk);
 	if (check_the_way(lst))
 		return ;
-	init_way(fnd);
-	tmp = (*fnd)->ways;
-	while (tmp->next)
-		tmp = tmp->next;
-	fill_the_way(&tmp, lst);
+	check = give_me_way_nbr(&((*fnd)->ways));
+	way = (t_way *)ft_memalloc(sizeof(t_way));
+	way->status = 1;
+	way->num_way = check;
+	fill_the_way(&way, lst);
 	free_search_ed(&lst, &trash);
+	insert_way(*fnd, way);
 	change_the_way_nbr(srch, srchd, give_me_way_nbr(&((*fnd)->ways)));
 }
 

@@ -58,10 +58,10 @@ int		init_way(t_find_way **fnd_way)
 		tmp_way = (*fnd_way)->ways;
 		while (tmp_way->next != NULL)
 			tmp_way = tmp_way->next;
-		tmp_way->next = (t_way *)malloc(sizeof(t_way));
+		tmp_way->next = (t_way *)ft_memalloc(sizeof(t_way));
 		tmp_way->next->prev = (tmp_way);
 		tmp_way->next->status = 1;
-		tmp_way->next->num_way = tmp_way->num_way + 1;
+		tmp_way->next->num_way = give_me_way_nbr(&((*fnd_way)->ways));
 		tmp_way->next->next = NULL;
 		tmp_way = tmp_way->next;
 		return (tmp_way->num_way);
@@ -112,12 +112,10 @@ void	sort_ways(t_way **ways)
 			tmp_way->next = nex->next;
 			nex->next = tmp_way;
 			if (tmp_way->next)
-				tmp_way->next->prev = nex;
-			if (tmp_way->prev)
-			{
-				nex->prev = tmp_way->prev;
+				tmp_way->next->prev = tmp_way;
+			nex->prev = tmp_way->prev;
+			if (nex->prev)
 				nex->prev->next = nex;
-			}
 			else
 				nex->prev = NULL;
 			tmp_way->prev = nex;
