@@ -171,7 +171,7 @@ static	void	add_the_way(t_find_way **fnd, t_search **srch, t_search **srchd,
 		tmp = tmp->next;
 	fill_the_way(&tmp, lst);
 	free_search_ed(&lst, &trash);
-	change_the_way_nbr(srch, srchd, give_me_way_nbr(fnd));
+	change_the_way_nbr(srch, srchd, give_me_way_nbr(&((*fnd)->ways)));
 }
 
 int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched,

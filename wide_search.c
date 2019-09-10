@@ -68,18 +68,24 @@ int		init_way(t_find_way **fnd_way)
 	}
 }
 
-int		give_me_way_nbr(t_find_way **fnd_way)
+int		give_me_way_nbr(t_way **ways)
 {
-	t_way *tmp_way;
+	t_way	*tmp_way;
+	int		tmp;
 
-	if ((*fnd_way)->ways == NULL)
-		return (1);
+	tmp = 1;
+	if (*ways == NULL)
+		return (tmp);
 	else
 	{
-		tmp_way = (*fnd_way)->ways;
-		while (tmp_way->next)
+		tmp_way = *ways;
+		while (tmp_way)
+		{
+			if (tmp_way->num_way > tmp)
+				tmp = tmp_way->num_way;
 			tmp_way = tmp_way->next;
-		return (tmp_way->num_way + 1);
+		}
+		return (tmp + 1);
 	}
 }
 
@@ -92,6 +98,35 @@ int		give_me_way_nbr(t_find_way **fnd_way)
 //	(*ws)->search->way_nbr = tmp_w->num_way;
 //}
 
+void	sort_ways(t_way **ways)
+{
+	t_way	*tmp_way;
+	t_way	*nex;
+
+	tmp_way = *ways;
+	while (tmp_way->next)
+	{
+		nex = tmp_way->next;
+		if ((nex->len_way < tmp_way->len_way))
+		{
+			tmp_way->next = nex->next;
+			nex->next = tmp_way;
+			if (tmp_way->next)
+				tmp_way->next->prev = nex;
+			if (tmp_way->prev)
+			{
+				nex->prev = tmp_way->prev;
+				nex->prev->next = nex;
+			}
+			else
+				nex->prev = NULL;
+			tmp_way->prev = nex;
+		}
+		if (tmp_way->next)
+			tmp_way = tmp_way->next;
+	}
+}
+
 int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 {
 	t_search		*srch;
@@ -102,7 +137,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	srched = (t_search *)ft_memalloc(sizeof(t_search));
 	srch->rooms = (*indta)->start_room;
 	srch->step_nbr = 0;
-	check = give_me_way_nbr(fnd_way);
+	check = give_me_way_nbr(&((*fnd_way)->ways));
 	srch->way_nbr = check;
 	while (1)
 	{
@@ -111,8 +146,9 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 		else
 			break ;
 	}
-	if (check == give_me_way_nbr(fnd_way) && link_breaker(fnd_way))
+	if (check == give_me_way_nbr((&(*fnd_way)->ways)) && link_breaker(fnd_way))
 		check = 0;
+	sort_ways(&((*fnd_way)->ways));
 	erase_tmp_step_nbr((*indta)->rooms);
 	(*fnd_way)->del_room = NULL;
 //	fill_the_way(&((*fnd_way)->ways), srched);
