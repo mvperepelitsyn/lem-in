@@ -172,8 +172,12 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 		else
 			break ;
 	}
-	if (check == give_me_way_nbr((&(*fnd_way)->ways)) && link_breaker(fnd_way))
+	if ((check == give_me_way_nbr((&(*fnd_way)->ways)) && link_breaker(fnd_way))
+	|| check == give_me_way_nbr((&(*fnd_way)->ways)))
+	{
+		rev_wide_search(indta);
 		check = 0;
+	}
 //	sort_ways(&((*fnd_way)->ways));
 	erase_tmp_step_nbr((*indta)->rooms);
 	(*fnd_way)->del_room = NULL;

@@ -179,10 +179,10 @@ static	void	add_the_way(t_find_way **fnd, t_search **srch, t_search **srchd,
 int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched,
 		t_intldta **indta)
 {
-	int num_lnks;
-	t_list *ptr;
-	t_list_links *pt_link;
-	t_search *tmp;
+	int				num_lnks;
+	t_list			*ptr;
+	t_list_links	*pt_link;
+	t_search		*tmp;
 
 	num_lnks = (*srch)->rooms->num_lnks;
 	ptr = (*srch)->rooms->links;
