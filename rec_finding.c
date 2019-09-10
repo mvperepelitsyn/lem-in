@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/09 19:19:38 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/10 17:31:28 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,8 +170,8 @@ static int	form_the_set(t_find_way *find, t_intldta *indta)
 int			rec_finding(t_intldta *indta, t_find_way *find)
 {
 	if (find->crnt_set && (/*find->crnt_set->ways_cnt == indta->num_ants || \
-		CUR->full_steps == -1 || (PRE && CUR->steps > PRE->steps) || \
-		*/ !check_free_rooms(indta->start_room)))
+		CUR->full_steps == -1 || */(PRE && CUR->steps > PRE->steps) || \
+		 !check_free_rooms(indta->start_room)))
 		return (1);
 	if (wide_search(&find, &indta))
 		form_the_set(find, indta);
