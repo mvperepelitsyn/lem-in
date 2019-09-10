@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/05 21:00:49 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/10 14:51:23 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 		tk.m.y += tk.y;
 		tk.n.x += tk.x;
 		tk.n.y += tk.y;
+		ft_printf("%d ", tk.m.x);
+		ft_printf("%d ", tk.m.y);
+		ft_printf("%d ", tk.n.x);
+		ft_printf("%d\n", tk.n.y);
 		tk.gr.delta = ft_abs(l->d_big);
 		tk.gr.a = get_grad_color(l->img, clr, l->i);
 		tk.gr.b = tk.gr.a;
@@ -71,6 +75,7 @@ static void	dot_init(t_build_route *br, t_circle *c)
 	br->clr.delta = ft_abs(br->l.d_big);
 	br->clr.a = br->a.color;
 	br->clr.b = br->b.color;
+	c->clr = ROUTE_COLOR;
 	c->x = br->a.x;
 	c->y = br->a.y;
 }
@@ -89,11 +94,11 @@ void		build_route(t_graph *g, t_dllist *room)
 	while(room->right)
 	{
 		br.croom = room->content;
-		br.a.x = (*br.croom)->x_cord;
-		br.a.y = (*br.croom)->y_cord;
+		br.a.x = ((*br.croom)->x_cord * g->scale)  + (2 * R);
+		br.a.y = ((*br.croom)->y_cord * g->scale)  + (2 * R);
 		br.croom = room->right->content;
-		br.b.x = (*br.croom)->x_cord;
-		br.b.y = (*br.croom)->y_cord;
+		br.b.x = ((*br.croom)->x_cord * g->scale)  + (2 * R);
+		br.b.y = ((*br.croom)->y_cord * g->scale)  + (2 * R);
 		dot_init(&br, &c);
 		draw_circle(&c, g->graph, 1);
 		build_thick_line(&br.l, &br.a, &br.b, &br.clr);

@@ -92,6 +92,34 @@ int		give_me_way_nbr(t_find_way **fnd_way)
 //	(*ws)->search->way_nbr = tmp_w->num_way;
 //}
 
+void	insert_way(t_find_way *find, t_way *way)
+{
+	t_way	*ptr;
+	t_way	*prev;
+
+	if (!find->ways)
+	{
+		find->ways = way;
+		return ;
+	}
+	ptr = find->ways;
+	prev = ptr->prev;
+	while (ptr)
+	{
+		if (ptr->steps > way->steps)
+			break ;
+		prev = ptr;
+		ptr = ptr->next;
+	}
+	if (ptr)
+	{
+		ptr->prev = way;
+		way->next = ptr;
+	}
+		prev->next = way;
+		way->prev = prev;
+}
+
 int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 {
 	t_search		*srch;
