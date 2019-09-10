@@ -139,7 +139,7 @@ void	insert_way(t_find_way *find, t_way *way)
 	prev = ptr->prev;
 	while (ptr)
 	{
-		if (ptr->steps > way->steps)
+		if (ptr->len_way > way->len_way)
 			break ;
 		prev = ptr;
 		ptr = ptr->next;
