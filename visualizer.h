@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/02 14:41:42 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/06 18:53:06 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define WIN_X 2560
 # define WIN_Y 1575
 # define R 10
-# define SCALE 2000
+# define SCALE 200
 # define S_CLR 0x00FF00
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
@@ -166,7 +166,7 @@ typedef struct	s_build_route
 	t_dot_prm		a;
 	t_dot_prm		b;
 	t_grad_prms		clr;
-	t_list_rooms	*croom;
+	t_list_rooms	**croom;
 }				t_build_route;
 
 void	visualizer(t_intldta *indta, t_find_way *find);

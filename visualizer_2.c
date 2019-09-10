@@ -27,6 +27,16 @@ void		set_grad_color(t_grad *g, t_grad_prms *clr, int pos)
 	g->c[g->alpha] = ((g->d_alpha * pos) / clr->delta) + g->a[g->alpha];
 }
 
+void	transparent(int *color, unsigned char clarity, t_vis_prms *v)
+{
+	int				alpha;
+	unsigned char	*clr;
+
+	alpha  = (v->ndn == 0) ? 3 : 0;
+	clr = (unsigned char*)color;
+	clr[alpha] = clarity;
+}
+
 void		draw_rooms(t_intldta *indta, t_graph *g)
 {
 	t_list_rooms	*ptr;
@@ -39,6 +49,8 @@ void		draw_rooms(t_intldta *indta, t_graph *g)
 		c.clr = g->clr[ptr->type];
 		c.x = (ptr->x_cord * g->scale) + (2 * R);
 		c.y = (ptr->y_cord * g->scale) + (2 * R);
+		if (!ptr->act_lnks)
+			transparent(&c.clr, 200, g->graph);
 		draw_circle(&c, g->graph, 0);
 		ptr = ptr->next;
 	}
@@ -62,6 +74,11 @@ void		draw_links(t_intldta *indta, t_graph *g)
 		b.color =  g->clr[ptr->rm2->type];
 		b.thick = 1;
 		trim_line(&a, &b, R);
+		if (!ptr->status)
+		{
+			transparent(&a.color, 200, g->graph);
+			transparent(&b.color, 200, g->graph);
+		}
 		put_line_to_img(g->graph, a, b);
 		ptr = ptr->next;
 	}

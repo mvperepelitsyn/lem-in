@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   link_breaker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/09 14:21:58 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/09 17:14:13 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ void	dead_end_cleaner(t_list_rooms *room)
 		ft_error();
 	}
 	link->status = 0;
-	room->act_lnks--;
+	room->act_lnks = 0;
 	if (room == link->rm1)
 		room = link->rm2;
 	else if (room == link->rm2)
