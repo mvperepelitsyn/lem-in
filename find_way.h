@@ -161,5 +161,6 @@ int		init_way(t_find_way **fnd_way);
 int		give_me_way_nbr(t_way **ways);
 void	erase_tmp_step_nbr(t_list_rooms *rooms);
 void	move_ants(t_intldta *intdta, t_find_way *find);
+void	insert_way(t_find_way *find, t_way *way);
 
 #endif

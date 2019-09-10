@@ -100,8 +100,8 @@ int		give_me_way_nbr(t_way **ways)
 
 void	sort_ways(t_way **ways)
 {
-	t_way	*tmp_way;
-	t_way	*nex;
+	t_way *tmp_way;
+	t_way *nex;
 
 	tmp_way = *ways;
 	while (tmp_way->next)
@@ -125,6 +125,34 @@ void	sort_ways(t_way **ways)
 	}
 }
 
+void	insert_way(t_find_way *find, t_way *way)
+{
+	t_way	*ptr;
+	t_way	*prev;
+
+	if (!find->ways)
+	{
+		find->ways = way;
+		return ;
+	}
+	ptr = find->ways;
+	prev = ptr->prev;
+	while (ptr)
+	{
+		if (ptr->steps > way->steps)
+			break ;
+		prev = ptr;
+		ptr = ptr->next;
+	}
+	if (ptr)
+	{
+		ptr->prev = way;
+		way->next = ptr;
+	}
+		prev->next = way;
+		way->prev = prev;
+}
+
 int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 {
 	t_search		*srch;
@@ -146,7 +174,7 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	}
 	if (check == give_me_way_nbr((&(*fnd_way)->ways)) && link_breaker(fnd_way))
 		check = 0;
-	sort_ways(&((*fnd_way)->ways));
+//	sort_ways(&((*fnd_way)->ways));
 	erase_tmp_step_nbr((*indta)->rooms);
 	(*fnd_way)->del_room = NULL;
 //	fill_the_way(&((*fnd_way)->ways), srched);
