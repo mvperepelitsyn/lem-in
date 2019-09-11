@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/10 18:44:24 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/11 12:51:35 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	find_cur_room(t_link_breaker *br, t_find_way **find, t_list_rooms
 	while (br->wroom)
 	{
 		br->croom = (t_list_rooms **)br->wroom->content;
-		if (ft_strequ(br->croom[0]->name, room->name))
+		if (br->croom[0] == room)
 			break ;
 		br->wroom = br->wroom->right;
 	}
@@ -67,10 +67,9 @@ static int	check_connection(t_dllist *wroom)
 static int	check_link(t_list_links	*link, t_list_rooms *croom, \
 	t_list_rooms *prev_room)
 {
-	if ((ft_strequ(link->rm1->name, croom->name) && ft_strequ(link->rm2->name,
-			prev_room->name)) || (ft_strequ(link->rm2->name, croom->name) &&
-			ft_strequ(link->rm1->name, prev_room->name)))
-		return (1);
+	if ((link->rm1 == croom && link->rm2 == prev_room) || (link->rm2 == croom \
+		&& link->rm1 == prev_room))
+	 	return (1);
 	return (0);
 }
 
@@ -176,7 +175,7 @@ void	wide_breaker(t_list_links *link, t_list_rooms *room)
 			break ;
 		wr.link_ptr = wr.link_ptr->next;
 	}
-	if (ft_strequ(room->name, wr.prev_link->room1))
+	if (room == wr.prev_link->rm1)
 		wr.prev_room = wr.prev_link->rm2;
 	else
 		wr.prev_room = wr.prev_link->rm1;
@@ -188,11 +187,9 @@ void	dead_end_cleaner(t_list_rooms *room)
 	t_list			*link_ptr;
 	t_list_links	*link;
 
-	ft_printf("%s %d ", room->name, room->act_lnks);
-	if (room->type == 1 || room->act_lnks > 2)
+	if (room->type == 1 || room->act_lnks != 2)
 	{
 		room->act_lnks--;
-		ft_printf("\n");
 		return ;
 	}
 	link_ptr = room->links;
@@ -202,14 +199,12 @@ void	dead_end_cleaner(t_list_rooms *room)
 		if (link->status)
 			break ;
 		link_ptr = link_ptr->next;
-		ft_printf("l ");
 	}
 	if (!link_ptr)
 	{
 		ft_printf("dead_end_cleaner error\n");
 		ft_error();
 	}
-	ft_printf("%s %s\n", link->room1, link->room2);
 	link->status = 0;
 	room->act_lnks = 0;
 	if (room == link->rm1)
@@ -220,18 +215,3 @@ void	dead_end_cleaner(t_list_rooms *room)
 		ft_printf("dead_end_cleaner debug message\n");
 	dead_end_cleaner(room);
 }
-
-//int			link_breaker(t_find_way **find, t_list_rooms *room)
-//{
-//	t_link_breaker	br;
-//	t_way			*tmp;
-//	t_list_rooms	*tmp2;
-//
-//	tmp = (*find)->ways;
-//	find_cur_room(&br, find, room);
-//	if (!check_connection(br.wroom))
-//		return (0);
-//	break_links(&br);
-//	while (tmp->num_way != br.way->num_way)
-//		tmp = tmp->next;
-//	br.wroo
