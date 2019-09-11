@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 12:18:34 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/11 13:17:20 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_search
 	t_list_rooms	*rooms;
 	int				step_nbr;
 	int				way_nbr;
+	int 			cnt;
 	struct s_search *next;
 	struct s_search *prev;
 

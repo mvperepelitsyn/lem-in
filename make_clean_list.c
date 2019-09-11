@@ -12,9 +12,11 @@ static	int		make_it_clean_help2(t_search **tmp, t_search **tmp2, int i)
 		prev->rooms))
 			return (1);
 	if (i == 2)
-		if (!it_has_link((*tmp)->rooms, (*tmp)->prev->rooms) && (*tmp)->step_nbr
+		if ((!it_has_link((*tmp)->rooms, (*tmp)->prev->rooms) && (*tmp)->step_nbr
 		        < (*tmp)->next->step_nbr && it_has_link((*tmp)->rooms,
-				(*tmp)->next->rooms) && !((*tmp)->prev && it_has_link((*tmp)->prev->rooms, (*tmp)->next->rooms) && (*tmp)->prev->step_nbr < (*tmp)->step_nbr))
+				(*tmp)->next->rooms) && !((*tmp)->prev && it_has_link((*tmp)->
+				prev->rooms, (*tmp)->next->rooms) && (*tmp)->prev->step_nbr <
+				        (*tmp)->step_nbr)) && (*tmp)->rooms->way_nbr < 0)
 			return (1);
 	if (i == 3)
 		if (it_has_link((*tmp)->rooms, (*tmp2)->rooms) && (*tmp2)->step_nbr <
@@ -53,7 +55,7 @@ static	void 	make_it_clean_help(t_search **tmp, t_search **tmp2, int *cnt)
 	while ((*tmp)->prev != NULL)
 	{
 		*cnt = 0;
-		if (make_it_clean_help2(tmp, tmp2, 1))
+		if (make_it_clean_help2(tmp, tmp2, 1) && (*tmp)->cnt == 0)
 		{
 			if (make_it_clean_help2(tmp, tmp2, 2))
 			{
@@ -87,5 +89,6 @@ void			make_it_clean(t_search **lst_rooms)
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp = tmp->prev;
+	tmp->cnt = 1;
 	make_it_clean_help(&tmp, &tmp2, &cnt);
 }
