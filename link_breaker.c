@@ -188,7 +188,7 @@ void	dead_end_cleaner(t_list_rooms *room)
 	t_list			*link_ptr;
 	t_list_links	*link;
 
-	if (room->type == 1 || room->act_lnks > 2)
+	if (room->type == 1 || room->act_lnks != 2)
 	{
 		room->act_lnks--;
 		return ;
