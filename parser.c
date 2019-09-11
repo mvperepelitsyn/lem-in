@@ -152,6 +152,5 @@ int		main(int argc, char **argv)
 //	ft_print_strcut(indta);
 	ft_putchar('\n');
 	find_the_way(indta);
-	ft_printf("\nrev_wide_search was used %d times\n", indta->counter);
 	exit (0);
 }
