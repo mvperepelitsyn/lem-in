@@ -130,6 +130,7 @@ static void	parce_ant_farm(t_intldta **indta) //when we force it to read
 	if ((*indta)->num_ants <= 0 || (*indta)->num_ants != (int)ft_latoi(things))
 		ft_error();
 	ft_strdel(&things);
+	rms = NULL;
     graph_parser(indta, &things, rms, fd);
 	if ((*indta)->li == -1)
 		ft_error();
