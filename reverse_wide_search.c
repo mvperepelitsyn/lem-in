@@ -138,6 +138,7 @@ int				rev_wide_search(t_intldta **indta)
 	t_search	*searched;
 	int 		act_links_b;
 
+	(*indta)->counter++;
 	act_links_b = (*indta)->start_room->act_lnks;
 	set_start_status((*indta)->start_room);
 	search = (t_search *)ft_memalloc(sizeof(t_search));

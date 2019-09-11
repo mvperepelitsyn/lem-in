@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/10 17:47:13 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/11 14:13:09 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,5 +180,7 @@ int			rec_finding(t_intldta *indta, t_find_way *find)
 		if (!check_set_load(find, indta))
 			return (rec_finding(indta, find));
 	}*/
+//	else
+//		rev_wide_search(&indta);
 	return (0);
 }
