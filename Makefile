@@ -6,7 +6,7 @@
 #    By: iiliuk <iiliuk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/02 12:28:41 by iiliuk            #+#    #+#              #
-#    Updated: 2019/09/09 17:23:49 by uhand            ###   ########.fr        #
+#    Updated: 2019/09/11 13:37:37 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ wide_search_2.c wide_search_3.c reverse_wide_search.c moving_ants.c
 
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
-FLAGS = -g #-Wall -Wextra -Werror
+FLAGS =  -m64 -Ofast -flto -march=native -funroll-loops -Wall -Wextra -Werror
 LIB = -L ./libft -lft
 LIBPATH = ./libft
 

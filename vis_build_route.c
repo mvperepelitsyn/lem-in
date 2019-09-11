@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/10 14:51:23 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/11 13:18:47 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 		tk.gr.delta = ft_abs(l->d_big);
 		tk.gr.a = get_grad_color(l->img, clr, l->i);
 		tk.gr.b = tk.gr.a;
-		build_line(&tk.l, &tk.n, &tk.gr, &put_pix_to_img);
+		build_line(l, &tk.n, &tk.gr, &put_pix_to_img);
 		l->i++;
 	}
 }

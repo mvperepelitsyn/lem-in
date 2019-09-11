@@ -4,7 +4,7 @@
 
 #include "lem_in.h"
 
-static	void	del_t_way(t_way **way)
+/*static	void	del_t_way(t_way **way)
 {
 	if ((*way)->next == NULL && (*way)->prev == NULL)
 	{
@@ -17,9 +17,9 @@ static	void	del_t_way(t_way **way)
 		free((*way)->next);
 		(*way)->next = NULL;
 	}
-}
+}*/
 
-static int		end_searched(t_search **searched, t_search **search, t_way
+/*static int		end_searched(t_search **searched, t_search **search, t_way
 **wy, t_intldta **indta)
 {
 	t_search	*tmp;
@@ -37,7 +37,7 @@ static int		end_searched(t_search **searched, t_search **search, t_way
 	del_t_way(&tmp_way);
 	rev_wide_search(indta);
 	return (0);
-}
+}*/
 
 int		init_way(t_find_way **fnd_way)
 {
