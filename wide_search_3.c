@@ -7,6 +7,7 @@
 static	void stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm,
 		t_intldta **indta)
 {
+	(*indta)->ri = (*indta)->ri;
 	if (lnks->rm1 == rm && lnks->rm2->way_nbr > 0 &&
 		lnks->status == 1 && lnks->way_nbr < 0)
 	{
@@ -17,7 +18,7 @@ static	void stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm,
 			if ((*find)->check != 1)
 			{
 				wide_breaker(lnks, lnks->rm2);
-				rev_wide_search(indta);
+//				rev_wide_search(indta);
 			}
 		}
 	}
@@ -31,7 +32,7 @@ static	void stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm,
 			if ((*find)->check != 1)
 			{
 				wide_breaker(lnks, lnks->rm2);
-				rev_wide_search(indta);
+//				rev_wide_search(indta);
 			}
 		}
 	}

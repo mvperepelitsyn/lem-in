@@ -152,6 +152,5 @@ int		main(int argc, char **argv)
 //	ft_print_strcut(indta);
 	ft_putchar('\n');
 	find_the_way(indta);
-
 	exit (0);
 }

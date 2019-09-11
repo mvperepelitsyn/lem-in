@@ -57,6 +57,7 @@ struct		s_intldta
 	int				ri;
 	int				li;
 	int				v_flag;
+	int 			counter;
 };  //initial data
 
 void	ft_malloc_error(void);

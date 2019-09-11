@@ -4,40 +4,40 @@
 
 #include "lem_in.h"
 
-/*static	void	del_t_way(t_way **way)
-{
-	if ((*way)->next == NULL && (*way)->prev == NULL)
-	{
-		free(*way);
-		*way = NULL;
-	}
-	else
-	{
-		*way = (*way)->prev;
-		free((*way)->next);
-		(*way)->next = NULL;
-	}
-}*/
+//static	void	del_t_way(t_way **way)
+//{
+//	if ((*way)->next == NULL && (*way)->prev == NULL)
+//	{
+//		free(*way);
+//		*way = NULL;
+//	}
+//	else
+//	{
+//		*way = (*way)->prev;
+//		free((*way)->next);
+//		(*way)->next = NULL;
+//	}
+//}
 
-/*static int		end_searched(t_search **searched, t_search **search, t_way
-**wy, t_intldta **indta)
-{
-	t_search	*tmp;
-	t_way		*tmp_way;
-
-	tmp = *searched;
-	tmp_way = *wy;
-	while  (tmp_way->next)
-		tmp_way = tmp_way->next;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	if (tmp->rooms->type == 2)
-		return (1);
-	free_search_ed(search, searched);
-	del_t_way(&tmp_way);
-	rev_wide_search(indta);
-	return (0);
-}*/
+//static int		end_searched(t_search **searched, t_search **search, t_way
+//**wy, t_intldta **indta)
+//{
+//	t_search	*tmp;
+//	t_way		*tmp_way;
+//
+//	tmp = *searched;
+//	tmp_way = *wy;
+//	while  (tmp_way->next)
+//		tmp_way = tmp_way->next;
+//	while (tmp->next != NULL)
+//		tmp = tmp->next;
+//	if (tmp->rooms->type == 2)
+//		return (1);
+//	free_search_ed(search, searched);
+//	del_t_way(&tmp_way);
+//	rev_wide_search(indta);
+//	return (0);
+//}
 
 int		init_way(t_find_way **fnd_way)
 {
@@ -174,12 +174,18 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 		else
 			break ;
 	}
-	if ((check == give_me_way_nbr((&(*fnd_way)->ways)) && link_breaker(fnd_way))
-	|| check == give_me_way_nbr((&(*fnd_way)->ways)))
+	if (check == give_me_way_nbr((&(*fnd_way)->ways)))
 	{
-		rev_wide_search(indta);
+		if (!link_breaker(fnd_way))
+			rev_wide_search(indta);
 		check = 0;
 	}
+//	if ((check == give_me_way_nbr((&(*fnd_way)->ways)) && link_breaker(fnd_way))
+//	|| check == give_me_way_nbr((&(*fnd_way)->ways)))
+//	{
+//		rev_wide_search(indta);
+//		check = 0;
+//	}
 //	sort_ways(&((*fnd_way)->ways));
 	erase_tmp_step_nbr((*indta)->rooms);
 	(*fnd_way)->del_room = NULL;
