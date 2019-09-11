@@ -76,7 +76,7 @@ int 	find_the_way(t_intldta *indta)
 	print_the_answer(find->answer);
 //	if (indta->v_flag)
 //		visualizer(indta, find);
-	//move_ants(indta, find);
+//	move_ants(indta, find);
 //	=> print answer
  	return (0);
 }

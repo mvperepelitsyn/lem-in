@@ -64,7 +64,7 @@ void	fill_the_way(t_way **tmp_way, t_search *list)
 			sizeof(t_list_rooms*));
 	tmp->len_way = list->step_nbr;
 	tmp->status = 1;
-//	print_the_way(tmp);
+	print_the_way(tmp);
 }
 
 int				it_has_link(t_list_rooms *room1, t_list_rooms *room2)
