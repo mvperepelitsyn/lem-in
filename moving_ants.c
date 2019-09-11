@@ -6,21 +6,24 @@
 
 //void	move_ants(t_intldta *intdta, t_find_way *find)
 //{
-//	t_way	**ants;
+//	t_ants	*ants;
 //	int 	num;
 //	int 	ant_flow;
-//	int 	num_ants;
+//	int 	i;
+//	t_list	*ways;
 //
-//	ants = (t_way **)ft_memalloc(sizeof(t_way *) * intdta->num_ants);
+//	ants = (t_ants *)ft_memalloc(sizeof(t_ants) * intdta->num_ants);
 //	num = intdta->num_ants;
-//	num_ants = 0;
+//	i = 0;
 //	while (num)
 //	{
 //		ant_flow = find->answer->ways_cnt;
+//		ways = find->answer->ways;
 //		while (ant_flow)
 //		{
-//			ants = find->answer->ways->content;
-//			ft_printf("L%d-%s ", num_ants + 1, )
+//			ants[i].status = 1;
+//			ants[i].way = ways->content;
+//			ants[i].way->
 //			ant_flow--;
 //		}
 //

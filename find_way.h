@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/10 13:00:58 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/11 11:25:56 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,14 @@ typedef struct s_form_set
 	int		min_steps_count;
 	int		i_min;
 }				t_form_set;
+
+typedef struct s_ants
+{
+	int				status;
+	t_way			*way;
+	int 			num;
+	t_list_rooms	*position;
+}				t_ants;
 
 //typedef	struct s_wide_search
 //{
