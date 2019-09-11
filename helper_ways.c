@@ -30,9 +30,8 @@ static	void	mark_the_way(t_search *list)
 		while (tmp->rooms->type != 2)
 		{
 			lnks = ptr->content;
-			if ((ft_strequ(lnks->room1, tmp->rooms->name) && ft_strequ(lnks->
-					room2, tmp->next->rooms->name)) || (ft_strequ(lnks->room2, tmp->
-					rooms->name) && ft_strequ(lnks->room1, tmp->next->rooms->name)))
+			if ((lnks->rm1 == tmp->rooms && lnks->rm2 == tmp->next->rooms) ||
+			(lnks->rm2 == tmp->rooms && lnks->rm1 == tmp->next->rooms))
 			{
 				lnks->way_nbr = tmp->way_nbr;
 				break;

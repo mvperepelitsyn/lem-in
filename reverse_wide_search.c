@@ -84,24 +84,24 @@ static	int	rev_help_fill_search2(t_list_links *lnk, t_search **srch, t_search
 	char *name;
 
 	name = (*srch)->rooms->name;
-	if (ft_strequ(lnk->room1, name) && not_in_searched(lnk->room2, *srchd,
-			*srch) && (lnk->status == 1 || lnk->rm2->type == 1))
+	if ((lnk->rm1 == (*srch)->rooms) && not_in_searched(lnk->rm2, *srchd, *srch)
+	&& (lnk->status == 1 || lnk->rm2->type == 1))
 	{
 		if (rev_help_fill_search(&lnk->rm2, lnk, srch, tmp))
 			lnk->status = 1;
-		else if (ft_strequ(lnk->room2, name) && not_in_searched(lnk->room1,
+		else if (lnk->rm2 == (*srch)->rooms && not_in_searched(lnk->rm1,
 				*srchd, *srch) && lnk->rm1-> way_nbr < 0)
 		{
 			if (rev_help_fill_search(&lnk->rm1, lnk, srch, tmp))
 				lnk->status = 1;
 		}
 	}
-	else if (ft_strequ(lnk->room2, name) && not_in_searched(lnk->room1, *srchd,
+	else if (lnk->rm2 == (*srch)->rooms && not_in_searched(lnk->rm1, *srchd,
 			*srch) && (lnk->status == 1 || lnk->rm1->type == 1))
 	{
 		if (rev_help_fill_search(&lnk->rm1, lnk, srch, tmp))
 			lnk->status = 1;
-		else if (ft_strequ(lnk->room1, name) && not_in_searched(lnk->room2,
+		else if (lnk->rm1 == (*srch)->rooms && not_in_searched(lnk->rm2,
 				*srchd, *srch) && lnk->rm2-> way_nbr < 0)
 		{
 			if (rev_help_fill_search(&lnk->rm2, lnk, srch, tmp))

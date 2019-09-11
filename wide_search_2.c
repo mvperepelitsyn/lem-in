@@ -20,7 +20,7 @@ void			add_to_searched(t_search **searched, t_list_rooms *end_room)
 	srd->next->step_nbr = stp_nbr + 1;
 }
 
-int				not_in_searched(char *rm, t_search *searched, t_search *search)
+int				not_in_searched(t_list_rooms *rm, t_search *searched, t_search *search)
 {
 	t_search *check;
 	t_search *check2;
@@ -33,13 +33,13 @@ int				not_in_searched(char *rm, t_search *searched, t_search *search)
 	{
 		while (check != NULL)
 		{
-			if (ft_strequ(rm, check->rooms->name))
+			if (rm == check->rooms)
 				return (0);
 			check = check->next;
 		}
 		while (check2 != NULL)
 		{
-			if (ft_strequ(rm, check2->rooms->name))
+			if (rm == check2->rooms)
 				return (0);
 			check2 = check2->next;
 		}

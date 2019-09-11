@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 11:25:56 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/11 11:35:52 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void	print_the_way(t_way *way);
 void	print_the_set(t_way_set *set);
 void	fill_the_way(t_way **tmp_way, t_search *list);
 void	free_search_ed(t_search **search, t_search **searched);
-int		not_in_searched(char *rm, t_search *searched, t_search *search);
+int		not_in_searched(t_list_rooms *rm, t_search *searched, t_search *search);
 void	add_to_searched(t_search **searched, t_list_rooms *end_room);
 int		fill_search(t_find_way **find, t_search **search, t_search **searched,
 		t_intldta **indta);

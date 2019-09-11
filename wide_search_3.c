@@ -7,7 +7,7 @@
 static	void stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm,
 		t_intldta **indta)
 {
-	if (ft_strequ(lnks->room1, rm->name) && lnks->rm2->way_nbr > 0 &&
+	if (lnks->rm1 == rm && lnks->rm2->way_nbr > 0 &&
 		lnks->status == 1 && lnks->way_nbr < 0)
 	{
 		if (pre_link_breaker(find, lnks->rm2))
@@ -21,8 +21,8 @@ static	void stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm,
 			}
 		}
 	}
-	else if (ft_strequ(lnks->room2, rm->name) && lnks->rm1->way_nbr > 0 &&
-			 lnks->status == 1 && lnks->way_nbr < 0)
+	else if (lnks->rm2 == rm && lnks->rm1->way_nbr > 0 && lnks->status == 1 &&
+	lnks->way_nbr < 0)
 	{
 		if (pre_link_breaker(find, lnks->rm1))
 			return ;
@@ -57,27 +57,24 @@ static	int	help_fill_search(t_list_rooms **room, t_list_rooms *prev,
 static	int	help_fill_search2(t_list_links *lnk, t_search **srch, t_search
 **srchd, t_search **tmp)
 {
-	char *name;
-
-	name = (*srch)->rooms->name;
-	if (ft_strequ(lnk->room1, name) && not_in_searched(lnk->room2, *srchd,
-			*srch) && lnk->rm2->way_nbr < 0 && lnk->status == 1)
+	if (lnk->rm1 == (*srch)->rooms && not_in_searched(lnk->rm2, *srchd, *srch)
+	&& lnk->rm2->way_nbr < 0 && lnk->status == 1)
 	{
 		if (help_fill_search(&lnk->rm2, lnk->rm1, tmp))
 			return (1);
-		else if (ft_strequ(lnk->room2, name) && not_in_searched(lnk->room1,
+		else if (lnk->rm2 == (*srch)->rooms && not_in_searched(lnk->rm1,
 			*srchd, *srch) && lnk->rm1-> way_nbr < 0 && lnk->status == 1)
 		{
 			if (help_fill_search(&lnk->rm1, lnk->rm2, tmp))
 				return (1);
 		}
 	}
-	else if (ft_strequ(lnk->room2, name) && not_in_searched(lnk->room1, *srchd,
+	else if (lnk->rm2 == (*srch)->rooms && not_in_searched(lnk->rm1, *srchd,
 			*srch) && lnk->rm1->way_nbr < 0 && lnk->status == 1)
 	{
 		if (help_fill_search(&lnk->rm1, lnk->rm2, tmp))
 			return (1);
-		else if (ft_strequ(lnk->room1, name) && not_in_searched(lnk->room2,
+		else if (lnk->rm1 == (*srch)->rooms && not_in_searched(lnk->rm2,
 				*srchd, *srch) && lnk->rm2-> way_nbr < 0 && lnk->status == 1)
 		{
 			if (help_fill_search(&lnk->rm2, lnk->rm1, tmp))
