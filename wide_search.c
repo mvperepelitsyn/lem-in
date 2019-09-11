@@ -164,6 +164,8 @@ int		wide_search(t_find_way **fnd_way, t_intldta **indta)
 	srch->rooms = (*indta)->start_room;
 	srch->step_nbr = 0;
 	check = give_me_way_nbr(&((*fnd_way)->ways));
+	(*fnd_way)->min_ways = ((*indta)->start_room->act_lnks > (*indta)->end_room
+			->act_lnks) ? (*indta)->end_room->act_lnks : (*indta)->start_room->act_lnks;
 	srch->way_nbr = check;
 	while (1)
 	{

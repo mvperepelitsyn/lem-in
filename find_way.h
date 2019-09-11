@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 11:35:52 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/11 12:18:34 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ struct	s_find_way
 	t_list_rooms	*del_room;
 	t_list_links	*del_link;
 	int 			check;
+	int 			min_ways;
+	int 			cnt_ways;
 };
 
 /*

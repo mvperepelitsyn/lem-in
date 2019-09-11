@@ -136,7 +136,9 @@ int				rev_wide_search(t_intldta **indta)
 {
 	t_search	*search;
 	t_search	*searched;
+	int 		act_links_b;
 
+	act_links_b = (*indta)->start_room->act_lnks;
 	set_start_status((*indta)->start_room);
 	search = (t_search *)ft_memalloc(sizeof(t_search));
 	searched = (t_search *)ft_memalloc(sizeof(t_search));
@@ -144,6 +146,8 @@ int				rev_wide_search(t_intldta **indta)
 	search->step_nbr = 0;
 	while (1)
 	{
+		if (act_links_b == (*indta)->start_room->act_lnks)
+			break ;
 		if (search != NULL && rev_fill_search(&search, &searched))
 			rev_fill_searched(&searched, &search);
 		else
