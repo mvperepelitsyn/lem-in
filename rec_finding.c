@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rec_finding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 15:14:43 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/11 17:45:25 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ static int	form_the_set(t_find_way *find, t_intldta *indta)
 int			rec_finding(t_intldta *indta, t_find_way *find)
 {
 	if (find->crnt_set && (/*find->crnt_set->ways_cnt == indta->num_ants || \
-		CUR->full_steps == -1 || */(PRE && CUR->steps > PRE->steps) || \
+		CUR->full_steps == -1 ||*/(PRE && CUR->steps > PRE->steps) || \
 		 !check_free_rooms(indta->start_room)))
 		return (1);
 	if (wide_search(&find, &indta))

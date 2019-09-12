@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 13:18:47 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/11 20:31:05 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,30 @@ static void	get_thick(t_draw_thick *tk, t_line_prm *l, t_dot_prm *a, \
 		tk->thick = a->thick;
 	else
 		tk->thick = a->thick + ((l->i * (b->thick - a->thick)) / l->d_big);
-	tx = (tk->thick / 2) * cos(atan(l->dx / l->dy));
-	ty = (tk->thick / 2) * sin(atan(l->dx / l->dy));
+	tx = ft_abs((tk->thick / 2) * cos(atan(l->dx / l->dy)));
+	ty = ft_abs((tk->thick / 2) * sin(atan(l->dx / l->dy)));
 	if ((tx - (int)tx) > 0.5)
 		tx++;
 	if ((ty - (int)ty) > 0.5)
 		ty++;
 	tk->m.x = - tx;
-	tk->m.y = ty;
-	tk->n.x = tx;
-	tk->n.y = - ty;
+	tk->m.y = - ty;
+	tk->n.x = + tx;
+	tk->n.y = + ty;
 }
 
 void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
-	t_grad_prms *clr)
+	t_grad_prms *clr, t_circle *c)
 {
 	t_draw_thick	tk;
 
+	ft_printf("big: %d ", l->d_big);
+	ft_printf("%d\n", l->i);
+	tk.l.img = l->img;
 	while (l->i <= ft_abs(l->d_big))
 	{
-		get_thick(&tk, l, a, b);
+		ft_printf("%d\n", l->i);
+		//get_thick(&tk, l, a, b);
 		if (l->d_ind == 1)
 		{
 			tk.x = a->x + (l->i * l->sign);
@@ -52,7 +56,9 @@ void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 			tk.x = a->x + get_coord(l);
 			tk.y = a->y + (l->i * l->sign);
 		}
-		tk.m.x += tk.x;
+		c->x = tk.x;
+		c->y = tk.y;
+		/*tk.m.x += tk.x;
 		tk.m.y += tk.y;
 		tk.n.x += tk.x;
 		tk.n.y += tk.y;
@@ -60,10 +66,13 @@ void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 		ft_printf("%d ", tk.m.y);
 		ft_printf("%d ", tk.n.x);
 		ft_printf("%d\n", tk.n.y);
-		tk.gr.delta = ft_abs(l->d_big);
-		tk.gr.a = get_grad_color(l->img, clr, l->i);
+		get_delta(&tk.m, &tk.n, &tk.l);
+		tk.l.i = 0;
+		tk.gr.delta = ft_abs(tk.l.d_big);
+		tk.gr.a = get_grad_color(tk.l.img, clr, tk.l.i);
 		tk.gr.b = tk.gr.a;
-		build_line(l, &tk.n, &tk.gr, &put_pix_to_img);
+		build_line(&tk.l, &tk.m, &tk.gr, &put_pix_to_img);*/
+		draw_circle(c, l->img, 1);
 		l->i++;
 	}
 }
@@ -71,7 +80,7 @@ void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 static void	dot_init(t_build_route *br, t_circle *c)
 {
 	get_delta(&br->a, &br->b, &br->l);
-	br->l.i = 0;
+	br->l.i = 0/*ft_abs(br->l.d_big) - 1*/;
 	br->clr.delta = ft_abs(br->l.d_big);
 	br->clr.a = br->a.color;
 	br->clr.b = br->b.color;
@@ -100,11 +109,11 @@ void		build_route(t_graph *g, t_dllist *room)
 		br.b.x = ((*br.croom)->x_cord * g->scale)  + (2 * R);
 		br.b.y = ((*br.croom)->y_cord * g->scale)  + (2 * R);
 		dot_init(&br, &c);
-		draw_circle(&c, g->graph, 1);
-		build_thick_line(&br.l, &br.a, &br.b, &br.clr);
+		//draw_circle(&c, g->graph, 1);
+		build_thick_line(&br.l, &br.a, &br.b, &br.clr, &c);
 		room = room->right;
 	}
-	c.x = (*br.croom)->x_cord;
-	c.y = (*br.croom)->y_cord;
-	draw_circle(&c, g->mask, 1);
+	c.x = ((*br.croom)->x_cord * g->scale)  + (2 * R);
+	c.y = ((*br.croom)->y_cord * g->scale)  + (2 * R);
+	//draw_circle(&c, g->graph, 1);
 }

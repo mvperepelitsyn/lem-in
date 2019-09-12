@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/03/02 12:28:41 by iiliuk            #+#    #+#              #
-#    Updated: 2019/09/11 15:04:28 by dfrost-a         ###   ########.fr        #
+#    Created: 2019/09/11 15:32:06 by uhand             #+#    #+#              #
+#    Updated: 2019/09/11 20:11:20 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ wide_search_2.c wide_search_3.c reverse_wide_search.c moving_ants.c
 
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
-FLAGS =  -Wall -Wextra -Werror -m64 -Ofast -flto -march=native -funroll-loops
+FLAGS =  -g #-Wall -Wextra -Werror #-m64 -Ofast -flto -march=native -funroll-loops
 LIB = -L ./libft -lft
 LIBPATH = ./libft
 

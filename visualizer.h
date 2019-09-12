@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/10 14:45:24 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/11 20:20:57 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
 # define ROUTE_COLOR 0xAAAA41FE
-# define ROUTE_THICK 20
+# define ROUTE_THICK 30
 
 typedef struct s_vis_prms	t_vis_prms;
 
@@ -176,7 +176,7 @@ int		put_pix_to_img(t_line_prm *l, int x, int y, int color);
 void	build_line(t_line_prm *l, t_dot_prm *a, t_grad_prms *clr, \
 	int (*method)(t_line_prm*, int, int, int));
 void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
-	t_grad_prms *clr);
+	t_grad_prms *clr, t_circle *c);
 void	put_line_to_img(t_vis_prms *v, t_dot_prm a, t_dot_prm b);
 void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos);
 int		deal_key(int key, void *prm);
