@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_way.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 13:17:20 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/12 19:51:38 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ struct	s_find_way
 	int 			check;
 	int 			min_ways;
 	int 			cnt_ways;
+	int				max_way_len;
 };
 
 /*
