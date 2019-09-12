@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 20:27:28 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:44:42 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,24 @@ static void	window_init(t_vis_prms *v, t_vis_prms *mask, t_vis_prms *graph)
 		&graph->lsz, &graph->ndn);
 }
 
+// static void	set_map_transparent(t_vis_prms *v)
+// {
+// 	int				alpha;
+// 	int				img_len;
+// 	int				i;
+// 	unsigned int	*pixel;
+// 	unsigned char	*byte;
+//
+// 	alpha  = (v->ndn == 0) ? 3 : 0;
+// 	img_len = v->win_x * v->win_y;
+// 	pixel = (unsigned int*)v->img_ptr;
+// 	i = 0;
+// 	while (i < img_len)
+// 	{
+// 		ptr = (unsigned char*)pixel;
+// 	}
+// }
+
 static void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 {
 	t_way		**way;
@@ -105,7 +123,9 @@ static void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 	{
 		way = ptr->content;
 		room = (*way)->rooms;
+		// set_map_transparent(g->mask);
 		build_route(g, room);
+		mlx_put_image_to_window(g->mask->mlx_ptr, g->mask->win_ptr, g->mask->img_ptr, 0, 0);
 		ptr = ptr->next;
 	}
 }

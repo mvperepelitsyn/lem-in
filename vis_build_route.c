@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 20:31:05 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:21:54 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 {
 	t_draw_thick	tk;
 
-	ft_printf("big: %d ", l->d_big);
-	ft_printf("%d\n", l->i);
+	// ft_printf("big: %d ", l->d_big);
+	// ft_printf("%d\n", l->i);
 	tk.l.img = l->img;
 	while (l->i <= ft_abs(l->d_big))
 	{
-		ft_printf("%d\n", l->i);
+		// ft_printf("%d\n", l->i);
 		//get_thick(&tk, l, a, b);
 		if (l->d_ind == 1)
 		{

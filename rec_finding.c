@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/12 20:07:43 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/12 20:44:21 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	count_set_steps(t_intldta *indta, t_find_way *find, int count)
 	}
 	if (c.i != count)
 		ft_printf("count steps error!\n");
-	find->max_way_len = c.max_len;
+	find->pre_way_len = c.max_len;
 	c.pre_lems += count * c.max_len;
 	if (c.pre_lems > indta->num_ants)
 		c.ptr->full_steps = 0;
@@ -76,7 +76,7 @@ static int	count_set_steps(t_intldta *indta, t_find_way *find, int count)
 			c.steps++;
 		c.ptr->full_steps = (int)c.steps;
 	}
-	c.ptr->steps = c.ptr->full_steps + c.max_len;
+	 c.ptr->steps = c.ptr->full_steps + c.max_len;
 	return (c.ptr->steps);
 }
 
@@ -159,6 +159,7 @@ static int	form_the_set(t_find_way *find, t_intldta *indta)
 		{
 			fs.min_steps_count = fs.steps_count;
 			fs.i_min = fs.i;
+			find->max_way_len = find->pre_way_len;
 		}
 	}
 	if (fs.counter)

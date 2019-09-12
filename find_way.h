@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_way.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
+/*   Updated: 2019/09/12 20:43:38 by uhand            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIND_WAY_H
 # define FIND_WAY_H
 
@@ -15,7 +27,11 @@ typedef struct		s_way
 	int				len_way;
 	int				num_way;
 	int				status;
+<<<<<<< HEAD
 	int 			last_steps;
+=======
+	int				last_steps;
+>>>>>>> origin/comb_method
 	int				steps;
 	int				full_steps;
 	t_dllist		*rooms;
@@ -54,6 +70,7 @@ struct	s_find_way
 	int 			check;
 	int 			min_ways;
 	int 			cnt_ways;
+	int				pre_way_len;
 	int				max_way_len;
 };
 
