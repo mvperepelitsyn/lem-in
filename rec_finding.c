@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 17:45:25 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/12 17:47:56 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	count_set_steps(t_intldta *indta, t_find_way *find, int count)
 		c.ptr->full_steps = 0;
 	else
 	{
-		c.steps = (indta->num_ants - c.pre_lems) / count;
+		c.steps = (float)(indta->num_ants - c.pre_lems) / (float)count;
 		if (c.steps > (int)c.steps/* && !(indta->num_ants == c.pre_lems)*/)
 			c.steps++;
 		c.ptr->full_steps = (int)c.steps;
