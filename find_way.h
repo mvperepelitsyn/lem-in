@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_way.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/12 20:43:38 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:47:54 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ typedef struct		s_way
 	int				len_way;
 	int				num_way;
 	int				status;
-<<<<<<< HEAD
 	int 			last_steps;
-=======
-	int				last_steps;
->>>>>>> origin/comb_method
 	int				steps;
 	int				full_steps;
 	t_dllist		*rooms;
