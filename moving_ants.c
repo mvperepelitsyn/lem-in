@@ -47,11 +47,16 @@ void	move_ants(t_intldta *intdta, t_find_way *find)
 		}
 		while (ant_flow < find->answer->ways_cnt && i < ant_farm.num)
 		{
-			ant_farm.ants[i].status = 1;
 			while (tmp-- > 0)
 				ways = ways->next;
 			tmp = 1;
+			while (ways && (*(t_way **)ways->content)->full_steps < 0)
+				ways = ways->next;
+			if (ways == NULL)
+				break ;
+			ant_farm.ants[i].status = 1;
 			ant_farm.ants[i].way = *(t_way **)ways->content;
+			(*(t_way **)ways->content)->full_steps--;
 			ant_farm.ants[i].rooms = ant_farm.ants[i].way->rooms->right;
 			ant_farm.ants[i].position = *(t_list_rooms **)(ant_farm.ants[i].
 					rooms->content);

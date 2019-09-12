@@ -67,7 +67,7 @@ static int	count_set_steps(t_intldta *indta, t_find_way *find, int count)
 		ft_printf("count steps error!\n");
 	c.pre_lems += count * c.max_len;
 	if (c.pre_lems > indta->num_ants)
-		c.ptr->full_steps = -1;
+		c.ptr->full_steps = 0;
 	else
 	{
 		c.steps = (indta->num_ants - c.pre_lems) / count;
