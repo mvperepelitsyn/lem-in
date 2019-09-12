@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rec_finding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/12 19:56:32 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:07:43 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ static void	add_new_set(t_find_way *find, int ways_cnt)
 		{
 			if (!ft_lstaddnext(&set->ways, (void*)&ptr, sizeof(ptr)))
 				ft_malloc_error();
-			ptr->steps = find->max_way_len - ptr->len_way - 1;
+			ptr->last_steps = find->max_way_len - (ptr->len_way - 1);
 			i++;
 		}
 		if (i < ways_cnt)

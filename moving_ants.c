@@ -47,24 +47,6 @@ void	move_ants(t_intldta *intdta, t_find_way *find)
 			j++;
 
 		}
-		while (ant_farm.full_steps > 0 && ant_flow < find->answer->ways_cnt &&
-		i < ant_farm.num)
-		{
-			while (tmp-- > 0)
-				ways = ways->next;
-			tmp = 1;
-			ant_farm.ants[i].status = 1;
-			ant_farm.ants[i].way = *(t_way **)ways->content;
-			ant_farm.full_steps--;
-			ant_farm.ants[i].rooms = ant_farm.ants[i].way->rooms->right;
-			ant_farm.ants[i].position = *(t_list_rooms **)(ant_farm.ants[i].
-					rooms->content);
-			ft_printf("L%d-%s ", i + 1, ant_farm.ants[i].position->name);
-			ant_farm.ants[i].rooms = ant_farm.ants[i].rooms->right;
-			ant_farm.full_steps--;
-			ant_flow++;
-			i++;
-		}
 		if (ant_farm.full_steps == 0)
 		{
 			while (ant_flow < find->answer->ways_cnt && i < ant_farm.num)
@@ -72,13 +54,13 @@ void	move_ants(t_intldta *intdta, t_find_way *find)
 				while (tmp-- > 0)
 					ways = ways->next;
 				tmp = 1;
-				while (ways && (*(t_way **)ways->content)->steps < 0)
+				while (ways && (*(t_way **)ways->content)->last_steps < 0)
 					ways = ways->next;
 				if (ways == NULL)
 					break ;
 				ant_farm.ants[i].status = 1;
 				ant_farm.ants[i].way = *(t_way **)ways->content;
-				(*(t_way **)ways->content)->steps--;
+				(*(t_way **)ways->content)->last_steps--;
 				ant_farm.ants[i].rooms = ant_farm.ants[i].way->rooms->right;
 				ant_farm.ants[i].position = *(t_list_rooms **)(ant_farm.ants[i].
 						rooms->content);
@@ -86,8 +68,28 @@ void	move_ants(t_intldta *intdta, t_find_way *find)
 				ant_farm.ants[i].rooms = ant_farm.ants[i].rooms->right;
 				ant_flow++;
 				i++;
-
 			}
+		}
+		if (ant_farm.full_steps > 0)
+		{
+			while (ant_farm.full_steps > 0 &&
+				   ant_flow < find->answer->ways_cnt &&
+				   i < ant_farm.num)
+			{
+				while (tmp-- > 0)
+					ways = ways->next;
+				tmp = 1;
+				ant_farm.ants[i].status = 1;
+				ant_farm.ants[i].way = *(t_way **) ways->content;
+				ant_farm.ants[i].rooms = ant_farm.ants[i].way->rooms->right;
+				ant_farm.ants[i].position = *(t_list_rooms **) (ant_farm.ants[i].
+						rooms->content);
+				ft_printf("L%d-%s ", i + 1, ant_farm.ants[i].position->name);
+				ant_farm.ants[i].rooms = ant_farm.ants[i].rooms->right;
+				ant_flow++;
+				i++;
+			}
+			ant_farm.full_steps--;
 		}
 		counter++;
 		ft_putchar('\n');

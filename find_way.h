@@ -15,6 +15,7 @@ typedef struct		s_way
 	int				len_way;
 	int				num_way;
 	int				status;
+	int 			last_steps;
 	int				steps;
 	int				full_steps;
 	t_dllist		*rooms;
