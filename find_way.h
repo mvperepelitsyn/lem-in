@@ -149,6 +149,9 @@ typedef struct s_ant_farm
 	int 	num;
 	int 	fin_ants;
 	int 	full_steps;
+	int 	ant_flow;
+	int 	i;
+	int 	j;
 }				t_ant_farm;
 
 //typedef	struct s_wide_search
