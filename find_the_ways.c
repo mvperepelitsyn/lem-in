@@ -36,9 +36,6 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 {
  	if (!((*fnd_wy) = (t_find_way *)ft_memalloc(sizeof(t_find_way))))
  		ft_malloc_error();
- 	//TODO: It's needed to make an inisialisation for crnt_set and prev_set
-// 	if (!((*fnd_wy)->ways = (t_way *)malloc(sizeof(t_way))))
-// 		ft_malloc_error();
 	(*fnd_wy)->ways = NULL;
 	(*fnd_wy)->start = indta->start_room;
 	(*fnd_wy)->sets = NULL;
@@ -58,7 +55,10 @@ int 	find_the_way(t_intldta *indta)
 	rev_wide_search(&indta);
 	(*indta).start_room->tmp_step_nbr = 0;
 	if (indta->start_room->act_lnks == 0)
-		ft_error();
+	{
+		free(find);
+		return (1);
+	}
 	while (!rec_finding(indta, find))
 		continue ;
 	find->answer = find->sets;
@@ -77,6 +77,5 @@ int 	find_the_way(t_intldta *indta)
 //	if (indta->v_flag)
 //		visualizer(indta, find);
 	move_ants(indta, find);
-//	=> print answer
  	return (0);
 }
