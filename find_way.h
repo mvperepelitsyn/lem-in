@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/12 20:43:38 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/13 12:16:05 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int		rec_finding(t_intldta *indta, t_find_way *fnd_wy);
 int		wide_search(t_find_way **fnd_wy, t_intldta **indta);
 int		link_breaker(t_find_way **find);
 void	wide_breaker(t_list_links *link, t_list_rooms *room);
-void	dead_end_cleaner(t_list_rooms *room);
+void	dead_end_cleaner(t_list_rooms *room, int prm);
 void	print_the_way(t_way *way);
 void	print_the_set(t_way_set *set);
 void	fill_the_way(t_way **tmp_way, t_search *list);

@@ -1,7 +1,7 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# define NAME "wrong_way_set.txt" //DO NOT FORGET TO REMOVE IT
+# define NAME "" //DO NOT FORGET TO REMOVE IT
 
 #include "lem_in.h"
 
