@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 11:50:58 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/13 19:15:17 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@
 
 # define WIN_X 2560
 # define WIN_Y 1575
+# define BLOCK_X 6
+# define BLOCK_Y 4
 # define R 10
-# define SCALE 200
+# define SCALE 10
 # define S_CLR 0x00FF00
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
@@ -49,6 +51,8 @@ typedef struct	s_graph
 	int 		delta_y;
 	int			clr[3];
 	int			route_color;
+	int			rooms_count;
+	int			scale_rec;
 	t_vis_prms	*v;
 	t_vis_prms	*mask;
 	t_vis_prms	*graph;

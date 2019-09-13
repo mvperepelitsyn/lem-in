@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 11:45:37 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/13 19:19:39 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 	t_list_rooms	*ptr;
 
 	ptr = indta->rooms->next;
+	g->rooms_count = 0;
 	while (ptr)
 	{
 		//ptr->x_cord /= 10;
@@ -30,6 +31,9 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 		else if (g->max_y < ptr->y_cord)
 			g->max_y = ptr->y_cord;
 		ptr = ptr->next;
+		g->rooms_count++;
+		if(g->scale_rec <= 2)
+			ft_printf(" : %d %d\n", ptr->x_cord, ptr->y_cord);
 	}
 	ptr = indta->rooms;
 	while (ptr)
@@ -40,13 +44,46 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 	}
 }
 
+static void	coord_redef(t_intldta *indta, t_graph *g)
+{
+	t_list_rooms	*ptr;
+	int				count_x;
+	int				x;
+	int				y;
+
+	// block = (float)g->rooms_count / (BLOCK_X * BLOCK_Y);
+	// block = (block > (int)block) ? block++ : block;
+	count_x = sqrt((g->rooms_count * BLOCK_X) / BLOCK_Y);
+	count_x++;
+	y = 0;
+	ptr = indta->rooms;
+	while (ptr)
+	{
+		x = 0;
+		while (x < count_x && ptr)
+		{
+			ft_printf("%d %d", ptr->x_cord, ptr->y_cord);
+			ptr->x_cord = x;
+			ptr->y_cord = y;
+			ft_printf(" : %d %d\n", ptr->x_cord, ptr->y_cord);
+			ptr = ptr->next;
+			x++;
+		}
+		y++;
+		if (ptr)
+			ptr = ptr->next;
+	}
+ }
+
 static void	graph_init(t_intldta *indta, t_graph *g)
 {
+	g->scale_rec++;
 	g->min_x = indta->rooms->x_cord;
 	g->min_y = indta->rooms->y_cord;
 	g->max_x = indta->rooms->x_cord;
 	g->max_y = indta->rooms->y_cord;
 	set_limits(indta, g);
+	ft_printf("x_min: %d x_max: %d\ny_min: %d y_max: %d\n", g->min_x, g->max_x, g->min_y, g->max_y);
 	g->scale = SCALE;
 	g->delta_x = (g->max_x - g->min_x) * g->scale;
 	g->delta_y = (g->max_y - g->min_y) * g->scale;
@@ -56,8 +93,11 @@ static void	graph_init(t_intldta *indta, t_graph *g)
 		g->delta_x = (g->max_x - g->min_x) * g->scale;
 		g->delta_y = (g->max_y - g->min_y) * g->scale;
 	}
-	 // if (!g->scale)
-	 // 	coord_redef();
+	if (!g->scale && g->scale_rec < 2)
+	{
+		coord_redef(indta, g);
+		graph_init(indta, g);
+	}
 	g->v->win_x = g->delta_x + (R * 4);
 	g->v->win_y = g->delta_y + (R * 4);
 	g->mask->win_x = g->v->win_x;
@@ -157,6 +197,7 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 	g.v = &v;
 	g.mask = &mask;
 	g.graph = &graph;
+	g.scale_rec = 0;
 	graph_init(indta, &g);
 	window_init(&v, &mask, &graph);
 	build_graph(indta, &g, find);
