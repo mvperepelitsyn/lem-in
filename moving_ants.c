@@ -54,7 +54,7 @@ void	move_ants(t_intldta *intdta, t_find_way *find)
 				while (tmp-- > 0)
 					ways = ways->next;
 				tmp = 1;
-				while (ways && (*(t_way **)ways->content)->last_steps < 0)
+				while (ways && (*(t_way **)ways->content)->last_steps < 1)
 					ways = ways->next;
 				if (ways == NULL)
 					break ;
