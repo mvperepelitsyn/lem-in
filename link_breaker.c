@@ -92,7 +92,7 @@ static void	break_links(t_link_breaker *br)
 			ft_printf("Wrong links set!\n");
 			ft_error();
 		}
-		br->link->status = 0;
+		br->link->sttus = 0;
 		br->croom[0]->act_lnks--;
 		if (br->prev_room[0]->act_lnks > 2)
 		{
@@ -156,7 +156,7 @@ void	wide_breaker(t_list_links *link, t_list_rooms *room)
 {
 	t_wide_breaker	wr;
 
-	link->status = 0;
+	link->sttus = 0;
 	if (room == link->rm2)
 		link->rm1->act_lnks--;
 	else
@@ -171,7 +171,7 @@ void	wide_breaker(t_list_links *link, t_list_rooms *room)
 	while (wr.link_ptr)
 	{
 		wr.prev_link = (t_list_links*)wr.link_ptr->content;
-		if (wr.prev_link->status)
+		if (wr.prev_link->sttus)
 			break ;
 		wr.link_ptr = wr.link_ptr->next;
 	}
@@ -196,7 +196,7 @@ void	dead_end_cleaner(t_list_rooms *room, int prm)
 	while (link_ptr)
 	{
 		link = (t_list_links*)link_ptr->content;
-		if (link->status)
+		if (link->sttus)
 			break ;
 		link_ptr = link_ptr->next;
 	}
@@ -205,7 +205,7 @@ void	dead_end_cleaner(t_list_rooms *room, int prm)
 		ft_printf("dead_end_cleaner error\n");
 		ft_error();
 	}
-	link->status = 0;
+	link->sttus = 0;
 	room->act_lnks = 0;
 	if (room == link->rm1)
 		room = link->rm2;

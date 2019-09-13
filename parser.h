@@ -41,7 +41,7 @@ struct			s_list_links
 	char 				*room2;
 	t_list_rooms		*rm1;
 	t_list_rooms		*rm2;
-	int					status;
+	int					sttus;
 	short 				dir;
 	int					way_nbr;
 	struct s_list_links *next;

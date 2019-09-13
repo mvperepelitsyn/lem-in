@@ -16,7 +16,8 @@ HEAD = ./
 SRC = helper.c parser.c find_the_ways.c parser_2.c visualizer.c visualizer_2.c \
 visualizer_3.c visualiser_4.c rec_finding.c link_breaker.c draw_circle.c \
 vis_build_route.c helper_ways.c make_clean_list.c wide_search.c \
-wide_search_2.c wide_search_3.c reverse_wide_search.c moving_ants.c parser_3.c
+wide_search_2.c wide_search_3.c reverse_wide_search.c moving_ants.c parser_3.c \
+wide_search_4.c
 
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 

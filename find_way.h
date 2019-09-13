@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 19:22:04 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/13 21:11:40 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FIND_WAY_H
@@ -186,5 +186,8 @@ int		give_me_way_nbr(t_way **ways);
 void	erase_tmp_step_nbr(t_list_rooms *rooms);
 void	move_ants(t_intldta *intdta, t_find_way *find);
 void	insert_way(t_find_way *find, t_way *way);
+void	add_the_way(t_find_way **fnd, t_search **srch, t_search **srchd,
+		t_list_links *end_lnk);
+void	rev_fill_searched(t_search **searched, t_search **search);
 
 #endif

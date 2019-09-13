@@ -17,7 +17,7 @@ static	void	help_fill_list_links(t_list_links **lnks, char **rms)
 	(*lnks)->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 	(*lnks)->room2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
 	(*lnks)->next = NULL;
-	(*lnks)->status = 1;
+	(*lnks)->sttus = 1;
 	(*lnks)->way_nbr = -1;
 }
 

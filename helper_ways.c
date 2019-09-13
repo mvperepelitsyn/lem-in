@@ -80,7 +80,7 @@ int				it_has_link(t_list_rooms *room1, t_list_rooms *room2)
 		lnks = ptr1->content;
 		if (((ft_strequ(rm_1->name, lnks->room1) && ft_strequ(room2->name,
 				lnks->room2)) || (ft_strequ(room2->name, lnks->room1) &&
-				ft_strequ(rm_1->name, lnks->room2))) && lnks->status == 1)
+				ft_strequ(rm_1->name, lnks->room2))) && lnks->sttus == 1)
 			return (1);
 		ptr1 = ptr1->next;
 	}
