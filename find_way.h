@@ -150,6 +150,7 @@ typedef struct s_ant_farm
 	int 	fin_ants;
 	int 	full_steps;
 	int 	ant_flow;
+	int 	switcher;
 	int 	i;
 	int 	j;
 }				t_ant_farm;
