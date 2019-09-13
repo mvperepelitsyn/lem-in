@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 15:15:44 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/09 12:39:28 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/12 16:44:04 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ static void start_stop_parsing(t_intldta **indta, char **things, char **rms, int
 	}
     ft_strdel(things);
     get_next_line(fd, things);
+    while (**things == '#')
+	{
+		ft_println(*things);
+    	if (things[0][1] == '#')
+		{
+    		ft_strdel(things);
+    		ft_error();
+		}
+		ft_println(*things);
+		ft_strdel(things);
+		get_next_line(fd, things);
+	}
     ft_println(*things);
     rms = ft_strsplit(*things, ' ');
     if (ft_hm_wrd(*things, ' ') != 3)

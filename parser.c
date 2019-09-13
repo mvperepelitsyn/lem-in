@@ -127,7 +127,8 @@ static void	parce_ant_farm(t_intldta **indta) //when we force it to read
             ft_println(things);
     }
 	(*indta)->num_ants = ft_latoi(things);
-	if ((*indta)->num_ants <= 0 || (*indta)->num_ants != (int)ft_latoi(things))
+	if (ft_hm_wrd(things, ' ') != 1 || ((*indta)->num_ants <= 0 || (*indta)->
+	num_ants != (int)ft_latoi(things)))
 		ft_error();
 	ft_strdel(&things);
 	rms = NULL;

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 12:16:05 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/13 13:51:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct		s_way
 	int				len_way;
 	int				num_way;
 	int				status;
-	int				last_steps;
+	int 			last_steps;
 	int				steps;
 	int				full_steps;
 	t_dllist		*rooms;
@@ -140,9 +140,17 @@ typedef struct s_ants
 {
 	int				status;
 	t_way			*way;
-	int 			num;
+	t_dllist		*rooms;
 	t_list_rooms	*position;
 }				t_ants;
+
+typedef struct s_ant_farm
+{
+	t_ants	*ants;
+	int 	num;
+	int 	fin_ants;
+	int 	full_steps;
+}				t_ant_farm;
 
 //typedef	struct s_wide_search
 //{
