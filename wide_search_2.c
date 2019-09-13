@@ -1,26 +1,19 @@
-//
-// Created by Dwarven centurion Frost atronach on 2019-09-05.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wide_search_2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 19:22:28 by dfrost-a          #+#    #+#             */
+/*   Updated: 2019/09/13 19:22:30 by dfrost-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 
-void			add_to_searched(t_search **searched, t_list_rooms *end_room)
-{
-	t_search	*srd;
-	int 		stp_nbr;
-
-	srd = *searched;
-	while (srd->next != NULL)
-		srd = srd->next;
-	stp_nbr = srd->step_nbr + 1;
-	srd->next = (t_search *)ft_memalloc(sizeof(t_search));
-	srd->next->prev = srd;
-	srd->next->rooms = end_room;
-	srd->next->way_nbr = -1;
-	srd->next->step_nbr = stp_nbr + 1;
-}
-
-int				not_in_searched(t_list_rooms *rm, t_search *searched, t_search *search)
+int				not_in_searched(t_list_rooms *rm, t_search *searched,
+		t_search *search)
 {
 	t_search *check;
 	t_search *check2;

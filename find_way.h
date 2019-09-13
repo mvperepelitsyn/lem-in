@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_way.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 14:26:03 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/13 19:22:04 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FIND_WAY_H
@@ -63,9 +63,9 @@ struct	s_find_way
 	t_list_rooms	*del_room;
 	t_list_links	*del_link;
 	int 			check;
+	int 			check_2;
 	int 			min_ways;
 	int 			cnt_ways;
-	// int				pre_way_len;
 	int				max_way_len;
 };
 
@@ -182,7 +182,6 @@ int		it_has_link(t_list_rooms *room1, t_list_rooms *room2);
 void	make_it_clean(t_search **lst_rooms);
 int		rev_wide_search(t_intldta **indta);
 int 	pre_link_breaker(t_find_way **fnd, t_list_rooms *room);
-int		init_way(t_find_way **fnd_way);
 int		give_me_way_nbr(t_way **ways);
 void	erase_tmp_step_nbr(t_list_rooms *rooms);
 void	move_ants(t_intldta *intdta, t_find_way *find);

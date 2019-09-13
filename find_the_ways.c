@@ -66,19 +66,6 @@ void	set_pre_lems(t_find_way *find)
 		way_ptr[0]->last_steps = find->max_way_len - (way_ptr[0]->len_way - 1);
 		ptr = ptr->next;
 	}
-	// i = 0;
-	// find->max_way_len = 0;
-	// while (ptr && i < ways_cnt)
-	// {
-	// 	if (ptr->status)
-	// 	{
-	// 		if (ptr->len_way > find->max_way_len)
-	// 		find->max_way_len = ptr->len_way;
-	// 		i++;
-	// 	}
-	// 	if (i < ways_cnt)
-	// 		ptr = ptr->next;
-	// }
 }
 
 int 	find_the_way(t_intldta *indta)
