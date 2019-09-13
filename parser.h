@@ -1,7 +1,7 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# define NAME "" //DO NOT FORGET TO REMOVE IT
+# define NAME "more_than_needed.txt" //DO NOT FORGET TO REMOVE IT
 
 #include "lem_in.h"
 

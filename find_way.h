@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 13:51:40 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/13 14:26:03 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ struct	s_find_way
 	int 			check;
 	int 			min_ways;
 	int 			cnt_ways;
-	int				pre_way_len;
+	// int				pre_way_len;
 	int				max_way_len;
 };
 
