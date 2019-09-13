@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 12:51:35 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/13 12:16:04 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,12 +182,12 @@ void	wide_breaker(t_list_links *link, t_list_rooms *room)
 	wide_breaker(wr.prev_link, wr.prev_room);
 }
 
-void	dead_end_cleaner(t_list_rooms *room)
+void	dead_end_cleaner(t_list_rooms *room, int prm)
 {
 	t_list			*link_ptr;
 	t_list_links	*link;
 
-	if (room->type == 1 || room->act_lnks != 2)
+	if (room->type != 0 || (room->act_lnks != 2 && !prm))
 	{
 		room->act_lnks--;
 		return ;
@@ -213,5 +213,5 @@ void	dead_end_cleaner(t_list_rooms *room)
 		room = link->rm1;
 	else
 		ft_printf("dead_end_cleaner debug message\n");
-	dead_end_cleaner(room);
+	dead_end_cleaner(room, 0);
 }
