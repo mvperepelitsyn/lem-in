@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rec_finding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/12 20:44:21 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/13 15:01:57 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	count_set_steps(t_intldta *indta, t_find_way *find, int count)
 	}
 	if (c.i != count)
 		ft_printf("count steps error!\n");
-	find->pre_way_len = c.max_len;
+	// find->pre_way_len = c.max_len;
 	c.pre_lems += count * c.max_len;
 	if (c.pre_lems > indta->num_ants)
 		c.ptr->full_steps = 0;
@@ -108,6 +108,20 @@ static void	add_new_set(t_find_way *find, int ways_cnt)
 		ft_malloc_error();
 	set->ways_cnt = ways_cnt;
 	ptr = find->ways;
+	// i = 0;
+	// find->max_way_len = 0;
+	// while (ptr && i < ways_cnt)
+	// {
+	// 	if (ptr->status)
+	// 	{
+	// 		if (ptr->len_way > find->max_way_len)
+	// 		find->max_way_len = ptr->len_way;
+	// 		i++;
+	// 	}
+	// 	if (i < ways_cnt)
+	// 		ptr = ptr->next;
+	// }
+	ptr = find->ways;
 	i = 0;
 	while (ptr && i < ways_cnt)
 	{
@@ -115,7 +129,7 @@ static void	add_new_set(t_find_way *find, int ways_cnt)
 		{
 			if (!ft_lstaddnext(&set->ways, (void*)&ptr, sizeof(ptr)))
 				ft_malloc_error();
-			ptr->last_steps = find->max_way_len - (ptr->len_way - 1);
+			// ptr->last_steps = find->max_way_len - (ptr->len_way - 1);
 			i++;
 		}
 		if (i < ways_cnt)
@@ -159,7 +173,7 @@ static int	form_the_set(t_find_way *find, t_intldta *indta)
 		{
 			fs.min_steps_count = fs.steps_count;
 			fs.i_min = fs.i;
-			find->max_way_len = find->pre_way_len;
+			// find->max_way_len = find->pre_way_len;
 		}
 	}
 	if (fs.counter)
