@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/14 16:49:16 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/14 19:19:15 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	coord_redef(t_intldta *indta, t_graph *g)
 	}
  }
 
-static void	graph_init(t_intldta *indta, t_graph *g)
+static void	coord_init(t_intldta *indta, t_graph *g)
 {
 	g->scale_rec++;
 	g->min_x = indta->rooms->x_cord;
@@ -97,8 +97,12 @@ static void	graph_init(t_intldta *indta, t_graph *g)
 	if (!g->scale && g->scale_rec < 2)
 	{
 		coord_redef(indta, g);
-		graph_init(indta, g);
+		coord_init(indta, g);
 	}
+}
+
+static void	graph_init(t_graph *g, t_find_way *find, t_intldta *indta)
+{
 	g->v->win_x = g->delta_x + (R * 4);
 	g->v->win_y = g->delta_y + (R * 4);
 	g->mask->win_x = g->v->win_x;
@@ -108,6 +112,9 @@ static void	graph_init(t_intldta *indta, t_graph *g)
 	g->clr[0] = R_CLR;
 	g->clr[1] = S_CLR;
 	g->clr[2] = F_CLR;
+	g->set_ptr = find->sets;
+	g->indta = indta;
+	g->find = find;
 }
 
 static void	window_init(t_vis_prms *v, t_vis_prms *mask, t_vis_prms *graph)
@@ -153,7 +160,7 @@ static void	set_map_transparent(t_vis_prms *v)
 	}
 }
 
-static void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
+void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 {
 	t_way		**way;
 	t_dllist	*room;
@@ -161,15 +168,15 @@ static void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 
 	draw_links(indta, g);
 	draw_rooms(indta, g);
+	mlx_clear_window (g->graph->mlx_ptr, g->graph->win_ptr);
 	mlx_put_image_to_window(g->graph->mlx_ptr, g->graph->win_ptr, g->graph->img_ptr, 0, 0);
-	ptr = find->answer->ways;
+	ptr = g->set_ptr->ways;
 	g->route_color = ROUTE_COLOR;
 	while (ptr)
 	{
 		way = ptr->content;
 		room = (*way)->rooms;
 		set_map_transparent(g->mask);
-		//change graph to mask
 		build_route(g, room);
 		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->mask->img_ptr, 0, 0);
 		g->route_color += 1500000;
@@ -199,12 +206,14 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 	g.mask = &mask;
 	g.graph = &graph;
 	g.scale_rec = 0;
-	graph_init(indta, &g);
+	coord_init(indta, &g);
+	graph_init(&g, find, indta);
 	window_init(&v, &mask, &graph);
+	ft_printf("set steps: %d lala\n", g.set_ptr->steps);
 	build_graph(indta, &g, find);
 	//mlx_put_image_to_window(graph.mlx_ptr, graph.win_ptr, graph.img_ptr, 0, 0);
-	mlx_hook(v.win_ptr, 2, 0, &deal_key, (void*)(&v));
-	mlx_hook(v.win_ptr, 17, 0, &close_vis, (void*)(&v));
+	mlx_hook(v.win_ptr, 2, 0, &deal_key, (void*)(&g));
+	mlx_hook(v.win_ptr, 17, 0, &close_vis, (void*)(&g));
 	//mlx_loop_hook(graph.mlx_ptr, &get_command, (void*)(&graph));
 	mlx_loop(v.mlx_ptr);
 }
