@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 19:19:39 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/14 16:49:16 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 			g->min_y = ptr->y_cord;
 		else if (g->max_y < ptr->y_cord)
 			g->max_y = ptr->y_cord;
-		ptr = ptr->next;
-		g->rooms_count++;
 		if(g->scale_rec <= 2)
 			ft_printf(" : %d %d\n", ptr->x_cord, ptr->y_cord);
+		ptr = ptr->next;
+		g->rooms_count++;
 	}
 	ptr = indta->rooms;
 	while (ptr)
@@ -53,8 +53,8 @@ static void	coord_redef(t_intldta *indta, t_graph *g)
 
 	// block = (float)g->rooms_count / (BLOCK_X * BLOCK_Y);
 	// block = (block > (int)block) ? block++ : block;
-	count_x = sqrt((g->rooms_count * BLOCK_X) / BLOCK_Y);
-	count_x++;
+	count_x = sqrt((g->rooms_count * WIN_X) / WIN_Y);
+	// count_x++;
 	y = 0;
 	ptr = indta->rooms;
 	while (ptr)
@@ -66,8 +66,9 @@ static void	coord_redef(t_intldta *indta, t_graph *g)
 			ptr->x_cord = x;
 			ptr->y_cord = y;
 			ft_printf(" : %d %d\n", ptr->x_cord, ptr->y_cord);
-			ptr = ptr->next;
 			x++;
+			if (x < count_x)
+				ptr = ptr->next;
 		}
 		y++;
 		if (ptr)

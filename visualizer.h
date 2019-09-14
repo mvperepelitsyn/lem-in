@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 19:15:17 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/14 16:54:35 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define BLOCK_X 6
 # define BLOCK_Y 4
 # define R 10
-# define SCALE 10
+# define SCALE 200
 # define S_CLR 0x00FF00
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
