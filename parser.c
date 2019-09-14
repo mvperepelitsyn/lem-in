@@ -6,28 +6,11 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 14:36:23 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/13 14:59:54 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/14 20:51:02 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-static int	lnks_assignmnt_help(t_list **t_lnks, t_list_links *ft_lnks, int *i)
-{
-	t_list *lnks;
-
-	lnks = (*t_lnks);
-	if (*i == 0)
-	{
-		(*t_lnks) = ft_lstnew_addr((void *)ft_lnks, ++*i);
-		return (0);
-	}
-	while ((*t_lnks)->next != NULL)
-		*t_lnks = (*t_lnks)->next;
-	(*t_lnks)->next = ft_lstnew_addr((void *)ft_lnks, ++*i);
-	(*t_lnks) = lnks;
-	return (0);
-}
 
 static void	links_assignment(t_intldta **indta)
 {
@@ -43,7 +26,7 @@ static void	links_assignment(t_intldta **indta)
 		{
 			if (ft_strequ(current->name, lnks->room1) ||
 				ft_strequ(current->name, lnks->room2))
-				lnks_assignmnt_help(&current->links, lnks, &current->num_lnks);
+				ft_lstaddnext(&(current->links), (void *)lnks, sizeof(t_list_links));
 			lnks = lnks->next;
 		}
 		current->act_lnks = current->num_lnks;
@@ -93,5 +76,6 @@ int			main(int argc, char **argv)
 	ft_putchar('\n');
 	ft_putchar('\n');
 	find_the_way(indta);
+	free_indta(&indta);
 	exit(0);
 }

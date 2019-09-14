@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 20:53:30 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/13 21:06:22 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/14 20:01:32 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,10 @@ void		add_the_way(t_find_way **fnd, t_search **srch, t_search **srchd,
 	trash = NULL;
 	cpy_t_searched(srchd, &lst, end_lnk);
 	if (check_the_way(lst))
+	{
+		free_search_ed(&lst, &trash);
 		return ;
+	}
 	check = give_me_way_nbr(&((*fnd)->ways));
 	way = (t_way *)ft_memalloc(sizeof(t_way));
 	way->status = 1;

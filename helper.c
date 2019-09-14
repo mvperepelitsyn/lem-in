@@ -105,63 +105,6 @@ void	ft_println(char *str)
 	ft_putchar('\n');
 }
 
-static void	print_rooms(t_intldta *indta)
-{
-	while (indta->rooms && indta->ri != -1)
-	{
-		ft_putstr(indta->rooms->name);
-		ft_putstr(" ");
-		ft_putnbr(indta->rooms->x_cord);
-		ft_putstr(" ");
-		ft_putnbr(indta->rooms->y_cord);
-		ft_putstr("\n");
-		indta->rooms = indta->rooms->next;
-	}
-}
-
-void	print_links(t_list_links *links)
-{
-	while (links)
-	{
-		ft_putstr(links->room1);
-		ft_putstr("-");
-		ft_putstr(links->room2);
-		ft_putstr("\n");
-		links = links->next;
-	}
-}
-
-void	print_sides(t_list_rooms *room)
-{
-	ft_putstr(room->name);
-	ft_putstr(" ");
-	ft_putnbr(room->x_cord);
-	ft_putstr(" ");
-	ft_putnbr(room->y_cord);
-	ft_putstr("\n");
-}
-
-void	ft_print_strcut(t_intldta *indta)
-{
-	t_intldta *tmp;
-
-	tmp = indta;
-	ft_putstr("The number of ants is ");
-	ft_putnbr(tmp->num_ants);
-	ft_putchar('\n');
-	ft_putstr("Here goes the rooms:\n");
-	ft_putstr("Start room: ");
-	print_sides(tmp->start_room);
-	ft_putstr("End room: ");
-	print_sides(tmp->end_room);
-	ft_putstr("All rooms:\n");
-	print_rooms(tmp);
-	ft_putstr("Here comes the links: \n");
-	print_links(tmp->links);
-	ft_putstr("The end!\n");
-
-}
-
 void	init_struct(t_intldta **indta)
 {
 	if (!((*indta) = (t_intldta *)ft_memalloc(sizeof(t_intldta))))
@@ -183,14 +126,24 @@ int 	check_double_link(t_list_links *links, char **rms)
 	rm1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 	rm2 = ft_strsub(rms[1], 0, ft_strlen(rms[1]));
 	if (ft_strequ(rm1, rm2))
+	{
+		ft_strdel(&rm1);
+		ft_strdel(&rm2);
 		return (1);
+	}
 	while (links)
 	{
 		if ((ft_strequ(rm1, links->room1) && ft_strequ(rm2, links->room2)) ||
 		(ft_strequ(rm2, links->room1) && ft_strequ(rm1, links->room2)))
+		{
+			ft_strdel(&rm1);
+			ft_strdel(&rm2);
 			return (1);
+		}
 		links = links->next;
 	}
+	ft_strdel(&rm1);
+	ft_strdel(&rm2);
 	return (0);
 }
 
@@ -207,25 +160,4 @@ void	free_2d_array(char **array)
 	}
 	free(array);
 	array = NULL;
-}
-
-void	print_all_the_links(t_list_rooms	*room)
-{
-	t_list			*ptr;
-	t_list_rooms 	*test;
-	t_list_links	*ptr2;
-
-	test = room;
-	while (test)
-	{
-		ft_printf("The room %s has these links:\n", test->name);
-		ptr = test->links;
-		while (ptr)
-		{
-			ptr2 = ptr->content;
-			ft_printf("%s-%s\n", ptr2->room1, ptr2->room2);
-			ptr = ptr->next;
-		}
-		test = test->next;
-	}
 }

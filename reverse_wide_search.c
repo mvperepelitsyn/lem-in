@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 21:23:09 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/13 21:31:54 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/14 20:56:08 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ static	int		rev_fill_search(t_search **srch, t_search **srchd)
 	ptr = (*srch)->rooms->links;
 	while (num_lnks != 0 || ptr != NULL)
 	{
+		if (ptr == NULL)
+			return (1);
 		tmp = *srch;
 		pt_link = ptr->content;
 		if (rev_help_fill_search2(pt_link, srch, srchd, &tmp))
