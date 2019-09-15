@@ -24,7 +24,7 @@ static int	check_free_rooms(t_list_rooms *start)
 	ptr = start->links;
 	while (ptr)
 	{
-		link = (t_list_links*)ptr->content;
+		link = *(t_list_links **)ptr->content;
 		if (!link->sttus)
 		{
 			ptr = ptr->next;

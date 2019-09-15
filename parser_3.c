@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 14:49:08 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/13 14:49:55 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/15 15:47:28 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static	void	help_fill_list_links(t_list_links **lnks, char **rms)
 	(*lnks)->way_nbr = -1;
 }
 
-void			fill_list_links(t_list_links **lnks, char **rms, t_intldta **in)
+int				fill_list_links(t_list_links **lnks, char **rms, t_intldta **in)
 {
 	t_list_links	*current;
 
@@ -38,12 +38,16 @@ void			fill_list_links(t_list_links **lnks, char **rms, t_intldta **in)
 		while (current->next != NULL)
 			current = current->next;
 		if (check_double_link(*lnks, rms))
-			return ;
+			return (0);
 		current->next = (t_list_links *)ft_memalloc(sizeof(t_list_links));
 		help_fill_list_links(&(current->next), rms);
 		if (!(test_links(&current->next, in)))
-			ft_error();
+		{
+			free_t_list_links(&current->next);
+			return (1);
+		}
 	}
+	return (0);
 }
 
 static void		type_assignment(t_list_rooms *room, t_intldta **indta)

@@ -92,7 +92,7 @@ int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched,
 {
 	int				num_lnks;
 	t_list			*ptr;
-	t_list_links	*l;
+	t_list_links	**l;
 	t_search		*tmp;
 
 	num_lnks = (*srch)->rooms->num_lnks;
@@ -101,14 +101,14 @@ int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched,
 	{
 		tmp = *srch;
 		l = ptr->content;
-		if (l->sttus == 1 && tmp->rooms->act_lnks == 1 && tmp->rooms->type == 0)
+		if ((*l)->sttus == 1 && tmp->rooms->act_lnks == 1 && tmp->rooms->type == 0)
 		{
 			dead_end_cleaner(tmp->rooms, 1);
 			return (1);
 		}
-		stop_search(fnd, l, tmp->rooms, indta);
-		if (help_fill_search2(l, srch, searched, &tmp))
-			add_the_way(fnd, srch, searched, l);
+		stop_search(fnd, *l, tmp->rooms, indta);
+		if (help_fill_search2(*l, srch, searched, &tmp))
+			add_the_way(fnd, srch, searched, *l);
 		if ((*fnd)->cnt_ways == (*fnd)->min_ways)
 			return (0);
 		ptr = ptr->next;

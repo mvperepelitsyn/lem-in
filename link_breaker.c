@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   link_breaker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 14:26:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 12:16:04 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/15 14:07:45 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	break_links(t_link_breaker *br)
 		br->link_ptr = br->croom[0]->links;
 		while (br->link_ptr)
 		{
-			br->link = br->link_ptr->content;
+			br->link = *(t_list_links **)br->link_ptr->content;
 			if (check_link(br->link, br->croom[0], br->prev_room[0]))
 				break ;
 			br->link_ptr = br->link_ptr->next;
@@ -139,7 +139,7 @@ int			link_breaker(t_find_way **find)
 		br.link_ptr = br.croom[0]->links;
 		while (br.link_ptr)
 		{
-			br.link = (t_list_links *)br.link_ptr->content;
+			br.link = *(t_list_links **)br.link_ptr->content;
 			if (br.link->way_nbr == br.room_nbr)
 			{
 				br.link->way_nbr = -1;
@@ -170,7 +170,7 @@ void	wide_breaker(t_list_links *link, t_list_rooms *room)
 	wr.link_ptr = room->links;
 	while (wr.link_ptr)
 	{
-		wr.prev_link = (t_list_links*)wr.link_ptr->content;
+		wr.prev_link = *(t_list_links **)wr.link_ptr->content;
 		if (wr.prev_link->sttus)
 			break ;
 		wr.link_ptr = wr.link_ptr->next;
@@ -187,6 +187,7 @@ void	dead_end_cleaner(t_list_rooms *room, int prm)
 	t_list			*link_ptr;
 	t_list_links	*link;
 
+	link = NULL;
 	if (room->type != 0 || (room->act_lnks != 2 && !prm))
 	{
 		room->act_lnks--;
@@ -195,7 +196,7 @@ void	dead_end_cleaner(t_list_rooms *room, int prm)
 	link_ptr = room->links;
 	while (link_ptr)
 	{
-		link = (t_list_links*)link_ptr->content;
+		link = *(t_list_links **)link_ptr->content;
 		if (link->sttus)
 			break ;
 		link_ptr = link_ptr->next;

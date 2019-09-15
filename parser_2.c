@@ -6,19 +6,31 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 15:15:44 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 14:48:22 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/15 15:50:32 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	link_parsing(t_intldta **indta, char **things, char **rms)
+void	ft_println(char *str)
+{
+	ft_putstr(str);
+	ft_putchar('\n');
+}
+
+static int link_parsing(t_intldta **indta, char **things, char **rms)
 {
 	if ((*indta)->start_room == NULL || (*indta)->end_room == NULL)
 		ft_error();
 	rms = ft_strsplit(*things, '-');
-	fill_list_links(&(*indta)->links, rms, indta);
+	if (fill_list_links(&(*indta)->links, rms, indta))
+	{
+		free_2d_array(rms);
+		ft_strdel(things);
+		return (1);
+	}
 	free_2d_array(rms);
+	return (0);
 }
 
 static void	help_start_stop(char **things, int fd)
@@ -79,7 +91,10 @@ void		graph_parser(t_intldta **indta, char **things, char **rms, int fd)
 			free_2d_array(rms);
 		}
 		else if (ft_hm_wrd(*things, '-') == 2)
-			link_parsing(indta, things, rms);
+		{
+			if (link_parsing(indta, things, rms))
+				return;
+		}
 		else if (!(*things && (things[0][0] == '#' && things[0][1] != '#')))
 			ft_error();
 		ft_strdel(things);

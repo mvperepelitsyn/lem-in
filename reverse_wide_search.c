@@ -6,24 +6,24 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 21:23:09 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/14 20:56:08 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/15 13:54:08 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static	void	set_start_status(t_list_rooms *start)
+static	void	set_start_status(t_list_rooms **start)
 {
 	t_list			*ptr;
-	t_list_links	*pt_lnk;
+	t_list_links	**pt_lnk;
 
-	ptr = start->links;
+	ptr = (*start)->links;
 	while (ptr)
 	{
 		pt_lnk = ptr->content;
-		pt_lnk->sttus = (pt_lnk->way_nbr < 0) ? 0 : pt_lnk->sttus;
-		pt_lnk->rm1->act_lnks--;
-		pt_lnk->rm2->act_lnks--;
+		(*pt_lnk)->sttus = ((*pt_lnk)->way_nbr < 0) ? 0 : (*pt_lnk)->sttus;
+		(*pt_lnk)->rm1->act_lnks--;
+		(*pt_lnk)->rm2->act_lnks--;
 		ptr = ptr->next;
 	}
 }
@@ -80,7 +80,7 @@ static	int		rev_fill_search(t_search **srch, t_search **srchd)
 {
 	int				num_lnks;
 	t_list			*ptr;
-	t_list_links	*pt_link;
+	t_list_links	**pt_link;
 	t_search		*tmp;
 
 	num_lnks = (*srch)->rooms->num_lnks;
@@ -91,7 +91,7 @@ static	int		rev_fill_search(t_search **srch, t_search **srchd)
 			return (1);
 		tmp = *srch;
 		pt_link = ptr->content;
-		if (rev_help_fill_search2(pt_link, srch, srchd, &tmp))
+		if (rev_help_fill_search2(*pt_link, srch, srchd, &tmp))
 			return (0);
 		ptr = ptr->next;
 		num_lnks--;
@@ -107,7 +107,7 @@ int				rev_wide_search(t_intldta **indta)
 
 	(*indta)->counter++;
 	act_links_b = (*indta)->start_room->act_lnks;
-	set_start_status((*indta)->start_room);
+	set_start_status(&((*indta)->start_room));
 	search = (t_search *)ft_memalloc(sizeof(t_search));
 	searched = (t_search *)ft_memalloc(sizeof(t_search));
 	search->rooms = (*indta)->end_room;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_the_ways.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/15 16:20:44 by dfrost-a          #+#    #+#             */
+/*   Updated: 2019/09/15 16:28:42 by dfrost-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 void			print_the_way(t_way *way)
@@ -26,16 +38,10 @@ void			print_the_way(t_way *way)
 	ft_putstr("\n");
 }
 
-void		print_the_answer(t_way_set	*answer)
+static void		init_set(t_find_way **fnd_wy, t_intldta *indta)
 {
-	ft_printf("BEWARE! THE ANSWER SET OF WAYS:");
-	print_the_set(answer);
-}
-
-static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
-{
- 	if (!((*fnd_wy) = (t_find_way *)ft_memalloc(sizeof(t_find_way))))
- 		ft_malloc_error();
+	if (!((*fnd_wy) = (t_find_way *)ft_memalloc(sizeof(t_find_way))))
+		ft_malloc_error();
 	(*fnd_wy)->ways = NULL;
 	(*fnd_wy)->start = indta->start_room;
 	(*fnd_wy)->sets = NULL;
@@ -45,7 +51,7 @@ static void	init_set(t_find_way **fnd_wy, t_intldta *indta)
 	(*fnd_wy)->check = 1;
 }
 
-void	set_pre_lems(t_find_way *find)
+static void		set_pre_lems(t_find_way *find)
 {
 	t_list			*ptr;
 	t_way			**way_ptr;
@@ -68,23 +74,25 @@ void	set_pre_lems(t_find_way *find)
 	}
 }
 
-int 	find_the_way(t_intldta *indta)
+static void		help_find_the_way(t_intldta **indta, t_find_way **find)
 {
- 	t_find_way			*find;
-	int					steps;
-	t_way_set			*ptr;
-
- 	init_set(&find, indta);
-	rev_wide_search(&indta);
-	(*indta).start_room->tmp_step_nbr = 0;
-	if (indta->start_room->act_lnks == 0)
-	{
-		free(find);
-		return (1);
-	}
-	while (!rec_finding(indta, find))
+	rev_wide_search(indta);
+	(*indta)->start_room->tmp_step_nbr = 0;
+	if ((*indta)->start_room->act_lnks == 0)
+		ft_error();
+	init_set(find, *indta);
+	while (!rec_finding(*indta, *find))
 		continue ;
-	find->answer = find->sets;
+	(*find)->answer = (*find)->sets;
+}
+
+int				find_the_way(t_intldta *indta)
+{
+	t_find_way	*find;
+	int			steps;
+	t_way_set	*ptr;
+
+	help_find_the_way(&indta, &find);
 	ptr = find->answer;
 	steps = ptr->steps;
 	while (ptr)
@@ -97,9 +105,9 @@ int 	find_the_way(t_intldta *indta)
 		ptr = ptr->next;
 	}
 	set_pre_lems(find);
-	print_the_answer(find->answer);
 //	if (indta->v_flag)
 //		visualizer(indta, find);
 	move_ants(indta, find);
- 	return (0);
+	free_main_structs(&indta, &find);
+	return (0);
 }

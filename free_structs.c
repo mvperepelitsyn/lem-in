@@ -1,48 +1,56 @@
-//
-// Created by Dwarven centurion Frost atronach on 2019-09-13.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_structs.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/15 16:52:27 by dfrost-a          #+#    #+#             */
+/*   Updated: 2019/09/15 16:54:31 by dfrost-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void free_t_list_rooms(t_list_rooms **rooms)
+static void	free_t_ways(t_way **ways)
 {
-	t_list_rooms *tmp_room;
+	t_way *tmp_way;
 
-	while (*rooms)
+	while (*ways)
 	{
-		ft_strdel(&((*rooms)->name));
-		ft_lstdel(&((*rooms)->links), &ft_lstfree);
-		tmp_room = (*rooms)->next;
-		(*rooms)->next = NULL;
-		free(*rooms);
-		*rooms = NULL;
-		*rooms = tmp_room;
+		ft_dlldeltoright(&((*ways)->rooms), &ft_lstfree);
+		tmp_way = (*ways)->next;
+		free(*ways);
+		*ways = NULL;
+		*ways = tmp_way;
 	}
 }
 
-static void	free_t_list_links(t_list_links **links)
+static void	free_t_sets(t_way_set **sets)
 {
-	t_list_links *tmp_lnk;
+	t_way_set *tmp_set;
 
-	while (*links)
+	while (*sets)
 	{
-		ft_strdel(&((*links)->room1));
-		ft_strdel(&((*links)->room2));
-		(*links)->rm1 = NULL;
-		(*links)->rm2 = NULL;
-		tmp_lnk = (*links)->next;
-		free(*links);
-		(*links)->next = NULL;
-		*links = NULL;
-		*links = tmp_lnk;
+		ft_lstdel(&((*sets)->ways), &ft_lstfree);
+		tmp_set = (*sets)->next;
+		(*sets)->next = NULL;
+		free(*sets);
+		*sets = NULL;
+		*sets = tmp_set;
 	}
 }
 
-void	free_indta(t_intldta **intldta)
+static void	free_find_way(t_find_way **find)
 {
-	free_t_list_rooms(&((*intldta)->rooms));
-	free_t_list_links(&((*intldta)->links));
-	(*intldta)->start_room->status = (*intldta)->end_room->num_lnks;
-	free(*intldta);
-	*intldta = NULL;
+	free_t_ways(&((*find)->ways));
+	free_t_sets(&((*find)->sets));
+	free(*find);
+	*find = NULL;
+}
+
+void		free_main_structs(t_intldta **intldta, t_find_way **find)
+{
+	free_indta(intldta);
+	free_find_way(find);
 }
