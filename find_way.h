@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 09:50:37 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:03:30 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ typedef struct			s_form_set
 typedef struct			s_ants
 {
 	int					status;
+	int 				color;
+	int 				finished;
 	t_way				*way;
 	t_dllist			*rooms;
 	t_list_rooms		*position;
