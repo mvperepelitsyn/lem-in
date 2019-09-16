@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/16 16:17:14 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 18:48:25 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,17 @@ static void	move_what_is_not_moving(t_find_way *find, t_ant_farm *ant_farm,
 	}
 }
 
+static void	status_changer(t_ant_farm *ant_farm)
+{
+	while (ant_farm->ants[ant_farm->j].status == 0 && ant_farm->j < ant_farm->i)
+	{
+		if (ant_farm->ants[ant_farm->j].position->type == 2 && ant_farm->
+		ants[ant_farm->j].finished == 0)
+			ant_farm->ants[ant_farm->j].finished = 1;
+		ant_farm->j++;
+	}
+}
+
 void		move_ants(t_intldta *intdta, t_find_way *find, t_graph *g)
 {
 	t_ant_farm	ant_farm;
@@ -105,17 +116,20 @@ void		move_ants(t_intldta *intdta, t_find_way *find, t_graph *g)
 	ant_farm.full_steps = find->answer->full_steps;
 	counter = 0;
 	ant_farm.i = 0;
+	if (intdta->v_flag)
+		ant_color_init(&(ant_farm.ants), ant_farm.num);
 	while (ant_farm.fin_ants != intdta->num_ants)
 	{
 		ant_farm.switcher = 0;
 		ant_farm.ant_flow = 0;
 		ways = find->answer->ways;
 		ant_farm.j = 0;
-		while (ant_farm.ants[ant_farm.j].status == 0 && ant_farm.j < ant_farm.i)
-			ant_farm.j++;
+		status_changer(&ant_farm);
 		move_what_is_moving(&ant_farm);
 		move_what_is_not_moving(find, &ant_farm, ways);
 		ft_putchar('\n');
+		if (intdta->v_flag)
+			vis_step(&(ant_farm.ants), g, intdta, ant_farm.i + 1);
 		counter++;
 	}
 	ft_printf("\nThe number of lines is %d\n", counter);
