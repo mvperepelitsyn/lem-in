@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 12:42:21 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 20:06:42 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 12:29:17 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct		s_lprec
 }					t_lprec;
 
 int					ft_printf(const char *format, ...);
-int					ft_sprintf(char *str, const char *format, ...);
+int					ft_sprintf(char **str, const char *format, ...);
 int					ft_fdprintf(int fd, const char *format, ...);
 void				tprintf_init(t_printf *p);
 int					join_f(const char *format, t_printf *p);

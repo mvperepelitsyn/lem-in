@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/14 19:19:15 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 12:33:38 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 	g->rooms_count = 0;
 	while (ptr)
 	{
-		//ptr->x_cord /= 10;
-		//ptr->y_cord /= 10;
 		if (g->min_x > ptr->x_cord)
 			g->min_x = ptr->x_cord;
 		else if (g->max_x < ptr->x_cord)
@@ -31,7 +29,6 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 		else if (g->max_y < ptr->y_cord)
 			g->max_y = ptr->y_cord;
 		if(g->scale_rec <= 2)
-			ft_printf(" : %d %d\n", ptr->x_cord, ptr->y_cord);
 		ptr = ptr->next;
 		g->rooms_count++;
 	}
@@ -51,10 +48,7 @@ static void	coord_redef(t_intldta *indta, t_graph *g)
 	int				x;
 	int				y;
 
-	// block = (float)g->rooms_count / (BLOCK_X * BLOCK_Y);
-	// block = (block > (int)block) ? block++ : block;
 	count_x = sqrt((g->rooms_count * WIN_X) / WIN_Y);
-	// count_x++;
 	y = 0;
 	ptr = indta->rooms;
 	while (ptr)
@@ -165,6 +159,7 @@ void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 	t_way		**way;
 	t_dllist	*room;
 	t_list		*ptr;
+	char		*str;
 
 	draw_links(indta, g);
 	draw_rooms(indta, g);
@@ -182,6 +177,14 @@ void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 		g->route_color += 1500000;
 		ptr = ptr->next;
 	}
+	str = NULL;
+	ft_printf("ways: %d, steps: %d\n", g->set_ptr->ways_cnt, g->set_ptr->steps);
+	ft_sprintf(&str, "ways: %d, steps: %d", g->set_ptr->ways_cnt, g->set_ptr->steps);
+	ft_printf("%s\n", str);
+	mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, 5, 5, 0xFFFFFF, str);
+	if (g->set_ptr == find->answer)
+		mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, g->v->win_x - 80, 5, 0x00FF00, "Answer!");
+	free(str);
 }
 
 /*static int	get_command(void *prm)
