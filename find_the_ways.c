@@ -91,6 +91,8 @@ int				find_the_way(t_intldta *indta)
 	t_find_way	*find;
 	int			steps;
 	t_way_set	*ptr;
+	t_list_rooms *test_r;
+	t_list_links *test_l;
 
 	help_find_the_way(&indta, &find);
 	ptr = find->answer;
@@ -108,6 +110,7 @@ int				find_the_way(t_intldta *indta)
 //	if (indta->v_flag)
 //		visualizer(indta, find);
 	move_ants(indta, find);
+	cpy_the_state(&indta, &test_l, &test_r);
 	free_main_structs(&indta, &find);
 	return (0);
 }

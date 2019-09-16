@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/16 14:35:55 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:38:31 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 	ant_farm.full_steps = find->answer->full_steps;
 	counter = 0;
 	ant_farm.i = 0;
-	if (intdta->v_flag)
-		ant_color_init(&(ant_farm.ants), ant_farm.num);
+//	if (intdta->v_flag)
+//		ant_color_init(&(ant_farm.ants), ant_farm.num);
 	while (ant_farm.fin_ants != intdta->num_ants)
 	{
 		ant_farm.switcher = 0;
