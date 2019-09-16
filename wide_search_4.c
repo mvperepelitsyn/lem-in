@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 21:12:04 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/13 21:12:39 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/16 11:32:56 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,21 @@ int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched,
 	int				num_lnks;
 	t_list			*ptr;
 	t_list_links	**l;
-	t_search		*tmp;
+	t_search		*t;
 
 	num_lnks = (*srch)->rooms->num_lnks;
 	ptr = (*srch)->rooms->links;
 	while (num_lnks != 0 || ptr != NULL)
 	{
-		tmp = *srch;
+		t = *srch;
 		l = ptr->content;
-		if ((*l)->sttus == 1 && tmp->rooms->act_lnks == 1 && tmp->rooms->type == 0)
+		if ((*l)->sttus == 1 && t->rooms->act_lnks == 1 && t->rooms->type == 0)
 		{
-			dead_end_cleaner(tmp->rooms, 1);
+			dead_end_cleaner(t->rooms, 1);
 			return (1);
 		}
-		stop_search(fnd, *l, tmp->rooms, indta);
-		if (help_fill_search2(*l, srch, searched, &tmp))
+		stop_search(fnd, *l, t->rooms, indta);
+		if (help_fill_search2(*l, srch, searched, &t))
 			add_the_way(fnd, srch, searched, *l);
 		if ((*fnd)->cnt_ways == (*fnd)->min_ways)
 			return (0);

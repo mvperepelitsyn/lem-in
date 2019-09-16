@@ -12,6 +12,12 @@
 
 #include "lem_in.h"
 
+void			ft_println(char *str)
+{
+	ft_putstr(str);
+	ft_putchar('\n');
+}
+
 static	void	help_fill_list_links(t_list_links **lnks, char **rms)
 {
 	(*lnks)->room1 = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
