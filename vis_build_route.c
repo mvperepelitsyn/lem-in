@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/12 20:21:54 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/13 11:32:29 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	dot_init(t_build_route *br, t_circle *c)
 	br->clr.delta = ft_abs(br->l.d_big);
 	br->clr.a = br->a.color;
 	br->clr.b = br->b.color;
-	c->clr = ROUTE_COLOR;
+	c->clr = br->a.color;
 	c->x = br->a.x;
 	c->y = br->a.y;
 }
@@ -94,11 +94,11 @@ void		build_route(t_graph *g, t_dllist *room)
 	t_build_route	br;
 	t_circle		c;
 
-	br.l.img = g->graph;
+	br.l.img = g->mask;
 	br.a.thick = ROUTE_THICK;
 	br.b.thick = ROUTE_THICK;
-	br.a.color = ROUTE_COLOR;
-	br.b.color = ROUTE_COLOR;
+	br.a.color = g->route_color;
+	br.b.color = g->route_color;
 	c.r = ROUTE_THICK / 2;
 	while(room->right)
 	{

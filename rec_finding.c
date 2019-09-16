@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/12 20:44:21 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 10:36:42 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	check_free_rooms(t_list_rooms *start)
 	ptr = start->links;
 	while (ptr)
 	{
-		link = (t_list_links*)ptr->content;
-		if (!link->status)
+		link = *(t_list_links **)ptr->content;
+		if (!link->sttus)
 		{
 			ptr = ptr->next;
 			continue;
@@ -63,20 +63,17 @@ static int	count_set_steps(t_intldta *indta, t_find_way *find, int count)
 				c.ptr = c.ptr->next;
 		}
 	}
-	if (c.i != count)
-		ft_printf("count steps error!\n");
-	find->pre_way_len = c.max_len;
 	c.pre_lems += count * c.max_len;
 	if (c.pre_lems > indta->num_ants)
 		c.ptr->full_steps = 0;
 	else
 	{
 		c.steps = (float)(indta->num_ants - c.pre_lems) / (float)count;
-		if (c.steps > (int)c.steps/* && !(indta->num_ants == c.pre_lems)*/)
+		if (c.steps > (int)c.steps)
 			c.steps++;
 		c.ptr->full_steps = (int)c.steps;
 	}
-	 c.ptr->steps = c.ptr->full_steps + c.max_len;
+	c.ptr->steps = c.ptr->full_steps + c.max_len;
 	return (c.ptr->steps);
 }
 
@@ -115,7 +112,6 @@ static void	add_new_set(t_find_way *find, int ways_cnt)
 		{
 			if (!ft_lstaddnext(&set->ways, (void*)&ptr, sizeof(ptr)))
 				ft_malloc_error();
-			ptr->last_steps = find->max_way_len - (ptr->len_way - 1);
 			i++;
 		}
 		if (i < ways_cnt)
@@ -159,7 +155,6 @@ static int	form_the_set(t_find_way *find, t_intldta *indta)
 		{
 			fs.min_steps_count = fs.steps_count;
 			fs.i_min = fs.i;
-			find->max_way_len = find->pre_way_len;
 		}
 	}
 	if (fs.counter)
@@ -172,18 +167,10 @@ static int	form_the_set(t_find_way *find, t_intldta *indta)
 
 int			rec_finding(t_intldta *indta, t_find_way *find)
 {
-	if (find->crnt_set && (/*find->crnt_set->ways_cnt == indta->num_ants || \
-		CUR->full_steps == -1 ||*/(PRE && CUR->steps > PRE->steps) || \
-		 !check_free_rooms(indta->start_room)))
+	if (find->crnt_set && ((PRE && CUR->steps > PRE->steps) ||
+	!check_free_rooms(indta->start_room)))
 		return (1);
 	if (wide_search(&find, &indta))
 		form_the_set(find, indta);
-	/*if (wide_search(&find, &indta))
-	{
-		if (!check_set_load(find, indta))
-			return (rec_finding(indta, find));
-	}*/
-//	else
-//		rev_wide_search(&indta);
 	return (0);
 }

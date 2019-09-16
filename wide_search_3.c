@@ -1,91 +1,30 @@
-//
-// Created by Dwarven centurion Frost atronach on 2019-09-05.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wide_search_3.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 20:53:30 by dfrost-a          #+#    #+#             */
+/*   Updated: 2019/09/14 20:01:32 by dfrost-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 
-static	void stop_search(t_find_way **find, t_list_links *lnks, t_list_rooms *rm,
-		t_intldta **indta)
+static void	cpy_helper(t_search **tmp_l, t_search **tmp_d)
 {
-	(*indta)->ri = (*indta)->ri;
-	if (lnks->rm1 == rm && lnks->rm2->way_nbr > 0 &&
-		lnks->status == 1 && lnks->way_nbr < 0)
-	{
-		if (pre_link_breaker(find, lnks->rm2))
-			return ;
-		else
-		{
-			if ((*find)->check != 1)
-			{
-				wide_breaker(lnks, lnks->rm2);
-//				rev_wide_search(indta);
-			}
-		}
-	}
-	else if (lnks->rm2 == rm && lnks->rm1->way_nbr > 0 && lnks->status == 1 &&
-	lnks->way_nbr < 0)
-	{
-		if (pre_link_breaker(find, lnks->rm1))
-			return ;
-		else
-		{
-			if ((*find)->check != 1)
-			{
-				wide_breaker(lnks, lnks->rm2);
-//				rev_wide_search(indta);
-			}
-		}
-	}
+	(*tmp_l)->rooms = (*tmp_d)->rooms;
+	(*tmp_l)->step_nbr = (*tmp_d)->step_nbr;
+	(*tmp_l)->way_nbr = (*tmp_d)->way_nbr;
+	(*tmp_l)->next = (t_search *)ft_memalloc(sizeof(t_search));
+	(*tmp_l)->next->prev = (*tmp_l);
+	(*tmp_l) = (*tmp_l)->next;
+	(*tmp_d) = (*tmp_d)->next;
 }
 
-static	int	help_fill_search(t_list_rooms **room, t_list_rooms *prev,
-		t_search **tmp)
-{
-	while ((*tmp)->next != NULL)
-		*tmp = (*tmp)->next;
-	if ((*room)->type == 2)
-		return (1);
-	(*tmp)->next = (t_search *)ft_memalloc(sizeof(t_search));
-	(*tmp)->next->prev = *tmp;
-	(*tmp)->next->rooms = *room;
-	(*tmp)->next->way_nbr = (*tmp)->way_nbr;
-	(*room)->tmp_step_nbr = ((*room)->tmp_step_nbr == 0) ?
-			(prev->tmp_step_nbr + 1) : (*room)->tmp_step_nbr;
-	(*tmp)->next->step_nbr = (*room)->tmp_step_nbr;
-	return (0);
-}
-
-static	int	help_fill_search2(t_list_links *lnk, t_search **srch, t_search
-**srchd, t_search **tmp)
-{
-	if (lnk->rm1 == (*srch)->rooms && not_in_searched(lnk->rm2, *srchd, *srch)
-	&& lnk->rm2->way_nbr < 0 && lnk->status == 1)
-	{
-		if (help_fill_search(&lnk->rm2, lnk->rm1, tmp))
-			return (1);
-		else if (lnk->rm2 == (*srch)->rooms && not_in_searched(lnk->rm1,
-			*srchd, *srch) && lnk->rm1-> way_nbr < 0 && lnk->status == 1)
-		{
-			if (help_fill_search(&lnk->rm1, lnk->rm2, tmp))
-				return (1);
-		}
-	}
-	else if (lnk->rm2 == (*srch)->rooms && not_in_searched(lnk->rm1, *srchd,
-			*srch) && lnk->rm1->way_nbr < 0 && lnk->status == 1)
-	{
-		if (help_fill_search(&lnk->rm1, lnk->rm2, tmp))
-			return (1);
-		else if (lnk->rm1 == (*srch)->rooms && not_in_searched(lnk->rm2,
-				*srchd, *srch) && lnk->rm2-> way_nbr < 0 && lnk->status == 1)
-		{
-			if (help_fill_search(&lnk->rm2, lnk->rm1, tmp))
-				return (1);
-		}
-	}
-	return (0);
-}
-
-static	void	cpy_t_searched(t_search **srchd, t_search **lst, t_list_links *end_lnk)
+static void	cpy_t_searched(t_search **srchd, t_search **lst, t_list_links
+*end_lnk)
 {
 	t_search *tmp_l;
 	t_search *tmp_d;
@@ -94,15 +33,7 @@ static	void	cpy_t_searched(t_search **srchd, t_search **lst, t_list_links *end_l
 	tmp_l = *lst;
 	tmp_d = *srchd;
 	while (tmp_d)
-	{
-		tmp_l->rooms = tmp_d->rooms;
-		tmp_l->step_nbr = tmp_d->step_nbr;
-		tmp_l->way_nbr = tmp_d->way_nbr;
-		tmp_l->next = (t_search *)ft_memalloc(sizeof(t_search));
-		tmp_l->next->prev = tmp_l;
-		tmp_l = tmp_l->next;
-		tmp_d = tmp_d->next;
-	}
+		cpy_helper(&tmp_l, &tmp_d);
 	tmp_l->rooms = (end_lnk->rm2->type == 2) ? end_lnk->rm1 : end_lnk->rm2;
 	tmp_l->step_nbr = tmp_l->rooms->tmp_step_nbr;
 	tmp_l->way_nbr = tmp_l->prev->way_nbr;
@@ -115,7 +46,7 @@ static	void	cpy_t_searched(t_search **srchd, t_search **lst, t_list_links *end_l
 	make_it_clean(&tmp_l);
 }
 
-static	void	change_the_way_nbr(t_search **srch, t_search **srchd, int way_nbr)
+static void	change_the_way_nbr(t_search **srch, t_search **srchd, int way_nbr)
 {
 	t_search *s1;
 	t_search *s2;
@@ -136,7 +67,7 @@ static	void	change_the_way_nbr(t_search **srch, t_search **srchd, int way_nbr)
 	}
 }
 
-static	int 	check_the_way(t_search *lst)
+static int	check_the_way(t_search *lst)
 {
 	t_search *tmp;
 
@@ -152,18 +83,21 @@ static	int 	check_the_way(t_search *lst)
 	return (0);
 }
 
-static	void	add_the_way(t_find_way **fnd, t_search **srch, t_search **srchd,
+void		add_the_way(t_find_way **fnd, t_search **srch, t_search **srchd,
 		t_list_links *end_lnk)
 {
 	t_way		*way;
 	t_search	*lst;
 	t_search	*trash;
-	int 		check;
+	int			check;
 
 	trash = NULL;
 	cpy_t_searched(srchd, &lst, end_lnk);
 	if (check_the_way(lst))
+	{
+		free_search_ed(&lst, &trash);
 		return ;
+	}
 	check = give_me_way_nbr(&((*fnd)->ways));
 	way = (t_way *)ft_memalloc(sizeof(t_way));
 	way->status = 1;
@@ -173,34 +107,4 @@ static	void	add_the_way(t_find_way **fnd, t_search **srch, t_search **srchd,
 	insert_way(*fnd, way);
 	(*fnd)->cnt_ways++;
 	change_the_way_nbr(srch, srchd, give_me_way_nbr(&((*fnd)->ways)));
-}
-
-int			fill_search(t_find_way **fnd, t_search **srch, t_search **searched,
-		t_intldta **indta)
-{
-	int				num_lnks;
-	t_list			*ptr;
-	t_list_links	*pt_link;
-	t_search		*tmp;
-
-	num_lnks = (*srch)->rooms->num_lnks;
-	ptr = (*srch)->rooms->links;
-	while (num_lnks != 0 || ptr != NULL)
-	{
-		tmp = *srch;
-		pt_link = ptr->content;
-		if (pt_link->status == 1 && tmp->rooms->act_lnks == 1 && tmp->rooms->type == 0)
-		{
-			dead_end_cleaner(tmp->rooms);
-			return (1);
-		}
-		stop_search(fnd, pt_link, tmp->rooms, indta);
-		if (help_fill_search2(pt_link, srch, searched, &tmp))
-			add_the_way(fnd, srch, searched, pt_link);
-		if ((*fnd)->cnt_ways == (*fnd)->min_ways)
-			return (0);
-		ptr = ptr->next;
-		num_lnks--;
-	}
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 20:20:57 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/13 11:50:58 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 # define S_CLR 0x00FF00
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
-# define ROUTE_COLOR 0xAAAA41FE
+//# define ROUTE_COLOR 0xAAAA41FE
+# define ROUTE_COLOR 0xAAff881b
 # define ROUTE_THICK 30
 
 typedef struct s_vis_prms	t_vis_prms;
@@ -47,6 +48,7 @@ typedef struct	s_graph
 	int 		delta_x;
 	int 		delta_y;
 	int			clr[3];
+	int			route_color;
 	t_vis_prms	*v;
 	t_vis_prms	*mask;
 	t_vis_prms	*graph;
