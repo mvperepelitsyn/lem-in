@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 12:33:38 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 16:25:18 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ static void	coord_init(t_intldta *indta, t_graph *g)
 	g->max_x = indta->rooms->x_cord;
 	g->max_y = indta->rooms->y_cord;
 	set_limits(indta, g);
-	ft_printf("x_min: %d x_max: %d\ny_min: %d y_max: %d\n", g->min_x, g->max_x, g->min_y, g->max_y);
 	g->scale = SCALE;
 	g->delta_x = (g->max_x - g->min_x) * g->scale;
 	g->delta_y = (g->max_y - g->min_y) * g->scale;
@@ -167,20 +166,18 @@ void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 	mlx_put_image_to_window(g->graph->mlx_ptr, g->graph->win_ptr, g->graph->img_ptr, 0, 0);
 	ptr = g->set_ptr->ways;
 	g->route_color = ROUTE_COLOR;
+	set_map_transparent(g->mask);
 	while (ptr)
 	{
 		way = ptr->content;
 		room = (*way)->rooms;
-		set_map_transparent(g->mask);
 		build_route(g, room);
-		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->mask->img_ptr, 0, 0);
 		g->route_color += 1500000;
 		ptr = ptr->next;
 	}
+	mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->mask->img_ptr, 0, 0);
 	str = NULL;
-	ft_printf("ways: %d, steps: %d\n", g->set_ptr->ways_cnt, g->set_ptr->steps);
 	ft_sprintf(&str, "ways: %d, steps: %d", g->set_ptr->ways_cnt, g->set_ptr->steps);
-	ft_printf("%s\n", str);
 	mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, 5, 5, 0xFFFFFF, str);
 	if (g->set_ptr == find->answer)
 		mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, g->v->win_x - 80, 5, 0x00FF00, "Answer!");

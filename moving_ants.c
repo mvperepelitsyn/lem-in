@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moving_ants.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/13 19:10:16 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/16 16:17:14 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	move_what_is_not_moving(t_find_way *find, t_ant_farm *ant_farm,
 	}
 }
 
-void		move_ants(t_intldta *intdta, t_find_way *find)
+void		move_ants(t_intldta *intdta, t_find_way *find, t_graph *g)
 {
 	t_ant_farm	ant_farm;
 	t_list		*ways;

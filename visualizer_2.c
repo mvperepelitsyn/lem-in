@@ -51,7 +51,7 @@ void		draw_rooms(t_intldta *indta, t_graph *g)
 		c.y = (ptr->y_cord * g->scale) + (2 * R);
 		if (!ptr->act_lnks)
 			transparent(&c.clr, 200, g->graph);
-		draw_circle(&c, g->graph, 0);
+		draw_circle(&c, g->graph, 0, &put_pix_to_img);
 		ptr = ptr->next;
 	}
 }

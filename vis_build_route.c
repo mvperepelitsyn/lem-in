@@ -6,13 +6,43 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 11:32:29 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 18:39:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	get_thick(t_draw_thick *tk, t_line_prm *l, t_dot_prm *a, \
+int		mix_pix_in_img(t_line_prm *l, int x, int y, int color)
+{
+	int		*image;
+	int		start;
+	int		alpha;
+	int		coord;
+	int		i;
+	char	*channel_dst;
+	char	*channel_src;
+
+	if (x < 0 || y < 0 || x >= l->img->win_x || y >= l->img->win_y)
+		return (0);
+	image = (int*)l->img->img_addr;
+	coord = (y * (l->img->lsz / 4)) + x;
+	if (!(image[coord] << 8))
+		return (image[coord] = color);
+	start = (l->img->ndn == 0) ? 0 : 1;
+	alpha  = (l->img->ndn == 0) ? 3 : 0;
+	i = 0;
+	channel_dst = (char*)&image[coord];
+	channel_src = (char*)&color;
+	while (i < 3)
+	{
+		channel_dst[start + i] = (channel_dst[start + i] + channel_src[start + i]) / 2;
+		i++;
+	}
+	channel_dst[alpha] = channel_src[alpha];
+	return (0);
+}
+
+/*static void	get_thick(t_draw_thick *tk, t_line_prm *l, t_dot_prm *a, \
 	t_dot_prm *b)
 {
 	float			tx;
@@ -32,7 +62,7 @@ static void	get_thick(t_draw_thick *tk, t_line_prm *l, t_dot_prm *a, \
 	tk->m.y = - ty;
 	tk->n.x = + tx;
 	tk->n.y = + ty;
-}
+}*/
 
 void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 	t_grad_prms *clr, t_circle *c)
@@ -72,7 +102,7 @@ void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 		tk.gr.a = get_grad_color(tk.l.img, clr, tk.l.i);
 		tk.gr.b = tk.gr.a;
 		build_line(&tk.l, &tk.m, &tk.gr, &put_pix_to_img);*/
-		draw_circle(c, l->img, 1);
+		draw_circle(c, l->img, 1, &mix_pix_in_img);
 		l->i++;
 	}
 }
