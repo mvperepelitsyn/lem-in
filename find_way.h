@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 14:35:55 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/16 15:44:07 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,5 +193,9 @@ void					find_cur_room(t_link_breaker *br, t_find_way **find,
 void					break_links(t_link_breaker *br);
 void					cpy_the_state(t_intldta **inda, t_list_links **lnks,
 		t_list_rooms **rms);
+void					cpy_the_rooms(t_list_rooms *s_rms,
+		t_list_rooms **d_rms);
+void					cpy_the_links(t_list_links *s_lnks,
+		t_list_links **d_lnks, t_list_rooms *rms);
 
 #endif
