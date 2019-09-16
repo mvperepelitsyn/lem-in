@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:20:44 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/16 15:57:37 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/16 17:28:08 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,10 @@ int				find_the_way(t_intldta *indta)
 		ptr = ptr->next;
 	}
 	set_pre_lems(find);
-//	if (indta->v_flag)
-//		visualizer(indta, find);
-	move_ants(indta, find);
+	if (indta->v_flag)
+		visualizer(indta, find);
+	else
+		move_ants(indta, find, NULL);
 	free_main_structs(&indta, &find);
 	return (0);
 }
