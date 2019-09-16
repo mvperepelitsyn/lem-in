@@ -1,6 +1,14 @@
-//
-// Created by Dwarven centurion Frost atronach on 2019-09-05.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper_ways.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/15 17:18:43 by dfrost-a          #+#    #+#             */
+/*   Updated: 2019/09/15 17:18:48 by dfrost-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 
@@ -29,12 +37,12 @@ static	void	mark_the_way(t_search *list)
 		ptr = tmp->rooms->links;
 		while (tmp->rooms->type != 2)
 		{
-			lnks = ptr->content;
+			lnks = *(t_list_links **)ptr->content;
 			if ((lnks->rm1 == tmp->rooms && lnks->rm2 == tmp->next->rooms) ||
 			(lnks->rm2 == tmp->rooms && lnks->rm1 == tmp->next->rooms))
 			{
 				lnks->way_nbr = tmp->way_nbr;
-				break;
+				break ;
 			}
 			ptr = ptr->next;
 		}
@@ -42,14 +50,13 @@ static	void	mark_the_way(t_search *list)
 	}
 }
 
-void	fill_the_way(t_way **tmp_way, t_search *list)
+void			fill_the_way(t_way **tmp_way, t_search *list)
 {
 	t_way	*tmp;
 
 	tmp = *tmp_way;
 	while (tmp->next)
 		tmp = tmp->next;
-//	make_it_clean(&list);
 	way_assignment(list);
 	mark_the_way(list);
 	tmp->rooms = ft_dllnew((void *)&(list->rooms), sizeof(t_list_rooms*));
@@ -77,10 +84,10 @@ int				it_has_link(t_list_rooms *room1, t_list_rooms *room2)
 	ptr1 = rm_1->links;
 	while (ptr1)
 	{
-		lnks = ptr1->content;
+		lnks = *(t_list_links **)ptr1->content;
 		if (((ft_strequ(rm_1->name, lnks->room1) && ft_strequ(room2->name,
 				lnks->room2)) || (ft_strequ(room2->name, lnks->room1) &&
-				ft_strequ(rm_1->name, lnks->room2))) && lnks->status == 1)
+				ft_strequ(rm_1->name, lnks->room2))) && lnks->sttus == 1)
 			return (1);
 		ptr1 = ptr1->next;
 	}

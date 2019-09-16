@@ -74,7 +74,7 @@ void		draw_links(t_intldta *indta, t_graph *g)
 		b.color =  g->clr[ptr->rm2->type];
 		b.thick = 1;
 		trim_line(&a, &b, R);
-		if (!ptr->status)
+		if (!ptr->sttus)
 		{
 			transparent(&a.color, 200, g->graph);
 			transparent(&b.color, 200, g->graph);
