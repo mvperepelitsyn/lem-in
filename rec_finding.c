@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/11 15:30:17 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 17:59:56 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	check_free_rooms(t_list_rooms *start)
 	ptr = start->links;
 	while (ptr)
 	{
-		link = (t_list_links*)ptr->content;
-		if (!link->status)
+		link = *(t_list_links **)ptr->content;
+		if (!link->sttus)
 		{
 			ptr = ptr->next;
 			continue;
@@ -63,15 +63,13 @@ static int	count_set_steps(t_intldta *indta, t_find_way *find, int count)
 				c.ptr = c.ptr->next;
 		}
 	}
-	if (c.i != count)
-		ft_printf("count steps error!\n");
 	c.pre_lems += count * c.max_len;
 	if (c.pre_lems > indta->num_ants)
-		c.ptr->full_steps = -1;
+		c.ptr->full_steps = 0;
 	else
 	{
-		c.steps = (indta->num_ants - c.pre_lems) / count;
-		if (c.steps > (int)c.steps/* && !(indta->num_ants == c.pre_lems)*/)
+		c.steps = (float)(indta->num_ants - c.pre_lems) / (float)count;
+		if (c.steps > (int)c.steps)
 			c.steps++;
 		c.ptr->full_steps = (int)c.steps;
 	}
@@ -97,7 +95,7 @@ void		print_the_set(t_way_set *set)
 	ft_printf("\n-------------------\n");
 }
 
-static void	add_new_set(t_find_way *find, int ways_cnt)
+static void	add_new_set(t_find_way *find, int ways_cnt, t_intldta *indta)
 {
 	t_way_set	*set;
 	t_way		*ptr;
@@ -131,6 +129,8 @@ static void	add_new_set(t_find_way *find, int ways_cnt)
 	CUR = set;
 	if (!find->sets)
 		find->sets = find->crnt_set;
+	if (indta->v_flag)
+		cpy_the_state(&indta, &set->links, &set->rooms);
 	print_the_set(find->crnt_set);
 }
 
@@ -161,7 +161,7 @@ static int	form_the_set(t_find_way *find, t_intldta *indta)
 	}
 	if (fs.counter)
 	{
-		add_new_set(find, fs.i_min);
+		add_new_set(find, fs.i_min, indta);
 		return (1);
 	}
 	return (0);
@@ -169,18 +169,10 @@ static int	form_the_set(t_find_way *find, t_intldta *indta)
 
 int			rec_finding(t_intldta *indta, t_find_way *find)
 {
-	if (find->crnt_set && (/*find->crnt_set->ways_cnt == indta->num_ants || \
-		CUR->full_steps == -1 || */(PRE && CUR->steps > PRE->steps) || \
-		 !check_free_rooms(indta->start_room)))
+	if (find->crnt_set && ((PRE && CUR->steps > PRE->steps) ||
+	!check_free_rooms(indta->start_room)))
 		return (1);
 	if (wide_search(&find, &indta))
 		form_the_set(find, indta);
-	/*if (wide_search(&find, &indta))
-	{
-		if (!check_set_load(find, indta))
-			return (rec_finding(indta, find));
-	}*/
-//	else
-//		rev_wide_search(&indta);
 	return (0);
 }

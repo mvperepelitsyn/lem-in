@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/10 14:45:24 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 18:56:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,29 @@
 
 # define WIN_X 2560
 # define WIN_Y 1575
+# define BLOCK_X 6
+# define BLOCK_Y 4
 # define R 10
 # define SCALE 200
 # define S_CLR 0x00FF00
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
-# define ROUTE_COLOR 0xAAAA41FE
-# define ROUTE_THICK 20
+# define LINE_H 40
+//# define ANT_CLR_BUMP 0x001111
+# define ANT_CLR_BUMP 1500000
+# define FRAMES_COUNT 100
+# define ANT_R 6
+//# define ROUTE_COLOR 0xAAAA41FE
+# define ROUTE_COLOR 0xff881b
+# define ROUTE_THICK 30
 
 typedef struct s_vis_prms	t_vis_prms;
-
 
 /*
 ** Graph vis params: g
 */
 
-typedef struct	s_graph
+struct	s_graph
 {
 	int 		min_x;
 	int 		min_y;
@@ -47,10 +54,23 @@ typedef struct	s_graph
 	int 		delta_x;
 	int 		delta_y;
 	int			clr[3];
+	int			route_color;
+	int			rooms_count;
+	int			scale_rec;
 	t_vis_prms	*v;
 	t_vis_prms	*mask;
+	t_vis_prms	*route;
 	t_vis_prms	*graph;
-}				t_graph;
+	t_way_set	*set_ptr;
+	t_intldta 	*indta;
+	t_find_way	*find;
+	int			frame;
+	t_list		*step_ptr;
+	int			step;
+	int			run;
+	int			info;
+	int			mode;
+};
 
 /*
 **	visualizer params: v, graph
@@ -169,14 +189,34 @@ typedef struct	s_build_route
 	t_list_rooms	**croom;
 }				t_build_route;
 
+typedef struct	s_draw_ant
+{
+	t_list_rooms	*a;
+	t_list_rooms	*b;
+}				t_draw_ant;
+
+typedef struct	s_mix_maps
+{
+	unsigned int	*pix_src;
+	unsigned int	*pix_dst;
+	unsigned char	*byte_src;
+	unsigned char	*byte_dst;
+	int 			img_len;
+	int				start;
+	int				alpha;
+	int				i;
+	int				j;
+}				t_mix_maps;
+
 void	visualizer(t_intldta *indta, t_find_way *find);
 void	draw_rooms(t_intldta *indta, t_graph *g);
 void	draw_links(t_intldta *indta, t_graph *g);
 int		put_pix_to_img(t_line_prm *l, int x, int y, int color);
+int		mix_pix_in_img(t_line_prm *l, int x, int y, int color);
 void	build_line(t_line_prm *l, t_dot_prm *a, t_grad_prms *clr, \
 	int (*method)(t_line_prm*, int, int, int));
 void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
-	t_grad_prms *clr);
+	t_grad_prms *clr, t_circle *c);
 void	put_line_to_img(t_vis_prms *v, t_dot_prm a, t_dot_prm b);
 void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos);
 int		deal_key(int key, void *prm);
@@ -186,6 +226,13 @@ void	build_route(t_graph *g, t_dllist *room);
 void	get_delta(t_dot_prm *a, t_dot_prm *b, t_line_prm *l);
 int		get_coord(t_line_prm *l);
 int		get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos);
-void	draw_circle(t_circle *c, t_vis_prms *v, int fill_prm);
-
+void	draw_circle(t_circle *c, t_vis_prms *v, int fill_prm, \
+	int (*method)(t_line_prm*, int, int, int));
+void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find);
+void	ant_color_init(t_ants *ants, int ants_count);
+void	vis_step(t_graph *g, t_intldta *indta);
+void	set_map_transparent(t_vis_prms *v);
+void	transparent(int *color, unsigned char clarity, t_vis_prms *v);
+void	sign_rooms(t_intldta *indta, t_graph *g);
+void	sign_ant_step(t_dllist *room, t_graph *g, int frame, int color, int num);
 #endif
