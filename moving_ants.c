@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 16:25:11 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 16:56:36 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,20 @@ static void	status_changer(t_ant_farm *ant_farm)
 	ant_farm->j = i;
 }
 
+static int	check_status(t_ant_farm *ant_farm)
+{
+	int i;
+
+	i = 0;
+	while (i < ant_farm->num)
+	{
+		if (ant_farm->ants[i].finished == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void		move_ants(t_intldta *intdta, t_find_way *find)
 {
 	t_ant_farm	ant_farm;
@@ -132,7 +146,7 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 	ant_farm.i = 0;
 	if (intdta->v_flag)
 		ant_color_init(ant_farm.ants, ant_farm.num);
-	while (ant_farm.fin_ants < intdta->num_ants)
+	while (ant_farm.fin_ants <= intdta->num_ants && !check_status(&ant_farm))
 	{
 		ant_farm.switcher = 0;
 		ant_farm.ant_flow = 0;
@@ -142,7 +156,7 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 		move_what_is_moving(&ant_farm);
 		move_what_is_not_moving(find, &ant_farm, ways);
 		ft_putchar('\n');
-		if (intdta->v_flag)
+		if (intdta->v_flag && !check_status(&ant_farm))
 		{
 			ptr = ft_memalloc((sizeof(t_ants) * intdta->num_ants));
 			ft_memcpy(ptr, (void *)ant_farm.ants, sizeof(t_ants) * intdta->num_ants);
