@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/16 17:37:12 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/16 17:46:50 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ void		move_ants(t_intldta *intdta, t_find_way *find, t_graph *g)
 		move_what_is_moving(&ant_farm);
 		move_what_is_not_moving(find, &ant_farm, ways);
 		ft_putchar('\n');
-		if (intdta->v_flag)
-			vis_step(&(ant_farm.ants), g, intdta, ant_farm.i + 1);
+//		if (intdta->v_flag)
+//			vis_step(&(ant_farm.ants), g, intdta, ant_farm.i + 1);
 		counter++;
 	}
 	ft_printf("\nThe number of lines is %d\n", counter);
