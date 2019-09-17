@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 14:53:31 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 16:25:11 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,18 +115,6 @@ static void	status_changer(t_ant_farm *ant_farm)
 		ant_farm->j++;
 	}
 	ant_farm->j = i;
-//	else if (i == 2)
-//	{
-//		ant_farm->j = 0;
-//		while (ant_farm->ants[ant_farm->j].status == 0 &&
-//			   ant_farm->j < ant_farm->fin_ants)
-//		{
-//			if (ant_farm->ants[ant_farm->j].position->type == 2 && ant_farm->
-//					ants[ant_farm->j].finished == 0)
-//				ant_farm->ants[ant_farm->j].finished = 1;
-//			ant_farm->j++;
-//		}
-//	}
 }
 
 void		move_ants(t_intldta *intdta, t_find_way *find)
@@ -144,7 +132,7 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 	ant_farm.i = 0;
 	if (intdta->v_flag)
 		ant_color_init(ant_farm.ants, ant_farm.num);
-	while (ant_farm.fin_ants != intdta->num_ants)
+	while (ant_farm.fin_ants < intdta->num_ants)
 	{
 		ant_farm.switcher = 0;
 		ant_farm.ant_flow = 0;
