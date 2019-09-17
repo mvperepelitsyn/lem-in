@@ -44,6 +44,8 @@ typedef struct			s_way_set
 	int					steps;
 	int					full_steps;
 	int					ways_cnt;
+	t_list_rooms		*rooms;
+  	t_list_links		*links;
 	t_list				*ways;
 	struct s_way_set	*next;
 	struct s_way_set	*prev;
