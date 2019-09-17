@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 11:30:56 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 13:21:50 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	move_what_is_moving(t_ant_farm *ant_farm)
 				ant_farm->ants[ant_farm->j].status = 0;
 				ant_farm->fin_ants++;
 			}
-			else
-				ant_farm->ants[ant_farm->j].rooms = ant_farm->ants[ant_farm->j].
-						rooms->right;
+//			else
+//				ant_farm->ants[ant_farm->j].rooms = ant_farm->ants[ant_farm->j].
+//						rooms->right;
 		}
 		ant_farm->j++;
 	}
