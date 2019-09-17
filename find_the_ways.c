@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_the_ways.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:20:44 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 13:07:39 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 14:33:35 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ int				find_the_way(t_intldta *indta)
 	move_ants(indta, find);
 	if (indta->v_flag)
 		visualizer(indta, find);
-	// cpy_the_state(&indta, &t_lnks, &t_rms);
 	free_main_structs(&indta, &find);
 	return (0);
 }
