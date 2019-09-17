@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 13:43:46 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 15:49:52 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define FRAMES_COUNT 100
 # define ANT_R 6
 //# define ROUTE_COLOR 0xAAAA41FE
-# define ROUTE_COLOR 0xAAff881b
+# define ROUTE_COLOR 0xff881b
 # define ROUTE_THICK 30
 
 typedef struct s_vis_prms	t_vis_prms;
@@ -64,6 +64,7 @@ struct	s_graph
 	t_intldta 	*indta;
 	t_find_way	*find;
 	int			run;
+	int			info;
 };
 
 /*
@@ -188,6 +189,19 @@ typedef struct	s_draw_ant
 	t_list_rooms	*a;
 	t_list_rooms	*b;
 }				t_draw_ant;
+
+typedef struct	s_mix_maps
+{
+	unsigned int	*pix_src;
+	unsigned int	*pix_dst;
+	unsigned char	*byte_src;
+	unsigned char	*byte_dst;
+	int 			img_len;
+	int				start;
+	int				alpha;
+	int				i;
+	int				j;
+}				t_mix_maps;
 
 void	visualizer(t_intldta *indta, t_find_way *find);
 void	draw_rooms(t_intldta *indta, t_graph *g);

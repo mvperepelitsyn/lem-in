@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 14:11:54 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 16:28:42 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,8 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 		{
 			ptr = ft_memalloc((sizeof(t_ants) * intdta->num_ants));
 			ft_memcpy(ptr, (void *)ant_farm.ants, sizeof(t_ants) * intdta->num_ants);
-			ft_lstaddnext(&(find->ants_state), ptr, sizeof(t_ants) * intdta->num_ants);
+			if (!ft_lstaddnext(&(find->ants_state), ptr, sizeof(t_ants) * intdta->num_ants))
+				ft_malloc_error();
 		}
 		counter++;
 	}

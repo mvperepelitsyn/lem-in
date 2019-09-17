@@ -6,13 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 10:57:04 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 15:17:01 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		mix_pix_in_img(t_line_prm *l, int x, int y, int color)
+/*int		mix_pix_in_img(t_line_prm *l, int x, int y, int color)
 {
 	unsigned int	*image;
 	int				start;
@@ -35,7 +35,7 @@ int		mix_pix_in_img(t_line_prm *l, int x, int y, int color)
 	 ft_printf("%X %X %X %X : ", (unsigned int)cnl_dst[0], (unsigned int)cnl_dst[1], (unsigned int)cnl_dst[2], (unsigned int)cnl_dst[3]);
 	if (!cnl_dst[start] && !cnl_dst[start + 1] && !cnl_dst[start + 2])
 		return (image[coord] = color);
-	// ft_printf("%X : %X : ", image[coord], color);
+	// ft_printf("%X : %X : ", image[coord], color);*/
 	/*while (i < 3)
 	{
 		cnl_dst[start + i] = (cnl_dst[start + i] / 2) + (cnl_src[start + i] / 2);
@@ -43,10 +43,10 @@ int		mix_pix_in_img(t_line_prm *l, int x, int y, int color)
 	}
 	cnl_dst[alpha] = cnl_src[alpha];*/
 	// ft_printf("%X\n", image[coord]);
-	image[coord] = 0xFFFF00FF;
+/*	image[coord] = 0xFFFF00FF;
 	ft_printf("%X %X %X %X | ", (unsigned int)cnl_dst[0], (unsigned int)cnl_dst[1], (unsigned int)cnl_dst[2], (unsigned int)cnl_dst[3]);
 	return (0);
-}
+}*/
 
 void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 	t_grad_prms *clr, t_circle *c)

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:04:58 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 14:20:01 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 16:02:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ static void	sign_ant_step(t_dllist *room, t_graph *g, int frame, int color, int 
 }
 
 
-static void	draw_ant_step(t_dllist *room, t_graph *g, int frame, int color, int num)
+static void	draw_ant_step(t_dllist *room, t_graph *g, int frame, int color)
 {
 	t_draw_ant	ant;
 	t_circle	c;
-	char		*str;
 
 	ant.b = ((t_list_rooms**)(room->content))[0];
 	ant.a = ((t_list_rooms**)room->left->content)[0];
@@ -66,10 +65,6 @@ static void	draw_ant_step(t_dllist *room, t_graph *g, int frame, int color, int 
 	c.clr = color;
 	// ft_printf("%X ", color);
 	draw_circle(&c, g->v, 1, &put_pix_to_img);
-	ft_sprintf(&str, "%d", num);
-	mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, (c.x - R), \
-		(c.y + R * 2), 0xFF0000, str);
-	free(str);
 }
 
 void	vis_step(t_graph *g, t_intldta *indta)
@@ -94,15 +89,15 @@ void	vis_step(t_graph *g, t_intldta *indta)
 	{
 		if (ants[ant].status || (ants[ant].position == indta->end_room \
 			&& !ants[ant].finished))
-			draw_ant_step(ants[ant].rooms, g, frame, ants[ant].color, ant);
+			draw_ant_step(ants[ant].rooms, g, frame, ants[ant].color);
 		ant++;
 	}
 	mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->graph->img_ptr, 0, 0);
-	mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->mask->img_ptr, 0, 0);
+	mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->route->img_ptr, 0, 0);
 	mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->v->img_ptr, 0, 0);
 	mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, 5, 5, 0xFFFFFF, str);
 	ant = 0;
-	while (ant < indta->num_ants && frame < FRAMES_COUNT)
+	while (ant < indta->num_ants && frame < FRAMES_COUNT && g->info)
 	{
 		if (ants[ant].status || (ants[ant].position == indta->end_room \
 			&& !ants[ant].finished))
@@ -110,7 +105,8 @@ void	vis_step(t_graph *g, t_intldta *indta)
 		ant++;
 	}
 
-	sign_rooms(indta, g);
+	if (g->info)
+		sign_rooms(indta, g);
 	usleep(100);
 	frame++;
 	if (frame > FRAMES_COUNT)
