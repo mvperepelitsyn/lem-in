@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:20:44 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 11:03:26 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 11:09:10 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,10 @@ int				find_the_way(t_intldta *indta)
 		ptr = ptr->next;
 	}
 	set_pre_lems(find);
-	if (indta->v_flag)
-		visualizer(indta, find);
-	else
-		move_ants(indta, find, NULL);
+//	if (indta->v_flag)
+//		visualizer(indta, find);
+//	else
+		move_ants(indta, find);
 	cpy_the_state(&indta, &t_lnks, &t_rms);
 	free_main_structs(&indta, &find);
 	return (0);
