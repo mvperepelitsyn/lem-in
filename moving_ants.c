@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 11:27:23 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 11:30:56 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	move_what_is_moving(t_ant_farm *ant_farm)
 	{
 		if (ant_farm->ants[ant_farm->j].status == 1)
 		{
+			ant_farm->ants[ant_farm->j].rooms = ant_farm->ants[ant_farm->j].
+					rooms->right;
 			ant_farm->ants[ant_farm->j].position = *(t_list_rooms **)
 					(ant_farm->ants[ant_farm->j].rooms->content);
 			ft_printf("L%d-%s ", ant_farm->j + 1, ant_farm->ants[ant_farm->j].
@@ -56,8 +58,8 @@ static void	helper_to_move(t_find_way *find, t_ant_farm *ant_farm, t_list *ways)
 				(ant_farm->ants[ant_farm->i].rooms->content);
 		ft_printf("L%d-%s ", ant_farm->i + 1, ant_farm->ants[ant_farm->i].
 				position->name);
-		ant_farm->ants[ant_farm->i].rooms = ant_farm->ants[ant_farm->i].
-				rooms->right;
+//		ant_farm->ants[ant_farm->i].rooms = ant_farm->ants[ant_farm->i].
+//				rooms->right;
 		ant_farm->ant_flow++;
 		ant_farm->i++;
 	}
@@ -84,8 +86,8 @@ static void	move_what_is_not_moving(t_find_way *find, t_ant_farm *ant_farm,
 					(ant_farm->ants[ant_farm->i].rooms->content);
 			ft_printf("L%d-%s ", ant_farm->i + 1, ant_farm->ants[ant_farm->i].
 					position->name);
-			ant_farm->ants[ant_farm->i].rooms = ant_farm->ants[ant_farm->i].
-					rooms->right;
+//			ant_farm->ants[ant_farm->i].rooms = ant_farm->ants[ant_farm->i].
+//					rooms->right;
 			ant_farm->ant_flow++;
 			ant_farm->i++;
 		}
