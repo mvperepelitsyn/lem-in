@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 12:46:45 by uhand             #+#    #+#             */
-/*   Updated: 2019/08/27 15:02:56 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/14 19:24:44 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,31 @@
 
 int		deal_key(int key, void *prm)
 {
-	t_vis_prms	*v;
+	t_graph	*g;
 
-	v = (t_vis_prms*)prm;
+	g = (t_graph*)prm;
+	ft_printf("set steps: %d\n", g->set_ptr->steps);
 	if (key == 53)
 		return (close_vis(prm));
+	else if (key == 124)
+	{
+		if (g->set_ptr->next)
+			g->set_ptr = g->set_ptr->next;
+		else
+			g->set_ptr = g->find->answer;
+		ft_printf("set steps: %d\n", g->set_ptr->steps);
+		build_graph(g->indta, g, g->find);
+	}
 	return (0);
 }
 
 int		close_vis(void *prm)
 {
-	t_vis_prms	*v;
+	t_graph	*g;
 
-	v = (t_vis_prms*)prm;
-	mlx_destroy_image(v->mlx_ptr, v->img_ptr);
-	mlx_destroy_window(v->mlx_ptr, v->win_ptr);
+	g = (t_graph*)prm;
+	mlx_destroy_image(g->v->mlx_ptr, g->v->img_ptr);
+	mlx_destroy_window(g->v->mlx_ptr, g->v->win_ptr);
 	exit(0);
 	return (0);
 }

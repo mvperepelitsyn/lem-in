@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/13 11:50:58 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/14 19:18:28 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # define WIN_X 2560
 # define WIN_Y 1575
+# define BLOCK_X 6
+# define BLOCK_Y 4
 # define R 10
 # define SCALE 200
 # define S_CLR 0x00FF00
@@ -49,9 +51,14 @@ typedef struct	s_graph
 	int 		delta_y;
 	int			clr[3];
 	int			route_color;
+	int			rooms_count;
+	int			scale_rec;
 	t_vis_prms	*v;
 	t_vis_prms	*mask;
 	t_vis_prms	*graph;
+	t_way_set	*set_ptr;
+	t_intldta 	*indta;
+	t_find_way	*find;
 }				t_graph;
 
 /*
@@ -189,5 +196,6 @@ void	get_delta(t_dot_prm *a, t_dot_prm *b, t_line_prm *l);
 int		get_coord(t_line_prm *l);
 int		get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos);
 void	draw_circle(t_circle *c, t_vis_prms *v, int fill_prm);
+void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find);
 
 #endif
