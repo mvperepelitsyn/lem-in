@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 11:38:35 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 12:41:01 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@
 # define S_CLR 0x00FF00
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
-# define ANT_CLR_BUMP 0x002222
-# define FRAMES_COUNT 10
+//# define ANT_CLR_BUMP 0x001111
+# define ANT_CLR_BUMP 1500000
+# define FRAMES_COUNT 100
 # define ANT_R 6
 //# define ROUTE_COLOR 0xAAAA41FE
 # define ROUTE_COLOR 0xAAff881b

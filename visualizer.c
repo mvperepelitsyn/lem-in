@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 12:06:08 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 12:15:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 	g.mask = &mask;
 	g.graph = &graph;
 	g.scale_rec = 0;
+	g.run = 0;
 	coord_init(indta, &g);
 	graph_init(&g, find, indta);
 	window_init(&v, &mask, &graph);

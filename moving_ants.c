@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 12:06:45 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 12:39:05 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,12 @@ static void	status_changer(t_ant_farm *ant_farm)
 	}
 }
 
-void		move_ants(t_intldta *intdta, t_find_way *find, t_graph *g)
+void		move_ants(t_intldta *intdta, t_find_way *find)
 {
 	t_ant_farm	ant_farm;
 	t_list		*ways;
 	int			counter;
+	void		*ptr;
 
 	ant_farm.ants = (t_ants *)ft_memalloc(sizeof(t_ants) * intdta->num_ants);
 	ant_farm.num = intdta->num_ants;
@@ -129,7 +130,11 @@ void		move_ants(t_intldta *intdta, t_find_way *find, t_graph *g)
 		move_what_is_not_moving(find, &ant_farm, ways);
 		ft_putchar('\n');
 		if (intdta->v_flag)
-			vis_step(ant_farm.ants, g, intdta, ant_farm.i + 1);
+		{
+			ptr = ft_memalloc((sizeof(t_ants) * intdta->num_ants));
+			ft_memcpy(ptr, (void *)ant_farm.ants, sizeof(t_ants) * intdta->num_ants);
+			ft_lstaddnext(&(find->ants_state), ptr, sizeof(t_ants) * intdta->num_ants);
+		}
 		counter++;
 	}
 	ft_printf("\nThe number of lines is %d\n", counter);

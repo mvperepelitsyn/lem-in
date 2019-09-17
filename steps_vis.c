@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:04:58 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 12:06:19 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 12:41:59 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	draw_ant_step(t_dllist *room, t_graph *g, int frame, int color)
 		+ ant.a->y_cord) * g->scale  + (2 * R);
 	c.r = ANT_R;
 	c.clr = color;
+	// ft_printf("%X ", color);
 	draw_circle(&c, g->v, 1, &put_pix_to_img);
 }
 
@@ -82,6 +83,11 @@ void	vis_step(t_graph *g, t_intldta *indta)
 		frame = 0;
 		step_ptr = step_ptr->next;
 		step++;
+	}
+	if (!step_ptr)
+	{
+		g->run = 0;
+		step = 0;
 	}
 	free(str);
 }
