@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 16:32:20 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 16:44:23 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	move_what_is_moving(t_ant_farm *ant_farm)
 				ant_farm->ants[ant_farm->j].status = 0;
 				ant_farm->fin_ants++;
 			}
-			// else
-			// 	ant_farm->ants[ant_farm->j].rooms = ant_farm->ants[ant_farm->j].
-			// 			rooms->right;
+//			else
+//				ant_farm->ants[ant_farm->j].rooms = ant_farm->ants[ant_farm->j].
+//						rooms->right;
 		}
 		ant_farm->j++;
 	}
@@ -97,13 +97,24 @@ static void	move_what_is_not_moving(t_find_way *find, t_ant_farm *ant_farm,
 
 static void	status_changer(t_ant_farm *ant_farm)
 {
+	int i;
+
 	while (ant_farm->ants[ant_farm->j].status == 0 && ant_farm->j < ant_farm->i)
 	{
 		if (ant_farm->ants[ant_farm->j].position->type == 2 && ant_farm->
-		ants[ant_farm->j].finished == 0)
+				ants[ant_farm->j].finished == 0)
 			ant_farm->ants[ant_farm->j].finished = 1;
 		ant_farm->j++;
 	}
+	i = ant_farm->j;
+	while (ant_farm->j < ant_farm->i)
+	{
+		if (ant_farm->ants[ant_farm->j].position->type == 2 && ant_farm->
+				ants[ant_farm->j].finished == 0)
+			ant_farm->ants[ant_farm->j].finished = 1;
+		ant_farm->j++;
+	}
+	ant_farm->j = i;
 }
 
 void		move_ants(t_intldta *intdta, t_find_way *find)
@@ -121,8 +132,9 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 	ant_farm.i = 0;
 	if (intdta->v_flag)
 		ant_color_init(ant_farm.ants, ant_farm.num);
-	while (ant_farm.fin_ants != intdta->num_ants)
+	while (ant_farm.fin_ants <= intdta->num_ants)
 	{
+
 		ant_farm.switcher = 0;
 		ant_farm.ant_flow = 0;
 		ways = find->answer->ways;
@@ -131,12 +143,11 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 		move_what_is_moving(&ant_farm);
 		move_what_is_not_moving(find, &ant_farm, ways);
 		ft_putchar('\n');
-		if (intdta->v_flag)
+		if (intdta->v_flag && ant_farm.fin_ants <= intdta->num_ants)
 		{
 			ptr = ft_memalloc((sizeof(t_ants) * intdta->num_ants));
 			ft_memcpy(ptr, (void *)ant_farm.ants, sizeof(t_ants) * intdta->num_ants);
-			if (!ft_lstaddnext(&(find->ants_state), ptr, sizeof(t_ants) * intdta->num_ants))
-				ft_malloc_error();
+			ft_lstaddnext(&(find->ants_state), ptr, sizeof(t_ants) * intdta->num_ants);
 		}
 		counter++;
 	}
