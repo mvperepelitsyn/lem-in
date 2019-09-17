@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 12:41:59 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/05 12:44:12 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 12:29:22 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	get_format(va_list *ap, const char *format, t_printf *p)
 	return (1);
 }
 
-int			ft_sprintf(char *str, const char *format, ...)
+int			ft_sprintf(char **str, const char *format, ...)
 {
 	va_list		ap;
 	t_printf	p;
@@ -62,10 +62,10 @@ int			ft_sprintf(char *str, const char *format, ...)
 			p.i++;
 		p.start = p.i;
 	}
-	if (str)
-		str = p.str;
+	if (str || !str)
+		str[0] = p.str;
 	else
-		str = p.str;
+		str[0] = p.str;
 	va_end(ap);
 	return (p.len);
 }

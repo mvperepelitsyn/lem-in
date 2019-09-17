@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_way.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 11:15:13 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 12:01:08 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct			s_way
 ** Way set params: set
 */
 
-typedef struct			s_way_set
+struct			s_way_set
 {
 	int					steps;
 	int					full_steps;
@@ -49,7 +49,7 @@ typedef struct			s_way_set
 	t_list				*ways;
 	struct s_way_set	*next;
 	struct s_way_set	*prev;
-}						t_way_set;
+};
 
 /*
 **  find_the_way params: find
@@ -137,7 +137,7 @@ typedef struct			s_form_set
 	int					i_min;
 }						t_form_set;
 
-typedef struct			s_ants
+struct					s_ants
 {
 	int					status;
 	int 				color;
@@ -145,7 +145,7 @@ typedef struct			s_ants
 	t_way				*way;
 	t_dllist			*rooms;
 	t_list_rooms		*position;
-}						t_ants;
+};
 
 typedef struct			s_ant_farm
 {

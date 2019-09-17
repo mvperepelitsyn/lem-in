@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:45:32 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/15 16:50:09 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 12:01:21 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# define NAME "../test_map" //DO NOT FORGET TO REMOVE IT
+# define NAME "" //DO NOT FORGET TO REMOVE IT
 
 # include "lem_in.h"
 

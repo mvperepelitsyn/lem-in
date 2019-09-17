@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/11 15:32:06 by uhand             #+#    #+#              #
-#    Updated: 2019/09/16 11:39:27 by dfrost-a         ###   ########.fr        #
+#    Updated: 2019/09/16 18:51:46 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ visualizer_3.c visualiser_4.c rec_finding.c link_breaker.c draw_circle.c \
 vis_build_route.c helper_ways.c make_clean_list.c wide_search.c \
 wide_search_2.c wide_search_3.c reverse_wide_search.c moving_ants.c parser_3.c \
 wide_search_4.c free_structs.c reverse_wide_search_2.c free_structs_2.c \
-helper_2.c link_breaker_2.c wide_breaker.c cpy_the_state.c cpy_the_state_2.c
+helper_2.c link_breaker_2.c wide_breaker.c steps_vis.c cpy_the_state.c \
+cpy_the_state_2.c
 
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 

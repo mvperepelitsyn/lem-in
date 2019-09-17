@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/14 19:19:15 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 12:15:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 	g->rooms_count = 0;
 	while (ptr)
 	{
-		//ptr->x_cord /= 10;
-		//ptr->y_cord /= 10;
 		if (g->min_x > ptr->x_cord)
 			g->min_x = ptr->x_cord;
 		else if (g->max_x < ptr->x_cord)
@@ -31,7 +29,6 @@ static void	set_limits(t_intldta *indta, t_graph *g)
 		else if (g->max_y < ptr->y_cord)
 			g->max_y = ptr->y_cord;
 		if(g->scale_rec <= 2)
-			ft_printf(" : %d %d\n", ptr->x_cord, ptr->y_cord);
 		ptr = ptr->next;
 		g->rooms_count++;
 	}
@@ -51,10 +48,7 @@ static void	coord_redef(t_intldta *indta, t_graph *g)
 	int				x;
 	int				y;
 
-	// block = (float)g->rooms_count / (BLOCK_X * BLOCK_Y);
-	// block = (block > (int)block) ? block++ : block;
 	count_x = sqrt((g->rooms_count * WIN_X) / WIN_Y);
-	// count_x++;
 	y = 0;
 	ptr = indta->rooms;
 	while (ptr)
@@ -62,10 +56,8 @@ static void	coord_redef(t_intldta *indta, t_graph *g)
 		x = 0;
 		while (x < count_x && ptr)
 		{
-			ft_printf("%d %d", ptr->x_cord, ptr->y_cord);
 			ptr->x_cord = x;
 			ptr->y_cord = y;
-			ft_printf(" : %d %d\n", ptr->x_cord, ptr->y_cord);
 			x++;
 			if (x < count_x)
 				ptr = ptr->next;
@@ -84,7 +76,6 @@ static void	coord_init(t_intldta *indta, t_graph *g)
 	g->max_x = indta->rooms->x_cord;
 	g->max_y = indta->rooms->y_cord;
 	set_limits(indta, g);
-	ft_printf("x_min: %d x_max: %d\ny_min: %d y_max: %d\n", g->min_x, g->max_x, g->min_y, g->max_y);
 	g->scale = SCALE;
 	g->delta_x = (g->max_x - g->min_x) * g->scale;
 	g->delta_y = (g->max_y - g->min_y) * g->scale;
@@ -137,9 +128,10 @@ static void	window_init(t_vis_prms *v, t_vis_prms *mask, t_vis_prms *graph)
 	graph->img_ptr = mlx_new_image(graph->mlx_ptr, v->win_x, v->win_y);
 	graph->img_addr = mlx_get_data_addr(graph->img_ptr, &graph->bpp, \
 		&graph->lsz, &graph->ndn);
+	ft_printf("ndn %d\n", v->ndn);
 }
 
-static void	set_map_transparent(t_vis_prms *v)
+void		set_map_transparent(t_vis_prms *v)
 {
 	int				alpha;
 	size_t			img_len;
@@ -153,9 +145,10 @@ static void	set_map_transparent(t_vis_prms *v)
 	i = 0;
 	while (i < img_len)
 	{
-		byte = (unsigned char*)&pixel[i];
-		pixel[i] = 0;
-		byte[alpha] = 0xFF;
+		// byte = (unsigned char*)&pixel[i];
+		pixel[i] = 0xFF000000;
+		// byte[alpha] = 0xFF;
+		// ft_printf("%X ", pixel[i]);
 		i++;
 	}
 }
@@ -165,6 +158,7 @@ void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 	t_way		**way;
 	t_dllist	*room;
 	t_list		*ptr;
+	char		*str;
 
 	draw_links(indta, g);
 	draw_rooms(indta, g);
@@ -172,26 +166,34 @@ void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 	mlx_put_image_to_window(g->graph->mlx_ptr, g->graph->win_ptr, g->graph->img_ptr, 0, 0);
 	ptr = g->set_ptr->ways;
 	g->route_color = ROUTE_COLOR;
+	set_map_transparent(g->mask);
 	while (ptr)
 	{
 		way = ptr->content;
 		room = (*way)->rooms;
-		set_map_transparent(g->mask);
 		build_route(g, room);
-		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->mask->img_ptr, 0, 0);
 		g->route_color += 1500000;
+		//transparent(&g->route_color, 0xAA, g->mask);
 		ptr = ptr->next;
 	}
+	mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->mask->img_ptr, 0, 0);
+	str = NULL;
+	ft_sprintf(&str, "ways: %d, steps: %d", g->set_ptr->ways_cnt, g->set_ptr->steps);
+	mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, 5, 5, 0xFFFFFF, str);
+	if (g->set_ptr == find->answer)
+		mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, g->v->win_x - 80, 5, 0x00FF00, "Answer!");
+	free(str);
 }
 
-/*static int	get_command(void *prm)
+static int	get_command(void *prm)
 {
-	t_vis_prms	*v;
+	t_graph		*g;
 
-	v = (t_vis_prms*)prm;
-	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);
+	g = (t_graph*)prm;
+	if (g->run)
+		vis_step(g, g->indta);
 	return (0);
-}*/
+}
 
 void		visualizer(t_intldta *indta, t_find_way *find)
 {
@@ -206,6 +208,7 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 	g.mask = &mask;
 	g.graph = &graph;
 	g.scale_rec = 0;
+	g.run = 0;
 	coord_init(indta, &g);
 	graph_init(&g, find, indta);
 	window_init(&v, &mask, &graph);
@@ -214,6 +217,6 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 	//mlx_put_image_to_window(graph.mlx_ptr, graph.win_ptr, graph.img_ptr, 0, 0);
 	mlx_hook(v.win_ptr, 2, 0, &deal_key, (void*)(&g));
 	mlx_hook(v.win_ptr, 17, 0, &close_vis, (void*)(&g));
-	//mlx_loop_hook(graph.mlx_ptr, &get_command, (void*)(&graph));
+	mlx_loop_hook(graph.mlx_ptr, &get_command, (void*)(&g));
 	mlx_loop(v.mlx_ptr);
 }

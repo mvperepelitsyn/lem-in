@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 12:46:45 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/14 19:24:44 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 11:34:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,32 @@
 
 int		deal_key(int key, void *prm)
 {
-	t_graph	*g;
+	t_graph		*g;
+	static int	i;
 
 	g = (t_graph*)prm;
-	ft_printf("set steps: %d\n", g->set_ptr->steps);
 	if (key == 53)
 		return (close_vis(prm));
 	else if (key == 124)
 	{
-		if (g->set_ptr->next)
+		if (g->set_ptr->next && !i)
 			g->set_ptr = g->set_ptr->next;
 		else
+		{
 			g->set_ptr = g->find->answer;
-		ft_printf("set steps: %d\n", g->set_ptr->steps);
+			i = 1;
+		}
 		build_graph(g->indta, g, g->find);
 	}
+	else if (key == 123 && g->set_ptr->prev)
+	{
+		g->set_ptr = g->set_ptr->prev;
+		if (i)
+			i = 0;
+		build_graph(g->indta, g, g->find);
+	}
+	if (key == 36 && g->set_ptr == g->find->answer)
+		g->run = (!g->run) ? 1 : 0;
 	return (0);
 }
 

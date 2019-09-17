@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   moving_ants.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
 /*   Updated: 2019/09/17 13:21:50 by dfrost-a         ###   ########.fr       */
@@ -119,8 +119,8 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 	ant_farm.full_steps = find->answer->full_steps;
 	counter = 0;
 	ant_farm.i = 0;
-//	if (intdta->v_flag)
-//		ant_color_init(&(ant_farm.ants), ant_farm.num);
+	if (intdta->v_flag)
+		ant_color_init(ant_farm.ants, ant_farm.num);
 	while (ant_farm.fin_ants != intdta->num_ants)
 	{
 		ant_farm.switcher = 0;
@@ -131,8 +131,6 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 		move_what_is_moving(&ant_farm);
 		move_what_is_not_moving(find, &ant_farm, ways);
 		ft_putchar('\n');
-//		if (intdta->v_flag)
-//			vis_step(&(ant_farm.ants), g, intdta, ant_farm.i + 1);
 		if (intdta->v_flag)
 		{
 			ptr = ft_memalloc((sizeof(t_ants) * intdta->num_ants));
