@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 10:32:23 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 11:37:41 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,14 +185,15 @@ void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 	free(str);
 }
 
-/*static int	get_command(void *prm)
+static int	get_command(void *prm)
 {
-	t_vis_prms	*v;
+	t_graph		*g;
 
-	v = (t_vis_prms*)prm;
-	mlx_put_image_to_window(v->mlx_ptr, v->win_ptr, v->img_ptr, 0, 0);
+	g = (t_graph*)prm;
+	if (g->run)
+		vis_step();
 	return (0);
-}*/
+}
 
 void		visualizer(t_intldta *indta, t_find_way *find)
 {
@@ -215,6 +216,6 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 	//mlx_put_image_to_window(graph.mlx_ptr, graph.win_ptr, graph.img_ptr, 0, 0);
 	mlx_hook(v.win_ptr, 2, 0, &deal_key, (void*)(&g));
 	mlx_hook(v.win_ptr, 17, 0, &close_vis, (void*)(&g));
-	//mlx_loop_hook(graph.mlx_ptr, &get_command, (void*)(&graph));
+	mlx_loop_hook(graph.mlx_ptr, &get_command, (void*)(&g));
 	mlx_loop(v.mlx_ptr);
 }

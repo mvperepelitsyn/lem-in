@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 12:46:45 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 18:54:21 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 11:34:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		deal_key(int key, void *prm)
 		build_graph(g->indta, g, g->find);
 	}
 	if (key == 36 && g->set_ptr == g->find->answer)
-		move_ants(g->indta, g->find, g);
+		g->run = (!g->run) ? 1 : 0;
 	return (0);
 }
 
