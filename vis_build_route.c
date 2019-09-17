@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 18:39:53 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 19:57:54 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int		mix_pix_in_img(t_line_prm *l, int x, int y, int color)
 {
-	int		*image;
-	int		start;
-	int		alpha;
-	int		coord;
-	int		i;
-	char	*channel_dst;
-	char	*channel_src;
+	unsigned int	*image;
+	int				start;
+	int				alpha;
+	int				coord;
+	int				i;
+	unsigned char	*channel_dst;
+	unsigned char	*channel_src;
 
 	if (x < 0 || y < 0 || x >= l->img->win_x || y >= l->img->win_y)
 		return (0);
-	image = (int*)l->img->img_addr;
+	image = (unsigned int*)l->img->img_addr;
 	coord = (y * (l->img->lsz / 4)) + x;
 	if (!(image[coord] << 8))
 		return (image[coord] = color);
 	start = (l->img->ndn == 0) ? 0 : 1;
 	alpha  = (l->img->ndn == 0) ? 3 : 0;
 	i = 0;
-	channel_dst = (char*)&image[coord];
-	channel_src = (char*)&color;
+	channel_dst = (unsigned char*)&image[coord];
+	channel_src = (unsigned char*)&color;
 	while (i < 3)
 	{
 		channel_dst[start + i] = (channel_dst[start + i] + channel_src[start + i]) / 2;

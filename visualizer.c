@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 16:25:18 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 20:02:59 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ static void	coord_redef(t_intldta *indta, t_graph *g)
 		x = 0;
 		while (x < count_x && ptr)
 		{
-			ft_printf("%d %d", ptr->x_cord, ptr->y_cord);
 			ptr->x_cord = x;
 			ptr->y_cord = y;
-			ft_printf(" : %d %d\n", ptr->x_cord, ptr->y_cord);
 			x++;
 			if (x < count_x)
 				ptr = ptr->next;
@@ -132,7 +130,7 @@ static void	window_init(t_vis_prms *v, t_vis_prms *mask, t_vis_prms *graph)
 		&graph->lsz, &graph->ndn);
 }
 
-static void	set_map_transparent(t_vis_prms *v)
+void		set_map_transparent(t_vis_prms *v)
 {
 	int				alpha;
 	size_t			img_len;
@@ -173,6 +171,7 @@ void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 		room = (*way)->rooms;
 		build_route(g, room);
 		g->route_color += 1500000;
+		transparent(&g->route_color, 0xAA, g->v);
 		ptr = ptr->next;
 	}
 	mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->mask->img_ptr, 0, 0);

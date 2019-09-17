@@ -6,22 +6,24 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:04:58 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 18:54:58 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 20:12:56 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	ant_color_init(t_ants **ants, int ants_count)
+void	ant_color_init(t_ants *ants, int ants_count)
 {
 	int		i;
 	int		color;
 
+	ft_printf("l");
 	i = 0;
 	color = 0x000088;
 	while (i < ants_count)
 	{
-		ants[i]->color = color;
+		ants[i].color = color;
+		ft_printf("%X\n", ants[i].color);
 		i++;
 		color += ANT_CLR_BUMP;
 		if (color > 0xFFFFFF)
@@ -36,34 +38,44 @@ static void	draw_ant_step(t_dllist *room, t_graph *g, int frame, int color)
 
 	ant.b = ((t_list_rooms**)(room->content))[0];
 	ant.a = ((t_list_rooms**)room->left->content)[0];
-	c.x = ((float)(ant.b->x_cord - ant.a->x_cord) / FRAMES_COUNT) * frame \
-		+ ant.a->x_cord;
-	c.y = ((float)(ant.b->y_cord - ant.a->y_cord) / FRAMES_COUNT) * frame \
-		+ ant.a->y_cord;
+	c.x = (((float)(ant.b->x_cord - ant.a->x_cord) / FRAMES_COUNT) * frame \
+		+ ant.a->x_cord) * g->scale  + (2 * R);
+	c.y = (((float)(ant.b->y_cord - ant.a->y_cord) / FRAMES_COUNT) * frame \
+		+ ant.a->y_cord) * g->scale  + (2 * R);
 	c.r = ANT_R;
 	c.clr = color;
 	draw_circle(&c, g->v, 1, &put_pix_to_img);
 }
 
-void	vis_step(t_ants **ants, t_graph *g, t_intldta *indta)
+void	vis_step(t_ants *ants, t_graph *g, t_intldta *indta, int step)
 {
 	int		frames_count;
 	int		frame;
 	int		ant;
+	char	*str;
 
 	frame = 0;
 	frames_count = FRAMES_COUNT;
-	while (frame < frames_count)
+	ft_printf("Step: %d\n", step);
+	ft_sprintf(&str, "step: %d", step);
+	while (frame <= frames_count)
 	{
 		ant = 0;
+		set_map_transparent(g->v);
+		mlx_clear_window (g->v->mlx_ptr, g->v->win_ptr);
 		while (ant < indta->num_ants)
 		{
-			if (ants[ant]->status || (ants[ant]->position == indta->end_room \
-				&& !ants[ant]->finished))
-				draw_ant_step(ants[ant]->rooms, g, frame, ants[ant]->color);
+			if (ants[ant].status || (ants[ant].position == indta->end_room \
+				&& !ants[ant].finished))
+				draw_ant_step(ants[ant].rooms, g, frame, ants[ant].color);
 			ant++;
 		}
-		//mlx_put_image_to_window();
+		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->graph->img_ptr, 0, 0);
+		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->mask->img_ptr, 0, 0);
+		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->v->img_ptr, 0, 0);
+		mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, 5, 5, 0xFFFFFF, str);
+		usleep(100);
 		frame++;
 	}
+	free(str);
 }

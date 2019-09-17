@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 16:42:06 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/16 20:03:27 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define R_CLR 0xFFFFFF
 # define ANT_CLR_BUMP 0x002222
 # define FRAMES_COUNT 10
-# define ANT_R 5
+# define ANT_R 6
 //# define ROUTE_COLOR 0xAAAA41FE
 # define ROUTE_COLOR 0xAAff881b
 # define ROUTE_THICK 30
@@ -207,6 +207,8 @@ int		get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos);
 void	draw_circle(t_circle *c, t_vis_prms *v, int fill_prm, \
 	int (*method)(t_line_prm*, int, int, int));
 void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find);
-void	ant_color_init(t_ants **ants, int ants_count);
-
+void	ant_color_init(t_ants *ants, int ants_count);
+void	vis_step(t_ants *ants, t_graph *g, t_intldta *indta, int step);
+void	set_map_transparent(t_vis_prms *v);
+void	transparent(int *color, unsigned char clarity, t_vis_prms *v);
 #endif

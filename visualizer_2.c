@@ -42,7 +42,7 @@ void		draw_rooms(t_intldta *indta, t_graph *g)
 	t_list_rooms	*ptr;
 	t_circle		c;
 
-	ptr = indta->rooms;
+	ptr = g->set_ptr->rooms;
 	c.r = R;
 	while (ptr)
 	{
@@ -62,7 +62,7 @@ void		draw_links(t_intldta *indta, t_graph *g)
 	t_dot_prm		a;
 	t_dot_prm		b;
 
-	ptr = indta->links;
+	ptr = g->set_ptr->links;
 	while (ptr)
 	{
 		a.x = ptr->rm1->x_cord * g->scale + (2 * R);
