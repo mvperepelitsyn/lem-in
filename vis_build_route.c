@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 19:57:54 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 10:57:04 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,63 +19,43 @@ int		mix_pix_in_img(t_line_prm *l, int x, int y, int color)
 	int				alpha;
 	int				coord;
 	int				i;
-	unsigned char	*channel_dst;
-	unsigned char	*channel_src;
+	unsigned char	*cnl_dst;
+	unsigned char	*cnl_src;
 
 	if (x < 0 || y < 0 || x >= l->img->win_x || y >= l->img->win_y)
 		return (0);
 	image = (unsigned int*)l->img->img_addr;
 	coord = (y * (l->img->lsz / 4)) + x;
-	if (!(image[coord] << 8))
-		return (image[coord] = color);
 	start = (l->img->ndn == 0) ? 0 : 1;
 	alpha  = (l->img->ndn == 0) ? 3 : 0;
 	i = 0;
-	channel_dst = (unsigned char*)&image[coord];
-	channel_src = (unsigned char*)&color;
-	while (i < 3)
+	cnl_dst = (unsigned char*)&image[coord];
+	cnl_src = (unsigned char*)&color;
+	//ft_printf("%X ", (unsigned int)image[coord]);
+	 ft_printf("%X %X %X %X : ", (unsigned int)cnl_dst[0], (unsigned int)cnl_dst[1], (unsigned int)cnl_dst[2], (unsigned int)cnl_dst[3]);
+	if (!cnl_dst[start] && !cnl_dst[start + 1] && !cnl_dst[start + 2])
+		return (image[coord] = color);
+	// ft_printf("%X : %X : ", image[coord], color);
+	/*while (i < 3)
 	{
-		channel_dst[start + i] = (channel_dst[start + i] + channel_src[start + i]) / 2;
+		cnl_dst[start + i] = (cnl_dst[start + i] / 2) + (cnl_src[start + i] / 2);
 		i++;
 	}
-	channel_dst[alpha] = channel_src[alpha];
+	cnl_dst[alpha] = cnl_src[alpha];*/
+	// ft_printf("%X\n", image[coord]);
+	image[coord] = 0xFFFF00FF;
+	ft_printf("%X %X %X %X | ", (unsigned int)cnl_dst[0], (unsigned int)cnl_dst[1], (unsigned int)cnl_dst[2], (unsigned int)cnl_dst[3]);
 	return (0);
 }
-
-/*static void	get_thick(t_draw_thick *tk, t_line_prm *l, t_dot_prm *a, \
-	t_dot_prm *b)
-{
-	float			tx;
-	float			ty;
-
-	if (a->thick == b->thick)
-		tk->thick = a->thick;
-	else
-		tk->thick = a->thick + ((l->i * (b->thick - a->thick)) / l->d_big);
-	tx = ft_abs((tk->thick / 2) * cos(atan(l->dx / l->dy)));
-	ty = ft_abs((tk->thick / 2) * sin(atan(l->dx / l->dy)));
-	if ((tx - (int)tx) > 0.5)
-		tx++;
-	if ((ty - (int)ty) > 0.5)
-		ty++;
-	tk->m.x = - tx;
-	tk->m.y = - ty;
-	tk->n.x = + tx;
-	tk->n.y = + ty;
-}*/
 
 void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 	t_grad_prms *clr, t_circle *c)
 {
 	t_draw_thick	tk;
 
-	// ft_printf("big: %d ", l->d_big);
-	// ft_printf("%d\n", l->i);
 	tk.l.img = l->img;
 	while (l->i <= ft_abs(l->d_big))
 	{
-		// ft_printf("%d\n", l->i);
-		//get_thick(&tk, l, a, b);
 		if (l->d_ind == 1)
 		{
 			tk.x = a->x + (l->i * l->sign);
@@ -88,21 +68,7 @@ void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 		}
 		c->x = tk.x;
 		c->y = tk.y;
-		/*tk.m.x += tk.x;
-		tk.m.y += tk.y;
-		tk.n.x += tk.x;
-		tk.n.y += tk.y;
-		ft_printf("%d ", tk.m.x);
-		ft_printf("%d ", tk.m.y);
-		ft_printf("%d ", tk.n.x);
-		ft_printf("%d\n", tk.n.y);
-		get_delta(&tk.m, &tk.n, &tk.l);
-		tk.l.i = 0;
-		tk.gr.delta = ft_abs(tk.l.d_big);
-		tk.gr.a = get_grad_color(tk.l.img, clr, tk.l.i);
-		tk.gr.b = tk.gr.a;
-		build_line(&tk.l, &tk.m, &tk.gr, &put_pix_to_img);*/
-		draw_circle(c, l->img, 1, &mix_pix_in_img);
+		draw_circle(c, l->img, 1, &put_pix_to_img);
 		l->i++;
 	}
 }

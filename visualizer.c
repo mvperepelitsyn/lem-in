@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 20:02:59 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 10:32:23 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ static void	window_init(t_vis_prms *v, t_vis_prms *mask, t_vis_prms *graph)
 	graph->img_ptr = mlx_new_image(graph->mlx_ptr, v->win_x, v->win_y);
 	graph->img_addr = mlx_get_data_addr(graph->img_ptr, &graph->bpp, \
 		&graph->lsz, &graph->ndn);
+	ft_printf("ndn %d\n", v->ndn);
 }
 
 void		set_map_transparent(t_vis_prms *v)
@@ -144,9 +145,10 @@ void		set_map_transparent(t_vis_prms *v)
 	i = 0;
 	while (i < img_len)
 	{
-		byte = (unsigned char*)&pixel[i];
-		pixel[i] = 0;
-		byte[alpha] = 0xFF;
+		// byte = (unsigned char*)&pixel[i];
+		pixel[i] = 0xFF000000;
+		// byte[alpha] = 0xFF;
+		// ft_printf("%X ", pixel[i]);
 		i++;
 	}
 }
@@ -171,7 +173,7 @@ void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 		room = (*way)->rooms;
 		build_route(g, room);
 		g->route_color += 1500000;
-		transparent(&g->route_color, 0xAA, g->v);
+		//transparent(&g->route_color, 0xAA, g->mask);
 		ptr = ptr->next;
 	}
 	mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->mask->img_ptr, 0, 0);
