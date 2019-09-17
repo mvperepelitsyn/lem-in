@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moving_ants.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 13:21:50 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 14:53:31 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	move_what_is_moving(t_ant_farm *ant_farm)
 		if (ant_farm->ants[ant_farm->j].status == 1)
 		{
 			ant_farm->ants[ant_farm->j].rooms = ant_farm->ants[ant_farm->j].
-					rooms->right;
+			rooms->right;
 			ant_farm->ants[ant_farm->j].position = *(t_list_rooms **)
 					(ant_farm->ants[ant_farm->j].rooms->content);
 			ft_printf("L%d-%s ", ant_farm->j + 1, ant_farm->ants[ant_farm->j].
@@ -58,8 +58,8 @@ static void	helper_to_move(t_find_way *find, t_ant_farm *ant_farm, t_list *ways)
 				(ant_farm->ants[ant_farm->i].rooms->content);
 		ft_printf("L%d-%s ", ant_farm->i + 1, ant_farm->ants[ant_farm->i].
 				position->name);
-//		ant_farm->ants[ant_farm->i].rooms = ant_farm->ants[ant_farm->i].
-//				rooms->right;
+		// ant_farm->ants[ant_farm->i].rooms = ant_farm->ants[ant_farm->i].
+		// 		rooms->right;
 		ant_farm->ant_flow++;
 		ant_farm->i++;
 	}
@@ -86,8 +86,8 @@ static void	move_what_is_not_moving(t_find_way *find, t_ant_farm *ant_farm,
 					(ant_farm->ants[ant_farm->i].rooms->content);
 			ft_printf("L%d-%s ", ant_farm->i + 1, ant_farm->ants[ant_farm->i].
 					position->name);
-//			ant_farm->ants[ant_farm->i].rooms = ant_farm->ants[ant_farm->i].
-//					rooms->right;
+			// ant_farm->ants[ant_farm->i].rooms = ant_farm->ants[ant_farm->i].
+			// 		rooms->right;
 			ant_farm->ant_flow++;
 			ant_farm->i++;
 		}
@@ -97,13 +97,36 @@ static void	move_what_is_not_moving(t_find_way *find, t_ant_farm *ant_farm,
 
 static void	status_changer(t_ant_farm *ant_farm)
 {
+	int i;
+
 	while (ant_farm->ants[ant_farm->j].status == 0 && ant_farm->j < ant_farm->i)
 	{
 		if (ant_farm->ants[ant_farm->j].position->type == 2 && ant_farm->
-		ants[ant_farm->j].finished == 0)
+				ants[ant_farm->j].finished == 0)
 			ant_farm->ants[ant_farm->j].finished = 1;
 		ant_farm->j++;
 	}
+	i = ant_farm->j;
+	while (ant_farm->j < ant_farm->i)
+	{
+		if (ant_farm->ants[ant_farm->j].position->type == 2 && ant_farm->
+				ants[ant_farm->j].finished == 0)
+			ant_farm->ants[ant_farm->j].finished = 1;
+		ant_farm->j++;
+	}
+	ant_farm->j = i;
+//	else if (i == 2)
+//	{
+//		ant_farm->j = 0;
+//		while (ant_farm->ants[ant_farm->j].status == 0 &&
+//			   ant_farm->j < ant_farm->fin_ants)
+//		{
+//			if (ant_farm->ants[ant_farm->j].position->type == 2 && ant_farm->
+//					ants[ant_farm->j].finished == 0)
+//				ant_farm->ants[ant_farm->j].finished = 1;
+//			ant_farm->j++;
+//		}
+//	}
 }
 
 void		move_ants(t_intldta *intdta, t_find_way *find)
