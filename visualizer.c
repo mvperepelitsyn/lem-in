@@ -6,11 +6,28 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 12:15:40 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 13:43:39 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void		sign_rooms(t_intldta *indta, t_graph *g)
+{
+	t_list_rooms	*ptr;
+	t_circle		c;
+
+	ptr = indta->rooms;
+	c.r = R;
+	while (ptr)
+	{
+		c.x = (ptr->x_cord * g->scale) + (2 * R);
+		c.y = (ptr->y_cord * g->scale) + (2 * R);
+		mlx_string_put(g->graph->mlx_ptr, g->graph->win_ptr, (c.x - R), \
+			(c.y + R * 2), 0xFF0000, ptr->name);
+		ptr = ptr->next;
+	}
+}
 
 static void	set_limits(t_intldta *indta, t_graph *g)
 {

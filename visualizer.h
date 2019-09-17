@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 12:41:01 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 13:43:46 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ struct	s_graph
 	int			scale_rec;
 	t_vis_prms	*v;
 	t_vis_prms	*mask;
+	t_vis_prms	*route;
 	t_vis_prms	*graph;
 	t_way_set	*set_ptr;
 	t_intldta 	*indta;
@@ -213,4 +214,5 @@ void	ant_color_init(t_ants *ants, int ants_count);
 void	vis_step(t_graph *g, t_intldta *indta);
 void	set_map_transparent(t_vis_prms *v);
 void	transparent(int *color, unsigned char clarity, t_vis_prms *v);
+void	sign_rooms(t_intldta *indta, t_graph *g);
 #endif
