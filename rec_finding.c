@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 12:01:07 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 17:59:56 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ static void	add_new_set(t_find_way *find, int ways_cnt, t_intldta *indta)
 	CUR = set;
 	if (!find->sets)
 		find->sets = find->crnt_set;
-	cpy_the_state(&indta, &set->links, &set->rooms);
+	if (indta->v_flag)
+		cpy_the_state(&indta, &set->links, &set->rooms);
 	print_the_set(find->crnt_set);
 }
 

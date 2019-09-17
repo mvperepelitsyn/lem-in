@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 16:29:09 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 20:23:47 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ void		sign_rooms(t_intldta *indta, t_graph *g)
 {
 	t_list_rooms	*ptr;
 	t_circle		c;
+	unsigned int	color;
 
 	ptr = indta->rooms;
 	c.r = R;
 	while (ptr)
 	{
-		c.x = (ptr->x_cord * g->scale) + (2 * R);
-		c.y = (ptr->y_cord * g->scale) + (2 * R);
+		c.x = (ptr->x_cord * g->scale) + (2 * R) + LINE_H;
+		c.y = (ptr->y_cord * g->scale) + (2 * R) + LINE_H;
+
+		color = (ptr->act_lnks > 0) ? 0xFF0000 : 0x555555;
 		mlx_string_put(g->graph->mlx_ptr, g->graph->win_ptr, (c.x - R), \
-			(c.y + R * 2), 0xFF0000, ptr->name);
+			(c.y + R * 2), color, ptr->name);
 		ptr = ptr->next;
 	}
 }
@@ -116,6 +119,8 @@ static void	coord_redef(t_intldta *indta, t_graph *g)
 
 static void	coord_init(t_intldta *indta, t_graph *g)
 {
+	static int		redef;
+
 	g->scale_rec++;
 	g->min_x = indta->rooms->x_cord;
 	g->min_y = indta->rooms->y_cord;
@@ -125,14 +130,16 @@ static void	coord_init(t_intldta *indta, t_graph *g)
 	g->scale = SCALE;
 	g->delta_x = (g->max_x - g->min_x) * g->scale;
 	g->delta_y = (g->max_y - g->min_y) * g->scale;
-	while ((g->delta_x + (R * 4)) > WIN_X || (g->delta_y + (R * 4)) > WIN_Y)
+	while ((g->delta_x + (R * 4) + LINE_H * 2) > WIN_X \
+		|| (g->delta_y + (R * 4) + LINE_H * 2) > WIN_Y)
 	{
 		g->scale--;
 		g->delta_x = (g->max_x - g->min_x) * g->scale;
 		g->delta_y = (g->max_y - g->min_y) * g->scale;
 	}
-	if (!g->scale && g->scale_rec < 2)
+	if ((!g->scale && g->scale_rec < 2) || (indta->r_flag && !redef))
 	{
+		redef++;
 		coord_redef(indta, g);
 		coord_init(indta, g);
 	}
@@ -140,8 +147,8 @@ static void	coord_init(t_intldta *indta, t_graph *g)
 
 static void	graph_init(t_graph *g, t_find_way *find, t_intldta *indta)
 {
-	g->v->win_x = g->delta_x + (R * 4);
-	g->v->win_y = g->delta_y + (R * 4);
+	g->v->win_x = g->delta_x + (R * 4) + LINE_H * 2;
+	g->v->win_y = g->delta_y + (R * 4) + LINE_H * 2;
 	g->mask->win_x = g->v->win_x;
 	g->mask->win_y = g->v->win_y;
 	g->graph->win_x = g->v->win_x;
@@ -206,7 +213,6 @@ void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 	t_way		**way;
 	t_dllist	*room;
 	t_list		*ptr;
-	char		*str;
 
 	draw_links(indta, g);
 	draw_rooms(indta, g);
@@ -222,34 +228,60 @@ void		build_graph(t_intldta *indta, t_graph *g, t_find_way *find)
 		room = (*way)->rooms;
 		build_route(g, room);
 		g->route_color += 1500000;
-		//transparent(&g->route_color, 0xAA, g->mask);
 		mix_maps(g->mask, g->route, 0x88);
 		ptr = ptr->next;
 	}
 	mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->route->img_ptr, 0, 0);
-	str = NULL;
-	ft_sprintf(&str, "ways: %d, steps: %d", g->set_ptr->ways_cnt, g->set_ptr->steps);
-	mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, 5, 5, 0xFFFFFF, str);
-	if (g->set_ptr == find->answer)
-		mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, g->v->win_x - 80, 5, 0x00FF00, "Answer!");
-	free(str);
 }
 
 static int	get_command(void *prm)
 {
+	t_ants			*ants;
 	t_graph		*g;
+	char		*str;
+	int			ant;
 
 	g = (t_graph*)prm;
 	if (g->run)
 		vis_step(g, g->indta);
-	else if (g->info)
-		sign_rooms(g->indta, g);
-	/*else
+	else if (g->mode)
 	{
+		mlx_clear_window (g->v->mlx_ptr, g->v->win_ptr);
 		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->graph->img_ptr, 0, 0);
 		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->route->img_ptr, 0, 0);
 		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->v->img_ptr, 0, 0);
-	}*/
+		ft_sprintf(&str, "step: %d / %d", g->step + 1, g->find->answer->steps);
+		mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, 5, 5, 0xFFFFFF, str);
+		free(str);
+		if (g->info)
+			sign_rooms(g->indta, g);
+		if(g->step)
+		{
+			ants = (t_ants*)g->step_ptr->content;
+			ant = 0;
+			while (ant < g->indta->num_ants && g->frame < FRAMES_COUNT && g->info)
+			{
+				if (ants[ant].status || (ants[ant].position == g->indta->end_room \
+					&& !ants[ant].finished))
+					sign_ant_step(ants[ant].rooms, g, g->frame, ants[ant].color, ant);
+				ant++;
+			}
+		}
+	}
+	else if (!g->mode)
+	{
+		mlx_clear_window (g->v->mlx_ptr, g->v->win_ptr);
+		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->graph->img_ptr, 0, 0);
+		mlx_put_image_to_window(g->v->mlx_ptr, g->v->win_ptr, g->route->img_ptr, 0, 0);
+		str = NULL;
+		ft_sprintf(&str, "ways: %d, steps: %d", g->set_ptr->ways_cnt, g->set_ptr->steps);
+		mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, 5, 5, 0xFFFFFF, str);
+		if (g->info)
+			sign_rooms(g->indta, g);
+		if (g->set_ptr == g->find->answer)
+			mlx_string_put(g->v->mlx_ptr, g->v->win_ptr, g->v->win_x - 80, 5, 0x00FF00, "Answer!");
+		free(str);
+	}
 	return (0);
 }
 
@@ -271,7 +303,6 @@ void		visualizer(t_intldta *indta, t_find_way *find)
 	coord_init(indta, &g);
 	graph_init(&g, find, indta);
 	window_init(&v, &mask, &graph, &route);
-	ft_printf("set steps: %d lala\n", g.set_ptr->steps);
 	build_graph(indta, &g, find);
 	set_map_transparent(g.v);
 	mlx_hook(v.win_ptr, 2, 0, &deal_key, (void*)(&g));

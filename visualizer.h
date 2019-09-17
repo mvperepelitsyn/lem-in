@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 15:49:52 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 18:56:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define S_CLR 0x00FF00
 # define F_CLR 0xFF0000
 # define R_CLR 0xFFFFFF
+# define LINE_H 40
 //# define ANT_CLR_BUMP 0x001111
 # define ANT_CLR_BUMP 1500000
 # define FRAMES_COUNT 100
@@ -63,8 +64,12 @@ struct	s_graph
 	t_way_set	*set_ptr;
 	t_intldta 	*indta;
 	t_find_way	*find;
+	int			frame;
+	t_list		*step_ptr;
+	int			step;
 	int			run;
 	int			info;
+	int			mode;
 };
 
 /*
@@ -229,4 +234,5 @@ void	vis_step(t_graph *g, t_intldta *indta);
 void	set_map_transparent(t_vis_prms *v);
 void	transparent(int *color, unsigned char clarity, t_vis_prms *v);
 void	sign_rooms(t_intldta *indta, t_graph *g);
+void	sign_ant_step(t_dllist *room, t_graph *g, int frame, int color, int num);
 #endif

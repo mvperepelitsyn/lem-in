@@ -6,7 +6,7 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/11 15:32:06 by uhand             #+#    #+#              #
-#    Updated: 2019/09/16 18:51:46 by uhand            ###   ########.fr        #
+#    Updated: 2019/09/17 18:03:36 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ cpy_the_state_2.c
 
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
-FLAGS =  -g #-Wall -Wextra -Werror #-m64 -Ofast -flto -march=native -funroll-loops
+FLAGS = -g #-Wall -Wextra -Werror # -m64 -Ofast -flto -march=native -funroll-loops
 LIB = -L ./libft -lft
 LIBPATH = ./libft
 
