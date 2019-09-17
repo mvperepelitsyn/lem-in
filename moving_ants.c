@@ -6,11 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/09/17 11:00:25 by uhand            ###   ########.fr       */
-=======
-/*   Updated: 2019/09/17 11:27:23 by dfrost-a         ###   ########.fr       */
->>>>>>> 7da343e01fd50f08c9663082749348fbcfbda350
+/*   Updated: 2019/09/17 12:06:45 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +104,11 @@ static void	status_changer(t_ant_farm *ant_farm)
 	}
 }
 
-void		move_ants(t_intldta *intdta, t_find_way *find)
+void		move_ants(t_intldta *intdta, t_find_way *find, t_graph *g)
 {
 	t_ant_farm	ant_farm;
 	t_list		*ways;
 	int			counter;
-	void		*ptr;
 
 	ant_farm.ants = (t_ants *)ft_memalloc(sizeof(t_ants) * intdta->num_ants);
 	ant_farm.num = intdta->num_ants;
@@ -133,19 +128,8 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 		move_what_is_moving(&ant_farm);
 		move_what_is_not_moving(find, &ant_farm, ways);
 		ft_putchar('\n');
-<<<<<<< HEAD
 		if (intdta->v_flag)
 			vis_step(ant_farm.ants, g, intdta, ant_farm.i + 1);
-=======
-//		if (intdta->v_flag)
-//			vis_step(&(ant_farm.ants), g, intdta, ant_farm.i + 1);
-		if (intdta->v_flag)
-		{
-			ptr = ft_memalloc((sizeof(t_ants) * intdta->num_ants));
-			ft_memcpy(ptr, (void *)ant_farm.ants, sizeof(t_ants) * intdta->num_ants);
-			ft_lstaddnext(&(find->ants_state), ptr, sizeof(t_ants) * intdta->num_ants);
-		}
->>>>>>> 7da343e01fd50f08c9663082749348fbcfbda350
 		counter++;
 	}
 	ft_printf("\nThe number of lines is %d\n", counter);

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:04:58 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 11:58:33 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 12:06:19 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	vis_step(t_graph *g, t_intldta *indta)
 	char			*str;
 
 	if (!step_ptr)
-		step_ptr = g->find->
+		step_ptr = g->find->ants_state;
 	// ft_printf("Step: %d\n", step);
 	ft_sprintf(&str, "step: %d", step + 1);
 	ant = 0;
-	ants = ;
+	ants = (t_ants*)step_ptr->content;
 	set_map_transparent(g->v);
 	mlx_clear_window (g->v->mlx_ptr, g->v->win_ptr);
 	while (ant < indta->num_ants)

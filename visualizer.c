@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 11:37:41 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 12:06:08 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ static int	get_command(void *prm)
 
 	g = (t_graph*)prm;
 	if (g->run)
-		vis_step();
+		vis_step(g, g->indta);
 	return (0);
 }
 
