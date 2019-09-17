@@ -129,7 +129,8 @@ static void	add_new_set(t_find_way *find, int ways_cnt, t_intldta *indta)
 	CUR = set;
 	if (!find->sets)
 		find->sets = find->crnt_set;
-	cpy_the_state(&indta, &set->links, &set->rooms);
+	if (indta->v_flag)
+		cpy_the_state(&indta, &set->links, &set->rooms);
 	print_the_set(find->crnt_set);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_way.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 12:01:08 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 18:15:29 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ typedef struct			s_way
 ** Way set params: set
 */
 
-struct			s_way_set
+struct					s_way_set
 {
 	int					steps;
 	int					full_steps;
 	int					ways_cnt;
 	t_list_rooms		*rooms;
-  	t_list_links		*links;
+	t_list_links		*links;
 	t_list				*ways;
 	struct s_way_set	*next;
 	struct s_way_set	*prev;
@@ -140,8 +140,8 @@ typedef struct			s_form_set
 struct					s_ants
 {
 	int					status;
-	int 				color;
-	int 				finished;
+	int					color;
+	int					finished;
 	t_way				*way;
 	t_dllist			*rooms;
 	t_list_rooms		*position;
@@ -200,5 +200,7 @@ void					cpy_the_rooms(t_list_rooms *s_rms,
 		t_list_rooms **d_rms);
 void					cpy_the_links(t_list_links *s_lnks,
 		t_list_links **d_lnks, t_list_rooms *rms);
+void					move_what_is_not_moving(t_find_way *find,
+		t_ant_farm *ant_farm, t_list *ways);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:20:44 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 14:33:35 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 14:53:31 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ int				find_the_way(t_intldta *indta)
 	t_find_way	*find;
 	int			steps;
 	t_way_set	*ptr;
-	// t_list_links *t_lnks;
-	// t_list_rooms *t_rms;
 
 	help_find_the_way(&indta, &find);
 	ptr = find->answer;

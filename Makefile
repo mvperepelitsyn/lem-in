@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
+#    By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/11 15:32:06 by uhand             #+#    #+#              #
-#    Updated: 2019/09/16 18:51:46 by uhand            ###   ########.fr        #
+#    Updated: 2019/09/17 18:04:40 by dfrost-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ vis_build_route.c helper_ways.c make_clean_list.c wide_search.c \
 wide_search_2.c wide_search_3.c reverse_wide_search.c moving_ants.c parser_3.c \
 wide_search_4.c free_structs.c reverse_wide_search_2.c free_structs_2.c \
 helper_2.c link_breaker_2.c wide_breaker.c steps_vis.c cpy_the_state.c \
-cpy_the_state_2.c
+cpy_the_state_2.c moving_ants_2.c
 
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
-FLAGS =  -g #-Wall -Wextra -Werror #-m64 -Ofast -flto -march=native -funroll-loops
+FLAGS =  -g #-m64 -Ofast -flto -march=native -funroll-loops #-Wall -Wextra -Werror
 LIB = -L ./libft -lft
 LIBPATH = ./libft
 
