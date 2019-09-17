@@ -6,7 +6,11 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:20:44 by dfrost-a          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/09/16 18:50:28 by uhand            ###   ########.fr       */
+=======
+/*   Updated: 2019/09/17 11:09:10 by dfrost-a         ###   ########.fr       */
+>>>>>>> 7da343e01fd50f08c9663082749348fbcfbda350
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +111,17 @@ int				find_the_way(t_intldta *indta)
 		ptr = ptr->next;
 	}
 	set_pre_lems(find);
+<<<<<<< HEAD
 	if (indta->v_flag)
 		visualizer(indta, find);
 	else
 		move_ants(indta, find, NULL);
+=======
+//	if (indta->v_flag)
+//		visualizer(indta, find);
+//	else
+		move_ants(indta, find);
+>>>>>>> 7da343e01fd50f08c9663082749348fbcfbda350
 	cpy_the_state(&indta, &t_lnks, &t_rms);
 	free_main_structs(&indta, &find);
 	return (0);

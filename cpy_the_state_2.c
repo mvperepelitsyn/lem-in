@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:55:44 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/16 17:22:52 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 10:57:36 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	helper_cpy_the_links(t_list_rooms *tmp, t_list_links *d_lnks,
 	while (!ft_strequ(s->room2, tmp->name))
 		tmp = tmp->next;
 	d_lnks->rm2 = tmp;
-	d_lnks->sttus = d_lnks->sttus;
+	d_lnks->sttus = s->sttus;
 	d_lnks->way_nbr = s->way_nbr;
 }
 

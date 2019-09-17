@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 18:50:12 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/17 12:01:08 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ struct					s_find_way
 	int					min_ways;
 	int					cnt_ways;
 	int					max_way_len;
+	t_list				*ants_state;
 };
 
 /*
@@ -180,8 +181,7 @@ int						rev_wide_search(t_intldta **indta);
 int						pre_link_breaker(t_find_way **fnd, t_list_rooms *room);
 int						give_me_way_nbr(t_way **ways);
 void					erase_tmp_step_nbr(t_list_rooms *rooms);
-void					move_ants(t_intldta *intdta, t_find_way *find,
-		t_graph *g);
+void					move_ants(t_intldta *intdta, t_find_way *find);
 void					insert_way(t_find_way *find, t_way *way);
 void					add_the_way(t_find_way **fnd, t_search **srch,
 		t_search **srchd, t_list_links *end_lnk);
