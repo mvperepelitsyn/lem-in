@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 14:36:23 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/16 15:50:25 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 19:54:22 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	parce_ant_farm(t_intldta **indta)
 	}
 	(*indta)->num_ants = ft_latoi(things);
 	if (ft_hm_wrd(things, ' ') != 1 || ((*indta)->num_ants <= 0 || (*indta)->
-	num_ants != (int)ft_latoi(things)))
+	num_ants != (long long int)ft_latoi(things)))
 		ft_error();
 	ft_strdel(&things);
 	rms = NULL;
@@ -65,6 +65,8 @@ static void	parce_ant_farm(t_intldta **indta)
 		ft_error();
 	links_assignment(indta);
 }
+
+//TODO LIST: fix the segfault, when we have two rooms, start, end and one link between them
 
 int			main(int argc, char **argv)
 {
