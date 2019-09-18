@@ -23,7 +23,8 @@ cpy_the_state_2.c moving_ants_2.c
 
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
-FLAGS =  -g #-m64 -Ofast -flto -march=native -funroll-loops #-Wall -Wextra -Werror
+FLAGS = -g #-Wall -Wextra -Werror # -m64 -Ofast -flto -march=native -funroll-loops
+
 LIB = -L ./libft -lft
 LIBPATH = ./libft
 

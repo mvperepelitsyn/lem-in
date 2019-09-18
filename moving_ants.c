@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   moving_ants.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
 /*   Updated: 2019/09/18 11:58:33 by dfrost-a         ###   ########.fr       */
@@ -101,6 +101,7 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 		ant_color_init(ant_farm.ants, ant_farm.num);
 	while (ant_farm.fin_ants <= intdta->num_ants && !check_status(&ant_farm))
 	{
+
 		ant_farm.switcher = 0;
 		ant_farm.ant_flow = 0;
 		ways = find->answer->ways;
