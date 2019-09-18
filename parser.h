@@ -6,14 +6,12 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:45:32 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 15:15:29 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/18 15:16:21 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-
-# define NAME "../test_map" //DO NOT FORGET TO REMOVE IT
 
 # include "lem_in.h"
 
