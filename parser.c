@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 14:36:23 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 17:37:49 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 18:19:33 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ static void	parce_ant_farm(t_intldta **indta)
 	char	**rms;
 	int		fd;
 
-	fd = 0;
+	fd = open(PATH, O_RDONLY);
+	if (fd < 0)
+		fd = 0;
 	get_next_line(fd, &things);
 	(things == NULL) ? ft_error() : ft_println(things);
 	while (things && (things[0] == '#' && things[1] != '#'))

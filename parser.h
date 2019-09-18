@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:45:32 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 17:40:05 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 18:34:33 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PARSER_H
 
 # include "lem_in.h"
+
+# define PATH ""
 
 /*
 ** This is the structure for our room, where:

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 15:27:28 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 16:06:15 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 18:26:42 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void		pre_coord_init(t_intldta *indta, t_graph *g, t_crd_init *c)
 	g->scale = SCALE;
 	g->delta_x = (g->max_x - g->min_x) * g->scale;
 	g->delta_y = (g->max_y - g->min_y) * g->scale;
-	c->dx = (g->max_x - g->min_x) * g->scale;
-	c->dy = (g->max_y - g->min_y) * g->scale;
+	c->dx = ((long long)g->max_x - (long long)g->min_x) * (long long)g->scale;
+	c->dy = ((long long)g->max_y - (long long)g->min_y) * (long long)g->scale;
 }
 
 void		coord_init(t_intldta *indta, t_graph *g)
@@ -71,8 +71,8 @@ void		coord_init(t_intldta *indta, t_graph *g)
 		g->scale--;
 		g->delta_x = (g->max_x - g->min_x) * g->scale;
 		g->delta_y = (g->max_y - g->min_y) * g->scale;
-		c.dx = (g->max_x - g->min_x) * g->scale;
-		c.dy = (g->max_y - g->min_y) * g->scale;
+		c.dx = ((long long)g->max_x - (long long)g->min_x) * (long long)g->scale;
+		c.dy = ((long long)g->max_y - (long long)g->min_y) * (long long)g->scale;
 	}
 	if ((!g->scale && g->scale_rec < 2) || (indta->r_flag && !redef))
 	{
