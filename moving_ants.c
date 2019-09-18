@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 15:49:38 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/18 18:02:56 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,6 @@ static int	check_status(t_ant_farm *ant_farm)
 	return (1);
 }
 
-static void	help_move_ants_visual(t_intldta *intdta, t_find_way *find,
-		t_ant_farm *ant_farm, void *ptr)
-{
-	if (intdta->v_flag && !check_status(ant_farm))
-	{
-		ptr = ft_memalloc((sizeof(t_ants) * intdta->num_ants));
-		ft_memcpy(ptr, (void *)ant_farm->ants, sizeof(t_ants) * intdta->
-				num_ants);
-		ft_lstaddnext(&(find->ants_state), ptr, sizeof(t_ants) * intdta->
-				num_ants);
-	}
-}
-
 static void	help_move_ants_norm(t_intldta *intdta, t_find_way *find,
 		t_ant_farm *ant_farm, void *ptr)
 {
@@ -80,7 +67,14 @@ static void	help_move_ants_norm(t_intldta *intdta, t_find_way *find,
 		move_what_is_not_moving(find, ant_farm, ways);
 		if (ant_farm->fin_ants <= intdta->num_ants && !check_status(ant_farm))
 			ft_putchar('\n');
-		help_move_ants_visual(intdta, find, ant_farm, ptr);
+		if (intdta->v_flag && !check_status(ant_farm))
+		{
+			ptr = ft_memalloc((sizeof(t_ants) * intdta->num_ants));
+			ft_memcpy(ptr, (void *)ant_farm->ants, sizeof(t_ants) * intdta->
+					num_ants);
+			ft_lstaddnext(&(find->ants_state), ptr, sizeof(t_ants) * intdta->
+					num_ants);
+		}
 	}
 }
 

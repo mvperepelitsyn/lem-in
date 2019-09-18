@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 13:49:49 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/18 15:07:14 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,5 +204,6 @@ void					cpy_the_links(t_list_links *s_lnks,
 void					move_what_is_not_moving(t_find_way *find,
 		t_ant_farm *ant_farm, t_list *ways);
 void					move_what_is_moving(t_ant_farm *ant_farm);
+void					init_ant(t_ants *ant);
 
 #endif
