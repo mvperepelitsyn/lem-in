@@ -6,14 +6,12 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:45:32 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 14:57:10 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 17:40:05 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-
-# define NAME "../deadend_2_map" //DO NOT FORGET TO REMOVE IT
 
 # include "lem_in.h"
 
@@ -69,7 +67,7 @@ struct					s_intldta
 	int					counter;
 };
 
-void					ft_malloc_error(void);
+void					ft_malloc_error(char *str);
 void					init_struct(t_intldta **indta);
 void					ft_error(void);
 void					ft_println(char *str);

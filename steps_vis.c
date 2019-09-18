@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:04:58 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 16:55:41 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 17:46:07 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ void		ant_color_init(t_ants *ants, int ants_count)
 	int		i;
 	int		color;
 
-	ft_printf("l");
 	i = 0;
 	color = 0x000088;
 	while (i < ants_count)
 	{
 		ants[i].color = color;
-		ft_printf("%X\n", ants[i].color);
 		i++;
 		color += ANT_CLR_BUMP;
 		if (color > 0xFFFFFF)

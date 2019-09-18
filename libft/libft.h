@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/18 17:20:19 by dfrost-a          #+#    #+#             */
+/*   Updated: 2019/09/18 17:20:22 by dfrost-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdarg.h>
@@ -5,7 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-typedef struct s_list t_list;
+typedef struct s_list	t_list;
 
 struct			s_list
 {

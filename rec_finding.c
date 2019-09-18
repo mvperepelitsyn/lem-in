@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 17:20:23 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 17:36:15 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	check_free_rooms(t_list_rooms *start)
 			room = link->rm1;
 		else
 			room = link->rm2;
-		if (room->way_nbr < 0)
+		if (room->way_nbr < 0 && room->type != 2)
 			return (1);
 		ptr = ptr->next;
 	}

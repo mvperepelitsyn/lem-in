@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:55:44 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 17:32:29 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 17:39:26 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	helper_cpy_the_rooms(t_list_rooms *s, t_list_rooms *d)
 {
 	d->status = s->status;
 	d->num_lnks = s->num_lnks;
+	d->act_lnks = s->act_lnks;
 	d->x_cord = s->x_cord;
 	d->y_cord = s->y_cord;
 	d->type = s->type;
@@ -44,15 +45,7 @@ void		cpy_the_rooms(t_list_rooms *s_rms, t_list_rooms **d_rms)
 			d = (*d_rms);
 		(*d_rms)->act_lnks = s->act_lnks;
 		(*d_rms)->name = ft_strsub(s->name, 0, ft_strlen(s->name));
-//		helper_cpy_the_rooms(s, (*d_rms));
-		(*d_rms)->status = s->status;
-		(*d_rms)->num_lnks = s->num_lnks;
-		(*d_rms)->x_cord = s->x_cord;
-		(*d_rms)->y_cord = s->y_cord;
-		(*d_rms)->type = s->type;
-		(*d_rms)->step_nbr = s->step_nbr;
-		(*d_rms)->tmp_step_nbr = s->tmp_step_nbr;
-		(*d_rms)->way_nbr = s->way_nbr;
+		helper_cpy_the_rooms(s, (*d_rms));
 		tmp = (*d_rms);
 		(*d_rms) = (*d_rms)->next;
 		s = s->next;
@@ -97,18 +90,7 @@ void		cpy_the_links(t_list_links *s_lnks, t_list_links **d_lnks,
 			tmp_l->next = *d_lnks;
 		if (cnt == 0)
 			d = *d_lnks;
-//		helper_cpy_the_links(tmp, *d_lnks, rms, s);
-		(*d_lnks)->room1 = ft_strsub(s->room1, 0, ft_strlen(s->room1));
-		(*d_lnks)->room2 = ft_strsub(s->room2, 0, ft_strlen(s->room2));
-		while (!ft_strequ(s->room1, tmp->name))
-			tmp = tmp->next;
-		(*d_lnks)->rm1 = tmp;
-		tmp = rms;
-		while (!ft_strequ(s->room2, tmp->name))
-			tmp = tmp->next;
-		(*d_lnks)->rm2 = tmp;
-		(*d_lnks)->sttus = s->sttus;
-		(*d_lnks)->way_nbr = s->way_nbr;
+		helper_cpy_the_links(tmp, *d_lnks, rms, s);
 		tmp_l = *d_lnks;
 		(*d_lnks) = (*d_lnks)->next;
 		s = s->next;

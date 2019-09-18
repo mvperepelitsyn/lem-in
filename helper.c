@@ -54,7 +54,7 @@ int			test_links(t_list_links **links, t_intldta **indta)
 void		init_struct(t_intldta **indta)
 {
 	if (!((*indta) = (t_intldta *)ft_memalloc(sizeof(t_intldta))))
-		ft_malloc_error();
+		ft_malloc_error(NULL);
 	(*indta)->start_room = NULL;
 	(*indta)->end_room = NULL;
 	(*indta)->rooms = (t_list_rooms *)ft_memalloc(sizeof(t_list_rooms));

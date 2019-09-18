@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:01:35 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 17:17:07 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 17:42:03 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void		add_new_set(t_find_way *find, int ways_cnt, t_intldta *indta)
 	int			i;
 
 	if (!(set = (t_way_set*)ft_memalloc(sizeof(t_way_set))))
-		ft_malloc_error();
+		ft_malloc_error(NULL);
 	set->ways_cnt = ways_cnt;
 	ptr = find->ways;
 	i = 0;
@@ -88,7 +88,7 @@ void		add_new_set(t_find_way *find, int ways_cnt, t_intldta *indta)
 		if (ptr->status)
 		{
 			if (!ft_lstaddnext(&set->ways, (void*)&ptr, sizeof(ptr)))
-				ft_malloc_error();
+				ft_malloc_error(NULL);
 			i++;
 		}
 		if (i < ways_cnt)
