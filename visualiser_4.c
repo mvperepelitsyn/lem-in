@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 12:46:45 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 16:03:41 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 19:28:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ int		close_vis(void *prm)
 
 	g = (t_graph*)prm;
 	mlx_destroy_image(g->v->mlx_ptr, g->v->img_ptr);
+	mlx_destroy_image(g->v->mlx_ptr, g->mask->img_ptr);
+	mlx_destroy_image(g->v->mlx_ptr, g->route->img_ptr);
+	mlx_destroy_image(g->v->mlx_ptr, g->graph->img_ptr);
 	mlx_destroy_window(g->v->mlx_ptr, g->v->win_ptr);
+	//free_main_structs(&g->indta, &g->find);
+	ft_lstdel(&g->find->ants_state, &ft_lstfree);
 	exit(0);
 	return (0);
 }

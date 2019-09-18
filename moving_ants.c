@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 18:40:53 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 20:59:44 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	check_status(t_ant_farm *ant_farm)
 }
 
 static void	help_move_ants_norm(t_intldta *intdta, t_find_way *find,
-		t_ant_farm *ant_farm, void *ptr)
+		t_ant_farm *ant_farm)
 {
 	t_list *ways;
 
@@ -68,22 +68,15 @@ static void	help_move_ants_norm(t_intldta *intdta, t_find_way *find,
 		if (ant_farm->fin_ants <= intdta->num_ants && !check_status(ant_farm))
 			ft_putchar('\n');
 		if (intdta->v_flag && !check_status(ant_farm))
-		{
-			ptr = ft_memalloc((sizeof(t_ants) * intdta->num_ants));
-			ft_memcpy(ptr, (void *)ant_farm->ants, sizeof(t_ants) * intdta->
-					num_ants);
-			ft_lstaddnext(&(find->ants_state), ptr, sizeof(t_ants) * intdta->
-					num_ants);
-		}
+			ft_lstaddnext(&(find->ants_state), ant_farm->ants, sizeof(t_ants)
+				* intdta->num_ants);
 	}
 }
 
 void		move_ants(t_intldta *intdta, t_find_way *find)
 {
 	t_ant_farm	ant_farm;
-	void		*ptr;
 
-	ptr = NULL;
 	if ((long long)sizeof(t_ants) * (long long)intdta->num_ants > MAX_MEM)
 		ft_malloc_error("You want to allocate more than MAX_MEM defined memory "
 						"size for our ants!");
@@ -96,7 +89,7 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 	ant_farm.i = 0;
 	if (intdta->v_flag)
 		ant_color_init(ant_farm.ants, ant_farm.num);
-	help_move_ants_norm(intdta, find, &ant_farm, ptr);
+	help_move_ants_norm(intdta, find, &ant_farm);
 	free(ant_farm.ants);
 	ant_farm.ants = NULL;
 }
