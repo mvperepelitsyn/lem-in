@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:45:32 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 19:29:21 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 21:19:31 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PARSER_H
 
 # include "lem_in.h"
-
-# define PATH "../deadend_2_map"
 
 /*
 ** This is the structure for our room, where:

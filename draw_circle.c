@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 18:51:10 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/16 16:32:46 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 21:34:42 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	fill_square(t_circle *c, t_line_prm *l, \
 	int			x;
 	int			y;
 
-	x = - (int)c->eighth;
+	x = -(int)c->eighth;
 	while (x < (int)c->eighth)
 	{
-		y = - (int)c->eighth;
+		y = -(int)c->eighth;
 		while (y < (int)c->eighth)
 		{
 			method(l, (c->x + x), (c->y + y), c->clr);
