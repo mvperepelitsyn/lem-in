@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 18:10:02 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 18:40:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ void		move_ants(t_intldta *intdta, t_find_way *find)
 	ptr = NULL;
 	if ((long long)sizeof(t_ants) * (long long)intdta->num_ants > MAX_MEM)
 		ft_malloc_error("You want to allocate more than MAX_MEM defined memory "
-"size for our ants!");
-	if (!(ant_farm.ants = (t_ants *)malloc(sizeof(t_ants) * intdta->num_ants)))
+						"size for our ants!");
+	if (!(ant_farm.ants = (t_ants *)ft_memalloc(sizeof(t_ants) * intdta->
+			num_ants)))
 		ft_malloc_error(NULL);
 	ant_farm.num = intdta->num_ants;
 	ant_farm.fin_ants = 0;

@@ -6,20 +6,11 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 19:12:56 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 17:49:32 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/18 18:18:06 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void		init_ant(t_ants *ant)
-{
-	ant->status = 0;
-	ant->finished = 0;
-	ant->position = NULL;
-	ant->rooms = NULL;
-	ant->way = NULL;
-}
 
 static void	helper_to_move(t_find_way *find, t_ant_farm *ant_farm, t_list *ways)
 {
@@ -33,7 +24,6 @@ static void	helper_to_move(t_find_way *find, t_ant_farm *ant_farm, t_list *ways)
 			ways = ways->next;
 		if (ways == NULL)
 			break ;
-		init_ant(&(ant_farm->ants[ant_farm->i]));
 		ant_farm->ants[ant_farm->i].status = 1;
 		ant_farm->ants[ant_farm->i].way = *(t_way **)ways->content;
 		(*(t_way **)ways->content)->last_steps--;
@@ -61,7 +51,6 @@ void		move_what_is_not_moving(t_find_way *find, t_ant_farm *ant_farm,
 			while (ant_farm->switcher-- > 0)
 				ways = ways->next;
 			ant_farm->switcher = 1;
-			init_ant(&(ant_farm->ants[ant_farm->i]));
 			ant_farm->ants[ant_farm->i].status = 1;
 			ant_farm->ants[ant_farm->i].way = *(t_way **)ways->content;
 			ant_farm->ants[ant_farm->i].rooms = ant_farm->ants[ant_farm->i].way

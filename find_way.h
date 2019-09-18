@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 18:07:57 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 18:41:10 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,5 @@ void					add_new_set(t_find_way *find, int ways_cnt, \
 void					move_what_is_not_moving(t_find_way *find,
 		t_ant_farm *ant_farm, t_list *ways);
 void					move_what_is_moving(t_ant_farm *ant_farm);
-void					init_ant(t_ants *ant);
 
 #endif
