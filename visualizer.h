@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 12:35:52 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 16:57:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,12 @@ typedef struct	s_mix_maps
 	int				j;
 }				t_mix_maps;
 
+typedef struct	s_crd_init
+{
+	long long		dx;
+	long long		dy;
+}				t_crd_init;
+
 void	visualizer(t_intldta *indta, t_find_way *find);
 void	draw_rooms(t_intldta *indta, t_graph *g);
 void	draw_links(t_intldta *indta, t_graph *g);
@@ -215,8 +221,7 @@ int		put_pix_to_img(t_line_prm *l, int x, int y, int color);
 int		mix_pix_in_img(t_line_prm *l, int x, int y, int color);
 void	build_line(t_line_prm *l, t_dot_prm *a, t_grad_prms *clr, \
 	int (*method)(t_line_prm*, int, int, int));
-void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
-	t_grad_prms *clr, t_circle *c);
+void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_circle *c);
 void	put_line_to_img(t_vis_prms *v, t_dot_prm a, t_dot_prm b);
 void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos);
 int		deal_key(int key, void *prm);
@@ -228,11 +233,18 @@ int		get_coord(t_line_prm *l);
 int		get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos);
 void	draw_circle(t_circle *c, t_vis_prms *v, int fill_prm, \
 	int (*method)(t_line_prm*, int, int, int));
-void	build_graph(t_intldta *indta, t_graph *g, t_find_way *find);
+void	build_graph(t_intldta *indta, t_graph *g);
 void	ant_color_init(t_ants *ants, int ants_count);
 void	vis_step(t_graph *g, t_intldta *indta);
 void	set_map_transparent(t_vis_prms *v);
 void	transparent(int *color, unsigned char clarity, t_vis_prms *v);
 void	sign_rooms(t_intldta *indta, t_graph *g);
-void	sign_ant_step(t_dllist *room, t_graph *g, int frame, int color, int num);
+void	sign_ant_step(t_dllist *room, t_graph *g, int frame, int num);
+void put_images_to_window(t_graph *g);
+void	coord_init(t_intldta *indta, t_graph *g);
+void	graph_init(t_graph *g, t_find_way *find, t_intldta *indta);
+void	window_init(t_vis_prms *v, t_vis_prms *mask, t_vis_prms *graph, \
+	t_vis_prms *route);
+void	set_limits(t_intldta *indta, t_graph *g);
+void	mix_maps(t_vis_prms *src, t_vis_prms *dst, unsigned char transparency);
 #endif

@@ -6,14 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:54:33 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 20:19:56 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 17:00:03 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
-	t_grad_prms *clr, t_circle *c)
+void		build_thick_line(t_line_prm *l, t_dot_prm *a, t_circle *c)
 {
 	t_draw_thick	tk;
 
@@ -40,7 +39,7 @@ void	build_thick_line(t_line_prm *l, t_dot_prm *a, t_dot_prm *b, \
 static void	dot_init(t_build_route *br, t_circle *c)
 {
 	get_delta(&br->a, &br->b, &br->l);
-	br->l.i = 0/*ft_abs(br->l.d_big) - 1*/;
+	br->l.i = 0;
 	br->clr.delta = ft_abs(br->l.d_big);
 	br->clr.a = br->a.color;
 	br->clr.b = br->b.color;
@@ -60,20 +59,18 @@ void		build_route(t_graph *g, t_dllist *room)
 	br.a.color = g->route_color;
 	br.b.color = g->route_color;
 	c.r = ROUTE_THICK / 2;
-	while(room->right)
+	while (room->right)
 	{
 		br.croom = room->content;
-		br.a.x = ((*br.croom)->x_cord * g->scale)  + (2 * R) + LINE_H;
-		br.a.y = ((*br.croom)->y_cord * g->scale)  + (2 * R) + LINE_H;
+		br.a.x = ((*br.croom)->x_cord * g->scale) + (2 * R) + LINE_H;
+		br.a.y = ((*br.croom)->y_cord * g->scale) + (2 * R) + LINE_H;
 		br.croom = room->right->content;
-		br.b.x = ((*br.croom)->x_cord * g->scale)  + (2 * R) + LINE_H;
-		br.b.y = ((*br.croom)->y_cord * g->scale)  + (2 * R) + LINE_H;
+		br.b.x = ((*br.croom)->x_cord * g->scale) + (2 * R) + LINE_H;
+		br.b.y = ((*br.croom)->y_cord * g->scale) + (2 * R) + LINE_H;
 		dot_init(&br, &c);
-		//draw_circle(&c, g->graph, 1);
-		build_thick_line(&br.l, &br.a, &br.b, &br.clr, &c);
+		build_thick_line(&br.l, &br.a, &c);
 		room = room->right;
 	}
-	c.x = ((*br.croom)->x_cord * g->scale)  + (2 * R) + LINE_H;
-	c.y = ((*br.croom)->y_cord * g->scale)  + (2 * R) + LINE_H;
-	//draw_circle(&c, g->graph, 1);
+	c.x = ((*br.croom)->x_cord * g->scale) + (2 * R) + LINE_H;
+	c.y = ((*br.croom)->y_cord * g->scale) + (2 * R) + LINE_H;
 }

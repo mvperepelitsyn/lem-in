@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 12:38:15 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 17:10:28 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,5 +200,8 @@ void					cpy_the_rooms(t_list_rooms *s_rms,
 		t_list_rooms **d_rms);
 void					cpy_the_links(t_list_links *s_lnks,
 		t_list_links **d_lnks, t_list_rooms *rms);
-
+long long				count_set_steps(t_intldta *indta, t_find_way *find, \
+	int count);
+void					add_new_set(t_find_way *find, int ways_cnt, \
+	t_intldta *indta);
 #endif
