@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:11:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 21:31:54 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 21:42:37 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define ANT_R 6
 # define ROUTE_COLOR 0xff881b
 # define ROUTE_THICK 30
+# define LL long long
 
 typedef struct s_vis_prms	t_vis_prms;
 
