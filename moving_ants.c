@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 19:07:51 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 19:11:35 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/18 11:58:33 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ static void	status_changer(t_ant_farm *ant_farm)
 	{
 		if (ant_farm->ants[ant_farm->j].position->type == 2 && ant_farm->
 				ants[ant_farm->j].finished == 0)
+		{
 			ant_farm->ants[ant_farm->j].finished = 1;
+			ant_farm->ants[ant_farm->j].status = 0;
+		}
 		ant_farm->j++;
 	}
 	ant_farm->j = i;

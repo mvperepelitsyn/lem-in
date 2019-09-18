@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 14:36:23 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 19:54:22 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/17 20:13:10 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	parce_ant_farm(t_intldta **indta)
 }
 
 //TODO LIST: fix the segfault, when we have two rooms, start, end and one link between them
+//TODO:		fix the problem when we have max int
 
 int			main(int argc, char **argv)
 {

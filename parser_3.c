@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 14:49:08 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/15 15:47:28 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/18 10:32:17 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void			fill_list_rooms(char **rms, t_intldta **indta, short type)
 		while (current->next != NULL)
 			current = current->next;
 		current->next = (t_list_rooms *)ft_memalloc(sizeof(t_list_rooms));
+//		current->next->prev = current;
 		help_fill_list_rooms(rms, &(current->next), type);
 		type_assignment(current->next, indta);
 		current->next->next = NULL;
