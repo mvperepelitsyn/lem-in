@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 12:38:15 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 13:49:49 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # define CUR find->crnt_set
 # define PRE find->crnt_set->prev
+# define MAX_MEM 524288
 
 /*
 ** Way params: way
@@ -202,5 +203,6 @@ void					cpy_the_links(t_list_links *s_lnks,
 		t_list_links **d_lnks, t_list_rooms *rms);
 void					move_what_is_not_moving(t_find_way *find,
 		t_ant_farm *ant_farm, t_list *ways);
+void					move_what_is_moving(t_ant_farm *ant_farm);
 
 #endif

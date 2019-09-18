@@ -17,7 +17,7 @@ static void	cpy_helper(t_search **tmp_l, t_search **tmp_d)
 	(*tmp_l)->rooms = (*tmp_d)->rooms;
 	(*tmp_l)->step_nbr = (*tmp_d)->step_nbr;
 	(*tmp_l)->way_nbr = (*tmp_d)->way_nbr;
-	(*tmp_l)->next = (t_search *) ft_memalloc(sizeof(t_search));
+	(*tmp_l)->next = (t_search *)ft_memalloc(sizeof(t_search));
 	(*tmp_l)->next->prev = (*tmp_l);
 	(*tmp_l) = (*tmp_l)->next;
 	(*tmp_d) = (*tmp_d)->next;

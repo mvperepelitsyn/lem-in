@@ -85,7 +85,6 @@ void			fill_list_rooms(char **rms, t_intldta **indta, short type)
 		while (current->next != NULL)
 			current = current->next;
 		current->next = (t_list_rooms *)ft_memalloc(sizeof(t_list_rooms));
-//		current->next->prev = current;
 		help_fill_list_rooms(rms, &(current->next), type);
 		type_assignment(current->next, indta);
 		current->next->next = NULL;

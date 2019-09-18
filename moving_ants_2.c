@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 19:12:56 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 19:13:20 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/18 14:51:53 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	helper_to_move(t_find_way *find, t_ant_farm *ant_farm, t_list *ways)
 			ways = ways->next;
 		if (ways == NULL)
 			break ;
+		ft_bzero(&(ant_farm->ants[ant_farm->i]), sizeof(t_ants));
 		ant_farm->ants[ant_farm->i].status = 1;
 		ant_farm->ants[ant_farm->i].way = *(t_way **)ways->content;
 		(*(t_way **)ways->content)->last_steps--;
@@ -51,6 +52,7 @@ void		move_what_is_not_moving(t_find_way *find, t_ant_farm *ant_farm,
 			while (ant_farm->switcher-- > 0)
 				ways = ways->next;
 			ant_farm->switcher = 1;
+			ft_bzero(&(ant_farm->ants[ant_farm->i]), sizeof(t_ants));
 			ant_farm->ants[ant_farm->i].status = 1;
 			ant_farm->ants[ant_farm->i].way = *(t_way **)ways->content;
 			ant_farm->ants[ant_farm->i].rooms = ant_farm->ants[ant_farm->i].way
@@ -63,5 +65,27 @@ void		move_what_is_not_moving(t_find_way *find, t_ant_farm *ant_farm,
 			ant_farm->i++;
 		}
 		ant_farm->full_steps--;
+	}
+}
+
+void		move_what_is_moving(t_ant_farm *ant_farm)
+{
+	while (ant_farm->ants[ant_farm->j].status == 1 || ant_farm->j < ant_farm->i)
+	{
+		if (ant_farm->ants[ant_farm->j].status == 1)
+		{
+			ant_farm->ants[ant_farm->j].rooms = ant_farm->ants[ant_farm->j].
+					rooms->right;
+			ant_farm->ants[ant_farm->j].position = *(t_list_rooms **)
+					(ant_farm->ants[ant_farm->j].rooms->content);
+			ft_printf("L%d-%s ", ant_farm->j + 1, ant_farm->ants[ant_farm->j].
+					position->name);
+			if (ant_farm->ants[ant_farm->j].position->type == 2)
+			{
+				ant_farm->ants[ant_farm->j].status = 0;
+				ant_farm->fin_ants++;
+			}
+		}
+		ant_farm->j++;
 	}
 }

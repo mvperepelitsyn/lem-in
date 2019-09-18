@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 14:36:23 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 20:13:10 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/18 13:04:17 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int			main(int ac, char **av)
 		if (!ft_strcmp(av[1], "-r") || (ac == 3 && !ft_strcmp(av[2], "-r")))
 			indta->r_flag = 1;
 	}
-	ft_putchar('\n');
 	ft_putchar('\n');
 	find_the_way(indta);
 	exit(0);

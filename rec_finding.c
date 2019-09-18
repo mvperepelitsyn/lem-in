@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/18 12:54:24 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 13:50:16 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void	add_new_set(t_find_way *find, int ways_cnt, t_intldta *indta)
 	int			i;
 
 	if (!(set = (t_way_set*)ft_memalloc(sizeof(t_way_set))))
-		ft_malloc_error();
+		ft_malloc_error(NULL);
 	set->ways_cnt = ways_cnt;
 	ptr = find->ways;
 	i = 0;
@@ -112,7 +112,7 @@ static void	add_new_set(t_find_way *find, int ways_cnt, t_intldta *indta)
 		if (ptr->status)
 		{
 			if (!ft_lstaddnext(&set->ways, (void*)&ptr, sizeof(ptr)))
-				ft_malloc_error();
+				ft_malloc_error(NULL);
 			i++;
 		}
 		if (i < ways_cnt)
@@ -132,7 +132,6 @@ static void	add_new_set(t_find_way *find, int ways_cnt, t_intldta *indta)
 		find->sets = find->crnt_set;
 	if (indta->v_flag)
 		cpy_the_state(&indta, &set->links, &set->rooms);
-	print_the_set(find->crnt_set);
 }
 
 static int	form_the_set(t_find_way *find, t_intldta *indta)
