@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:59:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 17:59:56 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 12:54:24 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static int	check_free_rooms(t_list_rooms *start)
 	return (0);
 }
 
-static int	count_set_steps(t_intldta *indta, t_find_way *find, int count)
+static long long	count_set_steps(t_intldta *indta, t_find_way *find, \
+	int count)
 {
 	t_count_steps	c;
 
@@ -68,10 +69,10 @@ static int	count_set_steps(t_intldta *indta, t_find_way *find, int count)
 		c.ptr->full_steps = 0;
 	else
 	{
-		c.steps = (float)(indta->num_ants - c.pre_lems) / (float)count;
-		if (c.steps > (int)c.steps)
+		c.steps = (double)(indta->num_ants - c.pre_lems) / (double)count;
+		if (c.steps > (long long)c.steps)
 			c.steps++;
-		c.ptr->full_steps = (int)c.steps;
+		c.ptr->full_steps = (long long)c.steps;
 	}
 	c.ptr->steps = c.ptr->full_steps + c.max_len;
 	return (c.ptr->steps);
@@ -85,7 +86,7 @@ void		print_the_set(t_way_set *set)
 	tmp = set->ways;
 	ft_printf("\n-------------------");
 	ft_printf("\nHere is the set of ways, that we found:\n");
-	ft_printf("\nThe number of steps %d\n", set->steps);
+	ft_printf("\nThe number of steps %lld\n", set->steps);
 	while (tmp)
 	{
 		ptr = tmp->content;

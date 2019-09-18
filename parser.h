@@ -6,14 +6,14 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:45:32 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 19:08:30 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 11:15:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# define NAME "" //DO NOT FORGET TO REMOVE IT
+# define NAME "../classic" //DO NOT FORGET TO REMOVE IT
 
 # include "lem_in.h"
 

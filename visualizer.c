@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:07:00 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 20:23:47 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 12:22:08 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ static void	coord_redef(t_intldta *indta, t_graph *g)
 static void	coord_init(t_intldta *indta, t_graph *g)
 {
 	static int		redef;
+	long long		dx;
+	long long		dy;
 
 	g->scale_rec++;
 	g->min_x = indta->rooms->x_cord;
@@ -130,9 +132,15 @@ static void	coord_init(t_intldta *indta, t_graph *g)
 	g->scale = SCALE;
 	g->delta_x = (g->max_x - g->min_x) * g->scale;
 	g->delta_y = (g->max_y - g->min_y) * g->scale;
-	while ((g->delta_x + (R * 4) + LINE_H * 2) > WIN_X \
-		|| (g->delta_y + (R * 4) + LINE_H * 2) > WIN_Y)
+	dx = (g->max_x - g->min_x) * g->scale;
+	dy = (g->max_y - g->min_y) * g->scale;
+	while ((g->delta_x + (R * 4) + LINE_H * 2) > WIN_X 	|| \
+		(g->delta_y + (R * 4) + LINE_H * 2) > WIN_Y || (long long)g->delta_x != dx || \
+		(long long)g->delta_y != dy || (g->delta_x + (R * 4) + LINE_H * 2) < dx || \
+		(g->delta_y + (R * 4) + LINE_H * 2) < dy)
 	{
+		if (!g->scale)
+			break ;
 		g->scale--;
 		g->delta_x = (g->max_x - g->min_x) * g->scale;
 		g->delta_y = (g->max_y - g->min_y) * g->scale;
