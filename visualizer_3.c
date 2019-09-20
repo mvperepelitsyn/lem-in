@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visualizer_3.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/18 21:21:54 by uhand             #+#    #+#             */
+/*   Updated: 2019/09/18 21:33:05 by uhand            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
-int			get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos)
+int		get_grad_color(t_vis_prms *v, t_grad_prms *clr, int pos)
 {
 	t_grad			grad;
 
@@ -42,7 +54,7 @@ void	get_delta(t_dot_prm *a, t_dot_prm *b, t_line_prm *l)
 		l->sign = 1;
 }
 
-int	get_coord(t_line_prm *l)
+int		get_coord(t_line_prm *l)
 {
 	int				coord;
 	int				sign;
@@ -61,7 +73,7 @@ int	get_coord(t_line_prm *l)
 	return (coord);
 }
 
-void		build_line(t_line_prm *l, t_dot_prm *a, t_grad_prms *clr, \
+void	build_line(t_line_prm *l, t_dot_prm *a, t_grad_prms *clr, \
 	int (*method)(t_line_prm*, int, int, int))
 {
 	while (l->i <= ft_abs(l->d_big))
@@ -76,7 +88,7 @@ void		build_line(t_line_prm *l, t_dot_prm *a, t_grad_prms *clr, \
 	}
 }
 
-void		put_line_to_img(t_vis_prms *v, t_dot_prm a, t_dot_prm b)
+void	put_line_to_img(t_vis_prms *v, t_dot_prm a, t_dot_prm b)
 {
 	t_line_prm		l;
 	t_grad_prms		clr;
