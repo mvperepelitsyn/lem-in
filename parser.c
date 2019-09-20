@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 14:36:23 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/18 21:21:15 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/20 12:00:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ int			main(int ac, char **av)
 {
 	t_intldta	*indta;
 
+	if (ac > 1 && (!ft_strcmp(av[1], "--help") || !ft_strcmp(av[1], "-h") || \
+			!(!ft_strcmp(av[1], "-v") || !ft_strcmp(av[1], "-r"))))
+	{
+		ft_printf("Usage: ./lem-in [options] < map_file\n  options:\n%s", \
+			"\t-v visual mode\n\t-r coordinates redefinition\n");
+		exit (0);
+	}
 	init_struct(&indta);
 	parce_ant_farm(&indta);
 	if (ac == 2 || ac == 3)
