@@ -1,15 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visualizer_2.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/18 16:07:33 by uhand             #+#    #+#             */
+/*   Updated: 2019/09/18 16:43:44 by uhand            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
-
-int			put_pix_to_img(t_line_prm *l, int x, int y, int color)
-{
-	int	*image;
-
-	if (x < 0 || y < 0 || x >= l->img->win_x || y >= l->img->win_y)
-		return (0);
-	image = (int*)l->img->img_addr;
-	image[(y * (l->img->lsz / 4)) + x] = color;
-	return (0);
-}
 
 void		set_grad_color(t_grad *g, t_grad_prms *clr, int pos)
 {
@@ -27,12 +28,12 @@ void		set_grad_color(t_grad *g, t_grad_prms *clr, int pos)
 	g->c[g->alpha] = ((g->d_alpha * pos) / clr->delta) + g->a[g->alpha];
 }
 
-void	transparent(int *color, unsigned char clarity, t_vis_prms *v)
+void		transparent(int *color, unsigned char clarity, t_vis_prms *v)
 {
 	int				alpha;
 	unsigned char	*clr;
 
-	alpha  = (v->ndn == 0) ? 3 : 0;
+	alpha = (v->ndn == 0) ? 3 : 0;
 	clr = (unsigned char*)color;
 	clr[alpha] = clarity;
 }
@@ -59,6 +60,19 @@ void		draw_rooms(t_intldta *indta, t_graph *g)
 	}
 }
 
+static void	set_dots_coords(t_graph *g, t_list_links *ptr, t_dot_prm *a, \
+	t_dot_prm *b)
+{
+	a->x = ptr->rm1->x_cord * g->scale + (2 * R) + LINE_H;
+	a->y = ptr->rm1->y_cord * g->scale + (2 * R) + LINE_H;
+	a->color = g->clr[ptr->rm1->type];
+	a->thick = 1;
+	b->x = ptr->rm2->x_cord * g->scale + (2 * R) + LINE_H;
+	b->y = ptr->rm2->y_cord * g->scale + (2 * R) + LINE_H;
+	b->color = g->clr[ptr->rm2->type];
+	b->thick = 1;
+}
+
 void		draw_links(t_intldta *indta, t_graph *g)
 {
 	t_list_links	*ptr;
@@ -70,14 +84,7 @@ void		draw_links(t_intldta *indta, t_graph *g)
 	ptr_set = g->set_ptr->links;
 	while (ptr)
 	{
-		a.x = ptr->rm1->x_cord * g->scale + (2 * R) + LINE_H;
-		a.y = ptr->rm1->y_cord * g->scale + (2 * R) + LINE_H;
-		a.color =  g->clr[ptr->rm1->type];
-		a.thick = 1;
-		b.x = ptr->rm2->x_cord * g->scale + (2 * R) + LINE_H;
-		b.y = ptr->rm2->y_cord * g->scale + (2 * R) + LINE_H;
-		b.color =  g->clr[ptr->rm2->type];
-		b.thick = 1;
+		set_dots_coords(g, ptr, &a, &b);
 		trim_line(&a, &b, R);
 		if (!ptr_set->sttus)
 		{

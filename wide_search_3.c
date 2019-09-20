@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 20:53:30 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/14 20:01:32 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/18 11:13:26 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@ static void	cpy_t_searched(t_search **srchd, t_search **lst, t_list_links
 	*lst = (t_search *)ft_memalloc(sizeof(t_search));
 	tmp_l = *lst;
 	tmp_d = *srchd;
-	while (tmp_d)
+	while (tmp_d && tmp_d->rooms != NULL)
 		cpy_helper(&tmp_l, &tmp_d);
 	tmp_l->rooms = (end_lnk->rm2->type == 2) ? end_lnk->rm1 : end_lnk->rm2;
 	tmp_l->step_nbr = tmp_l->rooms->tmp_step_nbr;
-	tmp_l->way_nbr = tmp_l->prev->way_nbr;
+	if (tmp_l->prev)
+		tmp_l->way_nbr = tmp_l->prev->way_nbr;
+	else
+		tmp_l->way_nbr = 1;
 	tmp_l->next = (t_search *)ft_memalloc(sizeof(t_search));
 	tmp_l->next->prev = tmp_l;
 	tmp_l = tmp_l->next;

@@ -68,7 +68,6 @@ void		dead_end_cleaner(t_list_rooms *room, int prm)
 	}
 	link->sttus = 0;
 	room->act_lnks = 0;
-	//room->status = 0;
 	if (room == link->rm1)
 		room = link->rm2;
 	else if (room == link->rm2)

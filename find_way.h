@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 18:06:04 by uhand             #+#    #+#             */
-/*   Updated: 2019/09/17 12:01:08 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 18:41:10 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # define CUR find->crnt_set
 # define PRE find->crnt_set->prev
+# define MAX_MEM 524288
 
 /*
 ** Way params: way
@@ -27,9 +28,9 @@ typedef struct			s_way
 	int					len_way;
 	int					num_way;
 	int					status;
-	int					last_steps;
-	int					steps;
-	int					full_steps;
+	long long			last_steps;
+	long long			steps;
+	long long			full_steps;
 	t_dllist			*rooms;
 	struct s_way		*next;
 	struct s_way		*prev;
@@ -39,13 +40,13 @@ typedef struct			s_way
 ** Way set params: set
 */
 
-struct			s_way_set
+struct					s_way_set
 {
-	int					steps;
-	int					full_steps;
+	long long			steps;
+	long long			full_steps;
 	int					ways_cnt;
 	t_list_rooms		*rooms;
-  	t_list_links		*links;
+	t_list_links		*links;
 	t_list				*ways;
 	struct s_way_set	*next;
 	struct s_way_set	*prev;
@@ -80,10 +81,10 @@ struct					s_find_way
 typedef struct			s_count_steps
 {
 	t_way				*ptr;
-	int					i;
-	int					pre_lems;
-	int					max_len;
-	float				steps;
+	long long			i;
+	long long			pre_lems;
+	long long			max_len;
+	double				steps;
 }						t_count_steps;
 
 /*
@@ -132,16 +133,16 @@ typedef struct			s_form_set
 	t_way				*ptr;
 	int					counter;
 	int					i;
-	int					steps_count;
-	int					min_steps_count;
+	long long			steps_count;
+	long long			min_steps_count;
 	int					i_min;
 }						t_form_set;
 
 struct					s_ants
 {
 	int					status;
-	int 				color;
-	int 				finished;
+	int					color;
+	int					finished;
 	t_way				*way;
 	t_dllist			*rooms;
 	t_list_rooms		*position;
@@ -200,5 +201,12 @@ void					cpy_the_rooms(t_list_rooms *s_rms,
 		t_list_rooms **d_rms);
 void					cpy_the_links(t_list_links *s_lnks,
 		t_list_links **d_lnks, t_list_rooms *rms);
+long long				count_set_steps(t_intldta *indta, t_find_way *find, \
+	int count);
+void					add_new_set(t_find_way *find, int ways_cnt, \
+	t_intldta *indta);
+void					move_what_is_not_moving(t_find_way *find,
+		t_ant_farm *ant_farm, t_list *ways);
+void					move_what_is_moving(t_ant_farm *ant_farm);
 
 #endif

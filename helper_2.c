@@ -6,7 +6,7 @@
 /*   By: dfrost-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 17:13:35 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/15 17:13:38 by dfrost-a         ###   ########.fr       */
+/*   Updated: 2019/09/18 15:30:24 by dfrost-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ void	erase_tmp_step_nbr(t_list_rooms *rooms)
 
 void	help_fill_list_rooms(char **rms, t_list_rooms **current, short type)
 {
+	char *check;
+
+	check = rms[0];
+	while (*check)
+	{
+		if (*check == '-')
+			ft_error();
+		check++;
+	}
 	(*current)->name = ft_strsub(rms[0], 0, ft_strlen(rms[0]));
 	if ((*current)->name[0] == 'L' || (*current)->name[0] == '#')
 		ft_error();
@@ -41,9 +50,12 @@ void	help_fill_list_rooms(char **rms, t_list_rooms **current, short type)
 	(*current)->status = 0;
 }
 
-void	ft_malloc_error(void)
+void	ft_malloc_error(char *str)
 {
-	ft_putstr("Malloc didn't allocate the memory\n");
+	if (!str)
+		ft_putstr("Malloc didn't allocate the memory\n");
+	else
+		ft_printf("%s\n", str);
 	exit(73);
 }
 

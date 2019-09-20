@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:20:44 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 18:03:10 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/18 20:57:37 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			print_the_way(t_way *way)
 static void		init_set(t_find_way **fnd_wy, t_intldta *indta)
 {
 	if (!((*fnd_wy) = (t_find_way *)ft_memalloc(sizeof(t_find_way))))
-		ft_malloc_error();
+		ft_malloc_error(NULL);
 	(*fnd_wy)->ways = NULL;
 	(*fnd_wy)->start = indta->start_room;
 	(*fnd_wy)->sets = NULL;
@@ -88,11 +88,9 @@ static void		help_find_the_way(t_intldta **indta, t_find_way **find)
 
 int				find_the_way(t_intldta *indta)
 {
-	t_find_way	*find;
-	int			steps;
-	t_way_set	*ptr;
-	// t_list_links *t_lnks;
-	// t_list_rooms *t_rms;
+	t_find_way		*find;
+	long long int	steps;
+	t_way_set		*ptr;
 
 	help_find_the_way(&indta, &find);
 	ptr = find->answer;

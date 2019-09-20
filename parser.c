@@ -6,7 +6,7 @@
 /*   By: dfrost-a <dfrost-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 14:36:23 by dfrost-a          #+#    #+#             */
-/*   Updated: 2019/09/17 19:10:59 by uhand            ###   ########.fr       */
+/*   Updated: 2019/09/20 12:00:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ static void	parce_ant_farm(t_intldta **indta)
 	char	**rms;
 	int		fd;
 
-	if ((fd = open(NAME, O_RDONLY)) < 0)
-		fd = 0;
+	fd = 0;
 	get_next_line(fd, &things);
 	(things == NULL) ? ft_error() : ft_println(things);
 	while (things && (things[0] == '#' && things[1] != '#'))
@@ -56,7 +55,7 @@ static void	parce_ant_farm(t_intldta **indta)
 	}
 	(*indta)->num_ants = ft_latoi(things);
 	if (ft_hm_wrd(things, ' ') != 1 || ((*indta)->num_ants <= 0 || (*indta)->
-	num_ants != (int)ft_latoi(things)))
+	num_ants != (long long int)ft_latoi(things)))
 		ft_error();
 	ft_strdel(&things);
 	rms = NULL;
@@ -70,6 +69,13 @@ int			main(int ac, char **av)
 {
 	t_intldta	*indta;
 
+	if (ac > 1 && (!ft_strcmp(av[1], "--help") || !ft_strcmp(av[1], "-h") || \
+			!(!ft_strcmp(av[1], "-v") || !ft_strcmp(av[1], "-r"))))
+	{
+		ft_printf("Usage: ./lem-in [options] < map_file\n  options:\n%s", \
+			"\t-v visual mode\n\t-r coordinates redefinition\n");
+		exit (0);
+	}
 	init_struct(&indta);
 	parce_ant_farm(&indta);
 	if (ac == 2 || ac == 3)
@@ -79,7 +85,6 @@ int			main(int ac, char **av)
 		if (!ft_strcmp(av[1], "-r") || (ac == 3 && !ft_strcmp(av[2], "-r")))
 			indta->r_flag = 1;
 	}
-	ft_putchar('\n');
 	ft_putchar('\n');
 	find_the_way(indta);
 	exit(0);
